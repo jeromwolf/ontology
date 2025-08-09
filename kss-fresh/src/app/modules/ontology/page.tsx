@@ -75,6 +75,54 @@ export default function OntologyMainPage() {
         {showRDFEditor && <RDFTripleEditor />}
       </section>
 
+      {/* 시뮬레이터 바로가기 */}
+      <section className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-2xl p-8">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+          <Sparkles className="text-purple-500" size={24} />
+          시뮬레이터 바로가기
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Link 
+            href="/modules/ontology/simulators/rdf-editor"
+            className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-indigo-200 dark:hover:border-indigo-700"
+          >
+            <div className="text-3xl mb-2">📝</div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">RDF Editor</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">트리플 편집</p>
+          </Link>
+          
+          <Link 
+            href="/modules/ontology/simulators/3d-graph"
+            className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-green-200 dark:hover:border-green-700"
+          >
+            <div className="text-3xl mb-2">🌐</div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">3D Graph</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">지식 그래프</p>
+          </Link>
+          
+          <Link 
+            href="/modules/ontology/simulators/sparql-playground"
+            className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-blue-200 dark:hover:border-blue-700"
+          >
+            <div className="text-3xl mb-2">🔍</div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">SPARQL</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">쿼리 실행</p>
+          </Link>
+          
+          <Link 
+            href="/modules/ontology/simulators/inference-engine"
+            className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-purple-200 dark:hover:border-purple-700"
+          >
+            <div className="text-3xl mb-2">🧠</div>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">추론 엔진</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">지식 추론</p>
+            <div className="mt-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-2 py-1 rounded-full text-xs font-medium">
+              NEW!
+            </div>
+          </Link>
+        </div>
+      </section>
+
       {/* 학습 목표 */}
       <section className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-gray-700">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
@@ -296,17 +344,24 @@ export default function OntologyMainPage() {
               Chapter 7에서 체험 가능
             </span>
           </div>
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-              추론 엔진 시뮬레이터
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              온톨로지 추론 과정을 단계별로 시각화하여 이해
-            </p>
-            <span className="text-sm text-indigo-600 dark:text-indigo-400 font-medium">
-              Chapter 6에서 체험 가능
-            </span>
-          </div>
+          <Link href="/modules/ontology/simulators/inference-engine" className="block">
+            <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border-2 border-transparent hover:border-purple-200 dark:hover:border-purple-700">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                🧠 추론 엔진 시뮬레이터
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                온톨로지 추론 과정을 단계별로 시각화하여 이해
+              </p>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-indigo-600 dark:text-indigo-400 font-medium">
+                  Chapter 6에서도 체험 가능
+                </span>
+                <div className="bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-3 py-1 rounded-full text-sm font-medium">
+                  직접 체험하기 →
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
       </section>
     </div>

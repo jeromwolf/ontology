@@ -11,6 +11,7 @@ interface AttentionScore {
 
 const AttentionVisualizer = () => {
   const [inputTokens, setInputTokens] = useState(['나는', '오늘', '학교에', '갔다']);
+  const [targetTokens, setTargetTokens] = useState(['I', 'went', 'to', 'school', 'today']); // For cross-attention
   const [attentionScores, setAttentionScores] = useState<AttentionScore[]>([]);
   const [selectedToken, setSelectedToken] = useState<number | null>(null);
   const [attentionType, setAttentionType] = useState<'self' | 'cross'>('self');
@@ -24,26 +25,63 @@ const AttentionVisualizer = () => {
 
   const generateAttentionScores = () => {
     const scores: AttentionScore[] = [];
-    const numTokens = inputTokens.length;
-
-    for (let i = 0; i < numTokens; i++) {
-      for (let j = 0; j < numTokens; j++) {
-        // Simulate more realistic attention patterns
-        let score = Math.random();
-        
-        // Make diagonal stronger for self-attention
-        if (i === j) score = Math.min(score + 0.5, 1);
-        
-        // Make nearby tokens have higher attention
-        const distance = Math.abs(i - j);
-        score = score * (1 - distance * 0.1);
-        
-        // Add some linguistic patterns
-        if (inputTokens[i].includes('는') && inputTokens[j].includes('다')) {
-          score = Math.min(score + 0.3, 1); // Subject-verb attention
+    
+    if (attentionType === 'self') {
+      // Self-Attention: 같은 시퀀스 내에서 토큰 간 관계
+      const numTokens = inputTokens.length;
+      
+      for (let i = 0; i < numTokens; i++) {
+        for (let j = 0; j < numTokens; j++) {
+          let score = Math.random() * 0.3;
+          
+          // 대각선 강조 (자기 자신에 대한 attention)
+          if (i === j) score = Math.min(score + 0.6, 1);
+          
+          // 인접 토큰 간 높은 attention
+          const distance = Math.abs(i - j);
+          if (distance === 1) score = Math.min(score + 0.4, 1);
+          score = score * (1 - distance * 0.1);
+          
+          // 한국어 언어적 패턴
+          if (inputTokens[i].includes('는') && inputTokens[j].includes('다')) {
+            score = Math.min(score + 0.3, 1); // 주어-서술어
+          }
+          if (inputTokens[i].includes('에') && j === i + 1) {
+            score = Math.min(score + 0.2, 1); // 조사-다음 단어
+          }
+          
+          scores.push({ from: i, to: j, score: Math.max(0.1, score) });
         }
-        
-        scores.push({ from: i, to: j, score: Math.max(0.1, score) });
+      }
+    } else {
+      // Cross-Attention: 다른 시퀀스 간 토큰 관계 (예: 번역)
+      const numSourceTokens = inputTokens.length;
+      const numTargetTokens = targetTokens.length;
+      
+      for (let i = 0; i < numSourceTokens; i++) {
+        for (let j = 0; j < numTargetTokens; j++) {
+          let score = Math.random() * 0.4;
+          
+          // 번역 정렬 패턴 시뮬레이션
+          // 한국어-영어 어순 차이 반영
+          if (inputTokens[i] === '나는' && targetTokens[j] === 'I') {
+            score = 0.9; // 주어 매칭
+          } else if (inputTokens[i] === '학교에' && targetTokens[j] === 'school') {
+            score = 0.85; // 명사 매칭
+          } else if (inputTokens[i] === '갔다' && targetTokens[j] === 'went') {
+            score = 0.9; // 동사 매칭
+          } else if (inputTokens[i] === '오늘' && targetTokens[j] === 'today') {
+            score = 0.8; // 시간 부사 매칭
+          }
+          
+          // 어순 차이로 인한 패턴
+          const normalizedI = i / numSourceTokens;
+          const normalizedJ = j / numTargetTokens;
+          const alignmentScore = 1 - Math.abs(normalizedI - normalizedJ);
+          score = score * 0.7 + alignmentScore * 0.3;
+          
+          scores.push({ from: i, to: j, score: Math.max(0.1, score) });
+        }
       }
     }
 
@@ -76,18 +114,21 @@ const AttentionVisualizer = () => {
   const startAttentionFlow = () => {
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current);
+      animationRef.current = null;
     }
     
-    setIsPlaying(!isPlaying);
+    const newIsPlaying = !isPlaying;
+    setIsPlaying(newIsPlaying);
     
-    if (!isPlaying) {
+    if (newIsPlaying) {
       const animate = () => {
         drawAttentionMatrix();
-        if (isPlaying) {
+        // Use ref to get current playing state
+        if (animationRef.current !== null) {
           animationRef.current = requestAnimationFrame(animate);
         }
       };
-      animate();
+      animationRef.current = requestAnimationFrame(animate);
     }
   };
   
@@ -113,7 +154,10 @@ const AttentionVisualizer = () => {
     const col = Math.floor((x - padding) / cellSize);
     const row = Math.floor((y - padding) / cellSize);
     
-    if (col >= 0 && col < inputTokens.length && row >= 0 && row < inputTokens.length) {
+    const numCols = attentionType === 'self' ? inputTokens.length : targetTokens.length;
+    const numRows = inputTokens.length;
+    
+    if (col >= 0 && col < numCols && row >= 0 && row < numRows) {
       setHoveredCell({ row, col });
     } else {
       setHoveredCell(null);
@@ -126,11 +170,11 @@ const AttentionVisualizer = () => {
 
   useEffect(() => {
     generateAttentionScores();
-  }, [inputTokens]);
+  }, [inputTokens, targetTokens, attentionType]);
 
   useEffect(() => {
     drawAttentionMatrix();
-  }, [attentionScores, selectedToken]);
+  }, [attentionScores, selectedToken, isPlaying]);
 
   const drawAttentionMatrix = () => {
     const canvas = canvasRef.current;
@@ -141,10 +185,11 @@ const AttentionVisualizer = () => {
 
     const cellSize = 60;
     const padding = 60;
-    const numTokens = inputTokens.length;
+    const numRows = inputTokens.length;
+    const numCols = attentionType === 'self' ? inputTokens.length : targetTokens.length;
 
-    canvas.width = numTokens * cellSize + padding * 2;
-    canvas.height = numTokens * cellSize + padding * 2;
+    canvas.width = numCols * cellSize + padding * 2;
+    canvas.height = numRows * cellSize + padding * 2;
 
     // Clear canvas
     const isDarkMode = document.documentElement.classList.contains('dark');
@@ -152,8 +197,8 @@ const AttentionVisualizer = () => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw enhanced grid and scores
-    for (let i = 0; i < numTokens; i++) {
-      for (let j = 0; j < numTokens; j++) {
+    for (let i = 0; i < numRows; i++) {
+      for (let j = 0; j < numCols; j++) {
         const score = attentionScores.find(s => s.from === i && s.to === j)?.score || 0;
         const x = j * cellSize + padding;
         const y = i * cellSize + padding;
@@ -161,7 +206,7 @@ const AttentionVisualizer = () => {
         // Enhanced highlighting logic
         const isHighlighted = selectedToken !== null && (i === selectedToken || j === selectedToken);
         const isHovered = hoveredCell && hoveredCell.row === i && hoveredCell.col === j;
-        const isAnimated = animating && (i * numTokens + j) <= animationStep;
+        const isAnimated = animating && (i * numCols + j) <= animationStep;
         
         // Dynamic cell styling with gradients
         const baseOpacity = isHighlighted ? score : score * 0.7;
@@ -175,14 +220,14 @@ const AttentionVisualizer = () => {
         );
         
         if (isHovered) {
-          gradient.addColorStop(0, `rgba(59, 130, 246, ${finalOpacity + 0.2})`);
-          gradient.addColorStop(1, `rgba(37, 99, 235, ${finalOpacity})`);
+          gradient.addColorStop(0, `rgba(239, 68, 68, ${finalOpacity + 0.2})`);
+          gradient.addColorStop(1, `rgba(220, 38, 38, ${finalOpacity})`);
         } else if (isHighlighted) {
-          gradient.addColorStop(0, `rgba(99, 102, 241, ${finalOpacity})`);
-          gradient.addColorStop(1, `rgba(37, 99, 235, ${finalOpacity})`);
+          gradient.addColorStop(0, `rgba(248, 113, 113, ${finalOpacity})`);
+          gradient.addColorStop(1, `rgba(239, 68, 68, ${finalOpacity})`);
         } else {
-          gradient.addColorStop(0, `rgba(37, 99, 235, ${finalOpacity})`);
-          gradient.addColorStop(1, `rgba(30, 70, 180, ${finalOpacity * 0.8})`);
+          gradient.addColorStop(0, `rgba(239, 68, 68, ${finalOpacity})`);
+          gradient.addColorStop(1, `rgba(185, 28, 28, ${finalOpacity * 0.8})`);
         }
         
         ctx.fillStyle = gradient;
@@ -195,9 +240,9 @@ const AttentionVisualizer = () => {
         
         // Add glow effect for high scores
         if (score > 0.7) {
-          ctx.shadowColor = 'rgba(59, 130, 246, 0.6)';
+          ctx.shadowColor = 'rgba(239, 68, 68, 0.6)';
           ctx.shadowBlur = 15;
-          ctx.strokeStyle = 'rgba(59, 130, 246, 0.8)';
+          ctx.strokeStyle = 'rgba(239, 68, 68, 0.8)';
           ctx.lineWidth = 2;
           ctx.stroke();
           ctx.shadowBlur = 0;
@@ -230,7 +275,7 @@ const AttentionVisualizer = () => {
           const targetX = j * cellSize + padding + cellSize/2;
           const targetY = i * cellSize + padding + cellSize/2;
           ctx.lineTo(targetX, targetY);
-          ctx.strokeStyle = `rgba(59, 130, 246, ${score * 0.8})`;
+          ctx.strokeStyle = `rgba(239, 68, 68, ${score * 0.8})`;
           ctx.lineWidth = Math.max(1, score * 4);
           ctx.stroke();
         }
@@ -240,48 +285,49 @@ const AttentionVisualizer = () => {
     // Enhanced labels with highlighting
     ctx.font = 'bold 14px "Noto Sans KR", Inter, sans-serif';
     
-    // Top labels with highlighting
-    for (let i = 0; i < numTokens; i++) {
-      const isHighlighted = selectedToken === i;
-      ctx.fillStyle = isHighlighted ? '#3b82f6' : (isDarkMode ? '#e5e7eb' : '#374151');
+    // Top labels (columns) - target tokens for cross-attention
+    const colTokens = attentionType === 'self' ? inputTokens : targetTokens;
+    for (let i = 0; i < numCols; i++) {
+      const isHighlighted = attentionType === 'self' && selectedToken === i;
+      ctx.fillStyle = isHighlighted ? '#ef4444' : (isDarkMode ? '#e5e7eb' : '#374151');
       
       if (isHighlighted) {
         // Add background highlight
-        const textWidth = ctx.measureText(inputTokens[i]).width;
-        ctx.fillStyle = 'rgba(59, 130, 246, 0.2)';
+        const textWidth = ctx.measureText(colTokens[i]).width;
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.2)';
         ctx.fillRect(
           i * cellSize + padding + cellSize / 2 - textWidth/2 - 4,
           padding - 25,
           textWidth + 8,
           20
         );
-        ctx.fillStyle = '#3b82f6';
+        ctx.fillStyle = '#ef4444';
       }
       
       ctx.save();
       ctx.translate(i * cellSize + padding + cellSize / 2, padding - 15);
       ctx.textAlign = 'center';
       ctx.textBaseline = 'bottom';
-      ctx.fillText(inputTokens[i], 0, 0);
+      ctx.fillText(colTokens[i], 0, 0);
       ctx.restore();
     }
 
-    // Left labels with highlighting
-    for (let i = 0; i < numTokens; i++) {
+    // Left labels (rows) - always input tokens
+    for (let i = 0; i < numRows; i++) {
       const isHighlighted = selectedToken === i;
-      ctx.fillStyle = isHighlighted ? '#3b82f6' : (isDarkMode ? '#e5e7eb' : '#374151');
+      ctx.fillStyle = isHighlighted ? '#ef4444' : (isDarkMode ? '#e5e7eb' : '#374151');
       
       if (isHighlighted) {
         // Add background highlight
         const textWidth = ctx.measureText(inputTokens[i]).width;
-        ctx.fillStyle = 'rgba(59, 130, 246, 0.2)';
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.2)';
         ctx.fillRect(
           padding - 25 - textWidth,
           i * cellSize + padding + cellSize / 2 - 10,
           textWidth + 8,
           20
         );
-        ctx.fillStyle = '#3b82f6';
+        ctx.fillStyle = '#ef4444';
       }
       
       ctx.save();
@@ -297,7 +343,7 @@ const AttentionVisualizer = () => {
   
   const drawAttentionFlow = () => {
     const flowCanvas = flowCanvasRef.current;
-    if (!flowCanvas || selectedToken === null) return;
+    if (!flowCanvas) return;
     
     const ctx = flowCanvas.getContext('2d');
     if (!ctx) return;
@@ -305,46 +351,159 @@ const AttentionVisualizer = () => {
     const mainCanvas = canvasRef.current;
     if (!mainCanvas) return;
     
-    flowCanvas.width = mainCanvas.width;
-    flowCanvas.height = mainCanvas.height;
+    // Set canvas size to match main canvas
+    if (flowCanvas.width !== mainCanvas.width || flowCanvas.height !== mainCanvas.height) {
+      flowCanvas.width = mainCanvas.width;
+      flowCanvas.height = mainCanvas.height;
+    }
     
     ctx.clearRect(0, 0, flowCanvas.width, flowCanvas.height);
     
+    // Only draw if playing
+    if (!isPlaying) return;
+    
     const cellSize = 60;
     const padding = 60;
-    const numTokens = inputTokens.length;
-    const time = Date.now() * 0.005;
+    const numRows = inputTokens.length;
+    const numCols = attentionType === 'self' ? inputTokens.length : targetTokens.length;
+    const time = Date.now() * 0.001; // Adjusted speed
     
-    // Draw flowing particles for attention connections
-    attentionScores
-      .filter(s => s.from === selectedToken && s.score > 0.3)
-      .forEach((score, index) => {
-        const fromX = selectedToken * cellSize + padding + cellSize/2;
-        const fromY = selectedToken * cellSize + padding + cellSize/2;
-        const toX = score.to * cellSize + padding + cellSize/2;
-        const toY = selectedToken * cellSize + padding + cellSize/2;
-        
-        // Draw flowing particles
-        for (let i = 0; i < 5; i++) {
-          const progress = (time + index * 0.5 + i * 0.2) % 1;
-          const x = fromX + (toX - fromX) * progress;
-          const y = fromY + (toY - fromY) * progress + Math.sin(progress * Math.PI * 2) * 5;
+    // Draw attention flow animations
+    if (selectedToken !== null) {
+      // When a token is selected, show flows from that token
+      attentionScores
+        .filter(s => s.from === selectedToken && s.score > 0.3)
+        .forEach((score, index) => {
+          const fromX = selectedToken * cellSize + padding + cellSize/2;
+          const fromY = selectedToken * cellSize + padding + cellSize/2;
+          const toX = score.to * cellSize + padding + cellSize/2;
+          const toY = attentionType === 'self' ? score.to * cellSize + padding + cellSize/2 : selectedToken * cellSize + padding + cellSize/2;
           
-          const size = 3 + score.score * 4;
-          const opacity = score.score * (1 - Math.abs(progress - 0.5) * 2);
+          // Multiple particles per connection
+          for (let p = 0; p < 3; p++) {
+            const offset = p / 3;
+            const progress = (time + index * 0.2 + offset) % 1;
+            
+            // Curved path for visual interest
+            const t = progress;
+            const ctrlX = (fromX + toX) / 2;
+            const ctrlY = fromY - 30; // Arc upward
+            
+            // Quadratic Bezier curve
+            const x = (1-t)*(1-t)*fromX + 2*(1-t)*t*ctrlX + t*t*toX;
+            const y = (1-t)*(1-t)*fromY + 2*(1-t)*t*ctrlY + t*t*toY;
+            
+            // Draw trail
+            const trailLength = 5;
+            ctx.beginPath();
+            for (let i = 0; i < trailLength; i++) {
+              const trailT = Math.max(0, t - i * 0.02);
+              const trailX = (1-trailT)*(1-trailT)*fromX + 2*(1-trailT)*trailT*ctrlX + trailT*trailT*toX;
+              const trailY = (1-trailT)*(1-trailT)*fromY + 2*(1-trailT)*trailT*ctrlY + trailT*trailT*toY;
+              
+              if (i === 0) {
+                ctx.moveTo(trailX, trailY);
+              } else {
+                ctx.lineTo(trailX, trailY);
+              }
+            }
+            
+            const gradient = ctx.createLinearGradient(x - 10, y, x + 10, y);
+            gradient.addColorStop(0, `rgba(239, 68, 68, 0)`);
+            gradient.addColorStop(0.5, `rgba(239, 68, 68, ${score.score * 0.8})`);
+            gradient.addColorStop(1, `rgba(239, 68, 68, 0)`);
+            
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 3 + score.score * 4;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+            
+            // Draw particle
+            const size = 5 + score.score * 7;
+            
+            // Outer glow
+            ctx.beginPath();
+            ctx.arc(x, y, size * 2.5, 0, Math.PI * 2);
+            const glowGradient = ctx.createRadialGradient(x, y, 0, x, y, size * 2.5);
+            glowGradient.addColorStop(0, `rgba(239, 68, 68, ${score.score * 0.4})`);
+            glowGradient.addColorStop(1, 'rgba(239, 68, 68, 0)');
+            ctx.fillStyle = glowGradient;
+            ctx.fill();
+            
+            // Inner particle
+            ctx.beginPath();
+            ctx.arc(x, y, size, 0, Math.PI * 2);
+            const particleGradient = ctx.createRadialGradient(x, y, 0, x, y, size);
+            particleGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            particleGradient.addColorStop(0.4, `rgba(248, 113, 113, ${score.score})`);
+            particleGradient.addColorStop(1, `rgba(239, 68, 68, ${score.score * 0.9})`);
+            ctx.fillStyle = particleGradient;
+            ctx.fill();
+          }
           
+          // Draw connection strength indicator at destination
+          const pulseSize = 12 + Math.sin(time * 4 + index) * 6;
           ctx.beginPath();
-          ctx.arc(x, y, size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(59, 130, 246, ${opacity})`;
+          ctx.arc(toX, toY, pulseSize, 0, Math.PI * 2);
+          const pulseGradient = ctx.createRadialGradient(toX, toY, 0, toX, toY, pulseSize);
+          pulseGradient.addColorStop(0, `rgba(239, 68, 68, ${score.score * 0.6})`);
+          pulseGradient.addColorStop(1, 'rgba(239, 68, 68, 0)');
+          ctx.fillStyle = pulseGradient;
           ctx.fill();
+        });
+    } else {
+      // When no token is selected, show general flow pattern
+      for (let i = 0; i < 5; i++) {
+        const fromIdx = Math.floor(Math.random() * numRows);
+        const toIdx = Math.floor(Math.random() * numCols);
+        const score = attentionScores.find(s => s.from === fromIdx && s.to === toIdx);
+        
+        if (!score || score.score < 0.5) continue;
+        
+        const cellX = toIdx * cellSize + padding + cellSize/2;
+        const fromY = fromIdx * cellSize + padding + cellSize/2;
+        const toY = attentionType === 'self' ? toIdx * cellSize + padding + cellSize/2 : fromIdx * cellSize + padding + cellSize/2;
+        
+        const progress = (time + i * 0.2) % 1;
+        const y = fromY + (toY - fromY) * progress;
+        
+        // Glowing orb
+        const size = 8 + score.score * 6;
+        ctx.beginPath();
+        ctx.arc(cellX, y, size, 0, Math.PI * 2);
+        
+        const gradient = ctx.createRadialGradient(cellX, y, 0, cellX, y, size);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+        gradient.addColorStop(0.5, `rgba(248, 113, 113, ${score.score * 0.8})`);
+        gradient.addColorStop(1, 'rgba(239, 68, 68, 0)');
+        
+        ctx.fillStyle = gradient;
+        ctx.shadowColor = 'rgba(239, 68, 68, 0.9)';
+        ctx.shadowBlur = size * 3;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+    
+    // Highlight selected token connections with enhanced visibility
+    if (selectedToken !== null) {
+      attentionScores
+        .filter(s => s.from === selectedToken && s.score > 0.4)
+        .forEach((score) => {
+          const fromX = score.to * cellSize + padding + cellSize/2;
+          const fromY = selectedToken * cellSize + padding + cellSize/2;
           
-          // Add glow effect
-          ctx.shadowColor = 'rgba(59, 130, 246, 0.6)';
-          ctx.shadowBlur = size * 2;
+          // Draw glowing connection with red theme
+          ctx.beginPath();
+          ctx.arc(fromX, fromY, 10 + score.score * 12, 0, Math.PI * 2);
+          const gradient = ctx.createRadialGradient(fromX, fromY, 0, fromX, fromY, 20);
+          gradient.addColorStop(0, `rgba(239, 68, 68, ${score.score * 0.7})`);
+          gradient.addColorStop(0.5, `rgba(239, 68, 68, ${score.score * 0.3})`);
+          gradient.addColorStop(1, 'rgba(239, 68, 68, 0)');
+          ctx.fillStyle = gradient;
           ctx.fill();
-          ctx.shadowBlur = 0;
-        }
-      });
+        });
+    }
   };
 
   const handleTokensChange = (text: string) => {
@@ -377,12 +536,42 @@ const AttentionVisualizer = () => {
             onChange={(e) => handleTokensChange(e.target.value)}
             placeholder="토큰을 입력하세요..."
           />
+          {attentionType === 'cross' && (
+            <>
+              <label style={{ marginTop: '10px' }}>타겟 토큰 (Cross-Attention용):</label>
+              <input
+                type="text"
+                value={targetTokens.join(' ')}
+                onChange={(e) => {
+                  const tokens = e.target.value.split(' ').filter(t => t.length > 0);
+                  if (tokens.length > 0 && tokens.length <= 8) {
+                    setTargetTokens(tokens);
+                  }
+                }}
+                placeholder="타겟 토큰을 입력하세요..."
+              />
+            </>
+          )}
           <div className={styles.exampleButtons}>
             {exampleSentences.map((sentence, index) => (
               <button
                 key={index}
                 className={styles.exampleBtn}
-                onClick={() => handleTokensChange(sentence)}
+                onClick={() => {
+                  handleTokensChange(sentence);
+                  if (attentionType === 'cross') {
+                    // 예시 번역 설정
+                    if (sentence === '나는 오늘 학교에 갔다') {
+                      setTargetTokens(['I', 'went', 'to', 'school', 'today']);
+                    } else if (sentence === 'The cat sat on mat') {
+                      setTargetTokens(['고양이가', '매트', '위에', '앉았다']);
+                    } else if (sentence === 'AI가 세상을 바꾼다') {
+                      setTargetTokens(['AI', 'changes', 'the', 'world']);
+                    } else if (sentence === '코딩은 정말 재미있다') {
+                      setTargetTokens(['Coding', 'is', 'really', 'fun']);
+                    }
+                  }
+                }}
               >
                 {sentence}
               </button>
@@ -452,9 +641,11 @@ const AttentionVisualizer = () => {
               </button>
             </div>
             <p className={styles.matrixExplanation}>
-              각 셀은 행 토큰이 열 토큰에 주는 attention 점수를 나타냅니다.
+              {attentionType === 'self' 
+                ? '각 셀은 행 토큰이 열 토큰에 주는 attention 점수를 나타냅니다. 대각선은 자기 자신에 대한 attention입니다.'
+                : '각 셀은 소스 토큰(행)이 타겟 토큰(열)에 주는 attention 점수를 나타냅니다. 번역 정렬을 시각화합니다.'}
               진한 파란색일수록 높은 attention을 의미합니다.
-              토큰을 선택하면 attention 플로우를 확인할 수 있습니다.
+              <br/><strong>💡 팁:</strong> 토큰을 클릭한 후 플로우 재생 버튼을 눌러보세요!
             </p>
           </div>
 
@@ -476,29 +667,34 @@ const AttentionVisualizer = () => {
                 <h5>"{inputTokens[selectedToken]}" 토큰 분석:</h5>
                 <div className={styles.attentionDetails}>
                   <div>
-                    <strong>이 토큰이 주목하는 토큰들:</strong>
+                    <strong>{attentionType === 'self' ? '이 토큰이 주목하는 토큰들:' : '이 토큰이 주목하는 타겟 토큰들:'}</strong>
                     {attentionScores
                       .filter(s => s.from === selectedToken)
                       .sort((a, b) => b.score - a.score)
                       .slice(0, 3)
-                      .map((s, i) => (
-                        <div key={i} className={styles.scoreItem}>
-                          {inputTokens[s.to]}: {(s.score * 100).toFixed(1)}%
-                        </div>
-                      ))}
+                      .map((s, i) => {
+                        const targetToken = attentionType === 'self' ? inputTokens[s.to] : targetTokens[s.to];
+                        return (
+                          <div key={i} className={styles.scoreItem}>
+                            {targetToken}: {(s.score * 100).toFixed(1)}%
+                          </div>
+                        );
+                      })}
                   </div>
-                  <div>
-                    <strong>이 토큰에 주목하는 토큰들:</strong>
-                    {attentionScores
-                      .filter(s => s.to === selectedToken)
-                      .sort((a, b) => b.score - a.score)
-                      .slice(0, 3)
-                      .map((s, i) => (
-                        <div key={i} className={styles.scoreItem}>
-                          {inputTokens[s.from]}: {(s.score * 100).toFixed(1)}%
-                        </div>
-                      ))}
-                  </div>
+                  {attentionType === 'self' && (
+                    <div>
+                      <strong>이 토큰에 주목하는 토큰들:</strong>
+                      {attentionScores
+                        .filter(s => s.to === selectedToken)
+                        .sort((a, b) => b.score - a.score)
+                        .slice(0, 3)
+                        .map((s, i) => (
+                          <div key={i} className={styles.scoreItem}>
+                            {inputTokens[s.from]}: {(s.score * 100).toFixed(1)}%
+                          </div>
+                        ))}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -512,10 +708,21 @@ const AttentionVisualizer = () => {
             각 토큰은 다른 모든 토큰과의 관계를 계산하여, 문맥을 이해하는 데 필요한 정보를 선택적으로 활용합니다.
           </p>
           <ul>
-            <li><strong>Self-Attention:</strong> 같은 시퀀스 내의 토큰들 간의 관계</li>
+            <li><strong>Self-Attention:</strong> 같은 시퀀스 내의 토큰들 간의 관계 (예: 문장 이해)</li>
+            <li><strong>Cross-Attention:</strong> 다른 시퀀스 간의 토큰 관계 (예: 번역, 질의응답)</li>
             <li><strong>높은 점수:</strong> 두 토큰 간의 강한 연관성</li>
             <li><strong>Multi-Head:</strong> 여러 관점에서 동시에 attention 계산</li>
           </ul>
+          {attentionType === 'cross' && (
+            <div style={{ marginTop: '15px', padding: '10px', backgroundColor: 'rgba(59, 130, 246, 0.1)', borderRadius: '8px' }}>
+              <strong>Cross-Attention 특징:</strong>
+              <p style={{ marginTop: '5px', fontSize: '14px' }}>
+                • 소스 언어(왼쪽)에서 타겟 언어(위쪽)로의 attention<br/>
+                • 번역 시 어순 차이와 의미 정렬을 시각화<br/>
+                • 기계 번역, 이미지 캡셔닝 등에서 핵심 역할
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

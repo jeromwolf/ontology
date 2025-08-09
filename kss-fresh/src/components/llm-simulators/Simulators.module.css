@@ -572,10 +572,98 @@
   font-size: 0.9rem;
 }
 
+/* New parameter grid styles */
+.paramGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.paramControl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.paramControl label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.paramInput,
+.paramSelect {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background: white;
+  color: #111827;
+  transition: all 0.2s;
+}
+
+.paramInput:hover,
+.paramSelect:hover {
+  border-color: #3b82f6;
+}
+
+.paramInput:focus,
+.paramSelect:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.paramInput:disabled,
+.paramSelect:disabled {
+  background: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Dark mode parameter styles */
+.dark .paramControl label {
+  color: #e5e7eb;
+}
+
+.dark .paramInput,
+.dark .paramSelect {
+  background: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+.dark .paramInput:hover,
+.dark .paramSelect:hover {
+  border-color: #60a5fa;
+}
+
+.dark .paramInput:disabled,
+.dark .paramSelect:disabled {
+  background: #1f2937;
+}
+
 .trainingControls {
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+.historyBtn {
+  padding: 0.75rem 1.5rem;
+  background: #8b5cf6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.historyBtn:hover {
+  background: #7c3aed;
+  transform: translateY(-1px);
 }
 
 .metricsDisplay {
@@ -2393,4 +2481,105 @@
 
 :global(.dark) .tip p {
   color: #9ca3af;
+}
+
+/* History section styles */
+.historySection {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.historySection h4 {
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.noHistory {
+  text-align: center;
+  color: #6b7280;
+  padding: 2rem;
+}
+
+.historyTable {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.historyTable table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.historyTable th {
+  background: #f3f4f6;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+}
+
+.historyTable td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.875rem;
+}
+
+.historyTable tr:hover {
+  background: #f9fafb;
+}
+
+.lossValue {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.accuracyValue {
+  color: #059669;
+  font-weight: 600;
+}
+
+.completed {
+  color: #059669;
+  font-weight: 500;
+}
+
+.stopped {
+  color: #f59e0b;
+  font-weight: 500;
+}
+
+/* Dark mode history styles */
+:global(.dark) .historySection {
+  background: #1f2937;
+}
+
+:global(.dark) .historySection h4 {
+  color: #e5e7eb;
+}
+
+:global(.dark) .historyTable table {
+  background: #374151;
+}
+
+:global(.dark) .historyTable th {
+  background: #1f2937;
+  color: #e5e7eb;
+  border-bottom-color: #4b5563;
+}
+
+:global(.dark) .historyTable td {
+  border-bottom-color: #4b5563;
+  color: #e5e7eb;
+}
+
+:global(.dark) .historyTable tr:hover {
+  background: #4b5563;
 }

@@ -94,7 +94,7 @@ export const useSparqlQuery = (triples: Triple[]) => {
             } else {
               newBinding[varName] = triple.subject;
             }
-          } else if (pattern.subject !== triple.subject && !pattern.subject.includes(':')) {
+          } else if (pattern.subject !== triple.subject) {
             matches = false;
           }
           
@@ -106,7 +106,7 @@ export const useSparqlQuery = (triples: Triple[]) => {
             } else {
               newBinding[varName] = triple.predicate;
             }
-          } else if (matches && pattern.predicate !== triple.predicate && !pattern.predicate.includes(':')) {
+          } else if (matches && pattern.predicate !== triple.predicate) {
             matches = false;
           }
           
@@ -118,7 +118,7 @@ export const useSparqlQuery = (triples: Triple[]) => {
             } else {
               newBinding[varName] = triple.object;
             }
-          } else if (matches && pattern.object !== triple.object && !pattern.object.includes(':')) {
+          } else if (matches && pattern.object !== triple.object) {
             matches = false;
           }
           
