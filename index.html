@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온톨로지 마스터클래스 - 개념부터 실무까지</title>
+    
+    <!-- 스타일시트 -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 네비게이션 바 -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="nav-brand">
+                <i class="fas fa-project-diagram"></i> 온톨로지 마스터클래스
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">홈</a></li>
+                <li><a href="#" class="nav-link">목차</a></li>
+                <li><a href="#" class="nav-link">실습</a></li>
+                <li><a href="#" class="nav-link">리소스</a></li>
+                <li>
+                    <button id="darkModeToggle" class="control-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <button id="sidebarToggle" class="control-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+        <div class="chapter-list">
+            <div class="chapter-item active" data-chapter="intro">
+                <i class="fas fa-home"></i> 시작하기
+            </div>
+            
+            <div class="part-title">Part 1. 온톨로지의 이해</div>
+            <div class="chapter-item" data-chapter="chapter01">
+                <span class="chapter-number">1</span> 온톨로지란 무엇인가?
+            </div>
+            <div class="chapter-item" data-chapter="chapter02">
+                <span class="chapter-number">2</span> 온톨로지의 핵심 개념
+            </div>
+            <div class="chapter-item" data-chapter="chapter03">
+                <span class="chapter-number">3</span> 시맨틱 웹과 온톨로지
+            </div>
+            
+            <div class="part-title">Part 2. 온톨로지 기술 표준</div>
+            <div class="chapter-item" data-chapter="chapter04">
+                <span class="chapter-number">4</span> RDF: 지식 표현의 기초
+            </div>
+            <div class="chapter-item" data-chapter="chapter05">
+                <span class="chapter-number">5</span> RDFS: 스키마와 계층구조
+            </div>
+            <div class="chapter-item" data-chapter="chapter06">
+                <span class="chapter-number">6</span> OWL: 표현력 있는 온톨로지
+            </div>
+            <div class="chapter-item" data-chapter="chapter07">
+                <span class="chapter-number">7</span> SPARQL: 온톨로지 질의
+            </div>
+            
+            <div class="part-title">Part 3. 온톨로지 설계와 구축</div>
+            <div class="chapter-item" data-chapter="chapter08">
+                <span class="chapter-number">8</span> Protégé 마스터하기
+            </div>
+            <div class="chapter-item" data-chapter="chapter09">
+                <span class="chapter-number">9</span> 온톨로지 설계 방법론
+            </div>
+            <div class="chapter-item" data-chapter="chapter10">
+                <span class="chapter-number">10</span> 패턴과 모범 사례
+            </div>
+            
+            <div class="part-title">Part 4. 실전 프로젝트</div>
+            <div class="chapter-item" data-chapter="chapter11">
+                <span class="chapter-number">11</span> 금융 온톨로지: 주식 시장
+            </div>
+            <div class="chapter-item" data-chapter="chapter12">
+                <span class="chapter-number">12</span> 뉴스 온톨로지: 지식 그래프
+            </div>
+            <div class="chapter-item" data-chapter="chapter13">
+                <span class="chapter-number">13</span> 통합 프로젝트: 주식-뉴스 연계
+            </div>
+            
+            <div class="part-title">Part 5. 온톨로지의 미래</div>
+            <div class="chapter-item" data-chapter="chapter14">
+                <span class="chapter-number">14</span> AI와 온톨로지
+            </div>
+            <div class="chapter-item" data-chapter="chapter15">
+                <span class="chapter-number">15</span> 산업별 활용사례
+            </div>
+            <div class="chapter-item" data-chapter="chapter16">
+                <span class="chapter-number">16</span> 생태계와 커뮤니티
+            </div>
+        </div>
+    </aside>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="main-content" id="mainContent">
+        <!-- 컨텐츠가 여기에 동적으로 로드됩니다 -->
+    </main>
+
+    <!-- 스크립트 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/graphs.js"></script>
+    
+    <script>
+        // 페이지 로드 시 intro 컨텐츠 로드
+        document.addEventListener('DOMContentLoaded', function() {
+            // OntologyBook이 로드될 때까지 잠시 대기
+            setTimeout(function() {
+                if (window.OntologyBook && window.OntologyBook.loadChapter) {
+                    window.OntologyBook.loadChapter('intro');
+                } else {
+                    console.error('OntologyBook이 로드되지 않았습니다.');
+                    // 직접 intro 컨텐츠 로드
+                    fetch('chapters/intro.html')
+                        .then(response => response.text())
+                        .then(content => {
+                            document.getElementById('mainContent').innerHTML = content;
+                            // intro 페이지의 스크립트 실행
+                            const scripts = document.getElementById('mainContent').getElementsByTagName('script');
+                            for (let script of scripts) {
+                                eval(script.innerHTML);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Intro 페이지 로드 실패:', error);
+                            document.getElementById('mainContent').innerHTML = '<h1>페이지를 불러올 수 없습니다.</h1>';
+                        });
+                }
+            }, 100);
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(uuid())
+  email           String           @unique
+  username        String           @unique
+  passwordHash    String           @map("password_hash")
+  emailVerified   Boolean          @default(false) @map("email_verified")
+  status          String           @default("active")
+  createdAt       DateTime         @default(now()) @map("created_at")
+  updatedAt       DateTime         @updatedAt @map("updated_at")
+  
+  profile         UserProfile?
+  progress        LearningProgress[]
+  achievements    UserAchievement[]
+  sessions        Session[]
+  
+  @@map("users")
+}
+
+model UserProfile {
+  userId         String    @id @map("user_id")
+  displayName    String?   @map("display_name")
+  bio            String?
+  avatarUrl      String?   @map("avatar_url")
+  learningStyle  String?   @map("learning_style")
+  preferences    Json      @default("{}")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+  
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("user_profiles")
+}
+
+model LearningProgress {
+  id                  String    @id @default(uuid())
+  userId              String    @map("user_id")
+  moduleId            String    @map("module_id")
+  chapterId           String    @map("chapter_id")
+  completionPercentage Float    @default(0) @map("completion_percentage")
+  lastAccessed        DateTime  @default(now()) @map("last_accessed")
+  timeSpentMinutes    Int       @default(0) @map("time_spent_minutes")
+  quizScores          Json      @default("[]") @map("quiz_scores")
+  simulationResults   Json      @default("[]") @map("simulation_results")
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
+  
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, moduleId, chapterId])
+  @@index([userId])
+  @@map("learning_progress")
+}
+
+model Achievement {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  iconUrl     String?   @map("icon_url")
+  points      Int       @default(0)
+  criteria    Json
+  createdAt   DateTime  @default(now()) @map("created_at")
+  
+  users       UserAchievement[]
+  
+  @@map("achievements")
+}
+
+model UserAchievement {
+  userId        String    @map("user_id")
+  achievementId String    @map("achievement_id")
+  earnedAt      DateTime  @default(now()) @map("earned_at")
+  
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+  
+  @@id([userId, achievementId])
+  @@map("user_achievements")
+}
+
+model Session {
+  id        String    @id @default(uuid())
+  userId    String    @map("user_id")
+  token     String    @unique
+  expiresAt DateTime  @map("expires_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  ipAddress String?   @map("ip_address")
+  userAgent String?   @map("user_agent")
+  
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}

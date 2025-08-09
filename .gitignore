@@ -1,0 +1,82 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Next.js
+.next/
+out/
+build/
+
+# Production
+dist/
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Local env files
+.env*.local
+.env
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Package manager
+.npmrc
+pnpm-lock.yaml
+yarn.lock
+
+# Backup folders
+backup*/
+backup-*/
+backup_*/
+
+# Claude settings
+.claude/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Private/Sensitive files
+*.private
+*.secret
+secrets/
+private/
+
+# Build artifacts
+*.cache
+.turbo/
+
+# Testing artifacts
+.nyc_output/
+jest-results/
+
+# Optional - experimental projects
+# kss-simulator/

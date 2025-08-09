@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "lib": ["ES2022"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@cognosphere/shared/*": ["packages/shared/src/*"],
+      "@cognosphere/ontology-mvp/*": ["apps/ontology-mvp/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "build", ".turbo"]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "cognosphere",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hybrid monorepo for Cognosphere ecosystem - MVP focused",
+  "workspaces": [
+    "apps/kss-web",
+    "packages/shared",
+    "packages/ui"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "ontology:dev": "npm run dev --workspace=@cognosphere/ontology-mvp",
+    "ontology:build": "npm run build --workspace=@cognosphere/ontology-mvp",
+    "ontology:start": "npm run start --workspace=@cognosphere/ontology-mvp"
+  },
+  "devDependencies": {
+    "turbo": "^1.13.0",
+    "typescript": "^5.3.0",
+    "@types/node": "^20.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

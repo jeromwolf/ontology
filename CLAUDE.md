@@ -10,23 +10,29 @@ This is a Korean-language educational platform called KSS (Knowledge Space Simul
 
 The project has evolved through multiple iterations:
 - `index.html` - Original single-page ontology education site
-- `kss-standalone/` - Current active Next.js 14 project
+- `kss-fresh/` - Current active Next.js 14 project (was kss-standalone)
+- `kss-standalone/` - Previous version (replaced by kss-fresh)
 - `cognosphere/` - Future monorepo structure (planned)
 - `chapters/` - Original HTML content files
 
-## Current Focus: kss-standalone
+## Current Focus: kss-fresh
 
 ### Technical Stack
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS + custom CSS modules
+- **Framework**: Next.js 14.1.0 (App Router)
+- **Language**: TypeScript 5 + React 18
+- **Styling**: Tailwind CSS 3.3.0 + custom CSS modules
 - **UI Components**: Radix UI, Lucide Icons
-- **Visualization**: D3.js (planned)
+- **Visualization**: D3.js 7.8.5, Three.js + React Three Fiber
+- **Video**: Remotion (for video generation)
+- **Auth & DB**: NextAuth + Prisma + SQLite
+- **AI Integration**: OpenAI API
 - **Font**: Inter + Noto Sans KR
 
 ### Key Features Implemented
 1. **Learning Experience**
-   - 16 chapters of ontology content
+   - 31 active modules (22 with full metadata)
+   - 200+ chapters across all modules
+   - 155+ interactive simulators
    - Dark mode support
    - Progress tracking (localStorage)
    - Table of Contents with scroll tracking
@@ -37,14 +43,20 @@ The project has evolved through multiple iterations:
    - Progress tracker
    - Dark mode toggle
    - Enhanced code blocks
+   - AI mentoring system (Master Guide + Module Experts)
 
 ### Development Commands
 ```bash
-cd kss-standalone
+cd kss-fresh
 npm install
-npm run dev   # Development server
+npm run dev   # Development server (port 3002)
 npm run build # Production build
 npm start     # Production server
+npm run lint  # Linting
+npm run check:sizes # Check file sizes
+npm run check:all # Lint + file size check
+npm run video:studio # Remotion studio
+npm run video:render # Render video
 ```
 
 ## Architecture Decisions
@@ -74,7 +86,7 @@ npm start     # Production server
 5. YouTube content generation with Remotion
 
 ### GitHub Repository
-https://github.com/jeromwolf/kss-simulator
+https://github.com/jeromwolf/ontology (변경됨, 기존: kss-simulator)
 
 ## ⚠️ CRITICAL: Module Structure Guidelines
 
@@ -85,14 +97,32 @@ https://github.com/jeromwolf/kss-simulator
 4. **Use dynamic imports** for performance optimization
 5. **Share common components** (code blocks, alerts, tooltips)
 
-### 📋 Module Refactoring Priority List:
+### 📋 Module Refactoring Priority List (2025-08-09 Updated):
 | Module | Current Size | Priority | Status |
 |--------|--------------|----------|---------|
-| **Smart Factory** | 8,113 lines | 🔴 CRITICAL | In Progress |
+| **Ontology** | 3,733 lines | 🔴 CRITICAL | Pending |
+| **Autonomous Mobility** | 2,719 lines | 🔴 CRITICAL | Pending |
+| **Bioinformatics** | 2,544 lines | 🔴 CRITICAL | Pending |
+| **English Conversation** | 1,990 lines | 🔴 CRITICAL | Pending |
+| **AI Automation** | 1,858 lines | 🔴 CRITICAL | Pending |
+| **Probability Statistics** | 1,751 lines | 🔴 CRITICAL | Pending |
+| **Stock Analysis** | 1,740 lines | 🔴 CRITICAL | Pending |
+| **System Design** | 1,604 lines | 🔴 CRITICAL | Pending |
+| **Web3** | 1,505 lines | 🔴 CRITICAL | Pending |
+| **DevOps CI/CD** | 1,158 lines | 🔴 CRITICAL | Pending |
 | **Quantum Computing** | 916 lines | 🟡 HIGH | Pending |
-| **LLM** | 853 lines | 🟡 HIGH | Pending |
+| **Agent MCP** | 875 lines | 🟡 HIGH | Pending |
+| **AI Security** | 796 lines | 🟡 HIGH | Pending |
 | **RAG** | 793 lines | 🟡 HIGH | Pending |
+| **Multi-Agent** | 790 lines | 🟡 HIGH | Pending |
 | **Computer Vision** | 712 lines | 🟡 HIGH | Pending |
+| **Physical AI** | 707 lines | 🟡 HIGH | Pending |
+
+### ✅ Refactoring Completed:
+| Module | Original Size | Final Size | Reduction |
+|--------|--------------|------------|-----------|
+| **Smart Factory** | 8,113 lines | 107 lines | 98.7% |
+| **LLM** | 853 lines | 47 lines | 94.5% |
 
 ### ✅ Correct Module Structure Example:
 ```
@@ -153,13 +183,14 @@ export default function ChapterContent({ chapterId }: { chapterId: string }) {
 ```
 
 **다음 리팩토링 대상** (큰 파일 순):
-1. Quantum Computing (916 lines) 🎯 NEXT
-2. LLM (853 lines) 
-3. RAG (793 lines)
-4. Computer Vision (712 lines)
+1. Ontology (3,733 lines) 🎯 NEXT - 가장 시급
+2. Autonomous Mobility (2,719 lines)
+3. Bioinformatics (2,544 lines)
+4. English Conversation (1,990 lines)
 
 ### Current Session Status (2025-08-07)
 - **Session 21**: Smart Factory 리팩토링 완료 ✅
+- **Session 22 (2025-08-09)**: 프로젝트 현황 재정리 및 동기화
 
 **🎯 완료된 작업**:
 1. **거대 파일 분할 성공**: ChapterContent.tsx 8,113줄 → 107줄 (98.7% 감소)
@@ -194,13 +225,17 @@ components/
 
 **🎯 다음 우선순위**:
 - **8월 14일 발표 준비 우선** - 리팩토링은 발표 이후 진행
-- **Quantum Computing 모듈 리팩토링 (916 lines)** - 8.14 이후 목표
+- **Ontology 모듈 리팩토링 (3,733 lines)** - 8.14 이후 최우선 목표
 
 ### 🔴 중요: 다음 세션 시작 시 필수 확인사항
-1. **작업 디렉토리**: `/Users/kelly/Desktop/Space/project/Ontology/kss-fresh`
-2. **현재 상태**: Smart Factory 리팩토링 완료, GitHub 푸시 완료
-3. **발표 일정**: 8월 14일 발표 준비 중 (리팩토링 작업 보류)
-4. **다음 작업**: 발표 준비 우선, 이후 Quantum Computing 모듈 리팩토링
+1. **작업 디렉토리**: `/Users/kelly/Desktop/Space/project/Ontology/kss-fresh` (kss-standalone 아님!)
+2. **GitHub 저장소**: https://github.com/jeromwolf/ontology (kss-simulator에서 변경됨)
+3. **현재 상태**: 
+   - Smart Factory 리팩토링 완료 ✅
+   - LLM 리팩토링도 완료 ✅ (47줄)
+   - 10개 모듈이 CRITICAL 상태 (1000줄 초과)
+4. **발표 일정**: 8월 14일 발표 준비 중 (리팩토링 작업 보류)
+5. **다음 작업**: 발표 준비 우선, 이후 Ontology 모듈 리팩토링 (3,733줄)
 
 ### 💡 세션 연결 방법
 새 세션 시작 시 다음과 같이 요청하세요:
@@ -242,7 +277,20 @@ components/
   - Chainlink 오라클 연동 시뮬레이션
   - 사용자 잔액 관리 및 거래 실행 시스템
 - **Platform Status**:
-  - 20+ active modules (Computer Vision 포함)
+  - 31 active modules (22 with full metadata)
+  - 200+ chapters total
+  - 155+ interactive simulators
   - System Management Tools 5개 (YouTube Summarizer 포함)
-  - 100+ chapters total
-  - 50+ interactive simulators
+
+### Session 22 Status (2025-08-09) - 현황 재정리
+- **프로젝트 디렉토리 정리 완료**:
+  - kss-fresh가 현재 활성 디렉토리 (kss-standalone 대체)
+  - GitHub 저장소 변경: kss-simulator → ontology
+- **리팩토링 현황 업데이트**:
+  - LLM 모듈도 리팩토링 완료 (853줄 → 47줄)
+  - 10개 모듈이 CRITICAL 상태로 긴급 리팩토링 필요
+  - Ontology 모듈이 3,733줄로 가장 큰 파일
+- **CLAUDE.md 최신화 완료**:
+  - 모든 현황 정보 업데이트
+  - 리팩토링 우선순위 재정렬
+  - 세션 연결 방법 명확히 기재
