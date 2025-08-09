@@ -1,0 +1,136 @@
+export const moduleMetadata = {
+  id: 'ai-infrastructure',
+  title: 'AI Infrastructure & MLOps',
+  description: '대규모 AI 인프라와 ML 파이프라인 구축',
+  icon: '🏗️',
+  gradient: 'from-slate-700 to-gray-800',
+  category: 'MLOps',
+  difficulty: 'Advanced',
+  estimatedHours: 36,
+  chapters: [
+    {
+      id: 'ai-infra-overview',
+      title: 'AI 인프라 개요',
+      description: '대규모 AI 시스템 아키텍처',
+      estimatedMinutes: 120,
+    },
+    {
+      id: 'distributed-training',
+      title: '분산 학습',
+      description: 'Data Parallel, Model Parallel, Pipeline Parallel',
+      estimatedMinutes: 240,
+    },
+    {
+      id: 'ml-pipelines',
+      title: 'ML 파이프라인',
+      description: 'Kubeflow, MLflow로 ML 파이프라인 구축',
+      estimatedMinutes: 210,
+    },
+    {
+      id: 'model-serving',
+      title: '모델 서빙',
+      description: 'TensorFlow Serving, TorchServe, Triton',
+      estimatedMinutes: 180,
+    },
+    {
+      id: 'feature-stores',
+      title: '피처 스토어',
+      description: 'Feast, Tecton으로 피처 관리',
+      estimatedMinutes: 150,
+    },
+    {
+      id: 'model-monitoring',
+      title: '모델 모니터링',
+      description: '모델 드리프트 감지와 성능 추적',
+      estimatedMinutes: 180,
+    },
+    {
+      id: 'experiment-tracking',
+      title: '실험 추적',
+      description: 'MLflow, Weights & Biases, Neptune',
+      estimatedMinutes: 150,
+    },
+    {
+      id: 'gpu-orchestration',
+      title: 'GPU 오케스트레이션',
+      description: 'GPU 클러스터 관리와 스케줄링',
+      estimatedMinutes: 210,
+    },
+    {
+      id: 'data-versioning',
+      title: '데이터 버전 관리',
+      description: 'DVC, LakeFS로 데이터 버전 관리',
+      estimatedMinutes: 120,
+    },
+    {
+      id: 'ci-cd-ml',
+      title: 'ML CI/CD',
+      description: '머신러닝을 위한 CI/CD 파이프라인',
+      estimatedMinutes: 180,
+    },
+    {
+      id: 'cost-optimization',
+      title: 'AI 인프라 비용 최적화',
+      description: 'GPU 리소스 최적화와 비용 관리',
+      estimatedMinutes: 120,
+    },
+    {
+      id: 'production-case-studies',
+      title: '프로덕션 사례 연구',
+      description: '대규모 AI 시스템 구축 사례',
+      estimatedMinutes: 150,
+    },
+  ],
+  simulators: [
+    {
+      id: 'infra-architect',
+      title: 'AI 인프라 아키텍트',
+      description: '대규모 AI 시스템 아키텍처 설계',
+    },
+    {
+      id: 'distributed-trainer',
+      title: '분산 학습 시뮬레이터',
+      description: '멀티 GPU 분산 학습 환경',
+    },
+    {
+      id: 'mlops-pipeline',
+      title: 'MLOps 파이프라인 빌더',
+      description: 'End-to-End ML 파이프라인 구축',
+    },
+    {
+      id: 'model-monitor',
+      title: '모델 모니터링 대시보드',
+      description: '실시간 모델 성능 추적',
+    },
+    {
+      id: 'serving-optimizer',
+      title: '모델 서빙 최적화기',
+      description: '인퍼런스 성능 최적화',
+    },
+    {
+      id: 'experiment-tracker',
+      title: '실험 추적 시스템',
+      description: 'ML 실험 관리 도구',
+    },
+    {
+      id: 'feature-store-sim',
+      title: '피처 스토어 시뮬레이터',
+      description: '피처 엔지니어링 파이프라인',
+    },
+    {
+      id: 'gpu-scheduler',
+      title: 'GPU 스케줄러',
+      description: 'GPU 리소스 할당 최적화',
+    },
+    {
+      id: 'drift-detector',
+      title: '드리프트 감지기',
+      description: '데이터/모델 드리프트 감지',
+    },
+    {
+      id: 'cost-analyzer',
+      title: 'AI 비용 분석기',
+      description: '인프라 비용 분석 및 최적화',
+    },
+  ],
+};

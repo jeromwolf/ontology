@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 12: 5년 비전</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+KR:wght@400;600;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 100px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #3B82F6 0%, #10B981 100%);
+            animation: growDown 1s ease-out;
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            animation: slideInRight 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.7s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.9s; }
+
+        .year {
+            position: absolute;
+            left: 0;
+            width: 80px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: #3B82F6;
+        }
+
+        .milestone-dot {
+            position: absolute;
+            left: 92px;
+            width: 20px;
+            height: 20px;
+            background: #3B82F6;
+            border: 4px solid #0F172A;
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .milestone-content {
+            margin-left: 140px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px 35px;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+
+        .milestone-content:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .milestone-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #F8FAFC;
+            margin-bottom: 8px;
+        }
+
+        .milestone-desc {
+            font-size: 16px;
+            color: #94A3B8;
+            line-height: 1.4;
+        }
+
+        .milestone-metric {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 12px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #60A5FA;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes growDown {
+            from {
+                transform: scaleY(0);
+                transform-origin: top;
+            }
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .vision-statement {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 24px;
+            color: #CBD5E1;
+            animation: slideUp 1s ease-out 1.2s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>KSS 5년 로드맵</h1>
+        
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-item">
+                <div class="year">2025</div>
+                <div class="milestone-dot"></div>
+                <div class="milestone-content">
+                    <div class="milestone-title">국내 기업 교육 시작</div>
+                    <div class="milestone-desc">대기업 파일럿 프로그램 운영</div>
+                    <span class="milestone-metric">목표: 10개 기업</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="year">2026</div>
+                <div class="milestone-dot"></div>
+                <div class="milestone-content">
+                    <div class="milestone-title">자율주행 전문 과정</div>
+                    <div class="milestone-desc">모빌리티 특화 커리큘럼 런칭</div>
+                    <span class="milestone-metric">수강생 5,000명</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="year">2027</div>
+                <div class="milestone-dot"></div>
+                <div class="milestone-content">
+                    <div class="milestone-title">글로벌 진출</div>
+                    <div class="milestone-desc">일본, 미국 시장 진입</div>
+                    <span class="milestone-metric">해외 매출 30%</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="year">2028</div>
+                <div class="milestone-dot"></div>
+                <div class="milestone-content">
+                    <div class="milestone-title">1,000개 시뮬레이터</div>
+                    <div class="milestone-desc">모든 기술 분야 커버</div>
+                    <span class="milestone-metric">업계 1위</span>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="year">2030</div>
+                <div class="milestone-dot"></div>
+                <div class="milestone-content">
+                    <div class="milestone-title">글로벌 100만 사용자</div>
+                    <div class="milestone-desc">AI 교육의 글로벌 표준</div>
+                    <span class="milestone-metric">매출 5,000억원</span>
+                </div>
+            </div>
+        </div>
+        
+        <p class="vision-statement">
+            "AI 시대의 필수 교육 인프라가 되겠습니다"
+        </p>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-13-collaboration.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-13-collaboration.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-11-paradigm-shift.html';
+            }
+        });
+    </script>
+</body>
+</html>

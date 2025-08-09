@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 13: 협력 제안</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid transparent;
+            border-radius: 24px;
+            padding: 40px 30px;
+            width: 320px;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: cardSlideUp 0.5s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:nth-child(1) {
+            border-color: #3B82F6;
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            border-color: #10B981;
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(3) {
+            border-color: #F59E0B;
+            animation-delay: 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .card-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounce 3s ease-in-out infinite;
+        }
+
+        .card:nth-child(1) .card-icon { animation-delay: 0s; }
+        .card:nth-child(2) .card-icon { animation-delay: 1s; }
+        .card:nth-child(3) .card-icon { animation-delay: 2s; }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:nth-child(1) .card-title { color: #60A5FA; }
+        .card:nth-child(2) .card-title { color: #34D399; }
+        .card:nth-child(3) .card-title { color: #FBBF24; }
+
+        .card-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-items li {
+            font-size: 16px;
+            color: #CBD5E1;
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .card-items li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: inherit;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .card:nth-child(1) .card-items li::before { color: #60A5FA; }
+        .card:nth-child(2) .card-items li::before { color: #34D399; }
+        .card:nth-child(3) .card-items li::before { color: #FBBF24; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes cardSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 20px;
+            color: #94A3B8;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>협력 기회</h1>
+        
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h2 class="card-title">교육 파트너십</h2>
+                <ul class="card-items">
+                    <li>맞춤형 과정 개발</li>
+                    <li>실무 프로젝트 기반</li>
+                    <li>자격 인증 프로그램</li>
+                    <li>우수 인재 추천</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🔧</div>
+                <h2 class="card-title">콘텐츠 협업</h2>
+                <ul class="card-items">
+                    <li>기술 자료 공유</li>
+                    <li>시뮬레이터 공동 개발</li>
+                    <li>실제 데이터 활용</li>
+                    <li>사례 연구 제작</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h2 class="card-title">인재 연계</h2>
+                <ul class="card-items">
+                    <li>검증된 인재 풀</li>
+                    <li>즉시 투입 가능</li>
+                    <li>지속 성장 지원</li>
+                    <li>맞춤형 매칭</li>
+                </ul>
+            </div>
+        </div>
+        
+        <p class="cta">함께 미래 모빌리티 인재를 양성하실 파트너를 찾습니다</p>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-14-investment.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-14-investment.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-12-vision.html';
+            }
+        });
+    </script>
+</body>
+</html>

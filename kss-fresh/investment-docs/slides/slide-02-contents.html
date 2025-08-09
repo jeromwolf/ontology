@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 2: 목차 (구 버전)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .left-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #F8FAFC 0%, #CBD5E1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .contents-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contents-list li {
+            font-size: 24px;
+            line-height: 1.8;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            display: flex;
+            align-items: center;
+            animation: slideInRight 0.5s ease-out;
+            animation-fill-mode: both;
+            transition: all 0.3s ease;
+        }
+
+        .contents-list li:hover {
+            padding-left: 20px;
+            color: #3B82F6;
+        }
+
+        .contents-list li:nth-child(1) { animation-delay: 0.1s; }
+        .contents-list li:nth-child(2) { animation-delay: 0.2s; }
+        .contents-list li:nth-child(3) { animation-delay: 0.3s; }
+        .contents-list li:nth-child(4) { animation-delay: 0.4s; }
+        .contents-list li:nth-child(5) { animation-delay: 0.5s; }
+        .contents-list li:nth-child(6) { animation-delay: 0.6s; }
+        .contents-list li:nth-child(7) { animation-delay: 0.7s; }
+        .contents-list li:nth-child(8) { animation-delay: 0.8s; }
+
+        .number {
+            font-weight: 700;
+            color: #3B82F6;
+            margin-right: 20px;
+            font-size: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .nav-hint {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: #64748B;
+            font-size: 14px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-icons">
+            <div class="icon">🚗</div>
+            <div class="icon">🤖</div>
+            <div class="icon">📚</div>
+            <div class="icon">🎯</div>
+            <div class="icon">🚀</div>
+            <div class="icon">🤝</div>
+        </div>
+        
+        <div class="content">
+            <h1>오늘의 이야기</h1>
+            <p style="color: #F59E0B; font-size: 14px; margin-bottom: 30px;">⚠️ 이 슬라이드는 구 버전입니다. 메인 프레젠테이션은 slide-02-cosmos-inspiration.html을 사용합니다.</p>
+            <ol class="contents-list">
+                <li><span class="number">1.</span> 미래 모빌리티와 교육의 만남</li>
+                <li><span class="number">2.</span> 급변하는 기술, 뒤처지는 교육</li>
+                <li><span class="number">3.</span> KSS란 무엇인가?</li>
+                <li><span class="number">4.</span> 왜 KSS인가?</li>
+                <li><span class="number">5.</span> 실제 작동 모습</li>
+                <li><span class="number">6.</span> 자율주행 시대의 인재 양성</li>
+                <li><span class="number">7.</span> 함께 만드는 교육 생태계</li>
+                <li><span class="number">8.</span> 협력과 기회</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="nav-hint">클릭하여 다음 페이지로 →</div>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-02-cosmos-inspiration.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-02-cosmos-inspiration.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-01-title.html';
+            }
+        });
+    </script>
+</body>
+</html>

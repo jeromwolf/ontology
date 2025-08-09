@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 5: 모빌리티 기술 스택</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .stack-container {
+            position: relative;
+            margin: 0 auto;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        .layer {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border: 2px solid;
+            border-radius: 12px;
+            padding: 25px 40px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            animation: layerSlide 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .layer:nth-child(1) {
+            border-color: #10B981;
+            animation-delay: 0.1s;
+        }
+
+        .layer:nth-child(2) {
+            border-color: #3B82F6;
+            animation-delay: 0.2s;
+        }
+
+        .layer:nth-child(3) {
+            border-color: #8B5CF6;
+            animation-delay: 0.3s;
+        }
+
+        .layer:nth-child(4) {
+            border-color: #F59E0B;
+            animation-delay: 0.4s;
+        }
+
+        .layer:nth-child(5) {
+            border-color: #EF4444;
+            animation-delay: 0.5s;
+        }
+
+        .layer:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .layer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #F8FAFC;
+        }
+
+        .layer-desc {
+            font-size: 16px;
+            color: #94A3B8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arrow {
+            color: #64748B;
+            font-size: 20px;
+        }
+
+        .footer-text {
+            margin-top: 40px;
+            font-size: 24px;
+            color: #3B82F6;
+            font-weight: 700;
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes layerSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .complexity-indicator {
+            position: absolute;
+            right: -150px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 100px;
+            opacity: 0.1;
+            color: #3B82F6;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>자율주행 기술의 복잡성</h1>
+        
+        <div class="stack-container">
+            <div class="layer">
+                <span class="layer-title">응용 서비스</span>
+                <span class="layer-desc">
+                    <span class="arrow">←</span>
+                    MaaS, 로보택시
+                </span>
+            </div>
+            
+            <div class="layer">
+                <span class="layer-title">자율주행 SW</span>
+                <span class="layer-desc">
+                    <span class="arrow">←</span>
+                    인지, 판단, 제어
+                </span>
+            </div>
+            
+            <div class="layer">
+                <span class="layer-title">AI/ML 엔진</span>
+                <span class="layer-desc">
+                    <span class="arrow">←</span>
+                    딥러닝, 컴퓨터비전
+                </span>
+            </div>
+            
+            <div class="layer">
+                <span class="layer-title">센서 & 통신</span>
+                <span class="layer-desc">
+                    <span class="arrow">←</span>
+                    LiDAR, V2X
+                </span>
+            </div>
+            
+            <div class="layer">
+                <span class="layer-title">차량 플랫폼</span>
+                <span class="layer-desc">
+                    <span class="arrow">←</span>
+                    전동화, 제어
+                </span>
+            </div>
+            
+            <div class="complexity-indicator">⚙️</div>
+        </div>
+        
+        <p class="footer-text">"각 레이어를 이해하는 인재가 필요"</p>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-06-kss-birth.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-06-kss-birth.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-04-problem.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+'use client'
+
+import { 
+  Layers, Cloud, Server, Database, Network
+} from 'lucide-react'
+
+export default function Chapter14() {
+  return (
+    <div className="space-y-8">
+      <div className="border-l-4 border-slate-600 bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg">
+        <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-3">
+          <Layers className="w-7 h-7 text-slate-600" />
+          시스템 아키텍처 설계
+        </h2>
+        <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
+          확장 가능하고 안정적인 스마트팩토리 IT/OT 통합 아키텍처를 설계하여
+          미래 요구사항에 대비한 유연한 시스템을 구축합니다.
+        </p>
+      </div>
+
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-8 rounded-xl border border-blue-200 dark:border-blue-800">
+        <h3 className="text-2xl font-bold text-blue-900 dark:text-blue-200 mb-6 flex items-center gap-3">
+          <Layers className="w-8 h-8" />
+          IT/OT 융합 아키텍처 (Purdue Model)
+        </h3>
+        <div className="grid lg:grid-cols-6 gap-4">
+          {[
+            { level: "Level 5", name: "Enterprise", desc: "ERP, 경영정보", color: "purple", systems: ["SAP/Oracle", "BI 시스템", "경영대시보드"] },
+            { level: "Level 4", name: "Business", desc: "MES, 생산관리", color: "blue", systems: ["MES", "WMS", "QMS"] },
+            { level: "Level 3", name: "Operations", desc: "SCADA, HMI", color: "green", systems: ["SCADA", "HMI", "히스토리안"] },
+            { level: "Level 2", name: "Control", desc: "PLC, DCS", color: "yellow", systems: ["PLC", "DCS", "로컬 제어기"] },
+            { level: "Level 1", name: "Basic Control", desc: "센서, 액추에이터", color: "orange", systems: ["센서", "액추에이터", "계측기"] },
+            { level: "Level 0", name: "Process", desc: "물리적 공정", color: "red", systems: ["생산설비", "컨베이어", "로봇"] }
+          ].reverse().map((level, idx) => (
+            <div key={idx} className={`p-4 bg-${level.color}-50 dark:bg-${level.color}-900/20 border border-${level.color}-200 dark:border-${level.color}-800 rounded-lg`}>
+              <h4 className={`font-bold text-${level.color}-800 dark:text-${level.color}-300 mb-2 text-sm`}>{level.level}</h4>
+              <h5 className={`font-semibold text-${level.color}-700 dark:text-${level.color}-300 mb-2 text-sm`}>{level.name}</h5>
+              <p className={`text-xs text-${level.color}-600 dark:text-${level.color}-400 mb-2`}>{level.desc}</p>
+              <ul className={`text-xs text-${level.color}-500 dark:text-${level.color}-500 space-y-1`}>
+                {level.systems.map((system, i) => (
+                  <li key={i}>• {system}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-3 gap-8">
+        <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+            <Cloud className="w-6 h-6 text-slate-600" />
+            클라우드 배포 모델
+          </h3>
+          <div className="space-y-4">
+            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-400 rounded">
+              <h4 className="font-semibold text-blue-800 dark:text-blue-300 mb-2">퍼블릭 클라우드</h4>
+              <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
+                <li>• <strong>장점:</strong> 낮은 초기 비용, 빠른 확장</li>
+                <li>• <strong>단점:</strong> 보안 우려, 네트워크 의존</li>
+                <li>• <strong>적합:</strong> 개발/테스트, 분석 워크로드</li>
+              </ul>
+            </div>
+            
+            <div className="p-4 bg-green-50 dark:bg-green-900/20 border-l-4 border-green-400 rounded">
+              <h4 className="font-semibold text-green-800 dark:text-green-300 mb-2">프라이빗 클라우드</h4>
+              <ul className="text-sm text-green-700 dark:text-green-400 space-y-1">
+                <li>• <strong>장점:</strong> 높은 보안, 완전한 제어</li>
+                <li>• <strong>단점:</strong> 높은 운영 비용</li>
+                <li>• <strong>적합:</strong> 미션 크리티컬 시스템</li>
+              </ul>
+            </div>
+            
+            <div className="p-4 bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-400 rounded">
+              <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">하이브리드 클라우드</h4>
+              <ul className="text-sm text-purple-700 dark:text-purple-400 space-y-1">
+                <li>• <strong>장점:</strong> 유연성, 비용 최적화</li>
+                <li>• <strong>단점:</strong> 복잡한 관리</li>
+                <li>• <strong>적합:</strong> 대부분의 스마트팩토리</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+            <Server className="w-6 h-6 text-slate-600" />
+            엣지-클라우드 분산 처리
+          </h3>
+          <div className="space-y-4">
+            <div className="p-4 bg-orange-50 dark:bg-orange-900/20 border rounded">
+              <h4 className="font-semibold text-orange-800 dark:text-orange-300 mb-2">엣지 레이어</h4>
+              <ul className="text-sm text-orange-700 dark:text-orange-400 space-y-1">
+                <li>• 실시간 제어 (< 10ms)</li>
+                <li>• 안전 시스템</li>
+                <li>• 로컬 데이터 필터링</li>
+                <li>• 오프라인 동작 지원</li>
+              </ul>
+            </div>
+            
+            <div className="p-4 bg-teal-50 dark:bg-teal-900/20 border rounded">
+              <h4 className="font-semibold text-teal-800 dark:text-teal-300 mb-2">포그 레이어</h4>
+              <ul className="text-sm text-teal-700 dark:text-teal-400 space-y-1">
+                <li>• 준실시간 분석 (< 1초)</li>
+                <li>• 로컬 AI 추론</li>
+                <li>• 데이터 집계</li>
+                <li>• 지역 최적화</li>
+              </ul>
+            </div>
+            
+            <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 border rounded">
+              <h4 className="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">클라우드 레이어</h4>
+              <ul className="text-sm text-indigo-700 dark:text-indigo-400 space-y-1">
+                <li>• 배치 분석 (> 1초)</li>
+                <li>• 머신러닝 훈련</li>
+                <li>• 장기 저장</li>
+                <li>• 전사 최적화</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+            <Database className="w-6 h-6 text-slate-600" />
+            데이터 저장 전략
+          </h3>
+          <div className="space-y-4">
+            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border rounded">
+              <h4 className="font-semibold text-blue-800 dark:text-blue-300 mb-2">시계열 데이터베이스</h4>
+              <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
+                <li>• <strong>용도:</strong> 센서 데이터, 로그</li>
+                <li>• <strong>솔루션:</strong> InfluxDB, TimescaleDB</li>
+                <li>• <strong>특징:</strong> 압축, 빠른 쿼리</li>
+              </ul>
+            </div>
+            
+            <div className="p-4 bg-green-50 dark:bg-green-900/20 border rounded">
+              <h4 className="font-semibold text-green-800 dark:text-green-300 mb-2">관계형 데이터베이스</h4>
+              <ul className="text-sm text-green-700 dark:text-green-400 space-y-1">
+                <li>• <strong>용도:</strong> 마스터 데이터, 트랜잭션</li>
+                <li>• <strong>솔루션:</strong> PostgreSQL, Oracle</li>
+                <li>• <strong>특징:</strong> ACID, 일관성</li>
+              </ul>
+            </div>
+            
+            <div className="p-4 bg-purple-50 dark:bg-purple-900/20 border rounded">
+              <h4 className="font-semibold text-purple-800 dark:text-purple-300 mb-2">데이터 레이크</h4>
+              <ul className="text-sm text-purple-700 dark:text-purple-400 space-y-1">
+                <li>• <strong>용도:</strong> 원시 데이터, 분석</li>
+                <li>• <strong>솔루션:</strong> Hadoop, MinIO</li>
+                <li>• <strong>특징:</strong> 스키마 온 리드</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-8 rounded-xl border border-green-200 dark:border-green-800">
+        <h3 className="text-2xl font-bold text-green-900 dark:text-green-200 mb-6 flex items-center gap-3">
+          <Network className="w-8 h-8" />
+          마이크로서비스 아키텍처
+        </h3>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-4">
+            <h4 className="text-xl font-semibold text-green-800 dark:text-green-200">핵심 원칙</h4>
+            <div className="space-y-3">
+              <div className="p-4 bg-white dark:bg-green-800/30 rounded-lg border border-green-200 dark:border-green-600">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2">Single Responsibility</h5>
+                <p className="text-sm text-green-600 dark:text-green-400">각 서비스는 하나의 비즈니스 기능만 담당</p>
+              </div>
+              
+              <div className="p-4 bg-white dark:bg-green-800/30 rounded-lg border border-green-200 dark:border-green-600">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2">Decentralized</h5>
+                <p className="text-sm text-green-600 dark:text-green-400">분산된 데이터 관리와 거버넌스</p>
+              </div>
+              
+              <div className="p-4 bg-white dark:bg-green-800/30 rounded-lg border border-green-200 dark:border-green-600">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 mb-2">Fault Tolerance</h5>
+                <p className="text-sm text-green-600 dark:text-green-400">장애 격리와 복구 매커니즘</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <h4 className="text-xl font-semibold text-green-800 dark:text-green-200">주요 패턴</h4>
+            <div className="space-y-3">
+              <div className="p-3 bg-white dark:bg-green-800/30 rounded-lg border border-green-200 dark:border-green-600">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 text-sm mb-1">API Gateway</h5>
+                <p className="text-xs text-green-600 dark:text-green-400">통합 진입점, 인증, 라우팅</p>
+              </div>
+              
+              <div className="p-3 bg-white dark:bg-green-800/30 rounded-lg border border-green-200 dark:border-green-600">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 text-sm mb-1">Service Discovery</h5>
+                <p className="text-xs text-green-600 dark:text-green-400">동적 서비스 등록과 발견</p>
+              </div>
+              
+              <div className="p-3 bg-white dark:bg-green-800/30 rounded-lg border border-green-200 dark:border-green-600">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 text-sm mb-1">Circuit Breaker</h5>
+                <p className="text-xs text-green-600 dark:text-green-400">장애 전파 방지</p>
+              </div>
+              
+              <div className="p-3 bg-white dark:bg-green-800/30 rounded-lg border border-green-200 dark:border-green-600">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 text-sm mb-1">Event Sourcing</h5>
+                <p className="text-xs text-green-600 dark:text-green-400">이벤트 기반 상태 관리</p>
+              </div>
+              
+              <div className="p-3 bg-white dark:bg-green-800/30 rounded-lg border border-green-200 dark:border-green-600">
+                <h5 className="font-semibold text-green-700 dark:text-green-300 text-sm mb-1">CQRS</h5>
+                <p className="text-xs text-green-600 dark:text-green-400">명령-쿼리 분리</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white dark:bg-gray-800 p-8 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm">
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+          <Server className="w-8 h-8 text-amber-600" />
+          컨테이너 오케스트레이션
+        </h3>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="text-center">
+            <div className="w-20 h-20 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <span className="text-white font-bold text-lg">K8s</span>
+            </div>
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2">Kubernetes</h4>
+            <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <li>• 자동 스케일링</li>
+              <li>• 로드 밸런싱</li>
+              <li>• 서비스 디스커버리</li>
+              <li>• 롤아웃/롤백</li>
+            </ul>
+            <div className="mt-3 p-2 bg-blue-50 dark:bg-blue-900/20 rounded text-xs text-blue-600 dark:text-blue-400">
+              업계 표준
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <div className="w-20 h-20 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <span className="text-white font-bold text-lg">Docker</span>
+            </div>
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2">Docker Swarm</h4>
+            <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <li>• 간단한 설정</li>
+              <li>• Docker 네이티브</li>
+              <li>• 경량화</li>
+              <li>• 빠른 배포</li>
+            </ul>
+            <div className="mt-3 p-2 bg-green-50 dark:bg-green-900/20 rounded text-xs text-green-600 dark:text-green-400">
+              중소규모 적합
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <div className="w-20 h-20 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <span className="text-white font-bold text-lg">OCP</span>
+            </div>
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2">OpenShift</h4>
+            <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+              <li>• 엔터프라이즈급</li>
+              <li>• 보안 강화</li>
+              <li>• 개발자 친화적</li>
+              <li>• Red Hat 지원</li>
+            </ul>
+            <div className="mt-3 p-2 bg-purple-50 dark:bg-purple-900/20 rounded text-xs text-purple-600 dark:text-purple-400">
+              대기업 적합
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 4: 교육 혁신 비전</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #FFFFFF;
+            position: relative;
+        }
+
+        /* 3D 배경 캔버스 */
+        #three-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 60px 60px 60px;
+        }
+
+        /* 헤더: KSS 비전 인용구 */
+        .header-quote {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInDown 1.5s ease-out 0.5s forwards;
+            margin-bottom: 20px;
+        }
+
+        .quote-text {
+            font-size: 38px;
+            font-weight: 500;
+            color: #FFFFFF;
+            font-style: italic;
+            max-width: 1200px;
+            margin: 0 auto 15px;
+            text-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
+            background: linear-gradient(135deg, #FFFFFF 0%, #10B981 50%, #34D399 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 25px rgba(16, 185, 129, 0.7); }
+            100% { text-shadow: 0 0 35px rgba(16, 185, 129, 1), 0 0 45px rgba(52, 211, 153, 0.6); }
+        }
+
+        .quote-author {
+            font-size: 20px;
+            color: #10B981;
+            font-weight: 600;
+        }
+
+        /* 중앙: KSS 3D 로고 영역 */
+        .main-kss {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 0.8;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .kss-3d-container {
+            width: 800px;
+            height: 300px;
+            position: relative;
+            margin: 0 auto;
+            opacity: 0;
+            animation: scaleIn 2s ease-out 1s forwards;
+        }
+
+        .kss-logo-3d {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #10B981 0%, #34D399 50%, #6EE7B7 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 15px;
+            z-index: 15;
+            text-shadow: 0 0 80px rgba(16, 185, 129, 0.8);
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translate(-50%, -50%) rotateY(0deg);
+                text-shadow: 0 0 60px rgba(16, 185, 129, 0.6);
+            }
+            50% { 
+                transform: translate(-50%, -50%) rotateY(5deg);
+                text-shadow: 0 0 90px rgba(16, 185, 129, 0.9);
+            }
+        }
+
+        .kss-tagline {
+            font-size: 24px;
+            color: #10B981;
+            font-weight: 500;
+            margin-top: 70px;
+            margin-bottom: 60px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+        }
+
+        /* 좌우 컨셉 패널 */
+        .concept-panels {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 150px;
+            z-index: 12;
+        }
+
+        .concept-panel {
+            width: 280px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            border: 2px solid;
+            border-radius: 25px;
+            padding: 30px 25px;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .traditional-panel {
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.3);
+            animation: slideInLeft 1.5s ease-out 2s forwards;
+        }
+
+        .kss-panel {
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 0 50px rgba(16, 185, 129, 0.3);
+            animation: slideInRight 1.5s ease-out 2.3s forwards;
+        }
+
+        .concept-panel:hover {
+            transform: translateY(-10px);
+        }
+
+        .traditional-panel:hover {
+            border-color: rgba(168, 85, 247, 0.9);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.5);
+        }
+
+        .kss-panel:hover {
+            border-color: rgba(16, 185, 129, 0.9);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.5);
+        }
+
+        .panel-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            animation: iconBounce 3s ease-in-out infinite;
+        }
+
+        .traditional-panel .panel-icon {
+            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.7));
+        }
+
+        .kss-panel .panel-icon {
+            filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.7));
+            animation-delay: 1.5s;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .panel-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .traditional-panel .panel-title {
+            background: linear-gradient(135deg, #A855F7, #C084FC);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kss-panel .panel-title {
+            background: linear-gradient(135deg, #10B981, #34D399);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .panel-description {
+            font-size: 16px;
+            color: #D1D5DB;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .panel-stats {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .traditional-panel .panel-stats {
+            background: rgba(168, 85, 247, 0.2);
+            color: #A855F7;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+        }
+
+        .kss-panel .panel-stats {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10B981;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        /* 중앙 연결 화살표 */
+        .connection-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.8s forwards;
+        }
+
+        .arrow-3d {
+            font-size: 120px;
+            color: #10B981;
+            filter: drop-shadow(0 0 40px rgba(16, 185, 129, 0.9));
+            animation: arrowPulse3D 2s ease-in-out infinite;
+        }
+
+        @keyframes arrowPulse3D {
+            0%, 100% { 
+                transform: scale(1) rotateZ(0deg);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scale(1.4) rotateZ(8deg);
+                opacity: 1;
+            }
+        }
+
+        /* 하단: 핵심 메시지 */
+        .bottom-insight {
+            text-align: center;
+            opacity: 0;
+            animation: slideUp 1s ease-out 3.2s forwards;
+            margin-top: 20px;
+            flex-shrink: 0;
+        }
+
+        .key-message {
+            font-size: 40px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #10B981 0%, #34D399 50%, #6EE7B7 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            line-height: 1.1;
+            text-shadow: 0 0 30px rgba(16, 185, 129, 0.7);
+            animation: messageGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes messageGlow {
+            0%, 100% { 
+                text-shadow: 0 0 30px rgba(16, 185, 129, 0.7);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 60px rgba(16, 185, 129, 1), 0 0 80px rgba(52, 211, 153, 0.6);
+                transform: scale(1.02);
+            }
+        }
+
+        .sub-message {
+            font-size: 22px;
+            color: #CBD5E1;
+            font-weight: 400;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            line-height: 1.3;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #10B981, #34D399);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+        }
+
+        /* 인터랙션 힌트 */
+        .interaction-hint {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: #64748B;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4s forwards;
+        }
+
+        /* 애니메이션 키프레임 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-150px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(150px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 반응형 */
+        @media (max-width: 1200px) {
+            .concept-panels {
+                flex-direction: column;
+                gap: 50px;
+                padding: 0 50px;
+            }
+            .kss-logo-3d {
+                font-size: 100px;
+                letter-spacing: 15px;
+            }
+            .kss-3d-container {
+                width: 600px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="three-canvas"></canvas>
+    
+    <div class="content-overlay">
+        <!-- 헤더 -->
+        <div class="header-quote">
+            <div class="quote-text">"가상 세계에서 현실을 준비한다"</div>
+            <div class="quote-author">KSS Vision - Knowledge Space Simulator</div>
+        </div>
+        
+        <!-- 메인 KSS 영역 -->
+        <div class="main-kss">
+            <div class="kss-3d-container">
+                <div class="kss-logo-3d">KSS</div>
+                
+                <!-- 좌우 패널 -->
+                <div class="concept-panels">
+                    <div class="concept-panel traditional-panel">
+                        <div class="panel-icon">📖</div>
+                        <h3 class="panel-title">Traditional</h3>
+                        <p class="panel-description">
+                            제한된 반복<br>
+                            느린 피드백<br>
+                            개념적 학습
+                        </p>
+                        <div class="panel-stats">Theory First</div>
+                    </div>
+                    
+                    <div class="concept-panel kss-panel">
+                        <div class="panel-icon">⚡</div>
+                        <h3 class="panel-title">Simulation</h3>
+                        <p class="panel-description">
+                            자유로운 체험<br>
+                            즉시 피드백<br>
+                            실전적 학습
+                        </p>
+                        <div class="panel-stats">Practice First</div>
+                    </div>
+                </div>
+                
+                <!-- 중앙 화살표 -->
+                <div class="connection-arrow">
+                    <div class="arrow-3d">→</div>
+                </div>
+            </div>
+            
+            <p class="kss-tagline">Knowledge Space Simulator</p>
+        </div>
+        
+        <!-- 하단 메시지 -->
+        <div class="bottom-insight">
+            <div class="key-message">
+                "가상에서 체험하고, 현실에서 완벽하게 실행한다"
+            </div>
+            <div class="sub-message">
+                <span class="highlight">시뮬레이션</span>에서 체험하여 <span class="highlight">현실</span>에서 완벽히 적용한다
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <script>
+        // Three.js 교육 메타버스 환경 설정
+        let scene, camera, renderer, particles, traditionalWorld, kssWorld;
+        let mouseX = 0, mouseY = 0;
+        let avatarCamera, learningPortal, educationEnvironment;
+        let isLearningMode = false, cameraTransition = 0;
+        
+        function init3D() {
+            // Scene 생성
+            scene = new THREE.Scene();
+            scene.fog = new THREE.Fog(0x0a1a0a, 100, 4000);
+            
+            // Main Camera (외부 관찰자 시점)
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 4000);
+            camera.position.set(0, 500, 1500);
+            
+            // Avatar Camera (1인칭 학습 모드 시점)
+            avatarCamera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 4000);
+            avatarCamera.position.set(0, 100, 800);
+            
+            // Renderer 설정 (향상된 품질)
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: document.getElementById('three-canvas'),
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance"
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            
+            // 교육 메타버스 환경 생성
+            createEducationEnvironment();
+            createParticleSystem();
+            create3DElements();
+            createLearningPortal();
+            
+            // 이벤트 리스너
+            document.addEventListener('mousemove', onMouseMove, false);
+            document.addEventListener('keydown', onKeyDown, false);
+            document.addEventListener('click', onCanvasClick, false);
+            window.addEventListener('resize', onWindowResize, false);
+        }
+        
+        // 교육 환경 생성
+        function createEducationEnvironment() {
+            // 학습 공간 바닥 (책 페이지 형태)
+            const gridGeometry = new THREE.PlaneGeometry(6000, 6000, 60, 60);
+            const gridMaterial = new THREE.MeshBasicMaterial({
+                color: 0x065f46,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.3
+            });
+            const grid = new THREE.Mesh(gridGeometry, gridMaterial);
+            grid.rotation.x = -Math.PI / 2;
+            grid.position.y = -200;
+            scene.add(grid);
+            
+            // 지식 네트워크 링들
+            for (let i = 0; i < 4; i++) {
+                const ringGeometry = new THREE.RingGeometry(400 + i * 300, 420 + i * 300, 32);
+                const ringMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(0.4, 0.7, 0.5),
+                    transparent: true,
+                    opacity: 0.15 - i * 0.03,
+                    side: THREE.DoubleSide
+                });
+                const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+                ring.rotation.x = -Math.PI / 2;
+                ring.position.y = i * 80;
+                scene.add(ring);
+            }
+        }
+        
+        function createParticleSystem() {
+            const particleCount = 1500;
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const velocities = new Float32Array(particleCount * 3);
+            
+            for (let i = 0; i < particleCount; i++) {
+                const i3 = i * 3;
+                
+                // 교육 공간에 분산된 위치
+                const radius = Math.random() * 3500;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.random() * Math.PI;
+                
+                positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i3 + 1] = radius * Math.cos(phi) - 500;
+                positions[i3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
+                
+                // 교육 테마 색상 (블루 + 화이트)
+                const colorType = Math.random();
+                if (colorType < 0.6) {
+                    // KSS 에메랄드
+                    const emerald = Math.random() * 0.5 + 0.5;
+                    colors[i3] = emerald * 0.1;
+                    colors[i3 + 1] = emerald * 0.7;
+                    colors[i3 + 2] = emerald * 0.5;
+                } else {
+                    // 지식 화이트
+                    const white = Math.random() * 0.3 + 0.7;
+                    colors[i3] = white;
+                    colors[i3 + 1] = white;
+                    colors[i3 + 2] = white;
+                }
+                
+                // 학습 흐름을 표현하는 움직임
+                velocities[i3] = (Math.random() - 0.5) * 3;
+                velocities[i3 + 1] = Math.random() * 2 + 1;
+                velocities[i3 + 2] = (Math.random() - 0.5) * 3;
+            }
+            
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+            
+            const material = new THREE.PointsMaterial({
+                size: 3,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending
+            });
+            
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+        }
+        
+        function create3DElements() {
+            // 전통적 교육 표현 (왼쪽) - 책 더미
+            const traditionalGroup = new THREE.Group();
+            
+            // 메인 책 더미
+            const bookGeometry = new THREE.BoxGeometry(120, 40, 80);
+            for (let i = 0; i < 8; i++) {
+                const bookMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(0, 0.8, 0.4 + i * 0.05),
+                    transparent: true,
+                    opacity: 0.6
+                });
+                const book = new THREE.Mesh(bookGeometry, bookMaterial);
+                book.position.y = i * 45;
+                book.rotation.y = (Math.random() - 0.5) * 0.3;
+                traditionalGroup.add(book);
+            }
+            
+            // 제한된 접근성을 나타내는 벽들
+            for (let i = 0; i < 4; i++) {
+                const wallGeometry = new THREE.PlaneGeometry(60, 150);
+                const wallMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x8B5CF6,
+                    transparent: true,
+                    opacity: 0.3
+                });
+                const wall = new THREE.Mesh(wallGeometry, wallMaterial);
+                const angle = (i / 4) * Math.PI * 2;
+                wall.position.x = Math.cos(angle) * 150;
+                wall.position.z = Math.sin(angle) * 150;
+                wall.position.y = 75;
+                wall.lookAt(0, 75, 0);
+                traditionalGroup.add(wall);
+            }
+            
+            traditionalWorld = traditionalGroup;
+            traditionalWorld.position.set(-800, 100, -300);
+            scene.add(traditionalWorld);
+            
+            // KSS 시뮬레이션 세계 (오른쪽) - 인터랙티브 노드들
+            const kssGroup = new THREE.Group();
+            
+            // 중앙 허브
+            const hubGeometry = new THREE.SphereGeometry(80, 32, 16);
+            const hubMaterial = new THREE.MeshBasicMaterial({
+                color: 0x3B82F6,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            const hub = new THREE.Mesh(hubGeometry, hubMaterial);
+            kssGroup.add(hub);
+            
+            // 주변 학습 노드들 (상호 연결된 지식)
+            for (let i = 0; i < 12; i++) {
+                const nodeGeometry = new THREE.SphereGeometry(25, 16, 8);
+                const nodeMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x60A5FA,
+                    transparent: true,
+                    opacity: 0.7
+                });
+                const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
+                
+                const angle = (i / 12) * Math.PI * 2;
+                const radius = 150 + Math.sin(i) * 50;
+                node.position.x = Math.cos(angle) * radius;
+                node.position.z = Math.sin(angle) * radius;
+                node.position.y = Math.sin(i * 2) * 60;
+                kssGroup.add(node);
+                
+                // 연결선들
+                const lineGeometry = new THREE.BufferGeometry().setFromPoints([
+                    new THREE.Vector3(0, 0, 0),
+                    new THREE.Vector3(node.position.x, node.position.y, node.position.z)
+                ]);
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x3B82F6,
+                    transparent: true,
+                    opacity: 0.4
+                });
+                const line = new THREE.Line(lineGeometry, lineMaterial);
+                kssGroup.add(line);
+            }
+            
+            kssWorld = kssGroup;
+            kssWorld.position.set(800, 100, -300);
+            scene.add(kssWorld);
+        }
+        
+        // 학습 포털 생성 (중앙 허브)
+        function createLearningPortal() {
+            const portalGroup = new THREE.Group();
+            
+            // 포털 링 (지식 게이트웨이)
+            const portalGeometry = new THREE.RingGeometry(200, 220, 64);
+            const portalMaterial = new THREE.MeshBasicMaterial({
+                color: 0x3B82F6,
+                transparent: true,
+                opacity: 0.9,
+                side: THREE.DoubleSide
+            });
+            const portal = new THREE.Mesh(portalGeometry, portalMaterial);
+            portal.rotation.x = Math.PI / 2;
+            portalGroup.add(portal);
+            
+            // 내부 지식 필드
+            const fieldGeometry = new THREE.SphereGeometry(180, 32, 16);
+            const fieldMaterial = new THREE.MeshBasicMaterial({
+                color: 0x60A5FA,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.3
+            });
+            const field = new THREE.Mesh(fieldGeometry, fieldMaterial);
+            portalGroup.add(field);
+            
+            learningPortal = portalGroup;
+            learningPortal.position.set(0, 200, 0);
+            scene.add(learningPortal);
+        }
+        
+        // 키보드 이벤트 (학습 모드 전환)
+        function onKeyDown(event) {
+            if (event.key === 'm' || event.key === 'M') {
+                isLearningMode = !isLearningMode;
+                cameraTransition = 0;
+            }
+        }
+        
+        // 캔버스 클릭 이벤트 (학습 모드 전환)
+        function onCanvasClick(event) {
+            // 학습 모드 전환
+            isLearningMode = !isLearningMode;
+            cameraTransition = 0;
+            
+            // 이벤트 전파 중지 (다음 슬라이드로 넘어가지 않도록)
+            event.stopPropagation();
+        }
+        
+        function onMouseMove(event) {
+            mouseX = (event.clientX - window.innerWidth / 2) / 4;
+            mouseY = (event.clientY - window.innerHeight / 2) / 4;
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            avatarCamera.aspect = window.innerWidth / window.innerHeight;
+            avatarCamera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // 카메라 전환 (학습 모드)
+            const activeCamera = isLearningMode ? avatarCamera : camera;
+            
+            if (isLearningMode) {
+                // 1인칭 학습자 카메라
+                cameraTransition += 0.015;
+                avatarCamera.position.x = Math.sin(cameraTransition * 0.4) * 400;
+                avatarCamera.position.z = Math.cos(cameraTransition * 0.4) * 400 + 600;
+                avatarCamera.position.y = 150 + Math.sin(cameraTransition * 0.6) * 80;
+                avatarCamera.lookAt(new THREE.Vector3(0, 200, 0)); // 포털 바라보기
+            } else {
+                // 외부 관찰자 카메라
+                camera.position.x += (mouseX - camera.position.x) * 0.02;
+                camera.position.y += (-mouseY + 500 - camera.position.y) * 0.02;
+                camera.lookAt(new THREE.Vector3(0, 200, 0));
+            }
+            
+            // 교육 파티클 업데이트
+            if (particles) {
+                const positions = particles.geometry.attributes.position;
+                const velocities = particles.geometry.attributes.velocity;
+                const time = Date.now() * 0.001;
+                
+                for (let i = 0; i < positions.count; i++) {
+                    const i3 = i * 3;
+                    
+                    // 지식 흐름을 표현하는 움직임
+                    positions.array[i3] += velocities.array[i3] * 0.4;
+                    positions.array[i3 + 1] += velocities.array[i3 + 1] * 0.2;
+                    positions.array[i3 + 2] += velocities.array[i3 + 2] * 0.4;
+                    
+                    // 학습 파동 효과
+                    positions.array[i3 + 1] += Math.sin(time + i * 0.02) * 1.5;
+                    
+                    // 경계 재배치
+                    if (positions.array[i3 + 1] < -1500) {
+                        positions.array[i3 + 1] = 1500;
+                        positions.array[i3] = (Math.random() - 0.5) * 7000;
+                        positions.array[i3 + 2] = (Math.random() - 0.5) * 7000;
+                    }
+                }
+                
+                positions.needsUpdate = true;
+                particles.rotation.y += 0.001;
+            }
+            
+            // 교육 오브젝트들 애니메이션
+            if (traditionalWorld) {
+                traditionalWorld.rotation.y += 0.003;
+                traditionalWorld.children.forEach((child, index) => {
+                    if (child.type === 'Mesh' && child.geometry.type === 'BoxGeometry') {
+                        // 책들이 살짝 떨어지는 효과
+                        child.position.y = (index * 45) + Math.sin(Date.now() * 0.001 + index) * 2;
+                    }
+                });
+            }
+            
+            if (kssWorld) {
+                kssWorld.rotation.y += 0.005;
+                kssWorld.children.forEach((child, index) => {
+                    if (child.type === 'Mesh' && child.geometry.type === 'SphereGeometry' && index > 0) {
+                        // 학습 노드들이 활발하게 움직임
+                        const originalY = Math.sin((index - 1) * 2) * 60;
+                        child.position.y = originalY + Math.sin(Date.now() * 0.002 + index) * 20;
+                        
+                        // 노드들이 빛나는 효과
+                        child.material.opacity = 0.7 + Math.sin(Date.now() * 0.003 + index) * 0.3;
+                    }
+                });
+            }
+            
+            // 학습 포털 회전
+            if (learningPortal) {
+                learningPortal.rotation.y += 0.01;
+                learningPortal.children[1].rotation.x += 0.008; // 내부 필드
+                learningPortal.children[1].rotation.z += 0.006;
+            }
+            
+            renderer.render(scene, activeCamera);
+        }
+        
+        // 초기화 및 시작
+        document.addEventListener('DOMContentLoaded', function() {
+            init3D();
+            animate();
+            
+            // KSS 로고 타이핑 효과
+            setTimeout(() => {
+                const logo = document.querySelector('.kss-logo-3d');
+                const text = 'KSS';
+                logo.innerHTML = '';
+                
+                [...text].forEach((char, i) => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.style.opacity = '0';
+                    span.style.display = 'inline-block';
+                    span.style.animation = `fadeInUp 0.3s ease-out ${1 + i * 0.2}s forwards`;
+                    logo.appendChild(span);
+                });
+            }, 1000);
+            
+        });
+        
+        // 네비게이션 (클릭하면 다음 슬라이드로)
+        document.addEventListener('click', function(e) {
+            // 캔버스가 아닌 곳을 클릭하면 다음 슬라이드로
+            if (e.target !== document.getElementById('three-canvas')) {
+                window.location.href = 'slide-05-next.html';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-05-next.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-03-realization.html';
+            }
+        });
+    </script>
+</body>
+</html>

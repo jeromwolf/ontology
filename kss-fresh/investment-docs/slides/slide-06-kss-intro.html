@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 6: KSS 소개</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+KR:wght@400;600;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .comparison {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            margin: 80px 0;
+        }
+
+        .method {
+            text-align: center;
+            animation: fadeInScale 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .method:nth-child(1) { animation-delay: 0.2s; }
+        .method:nth-child(2) { animation-delay: 0.4s; }
+        .method:nth-child(3) { animation-delay: 0.6s; }
+
+        .method-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .traditional {
+            color: #94A3B8;
+        }
+
+        .kss {
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .arrow-down {
+            font-size: 40px;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px 40px;
+            margin: 15px 0;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .traditional .step {
+            opacity: 0.6;
+        }
+
+        .kss .step {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .kss .step:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .tagline {
+            font-size: 36px;
+            font-weight: 900;
+            margin-top: 60px;
+            animation: slideUp 1s ease-out 1s both;
+            background: linear-gradient(135deg, #F8FAFC 0%, #CBD5E1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .versus {
+            font-size: 48px;
+            color: #64748B;
+            font-weight: 300;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="comparison">
+            <div class="method">
+                <h2 class="method-title traditional">기존 교육</h2>
+                <div class="step">이론</div>
+                <div class="arrow-down">↓</div>
+                <div class="step">영상</div>
+                <div class="arrow-down">↓</div>
+                <div class="step">시험</div>
+                <div class="arrow-down">↓</div>
+                <div class="step">자격증</div>
+            </div>
+            
+            <div class="versus">VS</div>
+            
+            <div class="method">
+                <h2 class="method-title kss">KSS</h2>
+                <div class="step">체험</div>
+                <div class="arrow-down">↓</div>
+                <div class="step">실습</div>
+                <div class="arrow-down">↓</div>
+                <div class="step">적용</div>
+                <div class="arrow-down">↓</div>
+                <div class="step">실무역량</div>
+            </div>
+        </div>
+        
+        <h1 class="tagline">"Learning by Doing"</h1>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-07-platform-status.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-07-platform-status.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-05-mobility-stack.html';
+            }
+        });
+    </script>
+</body>
+</html>

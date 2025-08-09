@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 7: 플랫폼 현황</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+KR:wght@400;600;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeInScale 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.3s; }
+        .stat-item:nth-child(3) { animation-delay: 0.5s; }
+
+        .stat-number {
+            font-size: 80px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            display: block;
+            animation: countUp 2s ease-out;
+        }
+
+        .stat-label {
+            font-size: 24px;
+            color: #94A3B8;
+            font-weight: 600;
+        }
+
+        .modules-container {
+            margin-top: 80px;
+            animation: slideUp 1s ease-out 0.8s both;
+        }
+
+        .module-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .module-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .module-icon:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .icon {
+            font-size: 40px;
+        }
+
+        .module-name {
+            font-size: 16px;
+            color: #CBD5E1;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .plus {
+            font-size: 40px;
+            color: #3B82F6;
+            vertical-align: super;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">30</span>
+                <span class="stat-label">모듈</span>
+            </div>
+            
+            <div class="stat-item">
+                <span class="stat-number">60<span class="plus">+</span></span>
+                <span class="stat-label">시뮬레이터</span>
+            </div>
+            
+            <div class="stat-item">
+                <span class="stat-number">200<span class="plus">+</span></span>
+                <span class="stat-label">시간 콘텐츠</span>
+            </div>
+        </div>
+        
+        <div class="modules-container">
+            <div class="module-icons">
+                <div class="module-icon">
+                    <span class="icon">🤖</span>
+                    <span class="module-name">AI</span>
+                </div>
+                <div class="module-icon">
+                    <span class="icon">🚗</span>
+                    <span class="module-name">자율주행</span>
+                </div>
+                <div class="module-icon">
+                    <span class="icon">⚛️</span>
+                    <span class="module-name">양자컴퓨팅</span>
+                </div>
+                <div class="module-icon">
+                    <span class="icon">⛓️</span>
+                    <span class="module-name">블록체인</span>
+                </div>
+                <div class="module-icon">
+                    <span class="icon">🏥</span>
+                    <span class="module-name">의료AI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 숫자 카운트업 애니메이션
+        document.addEventListener('DOMContentLoaded', function() {
+            const numbers = document.querySelectorAll('.stat-number');
+            numbers.forEach(num => {
+                const finalValue = parseInt(num.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        currentValue = finalValue;
+                        clearInterval(timer);
+                        if (num.textContent.includes('+')) {
+                            num.innerHTML = finalValue + '<span class="plus">+</span>';
+                        }
+                    } else {
+                        num.textContent = Math.floor(currentValue);
+                    }
+                }, 30);
+            });
+        });
+
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-08-three-innovations.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-08-three-innovations.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-06-kss-intro.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 3: 깨달음의 순간</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+            position: relative;
+        }
+
+        /* 번개 효과 배경 */
+        .lightning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            animation: lightning 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes lightning {
+            0%, 90%, 100% { opacity: 0; }
+            91% { opacity: 0.8; }
+            92% { opacity: 0; }
+            93% { opacity: 1; }
+            94% { opacity: 0; }
+        }
+
+        .container {
+            max-width: 1000px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .moment-text {
+            font-size: 32px;
+            font-weight: 300;
+            color: #94A3B8;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .thought-bubble {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 30px;
+            padding: 40px 60px;
+            margin: 40px auto;
+            position: relative;
+            animation: bubbleIn 1s ease-out 0.5s both;
+            max-width: 800px;
+        }
+
+        .thought-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .thought-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 18px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .thought {
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 1.6;
+            margin: 20px 0;
+            opacity: 0;
+            animation: thoughtAppear 0.8s ease-out forwards;
+        }
+
+        .thought:nth-child(1) { animation-delay: 1s; }
+        .thought:nth-child(2) { animation-delay: 2s; color: #60A5FA; }
+        .thought:nth-child(3) { animation-delay: 3s; color: #34D399; }
+
+        @keyframes thoughtAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .comparison {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 60px 0;
+            animation: slideUp 1s ease-out 4s both;
+        }
+
+        .compare-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .compare-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .compare-box.robot {
+            border-color: #76B900;
+        }
+
+        .compare-box.human {
+            border-color: #3B82F6;
+        }
+
+        .box-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .box-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .robot .box-title { color: #76B900; }
+        .human .box-title { color: #3B82F6; }
+
+        .box-content {
+            font-size: 18px;
+            color: #CBD5E1;
+            line-height: 1.5;
+        }
+
+        .eureka {
+            font-size: 48px;
+            font-weight: 900;
+            margin-top: 60px;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: eureka 1s ease-out 5s both;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        @keyframes eureka {
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        /* 떠오르는 아이디어 전구 */
+        .idea-bulb {
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            font-size: 80px;
+            opacity: 0;
+            animation: bulbOn 0.5s ease-out 5s both;
+            filter: drop-shadow(0 0 30px #FFD700);
+        }
+
+        @keyframes bulbOn {
+            from {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bubbleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lightning"></div>
+    <div class="idea-bulb">💡</div>
+    
+    <div class="container">
+        <p class="moment-text">그 순간, 저는 생각했습니다</p>
+        
+        <div class="thought-bubble">
+            <div class="thought">"로봇도 시뮬레이션으로 배우는데..."</div>
+            <div class="thought">"왜 우리는 아직도 책과 영상으로만?"</div>
+            <div class="thought">"인간도 경험을 시뮬레이션할 수 있다!"</div>
+        </div>
+        
+        <div class="comparison">
+            <div class="compare-box robot">
+                <div class="box-icon">🤖</div>
+                <div class="box-title">로봇의 학습</div>
+                <div class="box-content">
+                    가상에서 수백만 번 실패<br>
+                    현실에서 완벽히 수행<br>
+                    비용: 전기료만
+                </div>
+            </div>
+            
+            <div class="compare-box human">
+                <div class="box-icon">👨‍🎓</div>
+                <div class="box-title">인간의 학습</div>
+                <div class="box-content">
+                    이론 공부 → 실무 투입<br>
+                    실패하면 큰 비용<br>
+                    경험까지: 수년
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="eureka">시뮬레이션이 답이다!</h2>
+    </div>
+
+    <script>
+        // 번개 효과 강화
+        const lightning = document.querySelector('.lightning');
+        
+        setTimeout(() => {
+            lightning.style.animation = 'lightning 2s ease-in-out';
+            setTimeout(() => {
+                lightning.style.animation = 'lightning 8s ease-in-out infinite';
+            }, 2000);
+        }, 4500);
+
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-04-problem.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-04-problem.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-02-cosmos-inspiration.html';
+            }
+        });
+    </script>
+</body>
+</html>

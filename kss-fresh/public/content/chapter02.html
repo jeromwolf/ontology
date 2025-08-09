@@ -1,0 +1,2443 @@
+<!-- Chapter 2: 온톨로지의 핵심 개념 (Enhanced Version) -->
+
+<div class="chapter-header">
+    <h1>Chapter 2. 온톨로지의 핵심 개념</h1>
+    <div class="chapter-quote">
+        "개념을 정의하고 관계를 맺는 것, 그것이 지식의 시작입니다."
+    </div>
+</div>
+
+<div class="reading-time">
+    <i class="fas fa-clock"></i> 예상 학습 시간: 3시간
+</div>
+
+<!-- 사전 지식 확인 -->
+<div class="prerequisite-check card">
+    <h3><i class="fas fa-check-circle"></i> 사전 지식 확인</h3>
+    <p>이 장을 학습하기 전에 다음 내용을 이해하고 있는지 확인하세요:</p>
+    <ul>
+        <li>온톨로지의 기본 정의와 목적 (Chapter 1)</li>
+        <li>RDF 트리플의 기본 구조</li>
+        <li>객체지향 프로그래밍의 클래스 개념 (도움이 됨)</li>
+    </ul>
+</div>
+
+<!-- 학습 목표 -->
+<div class="learning-objectives card">
+    <h3><i class="fas fa-bullseye"></i> 학습 목표</h3>
+    <ul>
+        <li>클래스(Class)와 인스턴스(Instance)의 개념과 관계 심층 이해</li>
+        <li>속성(Property)의 종류와 특성, 제약사항 완벽 마스터</li>
+        <li>관계(Relation)의 유형과 논리적 특성 파악</li>
+        <li>제약사항(Constraint)과 추론(Reasoning)의 원리와 실제 적용</li>
+        <li>온톨로지 설계 원칙과 안티패턴 학습</li>
+        <li>실제 온톨로지 모델링 능력 배양</li>
+    </ul>
+</div>
+
+<!-- 학습 로드맵 -->
+<div class="chapter-roadmap">
+    <h3><i class="fas fa-map-signs"></i> 이번 장의 학습 로드맵</h3>
+    <div class="roadmap-timeline">
+        <div class="roadmap-item active">
+            <div class="roadmap-number">1</div>
+            <div class="roadmap-content">
+                <h4>클래스와 인스턴스</h4>
+                <p>개념의 범주화와 개체화</p>
+            </div>
+        </div>
+        <div class="roadmap-item">
+            <div class="roadmap-number">2</div>
+            <div class="roadmap-content">
+                <h4>속성과 데이터타입</h4>
+                <p>객체와 데이터 속성의 이해</p>
+            </div>
+        </div>
+        <div class="roadmap-item">
+            <div class="roadmap-number">3</div>
+            <div class="roadmap-content">
+                <h4>관계와 제약사항</h4>
+                <p>개념 간 연결과 규칙 정의</p>
+            </div>
+        </div>
+        <div class="roadmap-item">
+            <div class="roadmap-number">4</div>
+            <div class="roadmap-content">
+                <h4>추론과 일관성</h4>
+                <p>논리적 추론과 검증</p>
+            </div>
+        </div>
+        <div class="roadmap-item">
+            <div class="roadmap-number">5</div>
+            <div class="roadmap-content">
+                <h4>설계 패턴</h4>
+                <p>모범 사례와 실전 응용</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 섹션 2.1 -->
+<section class="content-section">
+    <h2>2.1 클래스(Class): 개념의 범주화</h2>
+    
+    <div class="section-intro">
+        <p>클래스는 온톨로지의 가장 기본적인 구성 요소로, 유사한 특징을 가진 개체들의 집합을 나타냅니다. 
+        객체지향 프로그래밍의 클래스와 유사하지만, 온톨로지의 클래스는 더 풍부한 의미적 표현과 추론 능력을 제공합니다.</p>
+    </div>
+    
+    <div class="concept-box">
+        <h4><i class="fas fa-lightbulb"></i> 핵심 개념</h4>
+        <p><strong>클래스(Class)</strong>: 공통된 속성을 가진 개체들의 범주 또는 타입</p>
+        <ul>
+            <li><strong>내포(Intension)</strong>: 클래스를 정의하는 속성들의 집합</li>
+            <li><strong>외연(Extension)</strong>: 클래스에 속하는 모든 인스턴스들의 집합</li>
+        </ul>
+    </div>
+    
+    <h3>2.1.1 클래스의 철학적 기반</h3>
+    
+    <div class="philosophical-foundation">
+        <h4>아리스토텔레스의 범주론</h4>
+        <div class="category-comparison">
+            <div class="ancient-categories">
+                <h5>고대 10대 범주</h5>
+                <ol>
+                    <li><strong>실체(Substance)</strong> - 무엇인가?</li>
+                    <li><strong>양(Quantity)</strong> - 얼마나?</li>
+                    <li><strong>질(Quality)</strong> - 어떤?</li>
+                    <li><strong>관계(Relation)</strong> - 무엇과의 관계?</li>
+                    <li><strong>장소(Place)</strong> - 어디에?</li>
+                    <li><strong>시간(Time)</strong> - 언제?</li>
+                    <li><strong>위치(Position)</strong> - 어떤 자세로?</li>
+                    <li><strong>상태(State)</strong> - 어떤 상태로?</li>
+                    <li><strong>행동(Action)</strong> - 무엇을 하는가?</li>
+                    <li><strong>수동(Affection)</strong> - 무엇을 당하는가?</li>
+                </ol>
+            </div>
+            <div class="modern-ontology">
+                <h5>현대 온톨로지 적용</h5>
+                <pre><code class="language-turtle">
+# 아리스토텔레스 범주의 현대적 구현
+:Thing rdf:type owl:Class .
+
+:Substance rdfs:subClassOf :Thing .
+:Person rdfs:subClassOf :Substance .
+
+:hasQuantity rdf:type owl:DatatypeProperty .
+:hasQuality rdf:type owl:ObjectProperty .
+:hasRelation rdf:type owl:ObjectProperty .
+:hasLocation rdf:type owl:ObjectProperty .
+:hasTime rdf:type owl:DatatypeProperty .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.1.2 클래스의 특징과 원칙</h3>
+    
+    <div class="class-features">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+            <h4>1. 추상화 (Abstraction)</h4>
+            <p>개별 개체들의 공통 특성을 추출하여 일반화</p>
+            <div class="abstraction-example">
+                <h5>추상화 레벨</h5>
+                <div class="abstraction-levels">
+                    <div class="level high">
+                        <strong>높은 추상화:</strong> 생물
+                    </div>
+                    <div class="level medium">
+                        <strong>중간 추상화:</strong> 동물, 식물
+                    </div>
+                    <div class="level low">
+                        <strong>낮은 추상화:</strong> 개, 고양이, 장미, 소나무
+                    </div>
+                    <div class="level concrete">
+                        <strong>구체적 개체:</strong> 우리집 강아지 '뽀삐'
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-sitemap"></i></div>
+            <h4>2. 계층구조 (Hierarchy)</h4>
+            <p>상위 클래스와 하위 클래스의 관계로 조직화</p>
+            <div class="hierarchy-principles">
+                <h5>계층구조 원칙</h5>
+                <ul>
+                    <li><strong>전이성(Transitivity):</strong> A⊆B이고 B⊆C이면 A⊆C</li>
+                    <li><strong>비대칭성(Asymmetry):</strong> A⊆B이면 B⊈A (A≠B일 때)</li>
+                    <li><strong>반사성(Reflexivity):</strong> A⊆A (모든 클래스는 자기 자신의 부분집합)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-code-branch"></i></div>
+            <h4>3. 다중 상속 (Multiple Inheritance)</h4>
+            <p>하나의 클래스가 여러 상위 클래스를 가질 수 있음</p>
+            <div class="multiple-inheritance-example">
+                <pre><code class="language-turtle">
+# 수륙양용차는 자동차이면서 동시에 보트
+:AmphibiousVehicle rdfs:subClassOf :Car ;
+                   rdfs:subClassOf :Boat .
+
+# 펭귄은 새이면서 수영하는 동물
+:Penguin rdfs:subClassOf :Bird ;
+         rdfs:subClassOf :SwimmingAnimal .
+                </code></pre>
+            </div>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>
+            <h4>4. 분리성 (Disjointness)</h4>
+            <p>서로 겹치지 않는 클래스들의 정의</p>
+            <div class="disjoint-example">
+                <pre><code class="language-turtle">
+# 남성과 여성은 서로 배타적
+:Male owl:disjointWith :Female .
+
+# 동물과 식물은 서로 배타적
+:Animal owl:disjointWith :Plant .
+
+# 여러 클래스가 서로 배타적
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Mammal :Bird :Fish :Reptile )
+] .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- 인터랙티브 클래스 계층구조 빌더 -->
+    <div class="interactive-builder">
+        <h3><i class="fas fa-tools"></i> 실습: 대학 온톨로지 클래스 계층구조 만들기</h3>
+        <div class="builder-interface">
+            <div class="builder-controls">
+                <h4>클래스 추가</h4>
+                <input type="text" id="className" placeholder="클래스 이름">
+                <select id="parentClass">
+                    <option value="Thing">Thing (최상위)</option>
+                    <option value="Person">Person</option>
+                    <option value="Course">Course</option>
+                    <option value="Department">Department</option>
+                </select>
+                <button onclick="addClass()">클래스 추가</button>
+            </div>
+            <div class="builder-visualization">
+                <div id="classHierarchy">
+                    <!-- 동적으로 생성되는 계층구조 -->
+                </div>
+            </div>
+            <div class="builder-output">
+                <h4>생성된 온톨로지 코드</h4>
+                <pre><code id="generatedOntology" class="language-turtle">
+@prefix : &lt;http://example.org/university#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+
+:Person rdf:type owl:Class .
+:Student rdfs:subClassOf :Person .
+:Professor rdfs:subClassOf :Person .
+:Course rdf:type owl:Class .
+:Department rdf:type owl:Class .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.1.3 클래스 정의의 고급 기법</h3>
+    
+    <div class="advanced-techniques">
+        <h4>1. 열거형 클래스 (Enumerated Classes)</h4>
+        <div class="technique-example">
+            <p>클래스의 모든 멤버를 명시적으로 나열</p>
+            <pre><code class="language-turtle">
+# 한국의 광역시
+:KoreanMetropolitanCity owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:oneOf ( :Seoul :Busan :Daegu :Incheon :Gwangju :Daejeon :Ulsan )
+] .
+
+# 신호등 색상
+:TrafficLightColor owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:oneOf ( :Red :Yellow :Green )
+] .
+            </code></pre>
+        </div>
+        
+        <h4>2. 교집합 클래스 (Intersection Classes)</h4>
+        <div class="technique-example">
+            <p>여러 클래스의 교집합으로 새로운 클래스 정의</p>
+            <pre><code class="language-turtle">
+# 채식주의 피자 = 피자 AND (토핑이 모두 채소)
+:VegetarianPizza owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Pizza
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :hasTopping ;
+          owl:allValuesFrom :VegetableTopping ]
+    )
+] .
+            </code></pre>
+        </div>
+        
+        <h4>3. 합집합 클래스 (Union Classes)</h4>
+        <div class="technique-example">
+            <p>여러 클래스의 합집합으로 새로운 클래스 정의</p>
+            <pre><code class="language-turtle">
+# 대중교통 = 버스 OR 지하철 OR 택시
+:PublicTransport owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:unionOf ( :Bus :Subway :Taxi )
+] .
+            </code></pre>
+        </div>
+        
+        <h4>4. 보수 클래스 (Complement Classes)</h4>
+        <div class="technique-example">
+            <p>특정 클래스에 속하지 않는 모든 것</p>
+            <pre><code class="language-turtle">
+# 비흡연자 = 흡연자가 아닌 사람
+:NonSmoker owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Person
+        [ owl:complementOf :Smoker ]
+    )
+] .
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- 실전 예제: 의료 온톨로지 -->
+    <div class="real-world-example">
+        <h3><i class="fas fa-hospital"></i> 실전 예제: 의료 온톨로지의 클래스 설계</h3>
+        
+        <div class="medical-ontology">
+            <h4>질병 분류 체계</h4>
+            <pre><code class="language-turtle">
+# 최상위 질병 클래스
+:Disease rdf:type owl:Class ;
+    rdfs:label "질병"@ko ;
+    rdfs:comment "인체에 발생하는 모든 질환"@ko .
+
+# 감염성 질환
+:InfectiousDisease rdfs:subClassOf :Disease ;
+    rdfs:label "감염성 질환"@ko ;
+    owl:equivalentClass [
+        rdf:type owl:Class ;
+        owl:intersectionOf (
+            :Disease
+            [ rdf:type owl:Restriction ;
+              owl:onProperty :hasCause ;
+              owl:someValuesFrom :InfectiousAgent ]
+        )
+    ] .
+
+# 바이러스성 질환
+:ViralDisease rdfs:subClassOf :InfectiousDisease ;
+    owl:equivalentClass [
+        rdf:type owl:Class ;
+        owl:intersectionOf (
+            :InfectiousDisease
+            [ rdf:type owl:Restriction ;
+              owl:onProperty :hasCause ;
+              owl:someValuesFrom :Virus ]
+        )
+    ] .
+
+# 만성 질환
+:ChronicDisease rdfs:subClassOf :Disease ;
+    owl:equivalentClass [
+        rdf:type owl:Class ;
+        owl:intersectionOf (
+            :Disease
+            [ rdf:type owl:Restriction ;
+              owl:onProperty :hasDuration ;
+              owl:hasValue "3개월 이상"^^xsd:string ]
+        )
+    ] .
+
+# 유전성 질환
+:GeneticDisease rdfs:subClassOf :Disease ;
+    rdfs:label "유전성 질환"@ko ;
+    owl:disjointWith :InfectiousDisease .
+            </code></pre>
+            
+            <div class="visualization-note">
+                <p><strong>시각화:</strong> 이러한 클래스 계층구조는 의료진이 질병을 체계적으로 분류하고 
+                진단하는 데 도움을 줍니다. 또한 AI 시스템이 증상을 기반으로 가능한 질병을 추론할 수 있게 합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 퀴즈 -->
+    <div class="section-quiz">
+        <h3><i class="fas fa-question-circle"></i> 확인 문제</h3>
+        <div class="quiz-item">
+            <p><strong>문제 1:</strong> 다음 중 클래스 정의 시 고려해야 할 원칙이 아닌 것은?</p>
+            <ol type="a">
+                <li>명확한 정의와 범위 설정</li>
+                <li>적절한 추상화 수준 선택</li>
+                <li>가능한 많은 속성 포함</li>
+                <li>계층구조의 논리적 일관성</li>
+            </ol>
+        </div>
+        <div class="quiz-item">
+            <p><strong>문제 2:</strong> owl:disjointWith의 의미는?</p>
+            <ol type="a">
+                <li>두 클래스가 같다</li>
+                <li>두 클래스가 서로 겹치지 않는다</li>
+                <li>한 클래스가 다른 클래스의 부분집합이다</li>
+                <li>두 클래스가 동일한 속성을 갖는다</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 2.2 -->
+<section class="content-section">
+    <h2>2.2 인스턴스(Instance): 개체의 구체화</h2>
+    
+    <div class="section-intro">
+        <p>인스턴스는 클래스의 구체적인 구현체로, 실제 세계에 존재하는 개별 개체를 나타냅니다. 
+        클래스가 '개념'이라면 인스턴스는 그 개념의 '실체'입니다.</p>
+    </div>
+    
+    <div class="concept-box">
+        <h4><i class="fas fa-lightbulb"></i> 핵심 개념</h4>
+        <p><strong>인스턴스(Instance)</strong>: 클래스에 속하는 개별적이고 구체적인 개체</p>
+        <ul>
+            <li><strong>개체성(Individuality)</strong>: 각 인스턴스는 고유한 정체성을 가짐</li>
+            <li><strong>속성값(Property Values)</strong>: 클래스에서 정의한 속성의 구체적인 값을 가짐</li>
+            <li><strong>관계(Relationships)</strong>: 다른 인스턴스와 특정 관계를 맺을 수 있음</li>
+        </ul>
+    </div>
+
+    <h3>2.2.1 인스턴스의 특징</h3>
+    
+    <div class="instance-features">
+        <div class="feature-grid">
+            <div class="instance-feature">
+                <h4>1. 고유 식별자 (Unique Identifier)</h4>
+                <p>모든 인스턴스는 온톨로지 내에서 유일한 IRI/URI를 가짐</p>
+                <pre><code class="language-turtle">
+# 잘못된 예: 같은 IRI를 가진 두 인스턴스
+:김철수 rdf:type :Person .
+:김철수 rdf:type :Company .  # 오류!
+
+# 올바른 예: 서로 다른 IRI
+:person_김철수 rdf:type :Person .
+:company_김철수산업 rdf:type :Company .
+                </code></pre>
+            </div>
+            
+            <div class="instance-feature">
+                <h4>2. 다중 분류 (Multiple Classification)</h4>
+                <p>하나의 인스턴스가 여러 클래스에 동시에 속할 수 있음</p>
+                <pre><code class="language-turtle">
+:홍길동 rdf:type :Person ;
+       rdf:type :Student ;
+       rdf:type :Employee ;
+       rdf:type :Athlete .
+
+# 홍길동은 사람이면서, 학생이고, 직원이며, 운동선수
+                </code></pre>
+            </div>
+            
+            <div class="instance-feature">
+                <h4>3. 속성 상속 (Property Inheritance)</h4>
+                <p>클래스에서 정의된 속성과 제약사항을 상속받음</p>
+                <pre><code class="language-turtle">
+# 클래스 정의
+:Person rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasAge ;
+    owl:cardinality 1
+] .
+
+# 인스턴스는 반드시 하나의 나이를 가져야 함
+:김영희 rdf:type :Person ;
+       :hasAge 25 .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.2.2 인스턴스 생성과 관리</h3>
+    
+    <div class="instance-management">
+        <h4>인스턴스 생성 모범 사례</h4>
+        
+        <div class="best-practices">
+            <div class="practice-item">
+                <h5>1. 명명 규칙 (Naming Convention)</h5>
+                <div class="naming-examples">
+                    <div class="good-practice">
+                        <span class="label">✅ 권장</span>
+                        <pre><code class="language-turtle">
+# 의미있는 식별자 사용
+:university_서울대학교 rdf:type :University .
+:person_20240101_kim rdf:type :Person .
+:course_CS101_2024_spring rdf:type :Course .
+                        </code></pre>
+                    </div>
+                    <div class="bad-practice">
+                        <span class="label">❌ 비권장</span>
+                        <pre><code class="language-turtle">
+# 의미없는 식별자
+:obj1 rdf:type :University .
+:xyz123 rdf:type :Person .
+:temp rdf:type :Course .
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="practice-item">
+                <h5>2. 필수 속성 확인</h5>
+                <pre><code class="language-turtle">
+# 클래스에 필수 속성이 정의된 경우
+:Book rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasISBN ;
+    owl:minCardinality 1
+] .
+
+# 인스턴스 생성 시 필수 속성 포함
+:book_온톨로지입문 rdf:type :Book ;
+    :hasISBN "978-89-123-4567-8" ;  # 필수
+    :hasTitle "온톨로지 입문" ;      # 필수
+    :hasAuthor :person_김교수 ;      # 선택
+    :publishedYear 2024 .            # 선택
+                </code></pre>
+            </div>
+            
+            <div class="practice-item">
+                <h5>3. 동일 개체 처리 (Same Individual)</h5>
+                <pre><code class="language-turtle">
+# 같은 개체를 다른 이름으로 참조하는 경우
+:마크_트웨인 owl:sameAs :사무엘_클레멘스 .
+:Seoul owl:sameAs :서울 .
+
+# 서로 다른 개체임을 명시
+:김철수_서울대 owl:differentFrom :김철수_연세대 .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- 실습: 도서관 시스템 인스턴스 -->
+    <div class="hands-on-practice">
+        <h3><i class="fas fa-laptop-code"></i> 실습: 도서관 시스템의 인스턴스 모델링</h3>
+        
+        <div class="practice-scenario">
+            <h4>시나리오</h4>
+            <p>대학 도서관 시스템을 위한 온톨로지를 구축하고 있습니다. 
+            다음 정보를 바탕으로 인스턴스를 생성해보세요:</p>
+            
+            <div class="scenario-data">
+                <table>
+                    <tr>
+                        <th>종류</th>
+                        <th>정보</th>
+                    </tr>
+                    <tr>
+                        <td>도서</td>
+                        <td>
+                            제목: "인공지능의 이해"<br>
+                            저자: 김교수<br>
+                            ISBN: 978-89-123-4567-8<br>
+                            출판년도: 2024
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>이용자</td>
+                        <td>
+                            이름: 이학생<br>
+                            학번: 2024001<br>
+                            소속: 컴퓨터공학과
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>대출</td>
+                        <td>
+                            대출자: 이학생<br>
+                            도서: "인공지능의 이해"<br>
+                            대출일: 2024-03-15<br>
+                            반납예정일: 2024-03-29
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="solution-steps">
+                <h5>해결 과정</h5>
+                
+                <div class="step">
+                    <h6>Step 1: 클래스 정의</h6>
+                    <pre><code class="language-turtle">
+# 클래스 정의
+:Book rdf:type owl:Class .
+:Person rdf:type owl:Class .
+:Student rdfs:subClassOf :Person .
+:Loan rdf:type owl:Class .
+:Department rdf:type owl:Class .
+
+# 속성 정의
+:hasISBN rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Book ;
+    rdfs:range xsd:string .
+
+:hasTitle rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Book ;
+    rdfs:range xsd:string .
+
+:writtenBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Person .
+
+:borrowedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :Loan ;
+    rdfs:range :Person .
+
+:borrowedItem rdf:type owl:ObjectProperty ;
+    rdfs:domain :Loan ;
+    rdfs:range :Book .
+                    </code></pre>
+                </div>
+                
+                <div class="step">
+                    <h6>Step 2: 인스턴스 생성</h6>
+                    <pre><code class="language-turtle">
+# 도서 인스턴스
+:book_AI_Understanding_2024 rdf:type :Book ;
+    :hasTitle "인공지능의 이해"@ko ;
+    :hasISBN "978-89-123-4567-8" ;
+    :writtenBy :person_김교수 ;
+    :publishedYear 2024 .
+
+# 저자 인스턴스
+:person_김교수 rdf:type :Person ;
+    :hasName "김교수"@ko .
+
+# 학생 인스턴스
+:student_2024001 rdf:type :Student ;
+    :hasName "이학생"@ko ;
+    :hasStudentID "2024001" ;
+    :belongsTo :dept_ComputerScience .
+
+# 학과 인스턴스
+:dept_ComputerScience rdf:type :Department ;
+    :hasName "컴퓨터공학과"@ko .
+
+# 대출 인스턴스
+:loan_20240315_001 rdf:type :Loan ;
+    :borrowedBy :student_2024001 ;
+    :borrowedItem :book_AI_Understanding_2024 ;
+    :loanDate "2024-03-15"^^xsd:date ;
+    :dueDate "2024-03-29"^^xsd:date ;
+    :loanStatus "active" .
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.2.3 인스턴스 추론과 분류</h3>
+    
+    <div class="instance-reasoning">
+        <h4>자동 분류 (Automatic Classification)</h4>
+        <p>온톨로지 추론기는 인스턴스의 속성을 분석하여 자동으로 적절한 클래스로 분류할 수 있습니다.</p>
+        
+        <div class="reasoning-example">
+            <h5>예제: 도서 자동 분류</h5>
+            <pre><code class="language-turtle">
+# 클래스 정의 with 조건
+:ComputerScienceBook owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Book
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :hasSubject ;
+          owl:hasValue :ComputerScience ]
+    )
+] .
+
+:NewBook owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Book
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :publishedYear ;
+          owl:minInclusive 2023 ]
+    )
+] .
+
+# 인스턴스 정의
+:book_Python_2024 rdf:type :Book ;
+    :hasSubject :ComputerScience ;
+    :publishedYear 2024 .
+
+# 추론 결과
+# → :book_Python_2024 rdf:type :ComputerScienceBook .
+# → :book_Python_2024 rdf:type :NewBook .
+            </code></pre>
+        </div>
+        
+        <div class="reasoning-visualization">
+            <h5>추론 과정 시각화</h5>
+            <div class="reasoning-flow">
+                <div class="flow-step">
+                    <div class="step-label">1. 인스턴스 속성 확인</div>
+                    <div class="step-content">
+                        book_Python_2024의 속성:<br>
+                        - hasSubject: ComputerScience<br>
+                        - publishedYear: 2024
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-label">2. 클래스 조건 매칭</div>
+                    <div class="step-content">
+                        ComputerScienceBook 조건 충족 ✓<br>
+                        NewBook 조건 충족 ✓
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-label">3. 자동 분류</div>
+                    <div class="step-content">
+                        인스턴스가 자동으로<br>
+                        해당 클래스들로 분류됨
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 2.3 -->
+<section class="content-section">
+    <h2>2.3 속성(Property): 특성과 관계의 표현</h2>
+    
+    <div class="section-intro">
+        <p>속성은 온톨로지에서 개체의 특성을 나타내거나 개체 간의 관계를 표현하는 핵심 요소입니다. 
+        크게 객체 속성(Object Property)과 데이터 속성(Datatype Property)으로 구분됩니다.</p>
+    </div>
+    
+    <div class="property-types">
+        <div class="property-type-card">
+            <div class="property-icon">
+                <i class="fas fa-link"></i>
+            </div>
+            <h4>객체 속성 (Object Property)</h4>
+            <p>인스턴스 간의 관계를 표현</p>
+            <div class="property-example">
+                <pre><code class="language-turtle">
+:worksFor rdf:type owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Organization .
+
+:김철수 :worksFor :삼성전자 .
+                </code></pre>
+            </div>
+        </div>
+        
+        <div class="property-type-card">
+            <div class="property-icon">
+                <i class="fas fa-database"></i>
+            </div>
+            <h4>데이터 속성 (Datatype Property)</h4>
+            <p>인스턴스의 데이터 값을 표현</p>
+            <div class="property-example">
+                <pre><code class="language-turtle">
+:hasAge rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Person ;
+    rdfs:range xsd:integer .
+
+:김철수 :hasAge 30 .
+                </code></pre>
+            </div>
+        </div>
+        
+        <div class="property-type-card">
+            <div class="property-icon">
+                <i class="fas fa-tag"></i>
+            </div>
+            <h4>주석 속성 (Annotation Property)</h4>
+            <p>메타데이터 및 문서화 정보</p>
+            <div class="property-example">
+                <pre><code class="language-turtle">
+:김철수 rdfs:label "Kim Cheol-su"@en ;
+       rdfs:comment "삼성전자 연구원" .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.3.1 속성의 특성 (Property Characteristics)</h3>
+    
+    <div class="property-characteristics">
+        <div class="characteristic-grid">
+            <div class="characteristic-item">
+                <h4>1. 함수적 속성 (Functional)</h4>
+                <p>각 주체는 최대 하나의 값만 가질 수 있음</p>
+                <pre><code class="language-turtle">
+:hasBiologicalMother rdf:type owl:FunctionalProperty .
+
+# 한 사람은 생물학적 어머니를 한 명만 가질 수 있음
+:철수 :hasBiologicalMother :영희 .
+# :철수 :hasBiologicalMother :순희 . # 오류!
+                </code></pre>
+            </div>
+            
+            <div class="characteristic-item">
+                <h4>2. 역함수적 속성 (Inverse Functional)</h4>
+                <p>각 값은 최대 하나의 주체만 가질 수 있음</p>
+                <pre><code class="language-turtle">
+:hasSSN rdf:type owl:InverseFunctionalProperty .
+
+# 주민등록번호는 한 사람만 가질 수 있음
+:김철수 :hasSSN "123456-1234567" .
+# :이영희 :hasSSN "123456-1234567" . # 오류!
+                </code></pre>
+            </div>
+            
+            <div class="characteristic-item">
+                <h4>3. 전이적 속성 (Transitive)</h4>
+                <p>A→B이고 B→C이면 A→C가 성립</p>
+                <pre><code class="language-turtle">
+:hasAncestor rdf:type owl:TransitiveProperty .
+
+:나 :hasAncestor :아버지 .
+:아버지 :hasAncestor :할아버지 .
+# 추론: :나 :hasAncestor :할아버지 .
+                </code></pre>
+            </div>
+            
+            <div class="characteristic-item">
+                <h4>4. 대칭적 속성 (Symmetric)</h4>
+                <p>A→B이면 B→A도 성립</p>
+                <pre><code class="language-turtle">
+:marriedTo rdf:type owl:SymmetricProperty .
+
+:철수 :marriedTo :영희 .
+# 추론: :영희 :marriedTo :철수 .
+                </code></pre>
+            </div>
+            
+            <div class="characteristic-item">
+                <h4>5. 비대칭적 속성 (Asymmetric)</h4>
+                <p>A→B이면 B→A는 성립하지 않음</p>
+                <pre><code class="language-turtle">
+:parentOf rdf:type owl:AsymmetricProperty .
+
+:부모 :parentOf :자녀 .
+# :자녀 :parentOf :부모 는 불가능
+                </code></pre>
+            </div>
+            
+            <div class="characteristic-item">
+                <h4>6. 반사적 속성 (Reflexive)</h4>
+                <p>모든 개체는 자기 자신과 이 관계를 가짐</p>
+                <pre><code class="language-turtle">
+:knows rdf:type owl:ReflexiveProperty .
+
+# 모든 사람은 자기 자신을 안다
+# 자동 추론: :김철수 :knows :김철수 .
+                </code></pre>
+            </div>
+            
+            <div class="characteristic-item">
+                <h4>7. 비반사적 속성 (Irreflexive)</h4>
+                <p>어떤 개체도 자기 자신과 이 관계를 가질 수 없음</p>
+                <pre><code class="language-turtle">
+:parentOf rdf:type owl:IrreflexiveProperty .
+
+# :김철수 :parentOf :김철수 . # 오류!
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.3.2 속성 계층구조와 관계</h3>
+    
+    <div class="property-hierarchy">
+        <h4>속성의 상하위 관계</h4>
+        <pre><code class="language-turtle">
+# 속성 계층구조 정의
+:hasRelative rdf:type owl:ObjectProperty .
+:hasParent rdfs:subPropertyOf :hasRelative .
+:hasFather rdfs:subPropertyOf :hasParent .
+:hasMother rdfs:subPropertyOf :hasParent .
+
+# 사용 예
+:김철수 :hasFather :김아버지 .
+# 추론:
+# :김철수 :hasParent :김아버지 .
+# :김철수 :hasRelative :김아버지 .
+        </code></pre>
+        
+        <h4>역속성 (Inverse Properties)</h4>
+        <pre><code class="language-turtle">
+:hasParent owl:inverseOf :hasChild .
+:teaches owl:inverseOf :taughtBy .
+:employs owl:inverseOf :employedBy .
+
+# 사용 예
+:김교수 :teaches :이학생 .
+# 추론: :이학생 :taughtBy :김교수 .
+        </code></pre>
+        
+        <h4>속성 체인 (Property Chain)</h4>
+        <pre><code class="language-turtle">
+# 할아버지 관계는 부모의 부모
+:hasGrandparent owl:propertyChainAxiom ( :hasParent :hasParent ) .
+
+# 삼촌 관계는 부모의 형제
+:hasUncle owl:propertyChainAxiom ( :hasParent :hasBrother ) .
+
+# 사용 예
+:나 :hasParent :아버지 .
+:아버지 :hasParent :할아버지 .
+# 추론: :나 :hasGrandparent :할아버지 .
+        </code></pre>
+    </div>
+
+    <!-- 실습: 가족 관계 온톨로지 -->
+    <div class="comprehensive-practice">
+        <h3><i class="fas fa-users"></i> 종합 실습: 가족 관계 온톨로지 구축</h3>
+        
+        <div class="practice-content">
+            <h4>목표</h4>
+            <p>복잡한 가족 관계를 표현할 수 있는 온톨로지를 구축하고, 
+            속성의 특성을 활용하여 자동 추론이 가능하도록 설계합니다.</p>
+            
+            <div class="practice-steps">
+                <div class="practice-step">
+                    <h5>Step 1: 기본 클래스와 속성 정의</h5>
+                    <pre><code class="language-turtle">
+# 클래스 정의
+:Person rdf:type owl:Class .
+:Male rdfs:subClassOf :Person .
+:Female rdfs:subClassOf :Person .
+:Male owl:disjointWith :Female .
+
+# 기본 속성 정의
+:hasSpouse rdf:type owl:ObjectProperty ;
+    rdf:type owl:SymmetricProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+:hasParent rdf:type owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+:hasChild owl:inverseOf :hasParent .
+
+:hasMother rdfs:subPropertyOf :hasParent ;
+    rdf:type owl:FunctionalProperty ;
+    rdfs:range :Female .
+
+:hasFather rdfs:subPropertyOf :hasParent ;
+    rdf:type owl:FunctionalProperty ;
+    rdfs:range :Male .
+                    </code></pre>
+                </div>
+                
+                <div class="practice-step">
+                    <h5>Step 2: 복잡한 관계 정의</h5>
+                    <pre><code class="language-turtle">
+# 형제 관계 (같은 부모를 가진 사람)
+:hasSibling rdf:type owl:ObjectProperty ;
+    rdf:type owl:SymmetricProperty ;
+    owl:propertyChainAxiom ( 
+        [ owl:inverseOf :hasParent ] 
+        :hasParent 
+    ) .
+
+# 조부모 관계
+:hasGrandparent owl:propertyChainAxiom ( :hasParent :hasParent ) .
+
+# 삼촌/이모 관계
+:hasAunt rdfs:subPropertyOf :hasRelative ;
+    owl:propertyChainAxiom ( :hasParent :hasSister ) .
+
+:hasUncle rdfs:subPropertyOf :hasRelative ;
+    owl:propertyChainAxiom ( :hasParent :hasBrother ) .
+
+# 사촌 관계
+:hasCousin rdf:type owl:ObjectProperty ;
+    rdf:type owl:SymmetricProperty ;
+    owl:propertyChainAxiom ( 
+        :hasParent 
+        :hasSibling 
+        :hasChild 
+    ) .
+                    </code></pre>
+                </div>
+                
+                <div class="practice-step">
+                    <h5>Step 3: 인스턴스 생성 및 추론 테스트</h5>
+                    <pre><code class="language-turtle">
+# 가족 구성원 정의
+:할아버지 rdf:type :Male .
+:할머니 rdf:type :Female .
+:아버지 rdf:type :Male ;
+    :hasParent :할아버지 ;
+    :hasParent :할머니 .
+
+:어머니 rdf:type :Female ;
+    :hasSpouse :아버지 .
+
+:삼촌 rdf:type :Male ;
+    :hasParent :할아버지 ;
+    :hasParent :할머니 .
+
+:나 rdf:type :Person ;
+    :hasParent :아버지 ;
+    :hasParent :어머니 .
+
+:사촌 rdf:type :Person ;
+    :hasParent :삼촌 .
+
+# 추론 결과
+# :나 :hasGrandparent :할아버지 .
+# :나 :hasGrandparent :할머니 .
+# :아버지 :hasSibling :삼촌 .
+# :나 :hasUncle :삼촌 .
+# :나 :hasCousin :사촌 .
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.3.3 데이터타입과 제약사항</h3>
+    
+    <div class="datatype-constraints">
+        <h4>XML Schema 데이터타입</h4>
+        
+        <div class="datatype-grid">
+            <div class="datatype-category">
+                <h5>숫자형</h5>
+                <ul>
+                    <li><code>xsd:integer</code> - 정수</li>
+                    <li><code>xsd:decimal</code> - 십진수</li>
+                    <li><code>xsd:float</code> - 부동소수점</li>
+                    <li><code>xsd:double</code> - 배정밀도</li>
+                    <li><code>xsd:nonNegativeInteger</code> - 음이 아닌 정수</li>
+                </ul>
+            </div>
+            
+            <div class="datatype-category">
+                <h5>문자열</h5>
+                <ul>
+                    <li><code>xsd:string</code> - 일반 문자열</li>
+                    <li><code>xsd:normalizedString</code> - 정규화된 문자열</li>
+                    <li><code>xsd:token</code> - 토큰</li>
+                    <li><code>xsd:language</code> - 언어 코드</li>
+                </ul>
+            </div>
+            
+            <div class="datatype-category">
+                <h5>날짜/시간</h5>
+                <ul>
+                    <li><code>xsd:date</code> - 날짜</li>
+                    <li><code>xsd:time</code> - 시간</li>
+                    <li><code>xsd:dateTime</code> - 날짜와 시간</li>
+                    <li><code>xsd:duration</code> - 기간</li>
+                </ul>
+            </div>
+            
+            <div class="datatype-category">
+                <h5>기타</h5>
+                <ul>
+                    <li><code>xsd:boolean</code> - 참/거짓</li>
+                    <li><code>xsd:anyURI</code> - URI</li>
+                    <li><code>xsd:base64Binary</code> - 바이너리</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h4>데이터 범위 제약</h4>
+        <pre><code class="language-turtle">
+# 나이는 0-150 사이의 정수
+:hasAge rdf:type owl:DatatypeProperty ;
+    rdfs:range [ rdf:type rdfs:Datatype ;
+                 owl:onDatatype xsd:integer ;
+                 owl:withRestrictions (
+                     [ xsd:minInclusive 0 ]
+                     [ xsd:maxInclusive 150 ]
+                 )
+    ] .
+
+# 이메일 패턴 제약
+:hasEmail rdf:type owl:DatatypeProperty ;
+    rdfs:range [ rdf:type rdfs:Datatype ;
+                 owl:onDatatype xsd:string ;
+                 owl:withRestrictions (
+                     [ xsd:pattern "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}" ]
+                 )
+    ] .
+
+# 평점은 1.0-5.0 사이의 실수
+:hasRating rdf:type owl:DatatypeProperty ;
+    rdfs:range [ rdf:type rdfs:Datatype ;
+                 owl:onDatatype xsd:decimal ;
+                 owl:withRestrictions (
+                     [ xsd:minInclusive "1.0"^^xsd:decimal ]
+                     [ xsd:maxInclusive "5.0"^^xsd:decimal ]
+                 )
+    ] .
+        </code></pre>
+    </div>
+</section>
+
+<!-- 섹션 2.4 -->
+<section class="content-section">
+    <h2>2.4 제약사항(Constraints)과 추론(Reasoning)</h2>
+    
+    <div class="section-intro">
+        <p>제약사항은 온톨로지의 일관성을 유지하고 데이터의 무결성을 보장하는 규칙들입니다. 
+        추론 엔진은 이러한 제약사항을 기반으로 명시되지 않은 사실을 도출하고 모순을 검출합니다.</p>
+    </div>
+
+    <h3>2.4.1 카디널리티 제약사항</h3>
+    
+    <div class="cardinality-constraints">
+        <div class="constraint-types">
+            <div class="constraint-card">
+                <h4>최소 카디널리티 (Min Cardinality)</h4>
+                <p>속성이 가져야 하는 최소 값의 개수</p>
+                <pre><code class="language-turtle">
+# 모든 사람은 최소 2명의 부모를 가짐
+:Person rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasParent ;
+    owl:minCardinality 2
+] .
+
+# 모든 대학은 최소 1개의 학과를 가짐
+:University rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasDepartment ;
+    owl:minQualifiedCardinality 1 ;
+    owl:onClass :Department
+] .
+                </code></pre>
+            </div>
+            
+            <div class="constraint-card">
+                <h4>최대 카디널리티 (Max Cardinality)</h4>
+                <p>속성이 가질 수 있는 최대 값의 개수</p>
+                <pre><code class="language-turtle">
+# 사람은 최대 2명의 생물학적 부모를 가짐
+:Person rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasBiologicalParent ;
+    owl:maxCardinality 2
+] .
+
+# 학생은 최대 1개의 전공을 가짐
+:Student rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasMajor ;
+    owl:maxQualifiedCardinality 1 ;
+    owl:onClass :Department
+] .
+                </code></pre>
+            </div>
+            
+            <div class="constraint-card">
+                <h4>정확한 카디널리티 (Exact Cardinality)</h4>
+                <p>속성이 가져야 하는 정확한 값의 개수</p>
+                <pre><code class="language-turtle">
+# 삼각형은 정확히 3개의 변을 가짐
+:Triangle rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasSide ;
+    owl:cardinality 3
+] .
+
+# 학기는 정확히 1명의 담당교수를 가짐
+:Course rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :taughtBy ;
+    owl:qualifiedCardinality 1 ;
+    owl:onClass :Professor
+] .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.4.2 값 제약사항</h3>
+    
+    <div class="value-constraints">
+        <h4>존재 양화 (Existential Quantification)</h4>
+        <pre><code class="language-turtle">
+# 채식 피자는 최소 하나의 채소 토핑을 가짐
+:VegetarianPizza rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasTopping ;
+    owl:someValuesFrom :VegetableTopping
+] .
+
+# 부모는 최소 한 명의 자녀를 가짐
+:Parent owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Person
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :hasChild ;
+          owl:someValuesFrom :Person ]
+    )
+] .
+        </code></pre>
+        
+        <h4>전체 양화 (Universal Quantification)</h4>
+        <pre><code class="language-turtle">
+# 채식 피자의 모든 토핑은 채소여야 함
+:VegetarianPizza rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasTopping ;
+    owl:allValuesFrom :VegetableTopping
+] .
+
+# 초식동물이 먹는 모든 음식은 식물이어야 함
+:Herbivore rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :eats ;
+    owl:allValuesFrom :Plant
+] .
+        </code></pre>
+        
+        <h4>값 제한 (Has Value)</h4>
+        <pre><code class="language-turtle">
+# 한국 시민은 국적이 "한국"이어야 함
+:KoreanCitizen rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasNationality ;
+    owl:hasValue "한국"
+] .
+
+# 서울 거주자는 거주도시가 서울이어야 함
+:SeoulResident rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :livesIn ;
+    owl:hasValue :Seoul
+] .
+        </code></pre>
+    </div>
+
+    <h3>2.4.3 추론 메커니즘</h3>
+    
+    <div class="reasoning-mechanisms">
+        <h4>추론의 종류</h4>
+        
+        <div class="reasoning-types">
+            <div class="reasoning-type">
+                <h5>1. 분류 추론 (Classification)</h5>
+                <p>인스턴스를 적절한 클래스로 자동 분류</p>
+                <div class="reasoning-example">
+                    <pre><code class="language-turtle">
+# 정의
+:HappyPerson owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Person
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :hasEmotion ;
+          owl:hasValue :Happy ]
+    )
+] .
+
+# 사실
+:John rdf:type :Person ;
+      :hasEmotion :Happy .
+
+# 추론
+# → :John rdf:type :HappyPerson .
+                    </code></pre>
+                </div>
+            </div>
+            
+            <div class="reasoning-type">
+                <h5>2. 속성 추론 (Property Inference)</h5>
+                <p>속성의 특성을 기반으로 새로운 관계 도출</p>
+                <div class="reasoning-example">
+                    <pre><code class="language-turtle">
+# 정의
+:hasAncestor rdf:type owl:TransitiveProperty .
+
+# 사실
+:Me :hasAncestor :Father .
+:Father :hasAncestor :Grandfather .
+
+# 추론
+# → :Me :hasAncestor :Grandfather .
+                    </code></pre>
+                </div>
+            </div>
+            
+            <div class="reasoning-type">
+                <h5>3. 일관성 검증 (Consistency Checking)</h5>
+                <p>온톨로지 내의 모순 검출</p>
+                <div class="reasoning-example">
+                    <pre><code class="language-turtle">
+# 정의
+:Student owl:disjointWith :Professor .
+
+# 모순되는 사실
+:John rdf:type :Student ;
+      rdf:type :Professor .
+
+# 결과: 온톨로지 비일관성 검출!
+                    </code></pre>
+                </div>
+            </div>
+            
+            <div class="reasoning-type">
+                <h5>4. 실현 추론 (Realization)</h5>
+                <p>클래스의 모든 인스턴스 찾기</p>
+                <div class="reasoning-example">
+                    <pre><code class="language-turtle">
+# 정의
+:Adult owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Person
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :hasAge ;
+          owl:minInclusive 18 ]
+    )
+] .
+
+# 추론: hasAge >= 18인 모든 Person 인스턴스를 
+# Adult 클래스의 멤버로 식별
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 실습: 추론 시나리오 -->
+    <div class="reasoning-practice">
+        <h3><i class="fas fa-brain"></i> 실습: 대학 수강 시스템의 추론 규칙 구현</h3>
+        
+        <div class="practice-scenario">
+            <h4>시나리오</h4>
+            <p>대학의 수강신청 시스템에서 다음과 같은 규칙을 구현하고자 합니다:</p>
+            <ul>
+                <li>선수과목을 이수하지 않으면 후속과목을 수강할 수 없음</li>
+                <li>학년별 수강 가능 과목 제한</li>
+                <li>전공필수 과목은 해당 전공 학생만 수강 가능</li>
+                <li>수강 정원 초과 시 자동으로 대기자로 분류</li>
+            </ul>
+            
+            <div class="solution">
+                <h5>온톨로지 구현</h5>
+                <pre><code class="language-turtle">
+# 클래스 정의
+:Course rdf:type owl:Class .
+:Student rdf:type owl:Class .
+:Enrollment rdf:type owl:Class .
+
+# 수강 가능 여부를 결정하는 클래스
+:EligibleStudent owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Student
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :hasCompletedPrerequisite ;
+          owl:hasValue true ]
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :hasGradeLevel ;
+          owl:minInclusive 2 ]
+    )
+] .
+
+# 선수과목 규칙
+:AdvancedCourse rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasPrerequisite ;
+    owl:someValuesFrom :BasicCourse
+] .
+
+# 수강신청 제약사항
+:ValidEnrollment rdfs:subClassOf :Enrollment ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty :enrolledBy ;
+        owl:allValuesFrom :EligibleStudent
+    ] .
+
+# 전공 제한
+:MajorRestrictedCourse rdfs:subClassOf :Course ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty :restrictedToMajor ;
+        owl:someValuesFrom :Department
+    ] .
+
+# 수강 인원 제한
+:FullCourse owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Course
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :hasEnrollment ;
+          owl:minCardinality 30 ]
+    )
+] .
+
+# 대기자 자동 분류
+:WaitlistedEnrollment owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:intersectionOf (
+        :Enrollment
+        [ rdf:type owl:Restriction ;
+          owl:onProperty :forCourse ;
+          owl:someValuesFrom :FullCourse ]
+    )
+] .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.4.4 추론기 (Reasoner) 활용</h3>
+    
+    <div class="reasoner-guide">
+        <h4>주요 추론기 소개</h4>
+        
+        <div class="reasoner-comparison">
+            <table>
+                <thead>
+                    <tr>
+                        <th>추론기</th>
+                        <th>특징</th>
+                        <th>성능</th>
+                        <th>OWL 프로파일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>HermiT</strong></td>
+                        <td>완전성 보장, 정확한 추론</td>
+                        <td>중간</td>
+                        <td>OWL 2 DL</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pellet</strong></td>
+                        <td>증분 추론, SPARQL-DL 지원</td>
+                        <td>중간</td>
+                        <td>OWL 2 DL</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FaCT++</strong></td>
+                        <td>C++ 구현, 빠른 속도</td>
+                        <td>높음</td>
+                        <td>OWL 2 DL</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ELK</strong></td>
+                        <td>대규모 온톨로지 최적화</td>
+                        <td>매우 높음</td>
+                        <td>OWL 2 EL</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h4>추론 과정 시각화</h4>
+        <div class="reasoning-visualization">
+            <div class="reasoning-flow-diagram">
+                <div class="flow-node input">
+                    <h5>입력</h5>
+                    <p>온톨로지 + 인스턴스 데이터</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node process">
+                    <h5>추론 과정</h5>
+                    <ul>
+                        <li>분류 계산</li>
+                        <li>속성 전파</li>
+                        <li>제약사항 검증</li>
+                    </ul>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node output">
+                    <h5>출력</h5>
+                    <ul>
+                        <li>추론된 사실</li>
+                        <li>발견된 모순</li>
+                        <li>분류 결과</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 2.5 -->
+<section class="content-section">
+    <h2>2.5 온톨로지 설계 패턴과 모범 사례</h2>
+    
+    <div class="section-intro">
+        <p>효과적인 온톨로지를 구축하기 위해서는 검증된 설계 패턴을 활용하고 
+        모범 사례를 따르는 것이 중요합니다. 이 섹션에서는 실무에서 자주 사용되는 
+        패턴과 피해야 할 안티패턴을 소개합니다.</p>
+    </div>
+
+    <h3>2.5.1 온톨로지 설계 패턴</h3>
+    
+    <div class="design-patterns">
+        <div class="pattern-card">
+            <h4>1. 값 분할 패턴 (Value Partition Pattern)</h4>
+            <p>연속적인 값을 의미 있는 범주로 분할</p>
+            <div class="pattern-example">
+                <pre><code class="language-turtle">
+# 나이 그룹 분할
+:AgeGroup rdf:type owl:Class ;
+    owl:equivalentClass [
+        owl:oneOf ( :Child :Teenager :Adult :Senior )
+    ] .
+
+:Child rdf:type :AgeGroup ;
+    :hasAgeRange "0-12" .
+
+:Teenager rdf:type :AgeGroup ;
+    :hasAgeRange "13-19" .
+
+:Adult rdf:type :AgeGroup ;
+    :hasAgeRange "20-64" .
+
+:Senior rdf:type :AgeGroup ;
+    :hasAgeRange "65+" .
+
+# 사람의 나이 그룹 자동 분류
+:Person rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty :hasAgeGroup ;
+    owl:allValuesFrom :AgeGroup
+] .
+                </code></pre>
+            </div>
+        </div>
+        
+        <div class="pattern-card">
+            <h4>2. N-ary 관계 패턴</h4>
+            <p>두 개 이상의 개체 간 복잡한 관계 표현</p>
+            <div class="pattern-example">
+                <pre><code class="language-turtle">
+# 구매 이벤트 (구매자, 상품, 가격, 날짜)
+:PurchaseEvent rdf:type owl:Class .
+
+:Purchase_001 rdf:type :PurchaseEvent ;
+    :hasBuyer :Customer_Kim ;
+    :hasProduct :Product_Laptop ;
+    :hasPrice "1500000"^^xsd:integer ;
+    :hasCurrency "KRW" ;
+    :hasDate "2024-03-15"^^xsd:date ;
+    :hasQuantity 1 .
+
+# 진료 기록 (환자, 의사, 진단, 처방)
+:MedicalConsultation rdf:type owl:Class .
+
+:Consultation_001 rdf:type :MedicalConsultation ;
+    :hasPatient :Patient_Lee ;
+    :hasDoctor :Doctor_Park ;
+    :hasDiagnosis :Flu ;
+    :hasPrescription :Medicine_Tamiflu ;
+    :consultationDate "2024-03-15"^^xsd:date .
+                </code></pre>
+            </div>
+        </div>
+        
+        <div class="pattern-card">
+            <h4>3. 역할 패턴 (Role Pattern)</h4>
+            <p>상황에 따라 변하는 역할 표현</p>
+            <div class="pattern-example">
+                <pre><code class="language-turtle">
+# 사람은 상황에 따라 다른 역할을 가짐
+:Person rdf:type owl:Class .
+:Role rdf:type owl:Class .
+
+:hasRole rdf:type owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Role .
+
+# 역할의 종류
+:StudentRole rdfs:subClassOf :Role .
+:TeacherRole rdfs:subClassOf :Role .
+:ParentRole rdfs:subClassOf :Role .
+
+# 같은 사람이 여러 역할 수행
+:김철수 rdf:type :Person ;
+    :hasRole :role_001 ;
+    :hasRole :role_002 .
+
+:role_001 rdf:type :StudentRole ;
+    :inContext :GraduateSchool ;
+    :startDate "2023-03-01"^^xsd:date .
+
+:role_002 rdf:type :TeacherRole ;
+    :inContext :HighSchool ;
+    :startDate "2024-03-01"^^xsd:date .
+                </code></pre>
+            </div>
+        </div>
+        
+        <div class="pattern-card">
+            <h4>4. 분류 계층 패턴 (Classification Hierarchy)</h4>
+            <p>다차원 분류 체계 구성</p>
+            <div class="pattern-example">
+                <pre><code class="language-turtle">
+# 제품을 여러 차원으로 분류
+:Product rdf:type owl:Class .
+
+# 용도별 분류
+:byPurpose rdfs:subPropertyOf :classifiedAs .
+:ConsumerProduct rdfs:subClassOf :Product .
+:IndustrialProduct rdfs:subClassOf :Product .
+
+# 재질별 분류
+:byMaterial rdfs:subPropertyOf :classifiedAs .
+:PlasticProduct rdfs:subClassOf :Product .
+:MetalProduct rdfs:subClassOf :Product .
+
+# 가격대별 분류
+:byPriceRange rdfs:subPropertyOf :classifiedAs .
+:BudgetProduct rdfs:subClassOf :Product .
+:PremiumProduct rdfs:subClassOf :Product .
+
+# 하나의 제품이 여러 분류에 속함
+:SmartPhone_X rdf:type :Product ;
+    :byPurpose :ConsumerProduct ;
+    :byMaterial :MetalProduct ;
+    :byPriceRange :PremiumProduct .
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.5.2 온톨로지 안티패턴</h3>
+    
+    <div class="antipatterns">
+        <h4>피해야 할 설계 실수들</h4>
+        
+        <div class="antipattern-list">
+            <div class="antipattern-item">
+                <h5>❌ 1. 과도한 다중 상속</h5>
+                <div class="bad-example">
+                    <pre><code class="language-turtle">
+# 나쁜 예
+:FlyingSwimmingWalkingRobot rdfs:subClassOf :FlyingThing ;
+                            rdfs:subClassOf :SwimmingThing ;
+                            rdfs:subClassOf :WalkingThing ;
+                            rdfs:subClassOf :Robot ;
+                            rdfs:subClassOf :Machine ;
+                            rdfs:subClassOf :ArtificialThing .
+                    </code></pre>
+                </div>
+                <div class="good-example">
+                    <pre><code class="language-turtle">
+# 좋은 예
+:AmphibiousRobot rdfs:subClassOf :Robot ;
+    :hasCapability :Flying ;
+    :hasCapability :Swimming ;
+    :hasCapability :Walking .
+                    </code></pre>
+                </div>
+            </div>
+            
+            <div class="antipattern-item">
+                <h5>❌ 2. 순환 계층구조</h5>
+                <div class="bad-example">
+                    <pre><code class="language-turtle">
+# 나쁜 예 - 순환 참조
+:A rdfs:subClassOf :B .
+:B rdfs:subClassOf :C .
+:C rdfs:subClassOf :A .  # 순환!
+                    </code></pre>
+                </div>
+                <div class="good-example">
+                    <pre><code class="language-turtle">
+# 좋은 예 - 명확한 계층
+:Animal rdfs:subClassOf :LivingThing .
+:Mammal rdfs:subClassOf :Animal .
+:Dog rdfs:subClassOf :Mammal .
+                    </code></pre>
+                </div>
+            </div>
+            
+            <div class="antipattern-item">
+                <h5>❌ 3. 속성 오용</h5>
+                <div class="bad-example">
+                    <pre><code class="language-turtle">
+# 나쁜 예 - 클래스를 속성처럼 사용
+:hasCar rdf:type owl:Class .  # 잘못됨!
+:김철수 :hasCar :Toyota .
+                    </code></pre>
+                </div>
+                <div class="good-example">
+                    <pre><code class="language-turtle">
+# 좋은 예
+:owns rdf:type owl:ObjectProperty .
+:Car rdf:type owl:Class .
+:Toyota rdfs:subClassOf :Car .
+:김철수 :owns :myCar .
+:myCar rdf:type :Toyota .
+                    </code></pre>
+                </div>
+            </div>
+            
+            <div class="antipattern-item">
+                <h5>❌ 4. 과도한 익명 클래스</h5>
+                <div class="bad-example">
+                    <pre><code class="language-turtle">
+# 나쁜 예 - 읽기 어려운 중첩 구조
+:ComplexClass owl:equivalentClass [
+    owl:intersectionOf (
+        [ owl:unionOf ( ... ) ]
+        [ owl:intersectionOf (
+            [ owl:complementOf [ ... ] ]
+            [ owl:someValuesFrom [ ... ] ]
+        )]
+    )
+] .
+                    </code></pre>
+                </div>
+                <div class="good-example">
+                    <pre><code class="language-turtle">
+# 좋은 예 - 명명된 중간 클래스 활용
+:BasicRequirement rdf:type owl:Class .
+:AdvancedRequirement rdf:type owl:Class .
+:ComplexClass owl:equivalentClass [
+    owl:intersectionOf (
+        :BasicRequirement
+        :AdvancedRequirement
+    )
+] .
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>2.5.3 온톨로지 설계 원칙</h3>
+    
+    <div class="design-principles">
+        <div class="principle-grid">
+            <div class="principle-card">
+                <div class="principle-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h4>1. 명확성 (Clarity)</h4>
+                <ul>
+                    <li>의미가 명확한 이름 사용</li>
+                    <li>충분한 주석과 문서화</li>
+                    <li>일관된 명명 규칙</li>
+                </ul>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <h4>2. 일관성 (Consistency)</h4>
+                <ul>
+                    <li>논리적 일관성 유지</li>
+                    <li>패턴의 일관된 적용</li>
+                    <li>스타일 가이드 준수</li>
+                </ul>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                </div>
+                <h4>3. 확장성 (Extensibility)</h4>
+                <ul>
+                    <li>미래 확장 고려</li>
+                    <li>모듈화된 설계</li>
+                    <li>버전 관리 전략</li>
+                </ul>
+            </div>
+            
+            <div class="principle-card">
+                <div class="principle-icon">
+                    <i class="fas fa-compress"></i>
+                </div>
+                <h4>4. 간결성 (Conciseness)</h4>
+                <ul>
+                    <li>필요한 것만 모델링</li>
+                    <li>과도한 세분화 지양</li>
+                    <li>중복 제거</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 종합 프로젝트 -->
+    <div class="comprehensive-project">
+        <h3><i class="fas fa-project-diagram"></i> 종합 프로젝트: 스마트 시티 온톨로지 구축</h3>
+        
+        <div class="project-overview">
+            <h4>프로젝트 개요</h4>
+            <p>이번 장에서 학습한 모든 개념을 활용하여 스마트 시티를 위한 
+            종합적인 온톨로지를 구축해봅시다.</p>
+            
+            <div class="project-requirements">
+                <h5>요구사항</h5>
+                <ul>
+                    <li>도시 인프라 (도로, 건물, 공원 등)</li>
+                    <li>교통 시스템 (대중교통, 교통 신호, 주차장)</li>
+                    <li>시민 서비스 (병원, 학교, 관공서)</li>
+                    <li>IoT 센서 네트워크</li>
+                    <li>이벤트와 알림 시스템</li>
+                </ul>
+            </div>
+            
+            <div class="project-template">
+                <h5>시작 템플릿</h5>
+                <pre><code class="language-turtle">
+@prefix sc: &lt;http://example.org/smartcity#&gt; .
+@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
+@prefix iot: &lt;http://example.org/iot#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+# ========== 클래스 계층구조 ==========
+
+# 최상위 클래스
+sc:CityElement rdf:type owl:Class ;
+    rdfs:label "도시 구성요소"@ko ;
+    rdfs:comment "스마트 시티를 구성하는 모든 요소의 최상위 클래스"@ko .
+
+# 인프라 클래스
+sc:Infrastructure rdfs:subClassOf sc:CityElement ;
+    rdfs:label "인프라"@ko .
+
+sc:Building rdfs:subClassOf sc:Infrastructure ;
+    rdfs:label "건물"@ko .
+
+sc:Road rdfs:subClassOf sc:Infrastructure ;
+    rdfs:label "도로"@ko .
+
+# 교통 클래스
+sc:TransportSystem rdfs:subClassOf sc:CityElement ;
+    rdfs:label "교통 시스템"@ko .
+
+sc:PublicTransport rdfs:subClassOf sc:TransportSystem ;
+    rdfs:label "대중교통"@ko .
+
+# IoT 클래스
+sc:IoTDevice rdfs:subClassOf sc:CityElement ;
+    rdfs:label "IoT 기기"@ko .
+
+sc:Sensor rdfs:subClassOf sc:IoTDevice ;
+    rdfs:label "센서"@ko .
+
+# ========== 속성 정의 ==========
+
+# 위치 속성
+sc:hasLocation rdf:type owl:ObjectProperty ;
+    rdfs:domain sc:CityElement ;
+    rdfs:range geo:Point .
+
+# 상태 속성
+sc:hasStatus rdf:type owl:DatatypeProperty ;
+    rdfs:domain sc:CityElement ;
+    rdfs:range xsd:string .
+
+# 용량 속성
+sc:hasCapacity rdf:type owl:DatatypeProperty ;
+    rdfs:domain sc:Infrastructure ;
+    rdfs:range xsd:integer .
+
+# ========== 여러분의 온톨로지를 계속 구축하세요! ==========
+                </code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 학습 요약 -->
+<section class="chapter-summary">
+    <h2><i class="fas fa-bookmark"></i> Chapter 2 학습 요약</h2>
+    
+    <div class="summary-content">
+        <div class="key-concepts">
+            <h3>핵심 개념 정리</h3>
+            
+            <div class="concept-summary">
+                <h4>1. 클래스와 인스턴스</h4>
+                <ul>
+                    <li>클래스는 개념의 범주화, 인스턴스는 구체적 개체</li>
+                    <li>계층구조, 다중상속, 분리성 등의 특징</li>
+                    <li>자동 분류와 추론 가능</li>
+                </ul>
+            </div>
+            
+            <div class="concept-summary">
+                <h4>2. 속성의 종류와 특성</h4>
+                <ul>
+                    <li>객체 속성: 인스턴스 간 관계</li>
+                    <li>데이터 속성: 리터럴 값</li>
+                    <li>함수적, 전이적, 대칭적 등 다양한 특성</li>
+                </ul>
+            </div>
+            
+            <div class="concept-summary">
+                <h4>3. 제약사항과 추론</h4>
+                <ul>
+                    <li>카디널리티 제약: 값의 개수 제한</li>
+                    <li>값 제약: 존재/전체 양화, 값 제한</li>
+                    <li>추론을 통한 지식 확장과 일관성 검증</li>
+                </ul>
+            </div>
+            
+            <div class="concept-summary">
+                <h4>4. 설계 패턴과 원칙</h4>
+                <ul>
+                    <li>값 분할, N-ary 관계, 역할 패턴</li>
+                    <li>명확성, 일관성, 확장성, 간결성</li>
+                    <li>안티패턴 회피</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="learning-checklist">
+            <h3>학습 확인 체크리스트</h3>
+            <ul>
+                <li>□ 클래스 계층구조를 설계할 수 있다</li>
+                <li>□ 인스턴스를 올바르게 생성하고 분류할 수 있다</li>
+                <li>□ 다양한 속성 특성을 이해하고 활용할 수 있다</li>
+                <li>□ 제약사항을 정의하여 데이터 무결성을 보장할 수 있다</li>
+                <li>□ 추론 메커니즘을 이해하고 예측할 수 있다</li>
+                <li>□ 온톨로지 설계 패턴을 적용할 수 있다</li>
+            </ul>
+        </div>
+        
+        <div class="next-chapter-preview">
+            <h3>다음 장 미리보기</h3>
+            <p><strong>Chapter 3: 시맨틱 웹과 온톨로지</strong>에서는 온톨로지가 웹 환경에서 
+            어떻게 활용되는지 학습합니다. RDF, RDFS, OWL의 관계와 시맨틱 웹의 비전을 
+            탐구하고, 실제 웹에서 온톨로지가 어떻게 작동하는지 살펴봅니다.</p>
+        </div>
+    </div>
+</section>
+
+<!-- JavaScript for Interactive Elements -->
+<script>
+// 학습 로드맵 진행상황
+let currentStep = 1;
+const totalSteps = 5;
+
+function updateRoadmap(step) {
+    document.querySelectorAll('.roadmap-item').forEach((item, index) => {
+        if (index < step) {
+            item.classList.add('completed');
+        } else if (index === step - 1) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('completed', 'active');
+        }
+    });
+}
+
+// 클래스 계층구조 빌더
+function addClass() {
+    const className = document.getElementById('className').value;
+    const parentClass = document.getElementById('parentClass').value;
+    
+    if (className) {
+        // 계층구조에 추가
+        const hierarchy = document.getElementById('classHierarchy');
+        const newNode = document.createElement('div');
+        newNode.className = 'hierarchy-node';
+        newNode.innerHTML = `${className} (subClassOf ${parentClass})`;
+        hierarchy.appendChild(newNode);
+        
+        // 온톨로지 코드 업데이트
+        const code = document.getElementById('generatedOntology');
+        const newCode = `:${className} rdfs:subClassOf :${parentClass} .\n`;
+        code.textContent += newCode;
+        
+        // 입력 필드 초기화
+        document.getElementById('className').value = '';
+    }
+}
+
+// 추론 시뮬레이션
+function simulateReasoning() {
+    // 추론 과정 애니메이션
+    const steps = document.querySelectorAll('.flow-step');
+    steps.forEach((step, index) => {
+        setTimeout(() => {
+            step.classList.add('active');
+        }, index * 1000);
+    });
+}
+
+// 퀴즈 답안 확인
+function checkAnswers() {
+    const correctAnswers = {
+        'q1': 'c',  // 가능한 많은 속성 포함 (X)
+        'q2': 'b'   // 두 클래스가 서로 겹치지 않는다
+    };
+    
+    let score = 0;
+    for (let q in correctAnswers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === correctAnswers[q]) {
+            score++;
+        }
+    }
+    
+    alert(`정답: ${score}/${Object.keys(correctAnswers).length}`);
+}
+
+// 페이지 로드 시 초기화
+document.addEventListener('DOMContentLoaded', function() {
+    updateRoadmap(currentStep);
+});
+</script>
+
+<style>
+/* Enhanced Styles for Chapter 2 */
+
+/* 학습 로드맵 스타일 */
+.chapter-roadmap {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+}
+
+.roadmap-timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e0e0e0;
+    z-index: 0;
+}
+
+.roadmap-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.roadmap-number {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 3px solid #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-weight: bold;
+    color: #999;
+    transition: all 0.3s;
+}
+
+.roadmap-item.active .roadmap-number {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+    transform: scale(1.1);
+}
+
+.roadmap-item.completed .roadmap-number {
+    background: #48bb78;
+    color: white;
+    border-color: #48bb78;
+}
+
+.roadmap-content {
+    margin-top: 1rem;
+}
+
+.roadmap-content h4 {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.roadmap-content p {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* 속성 카드 스타일 */
+.property-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.property-type-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.property-type-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.property-icon {
+    font-size: 3rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+/* 특성 그리드 */
+.characteristic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.characteristic-item {
+    background: #f7fafc;
+    border-left: 4px solid #667eea;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.characteristic-item h4 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.characteristic-item pre {
+    margin-top: 1rem;
+    background: #2d3748;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+/* 추론 플로우 다이어그램 */
+.reasoning-flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: #f7fafc;
+    border-radius: 1rem;
+}
+
+.flow-node {
+    background: white;
+    border: 2px solid #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    min-width: 150px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.flow-node.active {
+    border-color: #667eea;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.flow-arrow {
+    font-size: 2rem;
+    color: #667eea;
+    margin: 0 1rem;
+}
+
+/* 설계 패턴 카드 */
+.pattern-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.pattern-card h4 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.pattern-example {
+    margin-top: 1rem;
+}
+
+/* 안티패턴 스타일 */
+.antipattern-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fff5f5;
+    border: 1px solid #feb2b2;
+    border-radius: 0.5rem;
+}
+
+.bad-example {
+    background: #fff5f5;
+    border-left: 4px solid #f56565;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.good-example {
+    background: #f0fff4;
+    border-left: 4px solid #48bb78;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+/* 설계 원칙 그리드 */
+.principle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.principle-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.principle-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.principle-icon {
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+/* 인터랙티브 빌더 */
+.builder-interface {
+    background: #f7fafc;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+}
+
+.builder-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.builder-controls input,
+.builder-controls select {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.25rem;
+}
+
+.builder-controls button {
+    background: #667eea;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.builder-controls button:hover {
+    background: #5a67d8;
+}
+
+.hierarchy-node {
+    background: white;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem 0;
+    border-left: 4px solid #667eea;
+    border-radius: 0.25rem;
+}
+
+/* 실습 섹션 */
+.practice-scenario {
+    background: #f7fafc;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+}
+
+.scenario-data table {
+    width: 100%;
+    margin: 1rem 0;
+    border-collapse: collapse;
+}
+
+.scenario-data th,
+.scenario-data td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+}
+
+.scenario-data th {
+    background: #667eea;
+    color: white;
+}
+
+/* 추론 과정 시각화 */
+.reasoning-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+}
+
+.flow-step {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+}
+
+.flow-step.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.step-label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* 종합 프로젝트 */
+.comprehensive-project {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    margin: 3rem 0;
+}
+
+.project-overview {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.project-requirements {
+    margin: 2rem 0;
+}
+
+.project-template pre {
+    background: #2d3748;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    max-height: 500px;
+}
+
+/* 학습 요약 */
+.concept-summary {
+    background: #f7fafc;
+    padding: 1.5rem;
+    border-left: 4px solid #667eea;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+}
+
+.learning-checklist ul {
+    list-style: none;
+    padding: 0;
+}
+
+.learning-checklist li {
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .roadmap-timeline {
+        flex-direction: column;
+    }
+    
+    .roadmap-timeline::before {
+        display: none;
+    }
+    
+    .roadmap-item {
+        margin: 1rem 0;
+    }
+    
+    .property-types,
+    .characteristic-grid,
+    .principle-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reasoning-flow-diagram {
+        flex-direction: column;
+    }
+    
+    .flow-arrow {
+        transform: rotate(90deg);
+        margin: 1rem 0;
+    }
+}
+
+/* 애니메이션 */
+@keyframes highlight {
+    0% { background-color: transparent; }
+    50% { background-color: rgba(102, 126, 234, 0.2); }
+    100% { background-color: transparent; }
+}
+
+.highlight-animation {
+    animation: highlight 2s ease-in-out;
+}
+</style>

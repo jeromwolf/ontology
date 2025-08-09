@@ -1,0 +1,2157 @@
+<!-- Chapter 6: OWL - 웹 온톨로지 언어 (실무 마스터 버전) -->
+
+<div class="chapter-header">
+    <h1>Chapter 6. OWL - Web Ontology Language</h1>
+    <div class="chapter-subtitle">지식 표현의 최고봉</div>
+    <div class="chapter-quote">
+        "OWL은 인간의 사고 방식을 기계가 이해할 수 있는 논리로 바꿀어주는 언어입니다." <br>
+        <span class="quote-author">- Ian Horrocks, OWL 주요 개발자</span>
+    </div>
+</div>
+
+<div class="reading-time">
+    <i class="fas fa-clock"></i> 예상 학습 시간: 4시간 | <i class="fas fa-brain"></i> 논리 추론 포함 | <i class="fas fa-tools"></i> Protégé 실습
+</div>
+
+<!-- 중요도 알림 -->
+<div class="importance-alert">
+    <h3>🚨 중요 알림</h3>
+    <p>OWL은 온톨로지 학습의 <strong>핀링 포인트</strong>입니다. 여기에서 배운 내용이 실제 업무에 직접 사용됩니다.</p>
+    <ul>
+        <li>현업에서 가장 많이 사용되는 온톨로지 언어</li>
+        <li>Google, Facebook, Amazon 등 대기업에서 활용</li>
+        <li>AI/ML 모델과의 연계점</li>
+    </ul>
+</div>
+
+<!-- 학습 목표 -->
+<div class="learning-objectives card enhanced">
+    <h3><i class="fas fa-bullseye"></i> 학습 목표</h3>
+    <div class="objectives-professional">
+        <div class="objective-tier">
+            <h4>🏆 전문가 레벨</h4>
+            <ul>
+                <li>Description Logic의 수학적 기초와 OWL로의 매핑 완전 이해</li>
+                <li>OWL 2 DL의 전체 표현력과 계산 복잡도 분석</li>
+                <li>대규모 지식 그래프에서의 OWL 성능 최적화</li>
+                <li>Pellet, HermiT, Fact++ 등 추론기 비교와 선택 기준</li>
+            </ul>
+        </div>
+        <div class="objective-tier">
+            <h4>🚀 실무 응용</h4>
+            <ul>
+                <li>Protégé 5.x로 완전한 엔터프라이즈 온톨로지 설계</li>
+                <li>OWL API를 이용한 Java/Python 애플리케이션 개발</li>
+                <li>실제 비즈니스 도메인의 온톨로지 모델링과 배포</li>
+                <li>SPARQL과 연계한 지식 기반 시스템 구축</li>
+            </ul>
+        </div>
+        <div class="objective-tier">
+            <h4>🌐 산업 전망</h4>
+            <ul>
+                <li>2024년 AI 시대에서의 OWL 역할과 미래 전망</li>
+                <li>ChatGPT, Claude 등 LLM과 OWL의 융합 가능성</li>
+                <li>지식 그래프 시장에서의 커맬어 로드맵</li>
+                <li>주요 기업의 OWL 도입 사례와 성공 요인</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 학습 로드맵 -->
+<div class="learning-roadmap-advanced">
+    <h3><i class="fas fa-route"></i> 전문가 로드맵</h3>
+    <div class="roadmap-phases">
+        <div class="phase-card beginner">
+            <div class="phase-header">
+                <span class="phase-icon">🌱</span>
+                <h4>Phase 1: 기초 탄탄 (90분)</h4>
+            </div>
+            <div class="phase-content">
+                <ul>
+                    <li>RDFS 한계 분석과 OWL 등장 배경</li>
+                    <li>Description Logic 수학적 기초</li>
+                    <li>OWL 2 서브언어와 프로파일 비교</li>
+                    <li>첫 번째 OWL 온톨로지 작성</li>
+                </ul>
+            </div>
+        </div>
+        <div class="phase-card intermediate">
+            <div class="phase-header">
+                <span class="phase-icon">🌿</span>
+                <h4>Phase 2: 실무 마스터 (120분)</h4>
+            </div>
+            <div class="phase-content">
+                <ul>
+                    <li>Protégé로 복잡한 비즈니스 도메인 모델링</li>
+                    <li>추론기 비교와 성능 최적화</li>
+                    <li>일관성 검사와 디버깅 기법</li>
+                    <li>OWL API로 자동화 스크립트 작성</li>
+                </ul>
+            </div>
+        </div>
+        <div class="phase-card expert">
+            <div class="phase-header">
+                <span class="phase-icon">🌳</span>
+                <h4>Phase 3: 전문가 프로젝트 (90분)</h4>
+            </div>
+            <div class="phase-content">
+                <ul>
+                    <li>전자상거래 플랫폼 OWL 온톨로지 구축</li>
+                    <li>SPARQL과 연계한 지식 기반 인사시스템</li>
+                    <li>Apache Jena Fuseki로 프록션 배포</li>
+                    <li>AI/ML 모델과의 하이브리드 시스템</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 섹션 6.1 -->
+<section class="content-section">
+    <h2>6.1 OWL의 탄생: RDFS의 벽을 넘어서</h2>
+    
+    <!-- 문제 상황 설정 -->
+    <div class="problem-story">
+        <h3>🚧 RDFS의 한계에 부딪히다</h3>
+        <p>2002년, 시맨틱 웹이 본격적으로 확산되면서 연구자들은 RDFS로는 해결할 수 없는 근본적인 문제들에 직면했습니다:</p>
+        
+        <div class="limitation-scenarios">
+            <div class="scenario-card">
+                <h4>💊 제약 의학 온톨로지</h4>
+                <div class="scenario-problem">
+                    <p><strong>요구사항:</strong> "당뇨병 환자는 인슐린이나 메트포르민 중 정확히 하나를 복용해야 한다"</p>
+                    <p><strong>RDFS의 한계:</strong> 카디널리티 제약과 논리적 연산(OR, AND) 표현 불가</p>
+                </div>
+            </div>
+            
+            <div class="scenario-card">
+                <h4>🏢 기업 조직도</h4>
+                <div class="scenario-problem">
+                    <p><strong>요구사항:</strong> "CEO는 모든 직원의 상위자이며, 관리자는 자신을 관리할 수 없다"</p>
+                    <p><strong>RDFS의 한계:</strong> 이행성, 비대칭성 등 속성 특성 표현 불가</p>
+                </div>
+            </div>
+            
+            <div class="scenario-card">
+                <h4>🔬 생물학 분류</h4>
+                <div class="scenario-problem">
+                    <p><strong>요구사항:</strong> "포유류는 척추동물이면서 동시에 온혈동물이다"</p>
+                    <p><strong>RDFS의 한계:</strong> 클래스의 교집합, 합집합 연산 불가</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- OWL의 혁신적 해답 -->
+    <div class="owl-solution">
+        <h3>🦉 OWL의 혁신적 해답</h3>
+        <p>OWL(Web Ontology Language)은 이러한 한계를 극복하기 위해 <strong>Description Logic</strong>이라는 수학적 기반 위에 설계되었습니다.</p>
+        
+        <div class="solution-matrix">
+            <div class="solution-category">
+                <h4>🧮 수학적 정확성</h4>
+                <ul>
+                    <li>Description Logic의 형식 의미론</li>
+                    <li>증명 가능한 추론 결과</li>
+                    <li>논리적 일관성 보장</li>
+                </ul>
+            </div>
+            <div class="solution-category">
+                <h4>🎯 표현력 확장</h4>
+                <ul>
+                    <li>클래스 연산 (∩, ∪, ¬)</li>
+                    <li>속성 특성 (이행성, 대칭성 등)</li>
+                    <li>카디널리티 제약</li>
+                </ul>
+            </div>
+            <div class="solution-category">
+                <h4>⚡ 지능적 추론</h4>
+                <ul>
+                    <li>자동 분류 (classification)</li>
+                    <li>일관성 검사 (consistency)</li>
+                    <li>함의 확인 (entailment)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Description Logic 기초 -->
+    <div class="dl-foundation">
+        <h3>🔬 Description Logic: OWL의 수학적 기반</h3>
+        <p>Description Logic(DL)은 지식 표현을 위한 논리학의 한 분야로, OWL의 핵심 이론적 토대입니다.</p>
+        
+        <div class="dl-concepts">
+            <div class="dl-concept-card">
+                <h4>개념 (Concepts)</h4>
+                <p>세상의 객체들을 분류하는 단위</p>
+                <div class="dl-example">
+                    <code>Person, Student, Professor</code>
+                </div>
+                <div class="owl-mapping">
+                    <strong>OWL 매핑:</strong> owl:Class
+                </div>
+            </div>
+            
+            <div class="dl-concept-card">
+                <h4>역할 (Roles)</h4>
+                <p>객체들 간의 관계</p>
+                <div class="dl-example">
+                    <code>hasChild, teaches, likes</code>
+                </div>
+                <div class="owl-mapping">
+                    <strong>OWL 매핑:</strong> owl:ObjectProperty
+                </div>
+            </div>
+            
+            <div class="dl-concept-card">
+                <h4>개체 (Individuals)</h4>
+                <p>구체적인 객체 인스턴스</p>
+                <div class="dl-example">
+                    <code>john, mary, CS101</code>
+                </div>
+                <div class="owl-mapping">
+                    <strong>OWL 매핑:</strong> owl:NamedIndividual
+                </div>
+            </div>
+        </div>
+        
+        <!-- DL 구문 미리보기 -->
+        <div class="dl-syntax-preview">
+            <h4>🔍 Description Logic 구문 맛보기</h4>
+            <div class="syntax-examples">
+                <div class="syntax-item">
+                    <div class="dl-formula">Person ⊓ Student</div>
+                    <div class="meaning">사람이면서 동시에 학생인 개념</div>
+                    <div class="owl-equivalent">OWL: Person and Student</div>
+                </div>
+                <div class="syntax-item">
+                    <div class="dl-formula">∃hasChild.Person</div>
+                    <div class="meaning">사람인 자녀를 가진 개념</div>
+                    <div class="owl-equivalent">OWL: hasChild some Person</div>
+                </div>
+                <div class="syntax-item">
+                    <div class="dl-formula">≤1hasSpouse.Person</div>
+                    <div class="meaning">최대 1명의 배우자를 가진 개념</div>
+                    <div class="owl-equivalent">OWL: hasSpouse max 1 Person</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 실제 영향 -->
+    <div class="real-world-impact">
+        <h3>🌍 OWL이 바꾼 세상</h3>
+        <div class="impact-timeline">
+            <div class="impact-milestone">
+                <div class="milestone-year">2004-2008</div>
+                <div class="milestone-content">
+                    <h4>생명과학 혁명</h4>
+                    <p>Gene Ontology, SNOMED CT 등 의료 온톨로지가 OWL로 재구축되어 정밀의학의 기반 마련</p>
+                </div>
+            </div>
+            <div class="impact-milestone">
+                <div class="milestone-year">2009-2015</div>
+                <div class="milestone-content">
+                    <h4>시맨틱 웹 2.0</h4>
+                    <p>Google의 Knowledge Graph, Facebook의 Open Graph가 OWL 기반으로 구축</p>
+                </div>
+            </div>
+            <div class="impact-milestone">
+                <div class="milestone-year">2016-현재</div>
+                <div class="milestone-content">
+                    <h4>AI 시대 적응</h4>
+                    <p>ChatGPT, Claude 등 LLM과의 결합으로 Neuro-Symbolic AI의 핵심 기술로 부상</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+<!-- 섹션 6.2 -->
+<section class="content-section">
+    <h2>6.2 OWL의 서브언어와 프로파일: 선택의 기술</h2>
+    
+    <!-- 전략적 선택 -->
+    <div class="strategic-choice">
+        <h3>🎯 왜 여러 버전이 필요한가?</h3>
+        <p>OWL은 <strong>"표현력 vs 성능"</strong>의 트레이드오프를 해결하기 위해 다양한 변형을 제공합니다. 실무에서는 프로젝트 요구사항에 맞는 적절한 선택이 핵심입니다.</p>
+        
+        <div class="choice-matrix">
+            <div class="axis-label vertical">표현력</div>
+            <div class="matrix-content">
+                <div class="matrix-quadrant high-express-low-perf">
+                    <h4>OWL 2 Full</h4>
+                    <p>최대 표현력</p>
+                    <p>성능 희생</p>
+                </div>
+                <div class="matrix-quadrant high-express-high-perf">
+                    <h4>OWL 2 DL</h4>
+                    <p>실무 표준</p>
+                    <p>균형점</p>
+                </div>
+                <div class="matrix-quadrant low-express-low-perf">
+                    <h4>OWL Lite</h4>
+                    <p>레거시</p>
+                    <p>거의 미사용</p>
+                </div>
+                <div class="matrix-quadrant low-express-high-perf">
+                    <h4>OWL 2 Profiles</h4>
+                    <p>특화된 용도</p>
+                    <p>최적 성능</p>
+                </div>
+            </div>
+            <div class="axis-label horizontal">성능</div>
+        </div>
+    </div>
+    
+    <!-- OWL 1 vs OWL 2 진화 -->
+    <div class="owl-evolution">
+        <h3>📈 OWL 1 → OWL 2 진화 과정</h3>
+        <div class="evolution-comparison">
+            <div class="evolution-phase">
+                <h4>OWL 1 (2004-2012)</h4>
+                <div class="phase-content">
+                    <h5>3개 서브언어</h5>
+                    <ul>
+                        <li><strong>OWL Lite:</strong> 기본 계층구조</li>
+                        <li><strong>OWL DL:</strong> Description Logic</li>
+                        <li><strong>OWL Full:</strong> 무제한 표현력</li>
+                    </ul>
+                    <div class="phase-problem">
+                        <strong>문제점:</strong> Lite는 너무 제한적, Full은 비현실적
+                    </div>
+                </div>
+            </div>
+            <div class="evolution-arrow">→</div>
+            <div class="evolution-phase">
+                <h4>OWL 2 (2012-현재)</h4>
+                <div class="phase-content">
+                    <h5>DL + 3개 프로파일</h5>
+                    <ul>
+                        <li><strong>DL:</strong> 표준 버전</li>
+                        <li><strong>EL:</strong> 대규모 분류</li>
+                        <li><strong>QL:</strong> 데이터베이스 통합</li>
+                        <li><strong>RL:</strong> 규칙 기반 추론</li>
+                    </ul>
+                    <div class="phase-solution">
+                        <strong>해결:</strong> 용도별 최적화된 프로파일 제공
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- OWL 2 DL: 실무 표준 -->
+    <div class="owl2-dl-focus">
+        <h3>⭐ OWL 2 DL: 실무의 절대 표준</h3>
+        <div class="dl-advantages">
+            <div class="advantage-card">
+                <h4>🎯 최적의 균형점</h4>
+                <ul>
+                    <li>95% 실무 사례에 충분한 표현력</li>
+                    <li>현실적인 추론 성능</li>
+                    <li>모든 주요 도구 지원</li>
+                </ul>
+            </div>
+            <div class="advantage-card">
+                <h4>🔒 수학적 보장</h4>
+                <ul>
+                    <li>추론 결과의 완전성</li>
+                    <li>논리적 일관성 검증</li>
+                    <li>결정 가능한 문제들</li>
+                </ul>
+            </div>
+            <div class="advantage-card">
+                <h4>🏢 기업급 신뢰성</h4>
+                <ul>
+                    <li>Google, IBM, Oracle 활용</li>
+                    <li>10년+ 검증된 안정성</li>
+                    <li>풍부한 커뮤니티 지원</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- DL 제약사항 -->
+        <div class="dl-constraints">
+            <h4>📏 OWL 2 DL의 핵심 제약사항</h4>
+            <div class="constraint-grid">
+                <div class="constraint-item">
+                    <div class="constraint-rule">클래스와 개체 분리</div>
+                    <div class="constraint-why">논리적 일관성 보장</div>
+                    <div class="constraint-example">Person은 클래스, john은 개체</div>
+                </div>
+                <div class="constraint-item">
+                    <div class="constraint-rule">속성과 클래스 분리</div>
+                    <div class="constraint-why">타입 안전성 확보</div>
+                    <div class="constraint-example">hasAge는 속성, Person은 클래스</div>
+                </div>
+                <div class="constraint-item">
+                    <div class="constraint-rule">datatype 제한</div>
+                    <div class="constraint-why">추론 알고리즘 최적화</div>
+                    <div class="constraint-example">xsd:string, xsd:int 등만 사용</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- OWL 2 프로파일 심화 -->
+    <div class="owl2-profiles">
+        <h3>🎪 OWL 2 프로파일: 특화된 무기들</h3>
+        
+        <div class="profile-detailed">
+            <!-- EL 프로파일 -->
+            <div class="profile-card el-profile">
+                <div class="profile-header">
+                    <h4>OWL 2 EL (Existential Language)</h4>
+                    <div class="profile-motto">"대규모 분류의 왕"</div>
+                </div>
+                <div class="profile-content">
+                    <div class="profile-specialty">
+                        <h5>🎯 특화 분야</h5>
+                        <ul>
+                            <li>대규모 생명과학 온톨로지 (SNOMED CT)</li>
+                            <li>수백만 개념의 분류 체계</li>
+                            <li>빠른 서브클래스 추론</li>
+                        </ul>
+                    </div>
+                    <div class="profile-tech">
+                        <h5>⚙️ 기술적 특징</h5>
+                        <ul>
+                            <li>존재 제한자(∃) 중심</li>
+                            <li>교집합(∩) 연산 허용</li>
+                            <li>다항 시간 복잡도 보장</li>
+                        </ul>
+                    </div>
+                    <div class="profile-realworld">
+                        <h5>🌍 실제 사용 사례</h5>
+                        <p><strong>SNOMED CT:</strong> 35만+ 의료 개념을 EL로 분류</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- QL 프로파일 -->
+            <div class="profile-card ql-profile">
+                <div class="profile-header">
+                    <h4>OWL 2 QL (Query Language)</h4>
+                    <div class="profile-motto">"빅데이터와의 완벽한 만남"</div>
+                </div>
+                <div class="profile-content">
+                    <div class="profile-specialty">
+                        <h5>🎯 특화 분야</h5>
+                        <ul>
+                            <li>관계형 데이터베이스 통합</li>
+                            <li>SPARQL 쿼리 최적화</li>
+                            <li>대용량 데이터 처리</li>
+                        </ul>
+                    </div>
+                    <div class="profile-tech">
+                        <h5>⚙️ 기술적 특징</h5>
+                        <ul>
+                            <li>SQL로 변환 가능한 구조</li>
+                            <li>존재 제한자를 쿼리로 표현</li>
+                            <li>LogSpace 복잡도</li>
+                        </ul>
+                    </div>
+                    <div class="profile-realworld">
+                        <h5>🌍 실제 사용 사례</h5>
+                        <p><strong>은행 시스템:</strong> 수십억 거래 데이터의 온톨로지 쿼리</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RL 프로파일 -->
+            <div class="profile-card rl-profile">
+                <div class="profile-header">
+                    <h4>OWL 2 RL (Rule Language)</h4>
+                    <div class="profile-motto">"규칙 엔진의 친구"</div>
+                </div>
+                <div class="profile-content">
+                    <div class="profile-specialty">
+                        <h5>🎯 특화 분야</h5>
+                        <ul>
+                            <li>기존 규칙 엔진과 통합</li>
+                            <li>RDF 그래프 직접 추론</li>
+                            <li>스트리밍 데이터 처리</li>
+                        </ul>
+                    </div>
+                    <div class="profile-tech">
+                        <h5>⚙️ 기술적 특징</h5>
+                        <ul>
+                            <li>Horn 절로 표현 가능</li>
+                            <li>forward-chaining 추론</li>
+                            <li>분산 처리 지원</li>
+                        </ul>
+                    </div>
+                    <div class="profile-realworld">
+                        <h5>🌍 실제 사용 사례</h5>
+                        <p><strong>IoT 플랫폼:</strong> 실시간 센서 데이터의 상황 인식</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 선택 가이드 -->
+    <div class="selection-guide">
+        <h3>🧭 실무진을 위한 선택 가이드</h3>
+        <div class="decision-tree">
+            <div class="decision-node root">
+                <div class="question">프로젝트 성격은?</div>
+                <div class="decision-branches">
+                    <div class="branch">
+                        <div class="branch-condition">연구/프로토타입</div>
+                        <div class="branch-result">→ OWL 2 DL</div>
+                        <div class="branch-reason">표현력 우선</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-condition">대규모 분류</div>
+                        <div class="branch-result">→ OWL 2 EL</div>
+                        <div class="branch-reason">성능 우선</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-condition">DB 통합</div>
+                        <div class="branch-result">→ OWL 2 QL</div>
+                        <div class="branch-reason">쿼리 우선</div>
+                    </div>
+                    <div class="branch">
+                        <div class="branch-condition">실시간 처리</div>
+                        <div class="branch-result">→ OWL 2 RL</div>
+                        <div class="branch-reason">속도 우선</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 6.3 -->
+<section class="content-section">
+    <h2>6.3 OWL 클래스 연산: 논리의 힘</h2>
+    
+    <!-- 클래스 연산 소개 -->
+    <div class="class-operations-intro">
+        <h3>🧠 인간의 사고를 기계가 이해하다</h3>
+        <p>OWL의 진정한 혁신은 <strong>복합 개념</strong>을 논리적으로 표현할 수 있다는 점입니다. 
+        "채식주의자이면서 운동선수인 사람", "자동차 또는 오토바이", "사람이 아닌 생물" 같은 복잡한 개념을 정확히 모델링할 수 있습니다.</p>
+        
+        <div class="operation-types">
+            <div class="operation-card intersection">
+                <h4>교집합 (∩, and)</h4>
+                <p>두 개념을 모두 만족</p>
+                <div class="visual-example">A ∩ B</div>
+            </div>
+            <div class="operation-card union">
+                <h4>합집합 (∪, or)</h4>
+                <p>둘 중 하나라도 만족</p>
+                <div class="visual-example">A ∪ B</div>
+            </div>
+            <div class="operation-card complement">
+                <h4>여집합 (¬, not)</h4>
+                <p>해당 개념이 아닌 것</p>
+                <div class="visual-example">¬A</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 교집합 상세 -->
+    <div class="intersection-detailed">
+        <h3>🔄 교집합 (Intersection): AND 논리</h3>
+        <div class="concept-explanation">
+            <p>교집합은 여러 조건을 <strong>동시에</strong> 만족하는 개념을 정의할 때 사용합니다.</p>
+        </div>
+        
+        <div class="syntax-showcase">
+            <div class="syntax-version">
+                <h4>Manchester Syntax</h4>
+                <pre class="code-block">
+Class: VegetarianAthlete
+  EquivalentTo: Person and Vegetarian and Athlete
+  
+Class: LuxurySportsCar  
+  EquivalentTo: Car and (hasPrice some xsd:decimal[>= 100000]) and SportsCar
+                </pre>
+            </div>
+            <div class="syntax-version">
+                <h4>Turtle/RDF</h4>
+                <pre class="code-block">
+:VegetarianAthlete owl:equivalentClass [
+    owl:intersectionOf ( 
+        :Person 
+        :Vegetarian 
+        :Athlete 
+    )
+] .
+                </pre>
+            </div>
+        </div>
+        
+        <div class="real-example">
+            <h4>💼 실무 사례: 전자상거래 상품 분류</h4>
+            <pre class="code-block">
+Class: PremiumElectronics
+  EquivalentTo: Electronics and (hasPrice some xsd:decimal[>= 500]) and (hasRating some xsd:decimal[>= 4.5])
+  
+Class: OutdoorWinterClothing
+  EquivalentTo: Clothing and OutdoorGear and (suitableForSeason value Winter)
+            </pre>
+            <p class="example-explanation">
+                프리미엄 전자제품은 전자제품이면서 가격이 500달러 이상이고 평점이 4.5 이상인 제품을 자동으로 분류합니다.
+            </p>
+        </div>
+    </div>
+    
+    <!-- 합집합 상세 -->
+    <div class="union-detailed">
+        <h3>🔀 합집합 (Union): OR 논리</h3>
+        <div class="concept-explanation">
+            <p>합집합은 여러 조건 중 <strong>하나라도</strong> 만족하는 개념을 정의할 때 사용합니다.</p>
+        </div>
+        
+        <div class="union-examples">
+            <div class="union-example">
+                <h4>의료 분야 활용</h4>
+                <pre class="code-block">
+Class: HighRiskPatient
+  EquivalentTo: (hasAge some xsd:int[>= 65]) or 
+                (hasDiabetes value true) or 
+                (hasHeartDisease value true) or
+                (isSmoker value true)
+                </pre>
+                <p>고위험 환자는 65세 이상이거나, 당뇨가 있거나, 심장병이 있거나, 흡연자인 환자입니다.</p>
+            </div>
+            
+            <div class="union-example">
+                <h4>교통수단 분류</h4>
+                <pre class="code-block">
+Class: MotorVehicle
+  EquivalentTo: Car or Motorcycle or Truck or Bus
+  
+Class: PublicTransport
+  EquivalentTo: Bus or Train or Subway or Tram
+                </pre>
+            </div>
+        </div>
+        
+        <div class="union-caution">
+            <h4>⚠️ 주의사항: 추론 성능</h4>
+            <p>합집합은 강력하지만 추론 성능에 큰 영향을 줍니다. 특히 중첩된 합집합은 지수적으로 복잡도가 증가할 수 있습니다.</p>
+            <div class="performance-tip">
+                <strong>팁:</strong> 가능하면 RDFS의 다중 상속(rdfs:subClassOf)을 먼저 고려하세요.
+            </div>
+        </div>
+    </div>
+    
+    <!-- 여집합 상세 -->
+    <div class="complement-detailed">
+        <h3>🚫 여집합 (Complement): NOT 논리</h3>
+        <div class="concept-explanation">
+            <p>여집합은 특정 조건을 <strong>만족하지 않는</strong> 개념을 정의할 때 사용합니다.</p>
+        </div>
+        
+        <div class="complement-examples">
+            <div class="complement-example">
+                <h4>부정적 조건 모델링</h4>
+                <pre class="code-block">
+Class: NonAlcoholicDrink  
+  EquivalentTo: Drink and (not AlcoholicDrink)
+  
+Class: InorganicCompound
+  EquivalentTo: ChemicalCompound and (not OrganicCompound)
+  
+Class: UnmarriedPerson
+  EquivalentTo: Person and (not (hasSpouse some Person))
+                </pre>
+            </div>
+            
+            <div class="complement-example">
+                <h4>보안 시스템 응용</h4>
+                <pre class="code-block">
+Class: RestrictedArea
+  EquivalentTo: Area and (not (accessibleBy some PublicUser))
+  
+Class: UnauthorizedAccess
+  EquivalentTo: AccessAttempt and (not (authorizedBy some SecuritySystem))
+                </pre>
+            </div>
+        </div>
+        
+        <div class="complement-warning">
+            <h4>💀 위험: 열린 세계 가정</h4>
+            <div class="warning-content">
+                <p>OWL은 <strong>열린 세계 가정(Open World Assumption)</strong>을 사용합니다. 
+                정보가 없다고 해서 거짓이라고 가정하지 않습니다.</p>
+                
+                <div class="owa-example">
+                    <h5>예시 상황:</h5>
+                    <pre class="code-block">
+:john rdf:type :Person .
+# hasSpouse 정보가 없음
+
+Class: UnmarriedPerson
+  EquivalentTo: Person and (not (hasSpouse some Person))
+                    </pre>
+                    <p><strong>결과:</strong> john이 UnmarriedPerson인지 알 수 없음 (미혼인지 기혼인지 정보 부족)</p>
+                </div>
+                
+                <div class="solution-approach">
+                    <h5>해결 방법:</h5>
+                    <ul>
+                        <li><strong>명시적 선언:</strong> :john :hasSpouse :none .</li>
+                        <li><strong>닫힌 세계 추론:</strong> SPARQL이나 규칙 엔진 활용</li>
+                        <li><strong>디폴트 논리:</strong> 추가 공리 정의</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 6.4 -->
+<section class="content-section">
+    <h2>6.4 속성 특성: 관계의 논리학</h2>
+    
+    <!-- 속성 특성 소개 -->
+    <div class="property-characteristics-intro">
+        <h3>🔗 관계에 숨겨진 규칙들</h3>
+        <p>현실 세계의 관계들은 특별한 성질을 가집니다. "친구" 관계는 대칭적이고, "조상" 관계는 이행적이며, 
+        "어머니" 관계는 함수적입니다. OWL은 이러한 관계의 특성을 명시적으로 표현할 수 있습니다.</p>
+        
+        <div class="characteristic-overview">
+            <div class="char-category logical">
+                <h4>논리적 특성</h4>
+                <ul>
+                    <li>대칭성 (Symmetric)</li>
+                    <li>비대칭성 (Asymmetric)</li>
+                    <li>이행성 (Transitive)</li>
+                    <li>반사성 (Reflexive)</li>
+                    <li>비반사성 (Irreflexive)</li>
+                </ul>
+            </div>
+            <div class="char-category functional">
+                <h4>함수적 특성</h4>
+                <ul>
+                    <li>함수성 (Functional)</li>
+                    <li>역함수성 (InverseFunctional)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 대칭성과 비대칭성 -->
+    <div class="symmetry-properties">
+        <h3>⚖️ 대칭성과 비대칭성</h3>
+        
+        <div class="property-comparison">
+            <div class="property-type symmetric">
+                <h4>대칭성 (Symmetric)</h4>
+                <div class="definition">
+                    <p>A가 B와 관계를 가지면, B도 A와 같은 관계를 가짐</p>
+                    <div class="formula">만약 A R B이면, B R A</div>
+                </div>
+                
+                <div class="examples">
+                    <h5>실제 예시</h5>
+                    <pre class="code-block">
+ObjectProperty: marriedTo
+  Characteristics: Symmetric
+  
+ObjectProperty: friendOf  
+  Characteristics: Symmetric
+  
+ObjectProperty: siblingOf
+  Characteristics: Symmetric
+                    </pre>
+                </div>
+                
+                <div class="inference-demo">
+                    <h5>자동 추론</h5>
+                    <div class="inference-step">
+                        <div class="given">주어진 사실: :john :marriedTo :mary</div>
+                        <div class="inferred">추론된 사실: :mary :marriedTo :john</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="property-type asymmetric">
+                <h4>비대칭성 (Asymmetric)</h4>
+                <div class="definition">
+                    <p>A가 B와 관계를 가지면, B는 A와 같은 관계를 가질 수 없음</p>
+                    <div class="formula">만약 A R B이면, B R A는 불가능</div>
+                </div>
+                
+                <div class="examples">
+                    <h5>실제 예시</h5>
+                    <pre class="code-block">
+ObjectProperty: parentOf
+  Characteristics: Asymmetric
+  
+ObjectProperty: bossOf
+  Characteristics: Asymmetric
+  
+ObjectProperty: olderThan
+  Characteristics: Asymmetric
+                    </pre>
+                </div>
+                
+                <div class="inference-demo">
+                    <h5>모순 검출</h5>
+                    <div class="inference-step">
+                        <div class="given">주어진 사실: :john :parentOf :tom</div>
+                        <div class="conflict">모순 발생: :tom :parentOf :john (불가능)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 이행성 -->
+    <div class="transitivity-property">
+        <h3>🔄 이행성 (Transitivity): 연쇄 추론의 힘</h3>
+        
+        <div class="transitivity-explanation">
+            <p>이행성은 A→B, B→C 관계가 있을 때 A→C 관계를 자동으로 추론하는 특성입니다.</p>
+            <div class="transitivity-formula">
+                만약 A R B이고 B R C이면, A R C
+            </div>
+        </div>
+        
+        <div class="transitivity-examples">
+            <div class="trans-example geography">
+                <h4>🗺️ 지리적 관계</h4>
+                <pre class="code-block">
+ObjectProperty: locatedIn
+  Characteristics: Transitive
+  
+# 데이터
+:Gangnam :locatedIn :Seoul .
+:Seoul :locatedIn :SouthKorea .
+:SouthKorea :locatedIn :Asia .
+
+# 자동 추론
+:Gangnam :locatedIn :SouthKorea .  # 추론됨
+:Gangnam :locatedIn :Asia .        # 추론됨
+:Seoul :locatedIn :Asia .          # 추론됨
+                </pre>
+            </div>
+            
+            <div class="trans-example organizational">
+                <h4>🏢 조직 계층</h4>
+                <pre class="code-block">
+ObjectProperty: reportsTo
+  Characteristics: Transitive
+  
+# 조직도
+:developer :reportsTo :teamLead .
+:teamLead :reportsTo :manager .
+:manager :reportsTo :director .
+
+# 자동 추론 - 간접 보고 관계
+:developer :reportsTo :manager .   # 추론됨  
+:developer :reportsTo :director .  # 추론됨
+:teamLead :reportsTo :director .   # 추론됨
+                </pre>
+            </div>
+        </div>
+        
+        <div class="transitivity-performance">
+            <h4>⚡ 성능 고려사항</h4>
+            <div class="performance-warning">
+                <p><strong>주의:</strong> 이행성 속성은 많은 추론을 생성하여 성능에 큰 영향을 줄 수 있습니다.</p>
+                <ul>
+                    <li>큰 계층구조에서는 신중하게 사용</li>
+                    <li>필요한 경우에만 이행성 선언</li>
+                    <li>추론기 설정에서 이행성 추론 제어 가능</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 함수성 -->
+    <div class="functional-properties">
+        <h3>🎯 함수성: 유일성의 보장</h3>
+        
+        <div class="functional-types">
+            <div class="func-type functional">
+                <h4>함수성 (Functional)</h4>
+                <div class="definition">
+                    <p>각 개체는 해당 속성에 대해 최대 하나의 값만 가질 수 있음</p>
+                    <div class="formula">A R B이고 A R C이면, B = C</div>
+                </div>
+                
+                <div class="functional-examples">
+                    <pre class="code-block">
+ObjectProperty: hasMother
+  Characteristics: Functional
+  
+ObjectProperty: hasSSN  
+  Characteristics: Functional
+  
+DatatypeProperty: hasAge
+  Characteristics: Functional
+                    </pre>
+                </div>
+                
+                <div class="functional-inference">
+                    <h5>자동 동일성 추론</h5>
+                    <div class="inference-case">
+                        <div class="given-facts">
+                            <p>주어진 사실:</p>
+                            <p>:john :hasMother :mary .</p>
+                            <p>:john :hasMother :susan .</p>
+                        </div>
+                        <div class="inferred-fact">
+                            <p>추론 결과:</p>
+                            <p>:mary owl:sameAs :susan .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="func-type inverse-functional">
+                <h4>역함수성 (InverseFunctional)</h4>
+                <div class="definition">
+                    <p>해당 속성의 값으로부터 주어를 유일하게 결정할 수 있음</p>
+                    <div class="formula">A R C이고 B R C이면, A = B</div>
+                </div>
+                
+                <div class="inverse-functional-examples">
+                    <pre class="code-block">
+ObjectProperty: hasSSN
+  Characteristics: InverseFunctional
+  
+ObjectProperty: hasEmail
+  Characteristics: InverseFunctional
+  
+ObjectProperty: hasFingerprint
+  Characteristics: InverseFunctional
+                    </pre>
+                </div>
+                
+                <div class="inverse-functional-inference">
+                    <h5>개체 통합 추론</h5>
+                    <div class="inference-case">
+                        <div class="given-facts">
+                            <p>주어진 사실:</p>
+                            <p>:person1 :hasSSN "123-45-6789" .</p>
+                            <p>:person2 :hasSSN "123-45-6789" .</p>
+                        </div>
+                        <div class="inferred-fact">
+                            <p>추론 결과:</p>
+                            <p>:person1 owl:sameAs :person2 .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 6.5 -->
+<section class="content-section">
+    <h2>6.5 카디널리티 제약과 제한자: 정확한 조건 명시</h2>
+    
+    <!-- 카디널리티 소개 -->
+    <div class="cardinality-intro">
+        <h3>🔢 "몇 개"를 명확히 하다</h3>
+        <p>현실 세계에서는 "정확히", "최대", "최소"의 개념이 중요합니다. 
+        "사람은 정확히 2명의 생물학적 부모를 가진다", "자동차는 최소 3개의 바퀴를 가진다" 같은 제약을 OWL로 표현할 수 있습니다.</p>
+        
+        <div class="cardinality-types">
+            <div class="card-type exact">
+                <h4>정확히 (Exactly)</h4>
+                <div class="symbol">=n</div>
+                <p>정확히 n개</p>
+            </div>
+            <div class="card-type min">
+                <h4>최소 (Min)</h4>
+                <div class="symbol">≥n</div>
+                <p>n개 이상</p>
+            </div>
+            <div class="card-type max">
+                <h4>최대 (Max)</h4>
+                <div class="symbol">≤n</div>
+                <p>n개 이하</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 한정 카디널리티 -->
+    <div class="qualified-cardinality">
+        <h3>🎯 한정 카디널리티: 조건부 개수 제한</h3>
+        <p>단순히 개수만 제한하는 것이 아니라, <strong>특정 조건을 만족하는 것들</strong>의 개수를 제한할 수 있습니다.</p>
+        
+        <div class="cardinality-examples">
+            <div class="card-example medical">
+                <h4>🏥 의료 시스템</h4>
+                <pre class="code-block">
+Class: Person
+  SubClassOf: hasBiologicalParent exactly 2 Person
+  SubClassOf: hasSpouse max 1 Person
+  SubClassOf: hasChild min 0 Person
+
+Class: Doctor  
+  SubClassOf: Person
+  SubClassOf: hasSpecialization min 1 MedicalSpecialty
+  SubClassOf: hasLicense exactly 1 MedicalLicense
+
+Class: Hospital
+  SubClassOf: hasDoctor min 10 Doctor
+  SubClassOf: hasEmergencyRoom exactly 1 EmergencyRoom
+  SubClassOf: hasDepartment min 3 MedicalDepartment
+                </pre>
+                <div class="explanation">
+                    <p><strong>해석:</strong></p>
+                    <ul>
+                        <li>모든 사람은 정확히 2명의 생물학적 부모를 가짐</li>
+                        <li>의사는 최소 1개의 전문 분야를 가져야 함</li>
+                        <li>병원은 최소 10명의 의사가 있어야 함</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card-example automotive">
+                <h4>🚗 자동차 산업</h4>
+                <pre class="code-block">
+Class: Car
+  SubClassOf: hasWheel exactly 4 Wheel
+  SubClassOf: hasEngine exactly 1 Engine  
+  SubClassOf: hasDoor min 2 Door
+  SubClassOf: hasDoor max 5 Door
+
+Class: Motorcycle
+  SubClassOf: hasWheel exactly 2 Wheel
+  SubClassOf: hasEngine exactly 1 Engine
+  SubClassOf: hasSeat min 1 Seat
+  SubClassOf: hasSeat max 2 Seat
+
+Class: LuxuryCar
+  SubClassOf: Car
+  SubClassOf: hasLeatherSeat min 4 LeatherSeat
+  SubClassOf: hasAdvancedFeature min 5 AdvancedFeature
+                </pre>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 존재 및 보편 제한자 -->
+    <div class="quantifier-restrictions">
+        <h3>∃∀ 존재 및 보편 제한자</h3>
+        
+        <div class="restriction-types">
+            <div class="restriction-type existential">
+                <h4>존재 제한자 (∃, some)</h4>
+                <div class="definition">
+                    <p>"적어도 하나의 ~이 존재한다"</p>
+                    <div class="logic-formula">∃R.C</div>
+                </div>
+                
+                <div class="existential-examples">
+                    <pre class="code-block">
+Class: Parent
+  EquivalentTo: Person and (hasChild some Person)
+
+Class: VegetarianRestaurant  
+  EquivalentTo: Restaurant and (serves some VegetarianFood)
+
+Class: UniversityProfessor
+  EquivalentTo: Professor and (teachesAt some University)
+                    </pre>
+                </div>
+                
+                <div class="existential-inference">
+                    <h5>추론 예시</h5>
+                    <div class="inference-case">
+                        <div class="given-fact">:john :hasChild :mary .</div>
+                        <div class="inferred-fact">→ :john rdf:type :Parent .</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="restriction-type universal">
+                <h4>보편 제한자 (∀, only)</h4>
+                <div class="definition">
+                    <p>"모든 ~이 특정 조건을 만족한다"</p>
+                    <div class="logic-formula">∀R.C</div>
+                </div>
+                
+                <div class="universal-examples">
+                    <pre class="code-block">
+Class: VeganPerson
+  SubClassOf: Person and (eats only VeganFood)
+
+Class: PediatricHospital
+  SubClassOf: Hospital and (treats only Child)
+
+Class: LuxuryHotel
+  SubClassOf: Hotel and (hasRoom only LuxuryRoom)
+                    </pre>
+                </div>
+                
+                <div class="universal-warning">
+                    <h5>⚠️ 주의: 보편 제한자의 함정</h5>
+                    <div class="warning-case">
+                        <p><strong>잘못된 이해:</strong> "VeganPerson은 VeganFood만 먹는다" ≠ "VeganFood를 먹는다"</p>
+                        <p><strong>올바른 해석:</strong> 만약 먹는 것이 있다면, 그것은 VeganFood여야 한다</p>
+                        <div class="correct-modeling">
+                            <strong>올바른 모델링:</strong>
+                            <pre class="code-block">
+Class: VeganPerson
+  SubClassOf: Person and (eats only VeganFood) and (eats some VeganFood)
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 값 제한자 -->
+    <div class="value-restrictions">
+        <h3>🎯 값 제한자: 구체적 값 지정</h3>
+        
+        <div class="value-types">
+            <div class="value-type hasvalue">
+                <h4>hasValue</h4>
+                <p>특정한 값을 가져야 함</p>
+                <pre class="code-block">
+Class: USCitizen
+  EquivalentTo: Person and (hasNationality value USA)
+
+Class: AdultPerson  
+  EquivalentTo: Person and (hasAge some xsd:int[>= 18])
+
+Class: PremiumMember
+  EquivalentTo: Member and (hasMembershipLevel value Premium)
+                </pre>
+            </div>
+            
+            <div class="value-type hasself">
+                <h4>hasSelf</h4>
+                <p>자기 자신과 관계를 가짐</p>
+                <pre class="code-block">
+Class: SelfEmployed
+  EquivalentTo: Person and (employs Self)
+
+Class: Narcissist
+  EquivalentTo: Person and (loves Self)
+
+ObjectProperty: employs
+  Domain: Organization
+  Range: Person
+                </pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 6.6 -->
+<section class="content-section">
+    <h2>6.6 실전 OWL 마스터: Protégé와 추론기</h2>
+    
+    <!-- Protégé 실습 -->
+    <div class="protege-practice">
+        <h3>🛠️ Protégé 5.x 완전 마스터</h3>
+        
+        <div class="protege-workflow">
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>온톨로지 설계</h4>
+                    <ul>
+                        <li>Classes 탭에서 계층구조 구축</li>
+                        <li>Object Properties로 관계 정의</li>
+                        <li>Data Properties로 속성 정의</li>
+                        <li>Individuals로 인스턴스 생성</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>제약사항 정의</h4>
+                    <ul>
+                        <li>Description에서 복합 클래스 표현</li>
+                        <li>Characteristics에서 속성 특성 설정</li>
+                        <li>Domain/Range 제약 설정</li>
+                        <li>Disjoint 관계 명시</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>추론기 실행</h4>
+                    <ul>
+                        <li>Reasoner 메뉴에서 추론기 선택</li>
+                        <li>Start reasoner로 추론 실행</li>
+                        <li>Inferred 뷰에서 결과 확인</li>
+                        <li>일관성 검사 및 오류 수정</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 추론기 비교 -->
+        <div class="reasoner-comparison">
+            <h4>🧠 추론기 선택 가이드</h4>
+            <div class="reasoner-grid">
+                <div class="reasoner-card hermit">
+                    <h5>HermiT</h5>
+                    <div class="reasoner-stats">
+                        <div class="stat">표현력: ★★★★★</div>
+                        <div class="stat">속도: ★★★☆☆</div>
+                        <div class="stat">안정성: ★★★★★</div>
+                    </div>
+                    <div class="best-for">
+                        <strong>최적 용도:</strong> 복잡한 온톨로지, 연구 프로젝트
+                    </div>
+                </div>
+                
+                <div class="reasoner-card pellet">
+                    <h5>Pellet</h5>
+                    <div class="reasoner-stats">
+                        <div class="stat">표현력: ★★★★☆</div>
+                        <div class="stat">속도: ★★★★☆</div>
+                        <div class="stat">안정성: ★★★★☆</div>
+                    </div>
+                    <div class="best-for">
+                        <strong>최적 용도:</strong> 균형잡힌 성능, 상용 프로젝트
+                    </div>
+                </div>
+                
+                <div class="reasoner-card elk">
+                    <h5>ELK</h5>
+                    <div class="reasoner-stats">
+                        <div class="stat">표현력: ★★★☆☆</div>
+                        <div class="stat">속도: ★★★★★</div>
+                        <div class="stat">안정성: ★★★★★</div>
+                    </div>
+                    <div class="best-for">
+                        <strong>최적 용도:</strong> 대규모 분류, OWL EL 프로파일
+                    </div>
+                </div>
+                
+                <div class="reasoner-card konclude">
+                    <h5>Konclude</h5>
+                    <div class="reasoner-stats">
+                        <div class="stat">표현력: ★★★★☆</div>
+                        <div class="stat">속도: ★★★★★</div>
+                        <div class="stat">안정성: ★★★★☆</div>
+                    </div>
+                    <div class="best-for">
+                        <strong>최적 용도:</strong> 고성능 필요, 병렬 처리
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 실전 프로젝트 -->		
+    <div class="final-project">
+        <h3>🚀 실전 프로젝트: 스마트 시티 온톨로지</h3>
+        <div class="project-description">
+            <p>도시 관리 시스템을 위한 완전한 OWL 온톨로지를 설계해봅시다. 
+            교통, 환경, 안전, 에너지를 통합 관리하는 지능형 시스템의 기반이 됩니다.</p>
+        </div>
+        
+        <div class="project-requirements">
+            <h4>📋 프로젝트 요구사항</h4>
+            <div class="requirements-grid">
+                <div class="req-category">
+                    <h5>🚦 교통 도메인</h5>
+                    <ul>
+                        <li>차량 유형별 분류 (승용차, 버스, 트럭)</li>
+                        <li>교통 신호와 도로 네트워크</li>
+                        <li>교통량 기반 신호 최적화</li>
+                    </ul>
+                </div>
+                <div class="req-category">
+                    <h5>🌱 환경 도메인</h5>
+                    <ul>
+                        <li>대기질 센서와 측정값</li>
+                        <li>소음 수준과 규제 기준</li>
+                        <li>녹지 공간과 생태계</li>
+                    </ul>
+                </div>
+                <div class="req-category">
+                    <h5>🏢 건물 도메인</h5>
+                    <ul>
+                        <li>건물 유형과 용도별 분류</li>
+                        <li>에너지 효율성 등급</li>
+                        <li>스마트 미터와 IoT 센서</li>
+                    </ul>
+                </div>
+                <div class="req-category">
+                    <h5>👮 안전 도메인</h5>
+                    <ul>
+                        <li>CCTV와 보안 시설</li>
+                        <li>응급 상황과 대응 프로토콜</li>
+                        <li>재해 위험도와 대피소</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="project-implementation">
+            <h4>💻 구현 단계</h4>
+            <div class="implementation-steps">
+                <div class="impl-step">
+                    <h5>1단계: 기본 클래스 계층</h5>
+                    <pre class="code-block">
+Class: SmartCityEntity
+  SubClassOf: owl:Thing
+
+Class: PhysicalEntity  
+  SubClassOf: SmartCityEntity
+
+Class: DigitalEntity
+  SubClassOf: SmartCityEntity
+
+Class: Vehicle
+  SubClassOf: PhysicalEntity
+  
+Class: Sensor
+  SubClassOf: DigitalEntity
+
+Class: Building  
+  SubClassOf: PhysicalEntity
+                    </pre>
+                </div>
+                
+                <div class="impl-step">
+                    <h5>2단계: 속성과 제약사항</h5>
+                    <pre class="code-block">
+ObjectProperty: locatedAt
+  Domain: PhysicalEntity
+  Range: Location
+  Characteristics: Functional
+
+ObjectProperty: monitors
+  Domain: Sensor  
+  Range: PhysicalEntity
+
+DatatypeProperty: hasCapacity
+  Domain: Vehicle
+  Range: xsd:int[>= 1]
+  Characteristics: Functional
+
+Class: Bus
+  SubClassOf: Vehicle and (hasCapacity min 20 xsd:int)
+                    </pre>
+                </div>
+                
+                <div class="impl-step">
+                    <h5>3단계: 복합 규칙</h5>
+                    <pre class="code-block">
+Class: HighTrafficArea
+  EquivalentTo: Location and (hasTrafficDensity some xsd:int[>= 1000])
+
+Class: EmergencyVehicle  
+  SubClassOf: Vehicle and (hasPriority value High)
+
+Class: GreenBuilding
+  EquivalentTo: Building and (hasEnergyRating some xsd:string["A", "A+", "A++"])
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 실습 연동 -->
+<div class="practice-integration">
+    <h3><i class="fas fa-code"></i> 직접 실습해보기</h3>
+    <p>지금까지 배운 OWL 개념들을 RDF 에디터에서 직접 구현해보세요!</p>
+    <div class="practice-links">
+        <a href="/rdf-editor" target="_blank" class="practice-btn primary">
+            RDF 비주얼 에디터 →
+        </a>
+        <a href="/sparql-playground" target="_blank" class="practice-btn secondary">
+            SPARQL 쿼리 실습 →
+        </a>
+    </div>
+    <div class="practice-tips">
+        <h4>💡 실습 팁</h4>
+        <ul>
+            <li>스마트 시티 온톨로지를 단계별로 구축해보세요</li>
+            <li>카디널리티 제약을 활용해 현실적인 규칙을 만들어보세요</li>
+            <li>속성 특성을 설정하고 추론 결과를 확인하세요</li>
+            <li>SPARQL로 복잡한 질의를 작성해보세요</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 핵심 정리 -->
+<div class="summary-comprehensive">
+    <h2>💡 OWL 완전 정복 요약</h2>
+    
+    <div class="summary-sections">
+        <div class="summary-card theoretical">
+            <h3>이론적 기반</h3>
+            <ul>
+                <li><strong>Description Logic:</strong> 수학적 정확성 보장</li>
+                <li><strong>열린 세계 가정:</strong> 정보 부족 ≠ 거짓</li>
+                <li><strong>단조 논리:</strong> 정보 추가만 가능</li>
+                <li><strong>표현력 vs 성능:</strong> 트레이드오프 이해</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card practical">
+            <h3>실무 적용</h3>
+            <ul>
+                <li><strong>OWL 2 DL:</strong> 95% 프로젝트의 선택</li>
+                <li><strong>클래스 연산:</strong> 교집합 > 합집합 > 여집합</li>
+                <li><strong>속성 특성:</strong> 신중한 선택과 성능 고려</li>
+                <li><strong>카디널리티:</strong> 비즈니스 규칙의 정확한 표현</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card tools">
+            <h3>도구와 기술</h3>
+            <ul>
+                <li><strong>Protégé:</strong> 산업 표준 온톨로지 에디터</li>
+                <li><strong>추론기:</strong> HermiT (연구), Pellet (상용)</li>
+                <li><strong>직렬화:</strong> Turtle (개발), RDF/XML (교환)</li>
+                <li><strong>API:</strong> OWL API (Java), Owlready2 (Python)</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card future">
+            <h3>미래 전망</h3>
+            <ul>
+                <li><strong>Neuro-Symbolic AI:</strong> LLM과의 융합</li>
+                <li><strong>지식 그래프:</strong> 기업 데이터 통합</li>
+                <li><strong>IoT와 스마트 시티:</strong> 대규모 온톨로지</li>
+                <li><strong>의료와 바이오:</strong> 정밀 의학의 기반</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 다음 장 예고 -->
+<div class="next-chapter-preview">
+    <h3>다음 장에서는...</h3>
+    <p>OWL로 설계한 온톨로지를 실제로 활용하는 방법을 배웁니다. 
+    <strong>SPARQL</strong>을 이용한 지능적 질의와 추론 기반 지식 발견을 마스터하겠습니다.</p>
+    <button class="next-btn-enhanced" onclick="OntologyBook.loadChapter('chapter07')">
+        <span class="btn-text">Chapter 7: SPARQL 마스터하기</span>
+        <span class="btn-icon">🚀</span>
+    </button>
+</div>
+        </div>
+        
+        <div class="sublang-card owl-full">
+            <h3>OWL Full</h3>
+            <div class="sublang-features">
+                <p><strong>특징:</strong></p>
+                <ul>
+                    <li>RDF와 완전 호환</li>
+                    <li>최대 표현력</li>
+                    <li>결정불가능 (추론 보장 없음)</li>
+                    <li>메타모델링 가능</li>
+                </ul>
+                <p><strong>적합한 경우:</strong></p>
+                <ul>
+                    <li>RDF 호환성이 중요</li>
+                    <li>메타레벨 추론 필요</li>
+                    <li>추론 완전성 불필요</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 6.3 -->
+<section class="content-section">
+    <h2>6.3 OWL 클래스 표현</h2>
+    
+    <p>OWL은 RDFS보다 훨씬 풍부한 클래스 표현 방법을 제공합니다.</p>
+    
+    <h3>클래스 연산</h3>
+    <div class="class-operations">
+        <div class="operation-card">
+            <h4>교집합 (Intersection)</h4>
+            <div class="operation-syntax">
+                <pre>:Parent owl:intersectionOf (:Person :hasChild some owl:Thing)</pre>
+            </div>
+            <div class="operation-example">
+                <p><strong>예시:</strong> 부모 = 사람 AND 자녀가 있는 개체</p>
+                <div class="example-code">
+                    <pre>
+:VegetarianPizza owl:equivalentClass [
+    owl:intersectionOf (
+        :Pizza
+        [ a owl:Restriction ;
+          owl:onProperty :hasTopping ;
+          owl:allValuesFrom :VegetableTopping ]
+    )
+] .
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="operation-card">
+            <h4>합집합 (Union)</h4>
+            <div class="operation-syntax">
+                <pre>:Pet owl:unionOf (:Cat :Dog :Bird)</pre>
+            </div>
+            <div class="operation-example">
+                <p><strong>예시:</strong> 애완동물 = 고양이 OR 개 OR 새</p>
+                <div class="example-code">
+                    <pre>
+:HotDrink owl:equivalentClass [
+    owl:unionOf (:Coffee :Tea :HotChocolate)
+] .
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="operation-card">
+            <h4>여집합 (Complement)</h4>
+            <div class="operation-syntax">
+                <pre>:NonVegetarian owl:complementOf :Vegetarian</pre>
+            </div>
+            <div class="operation-example">
+                <p><strong>예시:</strong> 비채식주의자 = NOT 채식주의자</p>
+                <div class="example-code">
+                    <pre>
+:Minor owl:equivalentClass [
+    owl:complementOf :Adult
+] .
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h3>열거형 클래스</h3>
+    <div class="enumeration-example">
+        <pre class="code-block">
+:DayOfWeek owl:equivalentClass [
+    owl:oneOf (:Monday :Tuesday :Wednesday :Thursday 
+               :Friday :Saturday :Sunday)
+] .
+
+:PrimaryColor owl:equivalentClass [
+    owl:oneOf (:Red :Blue :Yellow)
+] .
+        </pre>
+    </div>
+</section>
+
+<!-- 섹션 6.4 -->
+<section class="content-section">
+    <h2>6.4 OWL 속성 특성</h2>
+    
+    <p>OWL은 속성에 다양한 특성을 부여할 수 있어 더 정확한 모델링이 가능합니다.</p>
+    
+    <h3>속성 특성 종류</h3>
+    <div class="property-characteristics">
+        <div class="characteristic-card">
+            <h4>함수적 속성 (Functional)</h4>
+            <p class="characteristic-desc">하나의 주어에 대해 최대 하나의 값만 가능</p>
+            <div class="characteristic-example">
+                <pre>:hasBirthDate a owl:FunctionalProperty .</pre>
+                <p class="example-note">→ 한 사람은 하나의 생년월일만 가질 수 있음</p>
+            </div>
+        </div>
+        
+        <div class="characteristic-card">
+            <h4>역함수적 속성 (InverseFunctional)</h4>
+            <p class="characteristic-desc">하나의 값에 대해 최대 하나의 주어만 가능</p>
+            <div class="characteristic-example">
+                <pre>:hasSSN a owl:InverseFunctionalProperty .</pre>
+                <p class="example-note">→ 주민번호는 한 사람만 가질 수 있음</p>
+            </div>
+        </div>
+        
+        <div class="characteristic-card">
+            <h4>대칭적 속성 (Symmetric)</h4>
+            <p class="characteristic-desc">A→B이면 B→A도 성립</p>
+            <div class="characteristic-example">
+                <pre>:marriedTo a owl:SymmetricProperty .</pre>
+                <p class="example-note">→ A가 B와 결혼했으면 B도 A와 결혼한 것</p>
+            </div>
+        </div>
+        
+        <div class="characteristic-card">
+            <h4>이행적 속성 (Transitive)</h4>
+            <p class="characteristic-desc">A→B이고 B→C이면 A→C도 성립</p>
+            <div class="characteristic-example">
+                <pre>:ancestorOf a owl:TransitiveProperty .</pre>
+                <p class="example-note">→ A가 B의 조상이고 B가 C의 조상이면 A는 C의 조상</p>
+            </div>
+        </div>
+        
+        <div class="characteristic-card">
+            <h4>비대칭적 속성 (Asymmetric)</h4>
+            <p class="characteristic-desc">A→B이면 B→A는 불가능</p>
+            <div class="characteristic-example">
+                <pre>:parentOf a owl:AsymmetricProperty .</pre>
+                <p class="example-note">→ A가 B의 부모면 B는 A의 부모일 수 없음</p>
+            </div>
+        </div>
+        
+        <div class="characteristic-card">
+            <h4>반사적 속성 (Reflexive)</h4>
+            <p class="characteristic-desc">모든 개체는 자기 자신과 관계를 가짐</p>
+            <div class="characteristic-example">
+                <pre>:knows a owl:ReflexiveProperty .</pre>
+                <p class="example-note">→ 모든 사람은 자기 자신을 앎</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 6.5 -->
+<section class="content-section">
+    <h2>6.5 카디널리티 제약</h2>
+    
+    <p>OWL은 속성 값의 개수를 정확하게 제한할 수 있습니다.</p>
+    
+    <h3>카디널리티 종류</h3>
+    <div class="cardinality-types">
+        <div class="cardinality-card">
+            <h4>최소 카디널리티</h4>
+            <pre class="code-block">
+:Parent owl:equivalentClass [
+    a owl:Restriction ;
+    owl:onProperty :hasChild ;
+    owl:minCardinality 1
+] .
+            </pre>
+            <p>부모는 최소 1명의 자녀를 가짐</p>
+        </div>
+        
+        <div class="cardinality-card">
+            <h4>최대 카디널리티</h4>
+            <pre class="code-block">
+:Person rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasBirthPlace ;
+    owl:maxCardinality 1
+] .
+            </pre>
+            <p>사람은 최대 1개의 출생지를 가짐</p>
+        </div>
+        
+        <div class="cardinality-card">
+            <h4>정확한 카디널리티</h4>
+            <pre class="code-block">
+:Human rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasParent ;
+    owl:cardinality 2
+] .
+            </pre>
+            <p>인간은 정확히 2명의 부모를 가짐</p>
+        </div>
+        
+        <div class="cardinality-card">
+            <h4>한정된 카디널리티</h4>
+            <pre class="code-block">
+:BasketballTeam rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty :hasPlayer ;
+    owl:minQualifiedCardinality 5 ;
+    owl:onClass :BasketballPlayer
+] .
+            </pre>
+            <p>농구팀은 최소 5명의 농구선수를 가짐</p>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 6.6 -->
+<section class="content-section">
+    <h2>6.6 개체 관계</h2>
+    
+    <p>OWL은 개체 간의 동일성과 상이성을 명시적으로 표현할 수 있습니다.</p>
+    
+    <h3>동일성과 상이성</h3>
+    <div class="individual-relations">
+        <div class="relation-card">
+            <h4>owl:sameAs</h4>
+            <p>두 개체가 동일함을 표현</p>
+            <pre class="code-block">
+:MorningStar owl:sameAs :EveningStar .
+:금성 owl:sameAs :Venus .
+:MarkTwain owl:sameAs :SamuelClemens .
+            </pre>
+        </div>
+        
+        <div class="relation-card">
+            <h4>owl:differentFrom</h4>
+            <p>두 개체가 서로 다름을 표현</p>
+            <pre class="code-block">
+:John owl:differentFrom :Jane .
+:Cat owl:differentFrom :Dog .
+            </pre>
+        </div>
+        
+        <div class="relation-card">
+            <h4>owl:AllDifferent</h4>
+            <p>여러 개체가 모두 서로 다름을 표현</p>
+            <pre class="code-block">
+[] a owl:AllDifferent ;
+   owl:distinctMembers (:Red :Green :Blue :Yellow) .
+            </pre>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 6.7 -->
+<section class="content-section">
+    <h2>6.7 실전 OWL 온톨로지</h2>
+    
+    <h3>피자 온톨로지 예제</h3>
+    <div class="practical-example">
+        <pre class="code-block">
+@prefix : &lt;http://example.org/pizza#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+
+# 온톨로지 선언
+: a owl:Ontology ;
+    rdfs:label "피자 온톨로지"@ko .
+
+# 클래스 정의
+:Pizza a owl:Class ;
+    rdfs:label "피자"@ko .
+
+:PizzaBase a owl:Class ;
+    rdfs:label "피자 도우"@ko .
+
+:PizzaTopping a owl:Class ;
+    rdfs:label "피자 토핑"@ko .
+
+:MeatTopping rdfs:subClassOf :PizzaTopping ;
+    owl:disjointWith :VegetableTopping ;
+    rdfs:label "고기 토핑"@ko .
+
+:VegetableTopping rdfs:subClassOf :PizzaTopping ;
+    rdfs:label "채소 토핑"@ko .
+
+# 속성 정의
+:hasBase a owl:ObjectProperty ;
+    rdfs:domain :Pizza ;
+    rdfs:range :PizzaBase ;
+    a owl:FunctionalProperty ;
+    rdfs:label "도우를 가짐"@ko .
+
+:hasTopping a owl:ObjectProperty ;
+    rdfs:domain :Pizza ;
+    rdfs:range :PizzaTopping ;
+    rdfs:label "토핑을 가짐"@ko .
+
+# 피자 종류 정의
+:MargheritaPizza owl:equivalentClass [
+    owl:intersectionOf (
+        :Pizza
+        [ a owl:Restriction ;
+          owl:onProperty :hasTopping ;
+          owl:someValuesFrom :TomatoTopping ]
+        [ a owl:Restriction ;
+          owl:onProperty :hasTopping ;
+          owl:someValuesFrom :MozzarellaTopping ]
+        [ a owl:Restriction ;
+          owl:onProperty :hasTopping ;
+          owl:allValuesFrom [
+              owl:unionOf (:TomatoTopping :MozzarellaTopping :BasilTopping)
+          ]]
+    )
+] .
+
+:VegetarianPizza owl:equivalentClass [
+    owl:intersectionOf (
+        :Pizza
+        [ a owl:Restriction ;
+          owl:onProperty :hasTopping ;
+          owl:allValuesFrom :VegetableTopping ]
+    )
+] .
+
+# 개체 정의
+:ThinCrust a :PizzaBase ;
+    rdfs:label "씬 크러스트"@ko .
+
+:ThickCrust a :PizzaBase ;
+    rdfs:label "두꺼운 크러스트"@ko .
+
+# 모든 피자 도우는 서로 다름
+[] a owl:AllDifferent ;
+   owl:distinctMembers (:ThinCrust :ThickCrust) .
+        </pre>
+    </div>
+</section>
+
+<!-- 섹션 6.8 -->
+<section class="content-section">
+    <h2>6.8 OWL 2 프로파일</h2>
+    
+    <p>OWL 2는 특정 용도에 최적화된 세 가지 프로파일을 제공합니다.</p>
+    
+    <div class="owl2-profiles">
+        <div class="profile-card">
+            <h4>OWL 2 EL</h4>
+            <p class="profile-purpose">대규모 온톨로지용</p>
+            <ul>
+                <li>다항 시간 추론</li>
+                <li>의료 온톨로지에 적합</li>
+                <li>SNOMED CT가 사용</li>
+            </ul>
+        </div>
+        
+        <div class="profile-card">
+            <h4>OWL 2 QL</h4>
+            <p class="profile-purpose">데이터베이스 연동용</p>
+            <ul>
+                <li>SPARQL 질의 최적화</li>
+                <li>대용량 데이터 처리</li>
+                <li>관계형 DB 매핑</li>
+            </ul>
+        </div>
+        
+        <div class="profile-card">
+            <h4>OWL 2 RL</h4>
+            <p class="profile-purpose">규칙 기반 추론용</p>
+            <ul>
+                <li>규칙 엔진 활용</li>
+                <li>빠른 추론 속도</li>
+                <li>비즈니스 규칙 적용</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- 실습 과제 -->
+<div class="practice-section">
+    <h2>🎯 실습 과제</h2>
+    
+    <div class="practice-task">
+        <h3>과제: 가족 관계 OWL 온톨로지</h3>
+        <p>다음 요구사항을 만족하는 가족 온톨로지를 작성하세요:</p>
+        <ol>
+            <li>Person 클래스와 Male, Female 서브클래스 (상호 배타적)</li>
+            <li>hasParent, hasChild 속성 (서로 역관계)</li>
+            <li>hasSibling 속성 (대칭적)</li>
+            <li>hasAncestor 속성 (이행적)</li>
+            <li>카디널리티 제약: 모든 사람은 정확히 2명의 부모를 가짐</li>
+        </ol>
+    </div>
+</div>
+
+<!-- 핵심 정리 -->
+<div class="summary-section">
+    <h2>💡 핵심 정리</h2>
+    
+    <div class="summary-grid">
+        <div class="summary-card">
+            <h3>OWL 클래스 표현</h3>
+            <ul>
+                <li>교집합, 합집합, 여집합</li>
+                <li>열거형 클래스</li>
+                <li>속성 제한 클래스</li>
+                <li>익명 클래스</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card">
+            <h3>OWL 속성 특성</h3>
+            <ul>
+                <li>함수적, 역함수적</li>
+                <li>대칭적, 비대칭적</li>
+                <li>이행적, 반사적</li>
+                <li>역관계 속성</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card">
+            <h3>고급 기능</h3>
+            <ul>
+                <li>카디널리티 제약</li>
+                <li>개체 동일성/상이성</li>
+                <li>속성 체인</li>
+                <li>데이터타입 제약</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 다음 장 예고 -->
+<div class="next-chapter">
+    <h3>다음 장에서는...</h3>
+    <p>온톨로지 질의 언어인 SPARQL에 대해 학습합니다. RDF 데이터를 검색하고 조작하는 방법을 알아봅니다.</p>
+    <button class="next-btn" onclick="OntologyBook.loadChapter('chapter07')">
+        다음 장으로 <i class="fas fa-arrow-right"></i>
+    </button>
+</div>
+
+<!-- 챕터 전용 스타일 -->
+<style>
+/* 진화 타임라인 */
+.evolution-timeline {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.timeline-item {
+    flex: 1;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e0e7ff;
+    position: relative;
+}
+
+.timeline-year {
+    background: #4f46e5;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* 서브언어 카드 */
+.sublanguages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.sublang-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.sublang-card:hover {
+    transform: translateY(-4px);
+}
+
+.owl-lite {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid #fbbf24;
+}
+
+.owl-dl {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border: 2px solid #3b82f6;
+}
+
+.owl-full {
+    background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+    border: 2px solid #a855f7;
+}
+
+.sublang-card h3 {
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+/* 클래스 연산 */
+.class-operations {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.operation-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+}
+
+.operation-card h4 {
+    color: #4f46e5;
+    margin-bottom: 1rem;
+}
+
+.operation-syntax {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.operation-syntax pre {
+    margin: 0;
+    color: #1e293b;
+    font-family: 'Courier New', monospace;
+}
+
+.operation-example {
+    background: #f0f9ff;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.example-code pre {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-top: 0.5rem;
+}
+
+/* 속성 특성 */
+.property-characteristics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.characteristic-card {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #86efac;
+}
+
+.characteristic-card h4 {
+    color: #166534;
+    margin-bottom: 0.5rem;
+}
+
+.characteristic-desc {
+    color: #15803d;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.characteristic-example {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.characteristic-example pre {
+    margin: 0;
+    color: #1e293b;
+    font-family: 'Courier New', monospace;
+}
+
+.example-note {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* 카디널리티 */
+.cardinality-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.cardinality-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #fbbf24;
+}
+
+.cardinality-card h4 {
+    color: #92400e;
+    margin-bottom: 1rem;
+}
+
+.cardinality-card p {
+    color: #78350f;
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* 개체 관계 */
+.individual-relations {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.relation-card {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.relation-card h4 {
+    color: #991b1b;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 0.5rem;
+}
+
+/* OWL 2 프로파일 */
+.owl2-profiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.profile-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 3px solid #6366f1;
+}
+
+.profile-card h4 {
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+}
+
+.profile-purpose {
+    color: #6366f1;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+/* 코드 블록 */
+.code-block {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 1rem 0;
+}
+
+/* 실전 예제 */
+.practical-example {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .evolution-timeline {
+        flex-direction: column;
+    }
+    
+    .sublanguages,
+    .property-characteristics,
+    .cardinality-types,
+    .owl2-profiles {
+        grid-template-columns: 1fr;
+    }
+}
+</style>

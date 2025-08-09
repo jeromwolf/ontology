@@ -1,0 +1,137 @@
+'use client'
+
+import { useState } from 'react'
+import { Copy, Download, Play, Code } from 'lucide-react'
+
+interface CodeEditorProps {
+  code: string
+  language: string
+  title?: string
+  filename?: string
+  showLineNumbers?: boolean
+  editable?: boolean
+  maxHeight?: string
+}
+
+export default function CodeEditor({ 
+  code, 
+  language, 
+  title, 
+  filename, 
+  showLineNumbers = true, 
+  editable = false,
+  maxHeight = "400px"
+}: CodeEditorProps) {
+  const [copied, setCopied] = useState(false)
+  const [editableCode, setEditableCode] = useState(code)
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(editableCode)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
+  }
+
+  const downloadCode = () => {
+    const element = document.createElement('a')
+    const file = new Blob([editableCode], { type: 'text/plain' })
+    element.href = URL.createObjectURL(file)
+    element.download = filename || `code.${language}`
+    document.body.appendChild(element)
+    element.click()
+    document.body.removeChild(element)
+  }
+
+  const lines = editableCode.split('\n')
+
+  return (
+    <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 shadow-lg">
+      {/* Header */}
+      <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
+        <div className="flex items-center gap-3">
+          <div className="flex gap-2">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          <div className="flex items-center gap-2 text-gray-300">
+            <Code className="w-4 h-4" />
+            <span className="text-sm font-mono">
+              {title || filename || `code.${language}`}
+            </span>
+          </div>
+          <div className="px-2 py-1 bg-gray-700 rounded text-xs text-gray-400 font-mono">
+            {language}
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <button
+            onClick={copyToClipboard}
+            className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors"
+            title="Copy code"
+          >
+            <Copy className="w-4 h-4" />
+          </button>
+          <button
+            onClick={downloadCode}
+            className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors"
+            title="Download code"
+          >
+            <Download className="w-4 h-4" />
+          </button>
+          {language === 'python' && (
+            <button
+              className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors"
+              title="Run code (demo)"
+            >
+              <Play className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Code content */}
+      <div 
+        className="relative overflow-auto"
+        style={{ maxHeight }}
+      >
+        {editable ? (
+          <textarea
+            value={editableCode}
+            onChange={(e) => setEditableCode(e.target.value)}
+            className="w-full h-full p-4 bg-transparent text-gray-100 font-mono text-sm leading-6 resize-none focus:outline-none"
+            style={{ minHeight: '200px' }}
+          />
+        ) : (
+          <div className="flex">
+            {showLineNumbers && (
+              <div className="select-none bg-gray-800 px-4 py-4 text-gray-500 font-mono text-sm leading-6 border-r border-gray-700">
+                {lines.map((_, index) => (
+                  <div key={index + 1} className="text-right">
+                    {index + 1}
+                  </div>
+                ))}
+              </div>
+            )}
+            <pre className="flex-1 p-4 text-gray-100 font-mono text-sm leading-6 overflow-x-auto">
+              <code className={`language-${language}`}>
+                {editableCode}
+              </code>
+            </pre>
+          </div>
+        )}
+      </div>
+
+      {/* Footer with copy notification */}
+      {copied && (
+        <div className="bg-green-800 px-4 py-2 text-green-100 text-sm">
+          ✓ Code copied to clipboard!
+        </div>
+      )}
+    </div>
+  )
+}

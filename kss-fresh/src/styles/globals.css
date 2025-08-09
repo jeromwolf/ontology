@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+  }
+  
+  /* Reset chapter content styles */
+  .chapter-content * {
+    all: revert;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif !important;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-kss-primary to-kss-secondary bg-clip-text text-transparent;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-r from-kss-primary to-kss-secondary;
+  }
+}
+
+/* Base chapter content styles */
+.chapter-content {
+  @apply text-base text-gray-900 dark:text-gray-100 leading-relaxed;
+  font-family: var(--font-inter), 'Noto Sans KR', system-ui, sans-serif;
+}
+
+/* Preserve original typography hierarchy */
+.chapter-content h1 {
+  @apply text-4xl md:text-5xl font-bold mb-8;
+}
+
+.chapter-content h2 {
+  @apply text-3xl font-bold mt-12 mb-6;
+}
+
+.chapter-content h3 {
+  @apply text-2xl font-semibold mt-8 mb-4;
+}
+
+.chapter-content h4 {
+  @apply text-xl font-medium mt-6 mb-3;
+}
+
+.chapter-content p {
+  @apply mb-6 leading-relaxed;
+}
+
+/* Preserve list styles */
+.chapter-content ul {
+  @apply my-6 ml-6 space-y-2;
+}
+
+.chapter-content ol {
+  @apply my-6 ml-6 space-y-2 list-decimal;
+}
+
+/* Animation classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Slide in animation */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+/* Custom animations for KSS Logo */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(10px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-10px) translateX(5px);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-float {
+  animation: float ease-in-out infinite;
+}
+
+.animate-gradient {
+  animation: gradient 3s ease infinite;
+}
+
+.bg-300\% {
+  background-size: 300% 300%;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.border-3 {
+  border-width: 3px;
+}

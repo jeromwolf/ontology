@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 11: 산업 연계</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .cycle-diagram {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            animation: scaleIn 1s ease-out 0.5s both;
+        }
+
+        .cycle-item {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            width: 200px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .cycle-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        /* 위치 지정 */
+        .cycle-item:nth-child(1) {
+            top: 0;
+            left: 0;
+            animation-delay: 0.1s;
+        }
+
+        .cycle-item:nth-child(2) {
+            top: 0;
+            right: 0;
+            animation-delay: 0.3s;
+        }
+
+        .cycle-item:nth-child(3) {
+            bottom: 0;
+            right: 0;
+            animation-delay: 0.5s;
+        }
+
+        .cycle-item:nth-child(4) {
+            bottom: 0;
+            left: 0;
+            animation-delay: 0.7s;
+        }
+
+        .item-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #3B82F6;
+            margin-bottom: 10px;
+        }
+
+        .item-desc {
+            font-size: 16px;
+            color: #CBD5E1;
+            line-height: 1.5;
+        }
+
+        /* 화살표 */
+        .arrow {
+            position: absolute;
+            font-size: 30px;
+            color: #3B82F6;
+            animation: pulse 2s infinite;
+        }
+
+        .arrow-1 {
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .arrow-2 {
+            top: 50%;
+            right: 20%;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        .arrow-3 {
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+        }
+
+        .arrow-4 {
+            top: 50%;
+            left: 20%;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+
+        .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.6;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>모빌리티 산업과의 시너지</h1>
+        
+        <div class="cycle-diagram">
+            <div class="cycle-item">
+                <div class="item-title">모빌리티 기업</div>
+                <div class="item-desc">현대차, 42dot<br>기술 & 데이터 제공</div>
+            </div>
+            
+            <div class="cycle-item">
+                <div class="item-title">KSS 플랫폼</div>
+                <div class="item-desc">교육 콘텐츠화<br>시뮬레이터 개발</div>
+            </div>
+            
+            <div class="cycle-item">
+                <div class="item-title">우수 인재 양성</div>
+                <div class="item-desc">실무 역량 보유<br>즉시 투입 가능</div>
+            </div>
+            
+            <div class="cycle-item">
+                <div class="item-title">산업 발전</div>
+                <div class="item-desc">기술 혁신 가속<br>글로벌 경쟁력</div>
+            </div>
+            
+            <!-- 화살표들 -->
+            <div class="arrow arrow-1">↓</div>
+            <div class="arrow arrow-2">↓</div>
+            <div class="arrow arrow-3">↓</div>
+            <div class="arrow arrow-4">↓</div>
+            
+            <div class="center-text">선순환<br>생태계</div>
+        </div>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-12-vision.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-12-vision.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-10-mobility-module.html';
+            }
+        });
+    </script>
+</body>
+</html>

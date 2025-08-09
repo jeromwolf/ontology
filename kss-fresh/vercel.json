@@ -1,0 +1,39 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/news-update",
+      "schedule": "*/5 8-9 * * 1-5",
+      "description": "장 시작 전후 5분마다 업데이트 (평일 8:30-9:30)"
+    },
+    {
+      "path": "/api/cron/news-update",
+      "schedule": "*/15 9-15 * * 1-5",
+      "description": "장중 15분마다 업데이트 (평일 9:30-15:30)"
+    },
+    {
+      "path": "/api/cron/news-update", 
+      "schedule": "*/5 15 * * 1-5",
+      "description": "장 마감 5분마다 업데이트 (평일 15:30-16:00)"
+    },
+    {
+      "path": "/api/cron/news-update",
+      "schedule": "0 */1 * * *",
+      "description": "장외시간 1시간마다 업데이트"
+    },
+    {
+      "path": "/api/cron/news-update",
+      "schedule": "0 */3 * * 0,6",
+      "description": "주말 3시간마다 업데이트"
+    },
+    {
+      "path": "/api/content-manager/cron/daily-check",
+      "schedule": "0 2 * * *",
+      "description": "Daily content validation and update check at 2 AM UTC"
+    },
+    {
+      "path": "/api/content-manager/cron/daily-check",
+      "schedule": "0 14 * * *",
+      "description": "Second daily check at 2 PM UTC for critical modules"
+    }
+  ]
+}

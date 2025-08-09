@@ -1,0 +1,1414 @@
+<!-- Chapter 5: RDFS - RDF 스키마 (심화 버전) -->
+
+<div class="chapter-header">
+    <h1>Chapter 5. RDFS - RDF Schema</h1>
+    <div class="chapter-subtitle">의미적 계층구조의 시작</div>
+    <div class="chapter-quote">
+        "RDFS는 데이터에 의미를 부여하고 추론을 가능하게 하는 첫 번째 단계입니다." <br>
+        <span class="quote-author">- Dan Brickley, RDFS 공동 개발자</span>
+    </div>
+</div>
+
+<div class="reading-time">
+    <i class="fas fa-clock"></i> 예상 학습 시간: 3시간 | <i class="fas fa-brain"></i> 추론 실습 포함
+</div>
+
+<!-- 사전 지식 체크 -->
+<div class="prerequisite-check card">
+    <h3><i class="fas fa-check-circle"></i> 사전 지식 확인</h3>
+    <div class="prereq-items">
+        <div class="prereq-item">
+            <input type="checkbox" id="rdfs-prereq1">
+            <label for="rdfs-prereq1">RDF 트리플 및 직렬화 형식 (Chapter 4)</label>
+        </div>
+        <div class="prereq-item">
+            <input type="checkbox" id="rdfs-prereq2">
+            <label for="rdfs-prereq2">객체지향 프로그래밍의 클래스 개념</label>
+        </div>
+        <div class="prereq-item">
+            <input type="checkbox" id="rdfs-prereq3">
+            <label for="rdfs-prereq3">논리학 기초 (도움이 됨)</label>
+        </div>
+    </div>
+</div>
+
+<!-- 학습 목표 -->
+<div class="learning-objectives card">
+    <h3><i class="fas fa-bullseye"></i> 학습 목표</h3>
+    <div class="objectives-categories">
+        <div class="objective-group">
+            <h4>📚 이륹 기초</h4>
+            <ul>
+                <li>RDFS의 철학적 배경과 시맨틱 웹에서의 역할</li>
+                <li>RDF와 RDFS의 기본 차이점과 상화 관계</li>
+                <li>클래스 계층구조와 상속의 의미</li>
+                <li>속성의 도메인, 레인지, 제약사항 완전 이해</li>
+            </ul>
+        </div>
+        <div class="objective-group">
+            <h4>🚀 실무 능력</h4>
+            <ul>
+                <li>Protégé, Apache Jena 등 도구로 RDFS 스키마 설계</li>
+                <li>RDFS 추론 엔진 활용과 결과 분석</li>
+                <li>실제 도메인의 온톨로지 모델링 및 검증</li>
+                <li>RDFS와 OWL의 연계점과 마이그레이션 전략</li>
+            </ul>
+        </div>
+        <div class="objective-group">
+            <h4>🎆 고급 활용</h4>
+            <ul>
+                <li>대규모 지식 그래프에서의 RDFS 활용 사례 분석</li>
+                <li>링크드 데이터 퍼블리싱과 RDFS 스키마 설계</li>
+                <li>AI/ML 모델과의 연계를 위한 RDFS 활용 방안</li>
+                <li>기업 데이터 통합에서의 RDFS 역할</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 학습 로드맵 -->
+<div class="learning-journey">
+    <h3><i class="fas fa-map-marked-alt"></i> 학습 여정 로드맵</h3>
+    <div class="journey-timeline">
+        <div class="journey-stage">
+            <div class="stage-number">1</div>
+            <div class="stage-content">
+                <h4>기초 토대 (40분)</h4>
+                <p>RDFS의 탄생부터 핵심 개념까지</p>
+                <ul class="stage-topics">
+                    <li>RDF의 한계와 RDFS의 등장</li>
+                    <li>클래스와 속성의 개념</li>
+                    <li>계층구조와 상속</li>
+                </ul>
+            </div>
+        </div>
+        <div class="journey-arrow">⇨</div>
+        <div class="journey-stage">
+            <div class="stage-number">2</div>
+            <div class="stage-content">
+                <h4>실습 마스터 (80분)</h4>
+                <p>도구를 활용한 실제 RDFS 스키마 설계</p>
+                <ul class="stage-topics">
+                    <li>Protégé로 클래스 계층 설계</li>
+                    <li>속성 정의와 제약사항 설정</li>
+                    <li>추론 엔진으로 결과 검증</li>
+                </ul>
+            </div>
+        </div>
+        <div class="journey-arrow">⇨</div>
+        <div class="journey-stage">
+            <div class="stage-number">3</div>
+            <div class="stage-content">
+                <h4>프로젝트 (60분)</h4>
+                <p>실제 도메인의 RDFS 온톨로지 구축</p>
+                <ul class="stage-topics">
+                    <li>대학 과정 체계 모델링</li>
+                    <li>추론 기반 지식 발견</li>
+                    <li>다음 단계 OWL 준비</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 섹션 5.1 -->
+<section class="content-section">
+    <h2>5.1 RDFS의 탄생과 철학</h2>
+    
+    <!-- 들어가며 -->
+    <div class="intro-narrative">
+        <p>1999년, 팀 버너스 리의 시맨틱 웹 비전이 구체화되면서 한 가지 중요한 문제가 대두되었습니다. 
+        RDF로 데이터를 표현할 수는 있지만, 그 데이터가 <em>무엇을 의미하는지</em> 컴퓨터가 이해할 수 있는 방법이 필요했습니다.</p>
+        
+        <div class="problem-scenario">
+            <h4>🤔 문제 상황</h4>
+            <div class="scenario-example">
+                <pre class="code-example">
+# 이런 RDF 데이터가 있다면...
+:홍길동 :이름 "홍길동" .
+:홍길동 :나이 30 .
+:김철수 :이름 "김철수" .  
+:김철수 :나이 25 .
+                </pre>
+                <p>컴퓨터는 다음을 알 수 없습니다:</p>
+                <ul>
+                    <li>홍길동과 김철수가 같은 "종류"의 것인가?</li>
+                    <li>:이름 속성은 어떤 종류의 객체에만 사용되는가?</li>
+                    <li>:나이는 항상 숫자여야 하는가?</li>
+                    <li>비슷한 개념들 간의 관계는 무엇인가?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="concept-box enhanced">
+        <h4><i class="fas fa-lightbulb"></i> RDFS의 핵심 철학</h4>
+        <div class="philosophy-grid">
+            <div class="philosophy-item">
+                <h5>🏗️ 구조적 의미</h5>
+                <p>데이터에 계층구조와 분류 체계를 부여</p>
+            </div>
+            <div class="philosophy-item">
+                <h5>🔗 의미적 연결</h5>
+                <p>개념들 간의 관계를 명시적으로 표현</p>
+            </div>
+            <div class="philosophy-item">
+                <h5>🤖 기계 추론</h5>
+                <p>컴퓨터가 새로운 지식을 도출할 수 있게 함</p>
+            </div>
+            <div class="philosophy-item">
+                <h5>🌐 상호운용성</h5>
+                <p>서로 다른 시스템 간 의미 공유 가능</p>
+            </div>
+        </div>
+    </div>
+    
+    <h3>RDFS의 해답: 의미적 레이어 추가</h3>
+    <div class="solution-visualization">
+        <div class="layer-stack">
+            <div class="layer rdfs-layer">
+                <h4>RDFS Layer</h4>
+                <p>클래스, 속성, 계층구조, 제약사항</p>
+                <div class="layer-examples">
+                    <span>rdfs:Class</span>
+                    <span>rdfs:subClassOf</span>
+                    <span>rdfs:domain</span>
+                    <span>rdfs:range</span>
+                </div>
+            </div>
+            <div class="layer-arrow">↓</div>
+            <div class="layer rdf-layer">
+                <h4>RDF Layer</h4>
+                <p>트리플, URI, 리터럴</p>
+                <div class="layer-examples">
+                    <span>Subject</span>
+                    <span>Predicate</span>
+                    <span>Object</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h3>RDF vs RDFS 진화적 비교</h3>
+    <div class="comparison-enhanced">
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>RDF</th>
+                        <th>RDFS</th>
+                        <th>실제 영향</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>목적</td>
+                        <td>데이터 표현</td>
+                        <td>스키마 정의</td>
+                        <td>구조화된 지식 체계 구축</td>
+                    </tr>
+                    <tr>
+                        <td>주요 기능</td>
+                        <td>트리플 구조</td>
+                        <td>클래스/속성 계층</td>
+                        <td>의미적 관계 표현</td>
+                    </tr>
+                    <tr>
+                        <td>표현 대상</td>
+                        <td>인스턴스 데이터</td>
+                        <td>메타데이터</td>
+                        <td>도메인 지식 온톨로지</td>
+                    </tr>
+                    <tr>
+                        <td>추론 능력</td>
+                        <td>제한적</td>
+                        <td>클래스/속성 추론</td>
+                        <td>자동 지식 발견</td>
+                    </tr>
+                    <tr>
+                        <td>상호운용성</td>
+                        <td>기본적</td>
+                        <td>의미 기반</td>
+                        <td>시스템 간 지능적 통합</td>
+                    </tr>
+                    <tr>
+                        <td>검증 가능성</td>
+                        <td>문법적</td>
+                        <td>의미적</td>
+                        <td>논리적 일관성 검사</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="evolution-timeline">
+            <h4>RDFS 진화의 핵심 모멘트</h4>
+            <div class="timeline-events">
+                <div class="timeline-event">
+                    <div class="event-year">1999</div>
+                    <div class="event-content">
+                        <h5>RDF 1.0 발표</h5>
+                        <p>기본 트리플 구조 확립</p>
+                    </div>
+                </div>
+                <div class="timeline-arrow">→</div>
+                <div class="timeline-event">
+                    <div class="event-year">2000</div>
+                    <div class="event-content">
+                        <h5>RDFS 등장</h5>
+                        <p>클래스와 속성 개념 도입</p>
+                    </div>
+                </div>
+                <div class="timeline-arrow">→</div>
+                <div class="timeline-event">
+                    <div class="event-year">2004</div>
+                    <div class="event-content">
+                        <h5>OWL 1.0</h5>
+                        <p>RDFS 한계 극복</p>
+                    </div>
+                </div>
+                <div class="timeline-arrow">→</div>
+                <div class="timeline-event">
+                    <div class="event-year">현재</div>
+                    <div class="event-content">
+                        <h5>지식 그래프 시대</h5>
+                        <p>Google, Facebook 등 활용</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 실전 사례: RDFS의 힘 -->
+    <div class="real-world-impact">
+        <h4>🌍 실전에서 보는 RDFS의 힘</h4>
+        <div class="impact-examples">
+            <div class="impact-card">
+                <h5>🔍 구글 검색</h5>
+                <p>schema.org 마크업으로 풍부한 검색 결과 제공</p>
+                <div class="impact-detail">
+                    검색 결과에 별점, 가격, 이벤트 날짜 등이 구조화되어 표시
+                </div>
+            </div>
+            <div class="impact-card">
+                <h5>🧬 생명과학</h5>
+                <p>Gene Ontology로 유전자 기능 분류</p>
+                <div class="impact-detail">
+                    수백만 개의 유전자를 계층적으로 분류하여 연구 가속화
+                </div>
+            </div>
+            <div class="impact-card">
+                <h5>📚 도서관 과학</h5>
+                <p>FOAF로 소셜 네트워크 구조화</p>
+                <div class="impact-detail">
+                    사람 간의 관계를 RDF로 표현하여 추천 시스템 구축
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 5.2 -->
+<section class="content-section">
+    <h2>5.2 RDFS 핵심 클래스</h2>
+    
+    <p>RDFS는 RDF 어휘를 구조화하기 위한 기본 클래스들을 제공합니다.</p>
+    
+    <h3>주요 RDFS 클래스</h3>
+    <div class="rdfs-classes">
+        <div class="rdfs-class-card">
+            <h4>rdfs:Resource</h4>
+            <p class="class-description">모든 RDF 자원의 최상위 클래스</p>
+            <div class="class-details">
+                <p><strong>특징:</strong></p>
+                <ul>
+                    <li>모든 것이 rdfs:Resource의 인스턴스</li>
+                    <li>RDF 세계의 Thing 개념</li>
+                    <li>명시하지 않아도 암묵적으로 적용</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="rdfs-class-card">
+            <h4>rdfs:Class</h4>
+            <p class="class-description">모든 RDF 클래스의 클래스</p>
+            <div class="class-details">
+                <p><strong>특징:</strong></p>
+                <ul>
+                    <li>클래스를 정의할 때 사용</li>
+                    <li>메타클래스 개념</li>
+                    <li>rdf:type으로 인스턴스화</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="rdfs-class-card">
+            <h4>rdfs:Literal</h4>
+            <p class="class-description">리터럴 값의 클래스</p>
+            <div class="class-details">
+                <p><strong>특징:</strong></p>
+                <ul>
+                    <li>문자열, 숫자 등의 값</li>
+                    <li>데이터타입 리터럴 포함</li>
+                    <li>언어 태그 리터럴 포함</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="rdfs-class-card">
+            <h4>rdfs:Datatype</h4>
+            <p class="class-description">데이터타입의 클래스</p>
+            <div class="class-details">
+                <p><strong>특징:</strong></p>
+                <ul>
+                    <li>xsd:integer, xsd:string 등</li>
+                    <li>커스텀 데이터타입 정의 가능</li>
+                    <li>rdfs:Literal의 서브클래스</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <h3>클래스 계층구조 예시</h3>
+    <div class="hierarchy-example">
+        <pre class="code-block">
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix ex: &lt;http://example.org/&gt; .
+
+# 클래스 정의
+ex:Animal rdf:type rdfs:Class ;
+    rdfs:label "동물"@ko ;
+    rdfs:comment "모든 동물의 상위 클래스"@ko .
+
+ex:Mammal rdf:type rdfs:Class ;
+    rdfs:subClassOf ex:Animal ;
+    rdfs:label "포유류"@ko .
+
+ex:Dog rdf:type rdfs:Class ;
+    rdfs:subClassOf ex:Mammal ;
+    rdfs:label "개"@ko .
+
+# 인스턴스
+ex:myDog rdf:type ex:Dog ;
+    rdfs:label "우리집 강아지"@ko .
+        </pre>
+    </div>
+</section>
+
+<!-- 섹션 5.3 -->
+<section class="content-section">
+    <h2>5.3 RDFS 핵심 속성</h2>
+    
+    <p>RDFS는 클래스와 속성 간의 관계를 정의하는 다양한 속성을 제공합니다.</p>
+    
+    <h3>계층 관계 속성</h3>
+    <div class="property-group">
+        <div class="property-card">
+            <h4>rdfs:subClassOf</h4>
+            <div class="property-info">
+                <p><strong>의미:</strong> 클래스 간의 상하위 관계</p>
+                <p><strong>도메인:</strong> rdfs:Class</p>
+                <p><strong>레인지:</strong> rdfs:Class</p>
+                <div class="property-example">
+                    <pre>ex:Cat rdfs:subClassOf ex:Animal .</pre>
+                    <p class="example-meaning">→ 고양이는 동물의 하위 클래스</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="property-card">
+            <h4>rdfs:subPropertyOf</h4>
+            <div class="property-info">
+                <p><strong>의미:</strong> 속성 간의 상하위 관계</p>
+                <p><strong>도메인:</strong> rdf:Property</p>
+                <p><strong>레인지:</strong> rdf:Property</p>
+                <div class="property-example">
+                    <pre>ex:hasMother rdfs:subPropertyOf ex:hasParent .</pre>
+                    <p class="example-meaning">→ hasMother는 hasParent의 하위 속성</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h3>도메인과 레인지</h3>
+    <div class="domain-range-section">
+        <div class="concept-explanation">
+            <p>도메인(Domain)과 레인지(Range)는 속성의 사용 범위를 제한합니다:</p>
+            <ul>
+                <li><strong>도메인:</strong> 속성의 주어가 될 수 있는 클래스</li>
+                <li><strong>레인지:</strong> 속성의 목적어가 될 수 있는 클래스</li>
+            </ul>
+        </div>
+        
+        <div class="domain-range-example">
+            <pre class="code-block">
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix ex: &lt;http://example.org/&gt; .
+
+# 속성 정의
+ex:teaches rdf:type rdf:Property ;
+    rdfs:domain ex:Teacher ;      # 주어는 Teacher 클래스
+    rdfs:range ex:Course ;         # 목적어는 Course 클래스
+    rdfs:label "가르치다"@ko .
+
+# 사용 예
+ex:김교수 ex:teaches ex:온톨로지개론 .
+# → 추론: ex:김교수 rdf:type ex:Teacher
+# → 추론: ex:온톨로지개론 rdf:type ex:Course
+            </pre>
+        </div>
+    </div>
+    
+    <h3>설명 속성</h3>
+    <div class="description-properties">
+        <div class="desc-property">
+            <h4>rdfs:label</h4>
+            <p>사람이 읽을 수 있는 이름</p>
+            <div class="usage-example">
+                <pre>ex:Person rdfs:label "사람"@ko, "Person"@en .</pre>
+            </div>
+        </div>
+        
+        <div class="desc-property">
+            <h4>rdfs:comment</h4>
+            <p>자원에 대한 설명</p>
+            <div class="usage-example">
+                <pre>ex:Person rdfs:comment "사람을 나타내는 클래스"@ko .</pre>
+            </div>
+        </div>
+        
+        <div class="desc-property">
+            <h4>rdfs:seeAlso</h4>
+            <p>추가 정보 참조</p>
+            <div class="usage-example">
+                <pre>ex:Person rdfs:seeAlso &lt;http://dbpedia.org/resource/Person&gt; .</pre>
+            </div>
+        </div>
+        
+        <div class="desc-property">
+            <h4>rdfs:isDefinedBy</h4>
+            <p>정의 문서 참조</p>
+            <div class="usage-example">
+                <pre>ex:Person rdfs:isDefinedBy &lt;http://example.org/ontology#&gt; .</pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 5.4 -->
+<section class="content-section">
+    <h2>5.4 RDFS 추론</h2>
+    
+    <p>RDFS는 정의된 스키마를 기반으로 새로운 사실을 자동으로 추론할 수 있습니다.</p>
+    
+    <h3>주요 추론 규칙</h3>
+    <div class="inference-rules">
+        <div class="rule-card">
+            <h4>1. 클래스 계층 추론</h4>
+            <div class="rule-content">
+                <p class="rule-formula">
+                    IF ?x rdfs:subClassOf ?y AND ?i rdf:type ?x<br>
+                    THEN ?i rdf:type ?y
+                </p>
+                <div class="rule-example">
+                    <p><strong>예시:</strong></p>
+                    <pre>
+ex:Dog rdfs:subClassOf ex:Animal .
+ex:myDog rdf:type ex:Dog .
+→ 추론: ex:myDog rdf:type ex:Animal .
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="rule-card">
+            <h4>2. 속성 계층 추론</h4>
+            <div class="rule-content">
+                <p class="rule-formula">
+                    IF ?p rdfs:subPropertyOf ?q AND ?x ?p ?y<br>
+                    THEN ?x ?q ?y
+                </p>
+                <div class="rule-example">
+                    <p><strong>예시:</strong></p>
+                    <pre>
+ex:hasSon rdfs:subPropertyOf ex:hasChild .
+ex:John ex:hasSon ex:Tom .
+→ 추론: ex:John ex:hasChild ex:Tom .
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="rule-card">
+            <h4>3. 도메인 추론</h4>
+            <div class="rule-content">
+                <p class="rule-formula">
+                    IF ?p rdfs:domain ?c AND ?x ?p ?y<br>
+                    THEN ?x rdf:type ?c
+                </p>
+                <div class="rule-example">
+                    <p><strong>예시:</strong></p>
+                    <pre>
+ex:teaches rdfs:domain ex:Teacher .
+ex:김교수 ex:teaches ex:온톨로지 .
+→ 추론: ex:김교수 rdf:type ex:Teacher .
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="rule-card">
+            <h4>4. 레인지 추론</h4>
+            <div class="rule-content">
+                <p class="rule-formula">
+                    IF ?p rdfs:range ?c AND ?x ?p ?y<br>
+                    THEN ?y rdf:type ?c
+                </p>
+                <div class="rule-example">
+                    <p><strong>예시:</strong></p>
+                    <pre>
+ex:enrolledIn rdfs:range ex:Course .
+ex:학생1 ex:enrolledIn ex:CS101 .
+→ 추론: ex:CS101 rdf:type ex:Course .
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 5.5 -->
+<section class="content-section">
+    <h2>5.5 실전 RDFS 온톨로지 작성</h2>
+    
+    <h3>대학 온톨로지 예제</h3>
+    <div class="practical-example">
+        <pre class="code-block">
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix uni: &lt;http://example.org/university#&gt; .
+
+# ===== 클래스 정의 =====
+uni:Person rdf:type rdfs:Class ;
+    rdfs:label "사람"@ko, "Person"@en ;
+    rdfs:comment "대학 구성원의 최상위 클래스"@ko .
+
+uni:Student rdfs:subClassOf uni:Person ;
+    rdfs:label "학생"@ko, "Student"@en .
+
+uni:UndergraduateStudent rdfs:subClassOf uni:Student ;
+    rdfs:label "학부생"@ko .
+
+uni:GraduateStudent rdfs:subClassOf uni:Student ;
+    rdfs:label "대학원생"@ko .
+
+uni:Staff rdfs:subClassOf uni:Person ;
+    rdfs:label "교직원"@ko .
+
+uni:Professor rdfs:subClassOf uni:Staff ;
+    rdfs:label "교수"@ko .
+
+uni:Course rdf:type rdfs:Class ;
+    rdfs:label "과목"@ko .
+
+uni:Department rdf:type rdfs:Class ;
+    rdfs:label "학과"@ko .
+
+# ===== 속성 정의 =====
+uni:enrolledIn rdf:type rdf:Property ;
+    rdfs:domain uni:Student ;
+    rdfs:range uni:Course ;
+    rdfs:label "수강하다"@ko .
+
+uni:teaches rdf:type rdf:Property ;
+    rdfs:domain uni:Professor ;
+    rdfs:range uni:Course ;
+    rdfs:label "가르치다"@ko .
+
+uni:belongsTo rdf:type rdf:Property ;
+    rdfs:domain uni:Person ;
+    rdfs:range uni:Department ;
+    rdfs:label "소속되다"@ko .
+
+uni:hasID rdf:type rdf:Property ;
+    rdfs:domain uni:Person ;
+    rdfs:range rdfs:Literal ;
+    rdfs:label "학번/교번"@ko .
+
+# ===== 인스턴스 예시 =====
+uni:kim123 rdf:type uni:Professor ;
+    uni:hasID "P2024001" ;
+    uni:belongsTo uni:CS_Dept ;
+    uni:teaches uni:CS101, uni:CS201 .
+
+uni:lee456 rdf:type uni:UndergraduateStudent ;
+    uni:hasID "S2024123" ;
+    uni:belongsTo uni:CS_Dept ;
+    uni:enrolledIn uni:CS101 .
+        </pre>
+    </div>
+    
+    <h3>추론 결과</h3>
+    <div class="inference-results">
+        <p>위 온톨로지에서 RDFS 추론기가 도출할 수 있는 새로운 사실들:</p>
+        <ul class="inferred-facts">
+            <li>uni:kim123 rdf:type uni:Staff (Professor → Staff)</li>
+            <li>uni:kim123 rdf:type uni:Person (Staff → Person)</li>
+            <li>uni:lee456 rdf:type uni:Student (UndergraduateStudent → Student)</li>
+            <li>uni:lee456 rdf:type uni:Person (Student → Person)</li>
+            <li>uni:CS101 rdf:type uni:Course (teaches의 range)</li>
+            <li>uni:CS_Dept rdf:type uni:Department (belongsTo의 range)</li>
+        </ul>
+    </div>
+</section>
+
+<!-- 섹션 5.6 -->
+<section class="content-section">
+    <h2>5.6 RDFS의 한계와 OWL로의 발전</h2>
+    
+    <p>RDFS는 기본적인 온톨로지 모델링에는 충분하지만, 복잡한 지식 표현에는 한계가 있습니다.</p>
+    
+    <h3>RDFS의 한계</h3>
+    <div class="limitations">
+        <div class="limitation-card">
+            <h4>1. 속성 특성 표현 불가</h4>
+            <p>대칭성, 이행성, 함수성 등을 표현할 수 없음</p>
+            <div class="example">
+                예: "형제" 관계는 대칭적이지만 RDFS로는 표현 불가
+            </div>
+        </div>
+        
+        <div class="limitation-card">
+            <h4>2. 카디널리티 제약 없음</h4>
+            <p>속성 값의 개수를 제한할 수 없음</p>
+            <div class="example">
+                예: "사람은 정확히 2명의 생물학적 부모를 가진다"
+            </div>
+        </div>
+        
+        <div class="limitation-card">
+            <h4>3. 클래스 연산 불가</h4>
+            <p>교집합, 합집합, 여집합 등의 연산 불가</p>
+            <div class="example">
+                예: "채식주의자 AND 운동선수" 클래스 정의 불가
+            </div>
+        </div>
+        
+        <div class="limitation-card">
+            <h4>4. 동등성 표현 한계</h4>
+            <p>클래스나 인스턴스의 동등성 표현 제한적</p>
+            <div class="example">
+                예: "Morning Star = Evening Star = Venus"
+            </div>
+        </div>
+    </div>
+    
+    <h3>OWL로의 발전</h3>
+    <div class="owl-preview">
+        <p>이러한 한계를 극복하기 위해 OWL(Web Ontology Language)이 개발되었습니다:</p>
+        <ul>
+            <li>더 풍부한 표현력</li>
+            <li>Description Logic 기반</li>
+            <li>강력한 추론 능력</li>
+            <li>다양한 제약사항 표현</li>
+        </ul>
+    </div>
+</section>
+
+<!-- RDF 에디터 링크 추가 -->
+<div class="practice-box" style="margin: 2rem 0; padding: 1.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white;">
+    <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-code"></i> RDFS 온톨로지 실습하기
+    </h3>
+    <p style="margin-bottom: 1rem;">RDFS 클래스와 속성 계층구조를 직접 만들어보며 추론 메커니즘을 체험해보세요!</p>
+    <a href="/rdf-editor" target="_blank" style="display: inline-block; padding: 0.75rem 1.5rem; background: white; color: #667eea; text-decoration: none; border-radius: 5px; font-weight: bold; transition: transform 0.2s;">
+        RDF 비주얼 에디터 열기 →
+    </a>
+    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
+        💡 에디터에서 클래스 계층 (rdfs:subClassOf)과 속성 도메인/레인지를 정의해보세요.
+    </p>
+</div>
+
+<!-- 실습 과제 -->
+<div class="practice-section">
+    <h2>🎯 실습 과제</h2>
+    
+    <div class="practice-task">
+        <h3>과제: 도서관 RDFS 온톨로지 작성</h3>
+        <p>다음 요구사항을 만족하는 도서관 온톨로지를 RDFS로 작성하세요:</p>
+        <ol>
+            <li>도서관 자료의 클래스 계층구조 (책, 잡지, DVD 등)</li>
+            <li>이용자 클래스 계층구조 (학생, 교직원, 일반인)</li>
+            <li>대출 관련 속성 정의 (빌리다, 반납하다)</li>
+            <li>적절한 도메인과 레인지 설정</li>
+            <li>한국어와 영어 레이블 추가</li>
+        </ol>
+    </div>
+</div>
+
+<!-- 핵심 정리 -->
+<div class="summary-section">
+    <h2>💡 핵심 정리</h2>
+    
+    <div class="summary-grid">
+        <div class="summary-card">
+            <h3>RDFS 클래스</h3>
+            <ul>
+                <li>rdfs:Class - 클래스 정의</li>
+                <li>rdfs:Resource - 최상위 클래스</li>
+                <li>rdfs:Literal - 리터럴 클래스</li>
+                <li>rdfs:subClassOf - 계층구조</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card">
+            <h3>RDFS 속성</h3>
+            <ul>
+                <li>rdfs:domain - 속성의 주어 제약</li>
+                <li>rdfs:range - 속성의 목적어 제약</li>
+                <li>rdfs:subPropertyOf - 속성 계층</li>
+                <li>rdfs:label/comment - 설명</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card">
+            <h3>RDFS 추론</h3>
+            <ul>
+                <li>클래스 계층 추론</li>
+                <li>속성 계층 추론</li>
+                <li>도메인/레인지 추론</li>
+                <li>타입 전파</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 다음 장 예고 -->
+<div class="next-chapter">
+    <h3>다음 장에서는...</h3>
+    <p>더 강력한 온톨로지 언어인 OWL(Web Ontology Language)에 대해 학습합니다. RDFS의 한계를 넘어서는 풍부한 표현력을 알아봅니다.</p>
+    <button class="next-btn" onclick="OntologyBook.loadChapter('chapter06')">
+        다음 장으로 <i class="fas fa-arrow-right"></i>
+    </button>
+</div>
+
+<!-- 챕터 전용 스타일 -->
+<style>
+/* 비교 테이블 */
+.comparison-table {
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.comparison-table th {
+    background: #4f46e5;
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.comparison-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr:hover {
+    background: #f8fafc;
+}
+
+/* RDFS 클래스 카드 */
+.rdfs-classes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.rdfs-class-card {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.rdfs-class-card:hover {
+    transform: translateY(-4px);
+}
+
+.rdfs-class-card h4 {
+    color: #4c1d95;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.class-description {
+    color: #5b21b6;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.class-details {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* 속성 그룹 */
+.property-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.property-card {
+    background: white;
+    border: 2px solid #e0e7ff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+}
+
+.property-card:hover {
+    border-color: #6366f1;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+}
+
+.property-card h4 {
+    color: #4f46e5;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 1rem;
+}
+
+.property-info p {
+    margin: 0.5rem 0;
+}
+
+.property-example {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.property-example pre {
+    margin: 0;
+    color: #1e293b;
+    font-family: 'Courier New', monospace;
+}
+
+.example-meaning {
+    color: #64748b;
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+/* 도메인 레인지 섹션 */
+.domain-range-section {
+    margin: 2rem 0;
+}
+
+.concept-explanation {
+    background: #f0f9ff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.domain-range-example {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+/* 설명 속성 */
+.description-properties {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.desc-property {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.desc-property h4 {
+    color: #1e293b;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 0.5rem;
+}
+
+.usage-example {
+    background: #f1f5f9;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-top: 0.75rem;
+}
+
+.usage-example pre {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* 추론 규칙 */
+.inference-rules {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.rule-card {
+    background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.rule-card h4 {
+    color: #92400e;
+    margin-bottom: 1rem;
+}
+
+.rule-formula {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.rule-example {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.rule-example pre {
+    margin: 0.5rem 0;
+    color: #1e293b;
+}
+
+/* 추론 결과 */
+.inference-results {
+    background: #f0fdf4;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+}
+
+.inferred-facts {
+    margin-top: 1rem;
+}
+
+.inferred-facts li {
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+    color: #166534;
+}
+
+/* 한계 카드 */
+.limitations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.limitation-card {
+    background: #fef2f2;
+    border: 2px solid #fecaca;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.limitation-card h4 {
+    color: #991b1b;
+    margin-bottom: 0.5rem;
+}
+
+.limitation-card .example {
+    background: white;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-top: 0.75rem;
+    font-style: italic;
+    color: #7f1d1d;
+}
+
+/* OWL 프리뷰 */
+.owl-preview {
+    background: #e0f2fe;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.owl-preview ul {
+    margin-top: 1rem;
+}
+
+/* 코드 블록 */
+.code-block {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 1rem 0;
+}
+
+/* 실전 예제 */
+.practical-example {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+}
+
+/* 새로 추가된 요소들 스타일 */
+.intro-narrative {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+}
+
+.problem-scenario {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #ef4444;
+}
+
+.scenario-example {
+    margin-top: 1rem;
+}
+
+.code-example {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    margin: 0.5rem 0;
+}
+
+.concept-box.enhanced {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 2px solid #16a34a;
+    padding: 2rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+}
+
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.philosophy-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+    transition: transform 0.3s;
+}
+
+.philosophy-item:hover {
+    transform: translateY(-2px);
+    border-color: #16a34a;
+}
+
+.philosophy-item h5 {
+    margin-bottom: 0.5rem;
+    color: #166534;
+}
+
+.solution-visualization {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.layer-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.layer {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 3px solid;
+    min-width: 300px;
+}
+
+.rdfs-layer {
+    border-color: #6366f1;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+}
+
+.rdf-layer {
+    border-color: #10b981;
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.layer-examples {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.layer-examples span {
+    background: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+}
+
+.layer-arrow {
+    font-size: 2rem;
+    color: #6b7280;
+}
+
+.comparison-enhanced {
+    margin: 2rem 0;
+}
+
+.evolution-timeline {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.timeline-events {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.timeline-event {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+    min-width: 150px;
+}
+
+.event-year {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+}
+
+.event-content h5 {
+    margin: 0.5rem 0;
+    color: #1e293b;
+}
+
+.event-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.timeline-arrow {
+    font-size: 1.5rem;
+    color: #6b7280;
+}
+
+.real-world-impact {
+    background: #fffbeb;
+    padding: 2rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+}
+
+.impact-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.impact-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #fbbf24;
+    transition: transform 0.3s;
+}
+
+.impact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(251, 191, 36, 0.2);
+}
+
+.impact-card h5 {
+    color: #92400e;
+    margin-bottom: 0.5rem;
+}
+
+.impact-detail {
+    background: #fef3c7;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: #78350f;
+}
+
+/* 학습 목표 강화 */
+.objectives-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.objective-group {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+}
+
+.objective-group h4 {
+    color: #4f46e5;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* 학습 여정 */
+.learning-journey {
+    background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+}
+
+.journey-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.journey-stage {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid #a855f7;
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.stage-number {
+    background: #a855f7;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin: 0 auto 1rem auto;
+}
+
+.stage-topics {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.stage-topics li {
+    background: #f3e8ff;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.journey-arrow {
+    font-size: 2rem;
+    color: #a855f7;
+    font-weight: bold;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .rdfs-classes,
+    .property-group,
+    .description-properties,
+    .limitations,
+    .philosophy-grid,
+    .impact-examples,
+    .objectives-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline-events,
+    .journey-timeline {
+        flex-direction: column;
+    }
+    
+    .timeline-arrow,
+    .journey-arrow {
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+    }
+    
+    .layer-stack {
+        width: 100%;
+    }
+    
+    .layer {
+        min-width: auto;
+        width: 100%;
+    }
+}
+</style>

@@ -1,0 +1,80 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
+.env*.local
+.env
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+# Package manager
+.npmrc
+pnpm-lock.yaml
+yarn.lock
+
+# Business sensitive files (but allow presentation folder)
+/business-plan*.md
+/revenue-*.md
+/*비즈니스*.md
+/*수익*.md
+/*전략*.md
+/KSS_비즈니스_모델.md
+
+# Allow presentation folder
+!2025-08-14-presentation/
+!2025-08-14-presentation/*.md
+
+# API keys and secrets
+/config/secrets.json
+/config/api-keys.json
+.env.production
+.env.development
+
+# Proprietary algorithms
+/src/core/algorithms/
+/src/proprietary/
+
+# Customer data
+/data/customers/
+/data/analytics/
+/data/users/
+
+# Internal documentation
+/docs/internal/
+/docs/strategy/
+/docs/investors/

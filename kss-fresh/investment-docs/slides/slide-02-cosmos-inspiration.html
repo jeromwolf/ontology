@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 2: COSMOS의 영감</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #FFFFFF;
+            position: relative;
+        }
+
+        /* 3D 배경 캔버스 */
+        #three-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .content-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 60px;
+        }
+
+        /* 헤더: Jensen 인용구 */
+        .header-quote {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInDown 1.5s ease-out 0.5s forwards;
+        }
+
+
+        .quote-text {
+            font-size: 36px;
+            font-weight: 400;
+            color: #FFFFFF;
+            font-style: italic;
+            max-width: 1100px;
+            margin: 0 auto 15px;
+            text-shadow: 0 0 20px rgba(118, 185, 0, 0.6);
+            background: linear-gradient(135deg, #FFFFFF 0%, #76B900 50%, #00FF88 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 20px rgba(118, 185, 0, 0.6); }
+            100% { text-shadow: 0 0 30px rgba(118, 185, 0, 1), 0 0 40px rgba(0, 255, 136, 0.5); }
+        }
+
+        .quote-author {
+            font-size: 20px;
+            color: #76B900;
+            font-weight: 600;
+        }
+
+        /* 중앙: COSMOS 3D 로고 영역 */
+        .main-cosmos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .cosmos-3d-container {
+            width: 800px;
+            height: 400px;
+            position: relative;
+            margin: 0 auto;
+            opacity: 0;
+            animation: scaleIn 2s ease-out 1s forwards;
+        }
+
+        .cosmos-logo-3d {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #76B900 0%, #00FF88 50%, #76B900 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 15px;
+            z-index: 15;
+            text-shadow: 0 0 50px rgba(118, 185, 0, 0.5);
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translate(-50%, -50%) rotateY(0deg);
+                text-shadow: 0 0 50px rgba(118, 185, 0, 0.5);
+            }
+            50% { 
+                transform: translate(-50%, -50%) rotateY(5deg);
+                text-shadow: 0 0 80px rgba(118, 185, 0, 0.8);
+            }
+        }
+
+        .cosmos-tagline {
+            font-size: 28px;
+            color: #76B900;
+            font-weight: 500;
+            margin-top: 40px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+            text-shadow: 0 0 15px rgba(118, 185, 0, 0.8);
+        }
+
+        /* 좌우 컨셉 패널 */
+        .concept-panels {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 100px;
+            z-index: 12;
+        }
+
+        .concept-panel {
+            width: 350px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            border: 2px solid;
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .virtual-panel {
+            border-color: rgba(118, 185, 0, 0.5);
+            box-shadow: 0 0 50px rgba(118, 185, 0, 0.2);
+            animation: slideInLeft 1.5s ease-out 2s forwards;
+        }
+
+        .real-panel {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.2);
+            animation: slideInRight 1.5s ease-out 2.3s forwards;
+        }
+
+        .concept-panel:hover {
+            transform: translateY(-10px);
+            border-color: rgba(118, 185, 0, 0.8);
+            box-shadow: 0 20px 60px rgba(118, 185, 0, 0.4);
+        }
+
+        .real-panel:hover {
+            border-color: rgba(59, 130, 246, 0.8);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.4);
+        }
+
+        .panel-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: iconBounce 3s ease-in-out infinite;
+        }
+
+        .virtual-panel .panel-icon {
+            filter: drop-shadow(0 0 15px rgba(118, 185, 0, 0.6));
+        }
+
+        .real-panel .panel-icon {
+            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6));
+            animation-delay: 1.5s;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .panel-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .virtual-panel .panel-title {
+            background: linear-gradient(135deg, #76B900, #00FF88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .real-panel .panel-title {
+            background: linear-gradient(135deg, #3B82F6, #60A5FA);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .panel-description {
+            font-size: 18px;
+            color: #D1D5DB;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .panel-stats {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .virtual-panel .panel-stats {
+            background: rgba(118, 185, 0, 0.2);
+            color: #76B900;
+            border: 1px solid rgba(118, 185, 0, 0.4);
+        }
+
+        .real-panel .panel-stats {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3B82F6;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+
+        /* 중앙 연결 화살표 */
+        .connection-arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.8s forwards;
+        }
+
+        .arrow-3d {
+            font-size: 100px;
+            color: #76B900;
+            filter: drop-shadow(0 0 30px rgba(118, 185, 0, 0.8));
+            animation: arrowPulse3D 2s ease-in-out infinite;
+        }
+
+        @keyframes arrowPulse3D {
+            0%, 100% { 
+                transform: scale(1) rotateZ(0deg);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: scale(1.3) rotateZ(5deg);
+                opacity: 1;
+            }
+        }
+
+        /* 하단: 핵심 메시지 */
+        .bottom-insight {
+            text-align: center;
+            opacity: 0;
+            animation: slideUp 1s ease-out 3.2s forwards;
+        }
+
+        .key-message {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #76B900 0%, #00FF88 50%, #76B900 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-shadow: 0 0 30px rgba(118, 185, 0, 0.6);
+            animation: messageGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes messageGlow {
+            0%, 100% { 
+                text-shadow: 0 0 30px rgba(118, 185, 0, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 50px rgba(118, 185, 0, 1), 0 0 70px rgba(0, 255, 136, 0.5);
+                transform: scale(1.02);
+            }
+        }
+
+        .sub-message {
+            font-size: 26px;
+            color: #CBD5E1;
+            font-weight: 400;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #76B900, #00FF88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(118, 185, 0, 0.8);
+        }
+
+        /* 인터랙션 힌트 */
+        .interaction-hint {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: #64748B;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4s forwards;
+        }
+
+        /* 애니메이션 키프레임 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-150px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(150px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 메타버스 전환 효과 */
+        @keyframes metaversePulse {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+        }
+        
+        /* VR 헤드셋 시뮬레이션 오버레이 */
+        .vr-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 2000;
+            background: 
+                radial-gradient(circle at 25% 50%, transparent 15%, rgba(0,0,0,0.8) 20%),
+                radial-gradient(circle at 75% 50%, transparent 15%, rgba(0,0,0,0.8) 20%);
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .vr-overlay.active {
+            opacity: 1;
+        }
+        
+        /* 홀로그래픽 UI 요소들 */
+        .holo-ui {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            padding: 15px;
+            background: rgba(0, 255, 200, 0.1);
+            border: 2px solid rgba(0, 255, 200, 0.4);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            color: #00FFAA;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            z-index: 100;
+        }
+        
+        .holo-ui.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .holo-ui::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(0, 255, 200, 0.3), 
+                transparent, 
+                rgba(0, 255, 200, 0.3), 
+                transparent
+            );
+            background-size: 20px 20px;
+            border-radius: 12px;
+            z-index: -1;
+            animation: hologramScan 3s linear infinite;
+        }
+        
+        @keyframes hologramScan {
+            0% { background-position: 0px 0px; }
+            100% { background-position: 20px 20px; }
+        }
+
+        /* 반응형 */
+        @media (max-width: 1200px) {
+            .concept-panels {
+                flex-direction: column;
+                gap: 50px;
+                padding: 0 50px;
+            }
+            .cosmos-logo-3d {
+                font-size: 80px;
+            }
+            .cosmos-3d-container {
+                width: 600px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="three-canvas"></canvas>
+    
+    <div class="content-overlay">
+        <!-- 헤더 -->
+        <div class="header-quote">
+            <div class="quote-text">"로봇도 이제 ChatGPT처럼 누구나 쉽게 대화할 수 있는 시대가 온다"</div>
+            <div class="quote-author">Jensen Huang, NVIDIA CEO - CES 2025</div>
+        </div>
+        
+        <!-- 메인 COSMOS 영역 -->
+        <div class="main-cosmos">
+            <div class="cosmos-3d-container">
+                <div class="cosmos-logo-3d">COSMOS</div>
+                
+                <!-- 좌우 패널 -->
+                <div class="concept-panels">
+                    <div class="concept-panel virtual-panel">
+                        <div class="panel-icon">🌐</div>
+                        <h3 class="panel-title">시뮬레이션 세계</h3>
+                        <p class="panel-description">
+                            <strong>20백만 시간의 비디오</strong>로<br>
+                            훈련된 물리 법칙<br>
+                            무한 시나리오 생성
+                        </p>
+                        <div class="panel-stats">∞ 가상 경험</div>
+                    </div>
+                    
+                    <div class="concept-panel real-panel">
+                        <div class="panel-icon">🤖</div>
+                        <h3 class="panel-title">Physical AI</h3>
+                        <p class="panel-description">
+                            <strong>인식, 추론, 계획, 행동</strong><br>
+                            물리 세계를 이해하는<br>
+                            지능형 로봇 에이전트
+                        </p>
+                        <div class="panel-stats">Next Gen AI</div>
+                    </div>
+                </div>
+                
+                <!-- 중앙 화살표 -->
+                <div class="connection-arrow">
+                    <div class="arrow-3d">⚡</div>
+                </div>
+            </div>
+            
+            <p class="cosmos-tagline">"물리 세계를 완벽하게 이해하는 AI 두뇌"</p>
+        </div>
+        
+        <!-- 하단 메시지 -->
+        <div class="bottom-insight">
+            <div class="key-message">
+                "가상에서 백만 번 연습하면, 현실에서 한 번에 성공한다"
+            </div>
+            <div class="sub-message">
+                로봇이 <span class="highlight">시뮬레이션</span>에서 무한히 학습하여 <span class="highlight">현실 세계</span>를 완벽히 이해한다
+            </div>
+        </div>
+    </div>
+    
+    <div class="interaction-hint">
+        마우스로 3D 환경 조작 | M키 또는 캔버스 클릭으로 메타버스 모드 | 텍스트 영역 클릭으로 다음 슬라이드
+    </div>
+    
+    <!-- 메타버스 홀로그래픽 UI -->
+    <div class="holo-ui" id="holoUI">
+        <div style="margin-bottom: 8px;">🔮 COSMOS Matrix Status</div>
+        <div id="avatarCount">👥 AI Avatars: 8 Active</div>
+        <div id="dataStream">📊 Data Streams: 3,500 particles</div>
+        <div id="portalEnergy">⚡ Portal Energy: 94.7%</div>
+        <div id="metaverseMode">🌐 Mode: <span id="modeStatus">Observer</span></div>
+        <div style="margin-top: 8px; font-size: 12px; opacity: 0.7;">
+            [CLICK] Enter Avatar Mode | [M] Toggle View
+        </div>
+    </div>
+    
+    <!-- VR 헤드셋 시뮬레이션 오버레이 -->
+    <div class="vr-overlay" id="vrOverlay"></div>
+    
+
+    <script>
+        // Three.js 메타버스 환경 설정
+        let scene, camera, renderer, particles, virtualWorld, realWorld;
+        let mouseX = 0, mouseY = 0;
+        let avatarCamera, metaversePortal, cosmosEnvironment;
+        let isMetaverseMode = false, cameraTransition = 0;
+        
+        function init3D() {
+            // Scene 생성
+            scene = new THREE.Scene();
+            scene.fog = new THREE.Fog(0x0a0a0a, 100, 4000);
+            
+            // Main Camera (외부 관찰자 시점)
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 4000);
+            camera.position.set(0, 500, 1500);
+            
+            // Avatar Camera (1인칭 메타버스 시점)
+            avatarCamera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 4000);
+            avatarCamera.position.set(0, 100, 800);
+            
+            // Renderer 설정 (향상된 품질)
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: document.getElementById('three-canvas'),
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance"
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x000000, 0);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            
+            // 메타버스 환경 생성
+            createMetaverseEnvironment();
+            createParticleSystem();
+            create3DElements();
+            createCosmosPortal();
+            
+            // 이벤트 리스너
+            document.addEventListener('mousemove', onMouseMove, false);
+            document.addEventListener('keydown', onKeyDown, false);
+            document.addEventListener('click', onCanvasClick, false);
+            window.addEventListener('resize', onWindowResize, false);
+        }
+        
+        // 몰입형 메타버스 환경 생성
+        function createMetaverseEnvironment() {
+            // 다층 메타버스 바닥 시스템
+            for (let layer = 0; layer < 3; layer++) {
+                const gridGeometry = new THREE.PlaneGeometry(8000, 8000, 80, 80);
+                const gridMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(0.4 + layer * 0.1, 0.8, 0.3),
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.4 - layer * 0.1
+                });
+                const grid = new THREE.Mesh(gridGeometry, gridMaterial);
+                grid.rotation.x = -Math.PI / 2;
+                grid.position.y = -300 - layer * 100;
+                scene.add(grid);
+            }
+            
+            // 사이버 아키텍처 구조물들
+            createCyberArchitecture();
+            
+            // 홀로그래픽 게이트웨이 링들
+            for (let i = 0; i < 8; i++) {
+                const ringGeometry = new THREE.RingGeometry(400 + i * 250, 420 + i * 250, 64);
+                const hue = (0.3 + i * 0.1) % 1;
+                const ringMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(hue, 1, 0.6),
+                    transparent: true,
+                    opacity: 0.25 - i * 0.025,
+                    side: THREE.DoubleSide
+                });
+                const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+                ring.rotation.x = -Math.PI / 2 + Math.sin(i) * 0.3;
+                ring.rotation.y = Math.cos(i) * 0.2;
+                ring.position.y = i * 80 + Math.sin(i * 2) * 50;
+                scene.add(ring);
+            }
+            
+            // 메타버스 스카이돔
+            const skyGeometry = new THREE.SphereGeometry(3500, 32, 16);
+            const skyMaterial = new THREE.MeshBasicMaterial({
+                color: 0x001122,
+                transparent: true,
+                opacity: 0.3,
+                side: THREE.BackSide
+            });
+            const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+            scene.add(sky);
+        }
+        
+        // 사이버 아키텍처 구조물 생성
+        function createCyberArchitecture() {
+            // 중앙 메타버스 타워들
+            for (let i = 0; i < 6; i++) {
+                const towerHeight = 600 + Math.random() * 400;
+                const towerGeometry = new THREE.CylinderGeometry(15, 50, towerHeight, 8);
+                const towerMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(0.5, 0.8, 0.4),
+                    transparent: true,
+                    opacity: 0.6,
+                    wireframe: true
+                });
+                const tower = new THREE.Mesh(towerGeometry, towerMaterial);
+                
+                const angle = (i / 6) * Math.PI * 2;
+                tower.position.x = Math.cos(angle) * 800;
+                tower.position.z = Math.sin(angle) * 800;
+                tower.position.y = towerHeight / 2 - 200;
+                scene.add(tower);
+                
+                // 타워 주변 홀로그램 효과
+                const holoGeometry = new THREE.RingGeometry(80, 120, 16);
+                const holoMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x00FFFF,
+                    transparent: true,
+                    opacity: 0.4,
+                    side: THREE.DoubleSide
+                });
+                const holo = new THREE.Mesh(holoGeometry, holoMaterial);
+                holo.position.copy(tower.position);
+                holo.position.y += towerHeight / 2 + 100;
+                holo.rotation.x = Math.PI / 2;
+                scene.add(holo);
+            }
+            
+            // 플로팅 플랫폼들
+            for (let i = 0; i < 12; i++) {
+                const platformGeometry = new THREE.CylinderGeometry(80, 80, 20, 8);
+                const platformMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(0.7, 0.6, 0.5),
+                    transparent: true,
+                    opacity: 0.5
+                });
+                const platform = new THREE.Mesh(platformGeometry, platformMaterial);
+                
+                const radius = 600 + Math.random() * 800;
+                const angle = (i / 12) * Math.PI * 2;
+                const height = 300 + Math.random() * 400;
+                
+                platform.position.x = Math.cos(angle) * radius;
+                platform.position.z = Math.sin(angle) * radius;
+                platform.position.y = height;
+                scene.add(platform);
+            }
+        }
+        
+        function createParticleSystem() {
+            const particleCount = 3500;
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const velocities = new Float32Array(particleCount * 3);
+            const sizes = new Float32Array(particleCount);
+            
+            for (let i = 0; i < particleCount; i++) {
+                const i3 = i * 3;
+                
+                // 3D 메타버스 공간 전체에 분포
+                const radius = Math.random() * 4500;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.random() * Math.PI;
+                
+                positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i3 + 1] = radius * Math.cos(phi) - 800;
+                positions[i3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
+                
+                // 메타버스 네온 스펙트럼 (5가지 색상)
+                const colorType = Math.random();
+                if (colorType < 0.3) {
+                    // NVIDIA 에메랄드 그린
+                    const intensity = Math.random() * 0.6 + 0.4;
+                    colors[i3] = intensity * 0.2;
+                    colors[i3 + 1] = intensity;
+                    colors[i3 + 2] = intensity * 0.3;
+                } else if (colorType < 0.5) {
+                    // 사이버 시안
+                    const intensity = Math.random() * 0.7 + 0.3;
+                    colors[i3] = 0;
+                    colors[i3 + 1] = intensity * 0.8;
+                    colors[i3 + 2] = intensity;
+                } else if (colorType < 0.7) {
+                    // 홀로그램 퍼플
+                    const intensity = Math.random() * 0.6 + 0.4;
+                    colors[i3] = intensity * 0.8;
+                    colors[i3 + 1] = 0;
+                    colors[i3 + 2] = intensity;
+                } else if (colorType < 0.9) {
+                    // 골드 액센트
+                    const intensity = Math.random() * 0.5 + 0.5;
+                    colors[i3] = intensity;
+                    colors[i3 + 1] = intensity * 0.8;
+                    colors[i3 + 2] = 0;
+                } else {
+                    // 퓨어 화이트 (에너지 입자)
+                    const intensity = Math.random() * 0.4 + 0.6;
+                    colors[i3] = intensity;
+                    colors[i3 + 1] = intensity;
+                    colors[i3 + 2] = intensity;
+                }
+                
+                // 다차원적 움직임 패턴
+                velocities[i3] = (Math.random() - 0.5) * 6;
+                velocities[i3 + 1] = Math.random() * 4 + 1.5;
+                velocities[i3 + 2] = (Math.random() - 0.5) * 6;
+                
+                // 동적 크기
+                sizes[i] = Math.random() * 6 + 2;
+            }
+            
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+            geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+            
+            const material = new THREE.PointsMaterial({
+                size: 5,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.9,
+                blending: THREE.AdditiveBlending,
+                sizeAttenuation: true
+            });
+            
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+            
+            // 추가 파티클 레이어 (데이터 스트림)
+            createDataStreamParticles();
+        }
+        
+        // 데이터 스트림 파티클 생성
+        function createDataStreamParticles() {
+            const streamCount = 800;
+            const streamPositions = new Float32Array(streamCount * 3);
+            const streamColors = new Float32Array(streamCount * 3);
+            
+            for (let i = 0; i < streamCount; i++) {
+                const i3 = i * 3;
+                
+                // 원형 데이터 스트림 패턴
+                const angle = (i / streamCount) * Math.PI * 8;
+                const radius = 300 + Math.sin(angle * 0.3) * 200;
+                const height = Math.sin(angle) * 400;
+                
+                streamPositions[i3] = Math.cos(angle) * radius;
+                streamPositions[i3 + 1] = height;
+                streamPositions[i3 + 2] = Math.sin(angle) * radius;
+                
+                // 데이터 스트림 색상 (청록색 계열)
+                const intensity = 0.7 + Math.sin(angle * 2) * 0.3;
+                streamColors[i3] = 0;
+                streamColors[i3 + 1] = intensity * 0.9;
+                streamColors[i3 + 2] = intensity;
+            }
+            
+            const streamGeometry = new THREE.BufferGeometry();
+            streamGeometry.setAttribute('position', new THREE.BufferAttribute(streamPositions, 3));
+            streamGeometry.setAttribute('color', new THREE.BufferAttribute(streamColors, 3));
+            
+            const streamMaterial = new THREE.PointsMaterial({
+                size: 3,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const dataStream = new THREE.Points(streamGeometry, streamMaterial);
+            scene.add(dataStream);
+            
+            // 애니메이션을 위해 글로벌 변수에 저장
+            window.dataStream = dataStream;
+        }
+        
+        function create3DElements() {
+            // 가상 세계 - 복합 구조체
+            const virtualGroup = new THREE.Group();
+            
+            // 메인 이코사헤드론
+            const virtualGeometry = new THREE.IcosahedronGeometry(120, 3);
+            const virtualMaterial = new THREE.MeshBasicMaterial({
+                color: 0x76B900,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.4
+            });
+            const virtualCore = new THREE.Mesh(virtualGeometry, virtualMaterial);
+            virtualGroup.add(virtualCore);
+            
+            // 궤도 링들 (회전하는 링)
+            for (let i = 0; i < 3; i++) {
+                const ringGeometry = new THREE.RingGeometry(150 + i * 30, 160 + i * 30, 32);
+                const ringMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x76B900,
+                    transparent: true,
+                    opacity: 0.3,
+                    side: THREE.DoubleSide
+                });
+                const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+                ring.rotation.x = Math.random() * Math.PI;
+                ring.rotation.y = Math.random() * Math.PI;
+                virtualGroup.add(ring);
+            }
+            
+            virtualWorld = virtualGroup;
+            virtualWorld.position.set(-800, 100, -300);
+            scene.add(virtualWorld);
+            
+            // 현실 세계 - 도시 구조체
+            const realGroup = new THREE.Group();
+            
+            // 메인 큐브
+            const realGeometry = new THREE.BoxGeometry(160, 160, 160);
+            const realMaterial = new THREE.MeshBasicMaterial({
+                color: 0x3B82F6,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.4
+            });
+            const realCore = new THREE.Mesh(realGeometry, realMaterial);
+            realGroup.add(realCore);
+            
+            // 건물들 (작은 큐브들)
+            for (let i = 0; i < 8; i++) {
+                const buildingGeometry = new THREE.BoxGeometry(30, Math.random() * 60 + 40, 30);
+                const buildingMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x3B82F6,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                const building = new THREE.Mesh(buildingGeometry, buildingMaterial);
+                const angle = (i / 8) * Math.PI * 2;
+                building.position.x = Math.cos(angle) * 120;
+                building.position.z = Math.sin(angle) * 120;
+                building.position.y = -40;
+                realGroup.add(building);
+            }
+            
+            realWorld = realGroup;
+            realWorld.position.set(800, 100, -300);
+            scene.add(realWorld);
+            
+            // 연결선들
+            createConnectionLines();
+        }
+        
+        // 몰입형 COSMOS 매트릭스 포털 생성
+        function createCosmosPortal() {
+            const portalGroup = new THREE.Group();
+            
+            // 메인 코스모스 게이트웨이 (다중 레이어)
+            for (let i = 0; i < 5; i++) {
+                const portalGeometry = new THREE.RingGeometry(180 + i * 40, 200 + i * 40, 64);
+                const portalMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(0.3 + i * 0.1, 1, 0.6),
+                    transparent: true,
+                    opacity: 0.7 - i * 0.1,
+                    side: THREE.DoubleSide
+                });
+                const portal = new THREE.Mesh(portalGeometry, portalMaterial);
+                portal.rotation.x = Math.PI / 2 + Math.sin(i) * 0.2;
+                portal.rotation.z = Math.cos(i) * 0.15;
+                portalGroup.add(portal);
+            }
+            
+            // 중앙 코어 에너지 구체
+            const coreGeometry = new THREE.IcosahedronGeometry(80, 3);
+            const coreMaterial = new THREE.MeshBasicMaterial({
+                color: 0x76B900,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            const core = new THREE.Mesh(coreGeometry, coreMaterial);
+            portalGroup.add(core);
+            
+            // 플라즈마 필드 효과
+            const plasmaSphereGeometry = new THREE.SphereGeometry(150, 32, 16);
+            const plasmaMaterial = new THREE.MeshBasicMaterial({
+                color: 0x00FFAA,
+                transparent: true,
+                opacity: 0.2,
+                side: THREE.BackSide
+            });
+            const plasmaField = new THREE.Mesh(plasmaSphereGeometry, plasmaMaterial);
+            portalGroup.add(plasmaField);
+            
+            // 에너지 빔 생성
+            for (let i = 0; i < 12; i++) {
+                const beamGeometry = new THREE.CylinderGeometry(2, 8, 400, 8);
+                const beamMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(0.4, 1, 0.7),
+                    transparent: true,
+                    opacity: 0.6
+                });
+                const beam = new THREE.Mesh(beamGeometry, beamMaterial);
+                
+                const angle = (i / 12) * Math.PI * 2;
+                beam.position.x = Math.cos(angle) * 120;
+                beam.position.z = Math.sin(angle) * 120;
+                beam.rotation.z = angle;
+                portalGroup.add(beam);
+            }
+            
+            // 홀로그래픽 AI 아바타 표시
+            createAIAvatars(portalGroup);
+            
+            metaversePortal = portalGroup;
+            metaversePortal.position.set(0, 250, 0);
+            scene.add(metaversePortal);
+        }
+        
+        // AI 아바타 시스템 생성
+        function createAIAvatars(parentGroup) {
+            // 제너 황 아바타 (중앙)
+            const jensenGeometry = new THREE.SphereGeometry(25, 16, 8);
+            const jensenMaterial = new THREE.MeshBasicMaterial({
+                color: 0xFFD700,
+                transparent: true,
+                opacity: 0.9
+            });
+            const jensen = new THREE.Mesh(jensenGeometry, jensenMaterial);
+            jensen.position.y = 100;
+            parentGroup.add(jensen);
+            
+            // 인공지능 조수들 (주변)
+            for (let i = 0; i < 8; i++) {
+                const avatarGeometry = new THREE.SphereGeometry(12, 12, 6);
+                const avatarMaterial = new THREE.MeshBasicMaterial({
+                    color: new THREE.Color().setHSL(0.6, 0.8, 0.7),
+                    transparent: true,
+                    opacity: 0.8
+                });
+                const avatar = new THREE.Mesh(avatarGeometry, avatarMaterial);
+                
+                const angle = (i / 8) * Math.PI * 2;
+                const radius = 80;
+                avatar.position.x = Math.cos(angle) * radius;
+                avatar.position.z = Math.sin(angle) * radius;
+                avatar.position.y = 50 + Math.sin(i) * 20;
+                parentGroup.add(avatar);
+                
+                // 아바타 주변 홀로그램
+                const holoGeometry = new THREE.RingGeometry(18, 25, 8);
+                const holoMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x00CCFF,
+                    transparent: true,
+                    opacity: 0.5,
+                    side: THREE.DoubleSide
+                });
+                const holo = new THREE.Mesh(holoGeometry, holoMaterial);
+                holo.position.copy(avatar.position);
+                holo.position.y += 30;
+                holo.rotation.x = Math.PI / 2;
+                parentGroup.add(holo);
+            }
+        }
+        
+        function createConnectionLines() {
+            // 가상-포털 연결
+            const virtualConnections = [];
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                const startPoint = new THREE.Vector3(
+                    -600 + Math.cos(angle) * 150, 
+                    200 + Math.sin(angle * 2) * 50, 
+                    -300 + Math.sin(angle) * 150
+                );
+                const endPoint = new THREE.Vector3(-200, 200, -50);
+                
+                virtualConnections.push(startPoint);
+                virtualConnections.push(endPoint);
+            }
+            
+            // 포털-현실 연결
+            const realConnections = [];
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                const startPoint = new THREE.Vector3(200, 200, -50);
+                const endPoint = new THREE.Vector3(
+                    600 + Math.cos(angle) * 150, 
+                    200 + Math.sin(angle * 2) * 50, 
+                    -300 + Math.sin(angle) * 150
+                );
+                
+                realConnections.push(startPoint);
+                realConnections.push(endPoint);
+            }
+            
+            // 가상 세계 연결선
+            const virtualLineGeometry = new THREE.BufferGeometry().setFromPoints(
+                virtualConnections.map((point, i) => point)
+            );
+            const virtualLineMaterial = new THREE.LineBasicMaterial({
+                color: 0x76B900,
+                transparent: true,
+                opacity: 0.4
+            });
+            const virtualLines = new THREE.LineSegments(virtualLineGeometry, virtualLineMaterial);
+            scene.add(virtualLines);
+            
+            // 현실 세계 연결선
+            const realLineGeometry = new THREE.BufferGeometry().setFromPoints(
+                realConnections.map((point, i) => point)
+            );
+            const realLineMaterial = new THREE.LineBasicMaterial({
+                color: 0x3B82F6,
+                transparent: true,
+                opacity: 0.4
+            });
+            const realLines = new THREE.LineSegments(realLineGeometry, realLineMaterial);
+            scene.add(realLines);
+        }
+        
+        // 키보드 이벤트 (메타버스 모드 전환)
+        function onKeyDown(event) {
+            if (event.key === 'm' || event.key === 'M') {
+                isMetaverseMode = !isMetaverseMode;
+                cameraTransition = 0;
+            }
+        }
+        
+        // 캔버스 클릭 이벤트 (메타버스 모드 전환)
+        function onCanvasClick(event) {
+            // 메타버스 모드 전환
+            isMetaverseMode = !isMetaverseMode;
+            cameraTransition = 0;
+            
+            // 이벤트 전파 중지 (다음 슬라이드로 넘어가지 않도록)
+            event.stopPropagation();
+        }
+        
+        function onMouseMove(event) {
+            mouseX = (event.clientX - window.innerWidth / 2) / 4;
+            mouseY = (event.clientY - window.innerHeight / 2) / 4;
+        }
+        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = Date.now() * 0.001;
+            
+            // 고급 카메라 시스템 (메타버스 모드)
+            const activeCamera = isMetaverseMode ? avatarCamera : camera;
+            
+            if (isMetaverseMode) {
+                // 몰입형 1인칭 아바타 카메라 (가상 환경 탐험)
+                cameraTransition += 0.012;
+                
+                // 자연스러운 궤도 운동
+                const radius = 400 + Math.sin(time * 0.3) * 150;
+                avatarCamera.position.x = Math.sin(cameraTransition * 0.4) * radius;
+                avatarCamera.position.z = Math.cos(cameraTransition * 0.4) * radius + 600;
+                avatarCamera.position.y = 200 + Math.sin(cameraTransition * 0.6) * 100 + Math.sin(time * 2) * 20;
+                
+                // 동적 시점 변경
+                const lookTarget = new THREE.Vector3(
+                    Math.sin(time * 0.5) * 100,
+                    250 + Math.sin(time * 0.8) * 50,
+                    Math.cos(time * 0.3) * 100
+                );
+                avatarCamera.lookAt(lookTarget);
+                
+                // VR 헤드 모션 시뮬레이션
+                avatarCamera.rotation.z = Math.sin(time * 1.2) * 0.05;
+                
+            } else {
+                // 신네마틱 외부 카메라
+                const targetX = mouseX + Math.sin(time * 0.5) * 100;
+                const targetY = -mouseY + 500 + Math.cos(time * 0.3) * 80;
+                
+                camera.position.x += (targetX - camera.position.x) * 0.025;
+                camera.position.y += (targetY - camera.position.y) * 0.025;
+                camera.position.z = 1500 + Math.sin(time * 0.4) * 200;
+                
+                camera.lookAt(new THREE.Vector3(
+                    Math.sin(time * 0.3) * 50,
+                    250,
+                    Math.cos(time * 0.2) * 50
+                ));
+            }
+            
+            // 고급 파티클 시스템 업데이트
+            if (particles) {
+                const positions = particles.geometry.attributes.position;
+                const colors = particles.geometry.attributes.color;
+                const velocities = particles.geometry.attributes.velocity;
+                const sizes = particles.geometry.attributes.size;
+                
+                for (let i = 0; i < positions.count; i++) {
+                    const i3 = i * 3;
+                    
+                    // 3차원 볼텍스 움직임
+                    const vortexSpeed = 0.4;
+                    positions.array[i3] += velocities.array[i3] * vortexSpeed + Math.sin(time + i * 0.1) * 2;
+                    positions.array[i3 + 1] += velocities.array[i3 + 1] * 0.25 + Math.cos(time * 2 + i * 0.05) * 1.5;
+                    positions.array[i3 + 2] += velocities.array[i3 + 2] * vortexSpeed + Math.sin(time * 1.5 + i * 0.08) * 1.8;
+                    
+                    // 파티클 생명 주기 (투명도 변화)
+                    const life = Math.sin(time + i * 0.01) * 0.3 + 0.7;
+                    colors.array[i3] *= life;\n                    colors.array[i3 + 1] *= life;\n                    colors.array[i3 + 2] *= life;
+                    
+                    // 동적 크기 변화
+                    if (sizes) {
+                        sizes.array[i] = (2 + Math.sin(time * 3 + i * 0.1) * 4) * life;
+                    }
+                    
+                    // 메타버스 공간 경계 (순환)
+                    const boundary = 4000;
+                    if (Math.abs(positions.array[i3]) > boundary) {
+                        positions.array[i3] = -Math.sign(positions.array[i3]) * boundary;
+                    }
+                    if (positions.array[i3 + 1] < -2000) {
+                        positions.array[i3 + 1] = 2000;
+                        // 재생성 시 색상 리셋
+                        const colorType = Math.random();
+                        if (colorType < 0.3) {
+                            colors.array[i3] = 0.2; colors.array[i3 + 1] = 1; colors.array[i3 + 2] = 0.3;
+                        } else if (colorType < 0.5) {
+                            colors.array[i3] = 0; colors.array[i3 + 1] = 0.8; colors.array[i3 + 2] = 1;
+                        } else if (colorType < 0.7) {
+                            colors.array[i3] = 0.8; colors.array[i3 + 1] = 0; colors.array[i3 + 2] = 1;
+                        } else {
+                            colors.array[i3] = 1; colors.array[i3 + 1] = 0.8; colors.array[i3 + 2] = 0;
+                        }
+                    }
+                    if (Math.abs(positions.array[i3 + 2]) > boundary) {
+                        positions.array[i3 + 2] = -Math.sign(positions.array[i3 + 2]) * boundary;
+                    }
+                }
+                
+                positions.needsUpdate = true;
+                colors.needsUpdate = true;
+                if (sizes) sizes.needsUpdate = true;
+                
+                // 파티클 시스템 전체 회전
+                particles.rotation.y += 0.003;
+                particles.rotation.x = Math.sin(time * 0.5) * 0.1;
+            }
+            
+            // 데이터 스트림 파티클 애니메이션
+            if (window.dataStream) {
+                const dataPositions = window.dataStream.geometry.attributes.position;
+                for (let i = 0; i < dataPositions.count; i++) {
+                    const i3 = i * 3;
+                    const angle = (i / dataPositions.count) * Math.PI * 8 + time * 2;
+                    const radius = 300 + Math.sin(angle * 0.3 + time) * 200;
+                    const height = Math.sin(angle + time * 3) * 400;
+                    
+                    dataPositions.array[i3] = Math.cos(angle) * radius;
+                    dataPositions.array[i3 + 1] = height;
+                    dataPositions.array[i3 + 2] = Math.sin(angle) * radius;
+                }
+                dataPositions.needsUpdate = true;
+                window.dataStream.rotation.y += 0.01;
+            }
+            
+            // 가상 세계 고급 애니메이션
+            if (virtualWorld) {
+                virtualWorld.rotation.x += 0.008 + Math.sin(time * 0.5) * 0.003;
+                virtualWorld.rotation.y += 0.012 + Math.cos(time * 0.3) * 0.004;
+                virtualWorld.position.y = 100 + Math.sin(time * 1.5) * 30;
+                
+                virtualWorld.children.forEach((child, index) => {
+                    if (child.type === 'Mesh' && child.geometry?.type === 'RingGeometry') {
+                        child.rotation.z += (0.015 + index * 0.005) + Math.sin(time + index) * 0.01;
+                        child.position.y = Math.sin(time * 2 + index * 0.5) * 20;
+                    }
+                });
+            }
+            
+            // 현실 세계 도시 애니메이션
+            if (realWorld) {
+                realWorld.rotation.x += 0.006;
+                realWorld.rotation.y += 0.009;
+                realWorld.position.y = 100 + Math.cos(time * 1.2) * 25;
+                
+                realWorld.children.forEach((child, index) => {
+                    if (child.geometry?.type === 'BoxGeometry') {
+                        // 건물들의 동적 높이 변화
+                        child.position.y = -40 + Math.sin(time * 0.8 + index) * 8;
+                        child.rotation.y += 0.002;
+                        // 건물 조명 효과
+                        const lightIntensity = 0.6 + Math.sin(time * 3 + index * 2) * 0.4;
+                        child.material.opacity = lightIntensity;
+                    }
+                });
+            }
+            
+            // COSMOS 포털 고급 애니메이션
+            if (metaversePortal) {
+                // 메인 포털 회전 (다중 축)
+                metaversePortal.rotation.y += 0.02;
+                metaversePortal.rotation.x = Math.sin(time * 0.5) * 0.1;
+                metaversePortal.rotation.z = Math.cos(time * 0.3) * 0.05;
+                
+                // 수직 플로팅 효과
+                metaversePortal.position.y = 250 + Math.sin(time * 1.8) * 50;
+                
+                // 각 포털 링 개별 회전
+                metaversePortal.children.forEach((child, index) => {
+                    if (child.geometry?.type === 'RingGeometry') {
+                        child.rotation.z += (0.01 + index * 0.003) * (1 + Math.sin(time + index) * 0.5);
+                    }
+                    
+                    // AI 아바타들의 궤도 운동
+                    if (child.geometry?.type === 'SphereGeometry' && child.position.length() > 50) {
+                        const originalAngle = Math.atan2(child.position.z, child.position.x);
+                        const radius = 80;
+                        const newAngle = originalAngle + time * 0.5 + index * 0.2;
+                        child.position.x = Math.cos(newAngle) * radius;
+                        child.position.z = Math.sin(newAngle) * radius;
+                        child.position.y = 50 + Math.sin(time * 2 + index) * 25;
+                        
+                        // 아바타 펄싱 효과
+                        child.scale.setScalar(1 + Math.sin(time * 4 + index * 3) * 0.2);
+                    }
+                });
+                
+                // 중앙 코어 에너지 펄스
+                if (metaversePortal.children[5]) { // 코어 위치 가정
+                    const coreScale = 1 + Math.sin(time * 5) * 0.3;
+                    metaversePortal.children[5].scale.setScalar(coreScale);
+                }
+            }
+            
+            // 메타버스 환경 조명 효과
+            scene.fog.near = 100 + Math.sin(time) * 50;
+            scene.fog.far = 4000 + Math.cos(time * 0.5) * 500;
+            
+            renderer.render(scene, activeCamera);
+        }
+        
+        // 메타버스 UI 업데이트 함수
+        function updateMetaverseUI() {
+            // 홀로그래픽 UI 업데이트
+            const portalEnergy = 94.7 + Math.sin(Date.now() * 0.003) * 5;
+            const dataStreamCount = 3500 + Math.floor(Math.sin(Date.now() * 0.002) * 500);
+            
+            document.getElementById('portalEnergy').innerHTML = `⚡ Portal Energy: ${portalEnergy.toFixed(1)}%`;
+            document.getElementById('dataStream').innerHTML = `📊 Data Streams: ${dataStreamCount} particles`;
+            document.getElementById('modeStatus').textContent = isMetaverseMode ? 'Avatar Mode' : 'Observer';
+            
+            // VR 오버레이 제어
+            const vrOverlay = document.getElementById('vrOverlay');
+            if (isMetaverseMode) {
+                vrOverlay.classList.add('active');
+            } else {
+                vrOverlay.classList.remove('active');
+            }
+        }
+        
+        // 키보드 이벤트 (메타버스 탐색 모드)
+        function onKeyDown(event) {
+            if (event.key === 'm' || event.key === 'M') {
+                isMetaverseMode = !isMetaverseMode;
+                cameraTransition = 0;
+                
+                // 메타버스 모드 전환 효과
+                if (isMetaverseMode) {
+                    // 아바타 모드 활성화
+                    document.body.style.cursor = 'none';
+                    
+                    // 전환 효과
+                    const overlay = document.createElement('div');
+                    overlay.style.cssText = `
+                        position: fixed;
+                        top: 0; left: 0;
+                        width: 100vw; height: 100vh;
+                        background: radial-gradient(circle, transparent, rgba(0,255,136,0.3));
+                        pointer-events: none;
+                        z-index: 1000;
+                        animation: metaversePulse 2s ease-out;
+                    `;
+                    document.body.appendChild(overlay);
+                    setTimeout(() => document.body.removeChild(overlay), 2000);
+                } else {
+                    document.body.style.cursor = 'default';
+                }
+                
+                // 음향 효과 (선택사항)
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.setValueAtTime(isMetaverseMode ? 800 : 400, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.5);
+                } catch (e) {
+                    // 음향 효과 실패 시 무시
+                }
+            }
+            
+            // WASD 무버먼트 (아바타 모드)
+            if (isMetaverseMode) {
+                const moveSpeed = 50;
+                switch(event.key.toLowerCase()) {
+                    case 'w': if (avatarCamera.position.z > -2000) avatarCamera.position.z -= moveSpeed; break;
+                    case 's': if (avatarCamera.position.z < 2000) avatarCamera.position.z += moveSpeed; break;
+                    case 'a': if (avatarCamera.position.x > -2000) avatarCamera.position.x -= moveSpeed; break;
+                    case 'd': if (avatarCamera.position.x < 2000) avatarCamera.position.x += moveSpeed; break;
+                    case 'q': if (avatarCamera.position.y < 1000) avatarCamera.position.y += moveSpeed; break;
+                    case 'e': if (avatarCamera.position.y > -500) avatarCamera.position.y -= moveSpeed; break;
+                }
+            }
+        }
+        
+        // 캔버스 인터랙션 (클릭으로 오브젝트 상호작용)
+        function onCanvasClick(event) {
+            // 레이캐스팅으로 클릭된 오브젝트 감지
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
+            
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            
+            const activeCamera = isMetaverseMode ? avatarCamera : camera;
+            raycaster.setFromCamera(mouse, activeCamera);
+            
+            // 클릭 가능한 오브젝트 검사
+            const intersects = raycaster.intersectObjects(scene.children, true);
+            
+            if (intersects.length > 0) {
+                const clickedObject = intersects[0].object;
+                
+                // 클릭 효과 생성
+                createClickEffect(intersects[0].point);
+                
+                // 특정 오브젝트 클릭 시 메타버스 모드 전환
+                if (clickedObject.parent === metaversePortal || 
+                    clickedObject === metaversePortal ||
+                    clickedObject.geometry?.type === 'SphereGeometry') {
+                    
+                    isMetaverseMode = !isMetaverseMode;
+                    cameraTransition = 0;
+                    
+                    // 인터랙션 효과
+                    clickedObject.material.opacity *= 1.5;
+                    setTimeout(() => {
+                        if (clickedObject.material) {
+                            clickedObject.material.opacity *= 0.67;
+                        }
+                    }, 500);
+                }
+            } else {
+                // 빈 공간 클릭 시 메타버스 모드 전환
+                isMetaverseMode = !isMetaverseMode;
+                cameraTransition = 0;
+            }
+            
+            // 이벤트 전파 중지
+            event.stopPropagation();
+        }
+        
+        // 클릭 효과 생성
+        function createClickEffect(position) {
+            const effectGeometry = new THREE.RingGeometry(10, 30, 16);
+            const effectMaterial = new THREE.MeshBasicMaterial({
+                color: 0x00FFFF,
+                transparent: true,
+                opacity: 1
+            });
+            const effect = new THREE.Mesh(effectGeometry, effectMaterial);
+            effect.position.copy(position);
+            effect.lookAt(camera.position);
+            scene.add(effect);
+            
+            // 효과 애니메이션
+            let scale = 1;
+            let opacity = 1;
+            const animate = () => {
+                scale += 0.1;
+                opacity -= 0.05;
+                
+                effect.scale.setScalar(scale);
+                effect.material.opacity = opacity;
+                
+                if (opacity > 0) {
+                    requestAnimationFrame(animate);
+                } else {
+                    scene.remove(effect);
+                }
+            };
+            animate();
+        }
+        
+        // 초기화 및 시작
+        document.addEventListener('DOMContentLoaded', function() {
+            init3D();
+            animate();
+            
+            // 홀로그래픽 UI 표시
+            setTimeout(() => {
+                document.getElementById('holoUI').classList.add('show');
+            }, 3000);
+            
+            // UI 업데이트 주기
+            setInterval(updateMetaverseUI, 100);
+            
+            // COSMOS 로고 타이핑 효과
+            setTimeout(() => {
+                const logo = document.querySelector('.cosmos-logo-3d');
+                const text = 'COSMOS';
+                logo.innerHTML = '';
+                
+                [...text].forEach((char, i) => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.style.opacity = '0';
+                    span.style.display = 'inline-block';
+                    span.style.animation = `fadeInUp 0.3s ease-out ${1 + i * 0.1}s forwards`;
+                    logo.appendChild(span);
+                });
+            }, 1000);
+            
+        });
+        
+        // 네비게이션 (클릭하면 다음 슬라이드로)
+        document.addEventListener('click', function(e) {
+            // 캔버스가 아닌 곳을 클릭하면 다음 슬라이드로
+            if (e.target !== document.getElementById('three-canvas')) {
+                window.location.href = 'slide-03-realization.html';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-03-realization.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-01-title.html';
+            }
+        });
+    </script>
+</body>
+</html>

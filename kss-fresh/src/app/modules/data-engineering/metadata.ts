@@ -1,0 +1,136 @@
+export const moduleMetadata = {
+  id: 'data-engineering',
+  title: 'Data Engineering',
+  description: 'ETL 파이프라인과 실시간 스트림 데이터 처리',
+  icon: '🗃️',
+  gradient: 'from-indigo-600 to-blue-700',
+  category: 'Data',
+  difficulty: 'Advanced',
+  estimatedHours: 36,
+  chapters: [
+    {
+      id: 'data-engineering-intro',
+      title: '데이터 엔지니어링 개요',
+      description: '데이터 엔지니어의 역할과 중요성',
+      estimatedMinutes: 90,
+    },
+    {
+      id: 'data-architecture',
+      title: '데이터 아키텍처',
+      description: '데이터 레이크, 웨어하우스, 레이크하우스',
+      estimatedMinutes: 180,
+    },
+    {
+      id: 'etl-pipelines',
+      title: 'ETL 파이프라인',
+      description: 'Apache Airflow로 ETL 파이프라인 구축',
+      estimatedMinutes: 240,
+    },
+    {
+      id: 'stream-processing',
+      title: '실시간 스트림 처리',
+      description: 'Apache Kafka, Spark Streaming 활용',
+      estimatedMinutes: 240,
+    },
+    {
+      id: 'data-modeling',
+      title: '데이터 모델링',
+      description: '차원 모델링과 데이터 모델 설계',
+      estimatedMinutes: 180,
+    },
+    {
+      id: 'big-data-tech',
+      title: '빅데이터 기술',
+      description: 'Hadoop, Spark, Presto 활용법',
+      estimatedMinutes: 240,
+    },
+    {
+      id: 'data-quality',
+      title: '데이터 품질 관리',
+      description: '데이터 품질 모니터링 및 검증',
+      estimatedMinutes: 150,
+    },
+    {
+      id: 'data-governance',
+      title: '데이터 거버넌스',
+      description: '메타데이터 관리와 데이터 카탈로그',
+      estimatedMinutes: 120,
+    },
+    {
+      id: 'cloud-data-platforms',
+      title: '클라우드 데이터 플랫폼',
+      description: 'Snowflake, BigQuery, Databricks',
+      estimatedMinutes: 210,
+    },
+    {
+      id: 'data-security',
+      title: '데이터 보안',
+      description: '데이터 암호화와 접근 제어',
+      estimatedMinutes: 120,
+    },
+    {
+      id: 'mlops-integration',
+      title: 'MLOps와 통합',
+      description: 'ML 파이프라인과 데이터 파이프라인 통합',
+      estimatedMinutes: 180,
+    },
+    {
+      id: 'case-studies',
+      title: '실전 사례 연구',
+      description: '대규모 데이터 플랫폼 구축 사례',
+      estimatedMinutes: 150,
+    },
+  ],
+  simulators: [
+    {
+      id: 'etl-designer',
+      title: 'ETL 파이프라인 디자이너',
+      description: '비주얼 ETL 파이프라인 설계 도구',
+    },
+    {
+      id: 'stream-processor',
+      title: '스트림 처리 시뮬레이터',
+      description: '실시간 데이터 스트림 처리 실습',
+    },
+    {
+      id: 'data-lake-builder',
+      title: '데이터 레이크 빌더',
+      description: '데이터 레이크 아키텍처 설계 도구',
+    },
+    {
+      id: 'airflow-lab',
+      title: 'Apache Airflow 실습실',
+      description: 'DAG 작성 및 워크플로우 관리',
+    },
+    {
+      id: 'kafka-simulator',
+      title: 'Kafka 클러스터 시뮬레이터',
+      description: '메시지 큐 시스템 구축 실습',
+    },
+    {
+      id: 'data-quality-monitor',
+      title: '데이터 품질 모니터',
+      description: '데이터 품질 지표 측정 및 분석',
+    },
+    {
+      id: 'schema-evolution',
+      title: '스키마 진화 관리자',
+      description: '데이터 스키마 버전 관리 도구',
+    },
+    {
+      id: 'data-lineage',
+      title: '데이터 계보 추적기',
+      description: '데이터 흐름 시각화 및 추적',
+    },
+    {
+      id: 'performance-tuner',
+      title: '쿼리 성능 튜너',
+      description: 'SQL 쿼리 최적화 도구',
+    },
+    {
+      id: 'cost-optimizer',
+      title: '데이터 비용 최적화기',
+      description: '데이터 파이프라인 비용 분석',
+    },
+  ],
+};

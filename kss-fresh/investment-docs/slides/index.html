@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS 미모셀 발표 - 슬라이드 네비게이션</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background: #0F172A;
+            color: #F8FAFC;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .slide-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: #F8FAFC;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .slide-link:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3B82F6;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .slide-number {
+            font-size: 14px;
+            color: #64748B;
+            margin-bottom: 8px;
+        }
+
+        .slide-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .slide-desc {
+            font-size: 14px;
+            color: #94A3B8;
+            line-height: 1.4;
+        }
+
+        .instructions {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .instructions h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .instructions ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            color: #CBD5E1;
+        }
+
+        .remaining-slides {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>KSS 미모셀 발표 슬라이드</h1>
+        
+        <div class="instructions">
+            <h2>📌 사용 방법</h2>
+            <ul>
+                <li>각 슬라이드를 클릭하여 전체화면으로 볼 수 있습니다</li>
+                <li>슬라이드에서 클릭 또는 → 키로 다음 페이지로 이동</li>
+                <li>← 키로 이전 페이지로 돌아갑니다</li>
+                <li>ESC 키로 전체화면을 종료합니다</li>
+            </ul>
+        </div>
+
+        <div class="slides-grid">
+            <a href="slide-01-title.html" class="slide-link">
+                <div class="slide-number">Slide 1</div>
+                <div class="slide-title">타이틀</div>
+                <div class="slide-desc">KSS 소개 및 발표자 정보</div>
+            </a>
+
+            <a href="slide-02-cosmos-inspiration.html" class="slide-link">
+                <div class="slide-number">Slide 2</div>
+                <div class="slide-title">COSMOS의 영감</div>
+                <div class="slide-desc">젠슨 황의 Physical AI</div>
+            </a>
+
+            <a href="slide-03-realization.html" class="slide-link">
+                <div class="slide-number">Slide 3</div>
+                <div class="slide-title">깨달음의 순간</div>
+                <div class="slide-desc">시뮬레이션 교육의 가능성</div>
+            </a>
+
+            <a href="slide-04-problem.html" class="slide-link">
+                <div class="slide-number">Slide 4</div>
+                <div class="slide-title">기술과 교육의 격차</div>
+                <div class="slide-desc">급변하는 기술 vs 뒤처지는 교육</div>
+            </a>
+
+            <a href="slide-05-mobility-stack.html" class="slide-link">
+                <div class="slide-number">Slide 5</div>
+                <div class="slide-title">모빌리티 기술 스택</div>
+                <div class="slide-desc">자율주행 기술의 복잡성</div>
+            </a>
+
+            <a href="slide-06-kss-birth.html" class="slide-link">
+                <div class="slide-number">Slide 6</div>
+                <div class="slide-title">KSS의 탄생</div>
+                <div class="slide-desc">경험을 시뮬레이션하다</div>
+            </a>
+
+            <a href="slide-07-platform-status.html" class="slide-link">
+                <div class="slide-number">Slide 7</div>
+                <div class="slide-title">플랫폼 현황</div>
+                <div class="slide-desc">30개 모듈, 60+ 시뮬레이터</div>
+            </a>
+
+            <a href="slide-08-three-innovations.html" class="slide-link">
+                <div class="slide-number">Slide 8</div>
+                <div class="slide-title">3가지 혁신</div>
+                <div class="slide-desc">실시간 업데이트, 체험형 학습, 90% 완료율</div>
+            </a>
+
+            <a href="slide-09-demo-intro.html" class="slide-link">
+                <div class="slide-number">Slide 9</div>
+                <div class="slide-title">데모 소개</div>
+                <div class="slide-desc">실제 시뮬레이터 시연 (비디오)</div>
+            </a>
+
+            <a href="slide-10-mobility-module.html" class="slide-link">
+                <div class="slide-number">Slide 10</div>
+                <div class="slide-title">자율주행 교육 모듈</div>
+                <div class="slide-desc">8개 챕터 구성</div>
+            </a>
+
+            <a href="slide-11-paradigm-shift.html" class="slide-link">
+                <div class="slide-number">Slide 11</div>
+                <div class="slide-title">교육의 패러다임 전환</div>
+                <div class="slide-desc">경험의 민주화</div>
+            </a>
+
+            <a href="slide-12-vision.html" class="slide-link">
+                <div class="slide-number">Slide 12</div>
+                <div class="slide-title">5년 비전</div>
+                <div class="slide-desc">KSS 5년 로드맵</div>
+            </a>
+
+            <a href="slide-13-collaboration.html" class="slide-link">
+                <div class="slide-number">Slide 13</div>
+                <div class="slide-title">협력 제안</div>
+                <div class="slide-desc">교육, 콘텐츠, 인재 파트너십</div>
+            </a>
+
+            <a href="slide-14-investment.html" class="slide-link">
+                <div class="slide-number">Slide 14</div>
+                <div class="slide-title">투자 기회</div>
+                <div class="slide-desc">함께 성장할 파트너 찾기</div>
+            </a>
+
+            <a href="slide-15-thank-you.html" class="slide-link">
+                <div class="slide-number">Slide 15</div>
+                <div class="slide-title">감사 인사</div>
+                <div class="slide-desc">Contact & Q&A</div>
+            </a>
+        </div>
+
+        <div class="completion-message" style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px;">
+            <h2>✅ 모든 슬라이드 제작 완료!</h2>
+            <p>15개 슬라이드가 모두 준비되었습니다. 성공적인 발표 되시길 바랍니다! 🎉</p>
+        </div>
+    </div>
+</body>
+</html>

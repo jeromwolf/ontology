@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 4: 기술과 교육의 격차</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: rgba(148, 163, 184, 0.2);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-items {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.7s; }
+
+        .date {
+            font-size: 18px;
+            color: #64748B;
+            margin-bottom: 20px;
+        }
+
+        .tech-release {
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            padding: 20px 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 20px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .education-status {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid #EF4444;
+            padding: 20px 30px;
+            border-radius: 12px;
+            color: #FCA5A5;
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .gap-indicator {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            animation: slideUp 1s ease-out 1s both;
+        }
+
+        .gap-arrow {
+            font-size: 48px;
+            color: #EF4444;
+            animation: bounce 2s infinite;
+        }
+
+        .gap-text {
+            font-size: 24px;
+            color: #F87171;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 30px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>기술 발전 vs 교육 업데이트</h1>
+        
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-items">
+                <div class="timeline-item">
+                    <div class="date">2023 Q1</div>
+                    <div class="tech-release">Tesla FSD v11</div>
+                    <div class="education-status">-</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="date">2023 Q3</div>
+                    <div class="tech-release">Tesla FSD v12</div>
+                    <div class="education-status">FSD v9 교재</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="date">2024 Q1</div>
+                    <div class="tech-release">GPT-4</div>
+                    <div class="education-status">-</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="date">2024 Q3</div>
+                    <div class="tech-release">GPT-5</div>
+                    <div class="education-status">GPT-2 강의</div>
+                </div>
+            </div>
+            
+            <div class="gap-indicator">
+                <div class="gap-arrow">⬇</div>
+                <div class="gap-text">격차가 점점 벌어지고 있습니다</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-05-mobility-stack.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-05-mobility-stack.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-03-realization.html';
+            }
+        });
+    </script>
+</body>
+</html>

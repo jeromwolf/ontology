@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 14: 투자 기회</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .main-message {
+            font-size: 36px;
+            font-weight: 300;
+            line-height: 1.5;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .highlight {
+            font-weight: 700;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .growth-visual {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 50px;
+            margin: 60px 0;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        .before, .after {
+            text-align: center;
+        }
+
+        .number {
+            font-size: 72px;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .before .number {
+            color: #64748B;
+        }
+
+        .after .number {
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: countUp 2s ease-out 1s both;
+        }
+
+        .label {
+            font-size: 20px;
+            color: #94A3B8;
+        }
+
+        .arrow {
+            font-size: 48px;
+            color: #3B82F6;
+            animation: bounce 2s infinite;
+        }
+
+        .investment-details {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 50px;
+            margin: 40px auto;
+            max-width: 600px;
+            animation: fadeIn 1s ease-out 1.2s both;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .detail-label {
+            color: #94A3B8;
+        }
+
+        .detail-value {
+            font-weight: 700;
+            color: #F8FAFC;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(148, 163, 184, 0.2);
+            margin: 20px 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #3B82F6;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) translateX(0);
+            }
+            to {
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
+
+        /* 여러 파티클 생성 */
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 10s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 12s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 14s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 16s; }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <h1 class="main-message">
+            "시뮬레이션 교육의 미래,<br>
+            <span class="highlight">함께 만들어갈 파트너를 찾습니다</span>"
+        </h1>
+        
+        <div class="growth-visual">
+            <div class="before">
+                <span class="number">1개</span>
+                <span class="label">로봇의 COSMOS</span>
+            </div>
+            
+            <div class="arrow">→</div>
+            
+            <div class="after">
+                <span class="number">100만</span>
+                <span class="label">인간의 KSS</span>
+            </div>
+        </div>
+        
+        <div class="investment-details">
+            <div class="detail-item">
+                <span class="detail-label">투자 단계</span>
+                <span class="detail-value">시드 라운드</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">목표 금액</span>
+                <span class="detail-value">10억원</span>
+            </div>
+            <div class="divider"></div>
+            <div class="detail-item">
+                <span class="detail-label">팀 확충</span>
+                <span class="detail-value">8명 채용</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">콘텐츠 개발</span>
+                <span class="detail-value">전 산업 분야 확장</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 숫자 카운트업 애니메이션
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const afterNumber = document.querySelector('.after .number');
+                let current = 1;
+                const target = 1000000;
+                const increment = (target - current) / 50;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                        afterNumber.textContent = '100만';
+                    } else {
+                        afterNumber.textContent = Math.floor(current/10000).toLocaleString() + '만';
+                    }
+                }, 30);
+            }, 1500);
+        });
+
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-15-thank-you.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-15-thank-you.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-13-collaboration.html';
+            }
+        });
+    </script>
+</body>
+</html>

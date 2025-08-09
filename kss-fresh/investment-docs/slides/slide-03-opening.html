@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 3: Opening Question (구 버전)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+            position: relative;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%230F172A" width="1920" height="1080"/><g opacity="0.05"><rect x="100" y="100" width="300" height="400" fill="%233B82F6" rx="10"/><rect x="500" y="200" width="350" height="450" fill="%233B82F6" rx="10"/><rect x="950" y="150" width="320" height="420" fill="%233B82F6" rx="10"/></g></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+            max-width: 1000px;
+            padding: 0 50px;
+        }
+
+        .main-question {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 80px;
+            animation: fadeInScale 1s ease-out;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .sub-question {
+            font-size: 28px;
+            color: #94A3B8;
+            font-weight: 300;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .thinking-dots {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: #3B82F6;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .quote-marks {
+            position: absolute;
+            font-size: 200px;
+            color: rgba(59, 130, 246, 0.1);
+            font-family: Georgia, serif;
+        }
+
+        .quote-left {
+            top: 50px;
+            left: 50px;
+        }
+
+        .quote-right {
+            bottom: 50px;
+            right: 50px;
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="quote-marks quote-left">"</div>
+    <div class="quote-marks quote-right">"</div>
+    
+    <div class="container">
+        <p style="color: #F59E0B; font-size: 14px; margin-bottom: 30px; animation: fadeIn 0.5s ease-out;">⚠️ 이 슬라이드는 구 버전입니다. 메인 프레젠테이션은 slide-03-realization.html을 사용합니다.</p>
+        <h1 class="main-question">
+            자율주행 엔지니어를 채용한다면,<br>
+            <span class="highlight">어떤 역량</span>을 원하십니까?
+        </h1>
+        
+        <p class="sub-question">
+            그리고 그런 인재를 어디서 찾으실 건가요?
+        </p>
+    </div>
+
+    <div class="thinking-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-03-realization.html';
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-03-realization.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-02-cosmos-inspiration.html';
+            }
+        });
+    </script>
+</body>
+</html>

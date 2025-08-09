@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 1</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(45deg, #3B82F6 25%, transparent 25%),
+                linear-gradient(-45deg, #3B82F6 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #3B82F6 75%),
+                linear-gradient(-45deg, transparent 75%, #3B82F6 75%);
+            background-size: 50px 50px;
+            background-position: 0 0, 0 25px, 25px -25px, -25px 0px;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo {
+            font-size: 120px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            animation: slideDown 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 36px;
+            color: #F8FAFC;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #94A3B8;
+            font-weight: 300;
+            margin-bottom: 20px;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .event-info {
+            font-size: 20px;
+            color: #64748B;
+            animation: fadeIn 1s ease-out 0.9s both;
+        }
+
+        .presenter {
+            font-size: 24px;
+            color: #F8FAFC;
+            margin-top: 20px;
+            font-weight: 700;
+            animation: fadeIn 1s ease-out 1.2s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: #3B82F6;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            33% {
+                transform: translateY(-100px) translateX(50px);
+            }
+            66% {
+                transform: translateY(100px) translateX(-50px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    <div class="floating-particles">
+        <div class="particle" style="width: 4px; height: 4px; left: 10%; top: 20%; animation-delay: 0s;"></div>
+        <div class="particle" style="width: 6px; height: 6px; left: 80%; top: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="width: 8px; height: 8px; left: 60%; top: 30%; animation-delay: 10s;"></div>
+        <div class="particle" style="width: 5px; height: 5px; left: 30%; top: 70%; animation-delay: 15s;"></div>
+    </div>
+    
+    <div class="container">
+        <h1 class="logo">KSS</h1>
+        <h2 class="subtitle">Knowledge Space Simulator</h2>
+        <p class="tagline" style="font-size: 28px; font-weight: 400; margin-bottom: 30px;">
+            로봇의 학습법이<br>
+            인간 교육의 미래가 된다면?
+        </p>
+        <p class="sub-tagline" style="font-size: 20px; color: #94A3B8; animation: fadeIn 1s ease-out 1.8s both;">
+            시뮬레이션으로 경험하는 AI 시대 교육
+        </p>
+        
+        <div class="event-info">미래모빌리티셀럽 | 2025.8.14</div>
+        <div class="presenter">켈리 CEO</div>
+    </div>
+
+    <script>
+        // 클릭 시 다음 슬라이드로 이동
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-02-cosmos-inspiration.html';
+        });
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-02-cosmos-inspiration.html';
+            }
+        });
+    </script>
+</body>
+</html>

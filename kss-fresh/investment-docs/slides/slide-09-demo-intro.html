@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 9: Demo Time</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(ellipse at center, #1E293B 0%, #0F172A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .demo-icon {
+            font-size: 120px;
+            margin-bottom: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .main-text {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .sub-text {
+            font-size: 36px;
+            color: #94A3B8;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .description {
+            font-size: 24px;
+            color: #CBD5E1;
+            animation: slideUp 1s ease-out 1s both;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.2);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: drift 15s infinite;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+            to {
+                transform: translate(100vw, -100vh) rotate(360deg);
+            }
+        }
+
+        /* 파티클 생성 */
+        .particle:nth-child(1) { left: 10%; width: 6px; height: 6px; animation-delay: 0s; animation-duration: 13s; }
+        .particle:nth-child(2) { left: 20%; width: 4px; height: 4px; animation-delay: 2s; animation-duration: 15s; }
+        .particle:nth-child(3) { left: 30%; width: 8px; height: 8px; animation-delay: 4s; animation-duration: 17s; }
+        .particle:nth-child(4) { left: 40%; width: 5px; height: 5px; animation-delay: 6s; animation-duration: 14s; }
+        .particle:nth-child(5) { left: 50%; width: 7px; height: 7px; animation-delay: 8s; animation-duration: 16s; }
+        .particle:nth-child(6) { left: 60%; width: 4px; height: 4px; animation-delay: 10s; animation-duration: 12s; }
+        .particle:nth-child(7) { left: 70%; width: 6px; height: 6px; animation-delay: 12s; animation-duration: 18s; }
+        .particle:nth-child(8) { left: 80%; width: 5px; height: 5px; animation-delay: 14s; animation-duration: 15s; }
+
+        .play-button {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            border: none;
+            padding: 20px 60px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .play-button:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="demo-icon">🖥️</div>
+        <h1 class="main-text">DEMO TIME</h1>
+        <p class="sub-text">"백문이 불여일견"</p>
+        <p class="description">실제 작동하는 시뮬레이터를<br>보여드리겠습니다</p>
+    </div>
+
+    <button class="play-button">▶ 비디오 재생</button>
+
+    <script>
+        // 비디오 재생 버튼 클릭 시
+        document.querySelector('.play-button').addEventListener('click', function() {
+            alert('5분 데모 비디오를 재생합니다.');
+            // 실제로는 비디오 파일을 재생하거나 다음 슬라이드로 이동
+            window.location.href = 'slide-10-mobility-module.html';
+        });
+
+        // 일반 클릭으로도 다음 슬라이드로
+        document.body.addEventListener('click', function(e) {
+            if (e.target.className !== 'play-button') {
+                window.location.href = 'slide-10-mobility-module.html';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-10-mobility-module.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-08-three-innovations.html';
+            }
+        });
+    </script>
+</body>
+</html>

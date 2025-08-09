@@ -1,0 +1,1552 @@
+<!-- Chapter 9: 온톨로지 추론과 추론 엔진 (심화 버전) -->
+
+<div class="chapter-header">
+    <h1>Chapter 9. 온톨로지 추론과 추론 엔진</h1>
+    <div class="chapter-subtitle">명시되지 않은 지식의 발견</div>
+    <div class="chapter-quote">
+        "추론은 온톨로지의 영혼입니다. 단순한 데이터를 지혜로 바꾸는 마법같은 힘이죠." <br>
+        <span class="quote-author">- Franz Baader, Description Logic 연구의 대부</span>
+    </div>
+</div>
+
+<div class="reading-time">
+    <i class="fas fa-clock"></i> 예상 학습 시간: 4시간 | <i class="fas fa-brain"></i> 수학적 사고 포함 | <i class="fas fa-microscope"></i> 심화 실습
+</div>
+
+<!-- 중요도 알림 -->
+<div class="importance-alert">
+    <h3>🚨 왜 추론이 중요한가?</h3>
+    <ul>
+        <li>데이터의 90%는 <strong>암묵적 지식</strong>으로 존재</li>
+        <li>Google Knowledge Graph, IBM Watson 등 AI 시스템의 핵심 기술</li>
+        <li>의료 진단, 금융 분석, 법률 판단 등에 필수</li>
+        <li>논리적 오류와 모순을 자동 감지</li>
+    </ul>
+</div>
+
+<!-- 학습 목표 -->
+<div class="learning-objectives card master-level">
+    <h3><i class="fas fa-bullseye"></i> 학습 목표</h3>
+    <div class="objectives-grid">
+        <div class="objective-category">
+            <h4>🧮 이론적 기초</h4>
+            <ul>
+                <li>Description Logic의 수학적 기초</li>
+                <li>Tableaux 알고리즘의 원리</li>
+                <li>추론 복잡도와 결정 가능성</li>
+                <li>Open World vs Closed World</li>
+            </ul>
+        </div>
+        <div class="objective-category">
+            <h4>🔧 실무 활용</h4>
+            <ul>
+                <li>주요 추론 엔진 비교와 선택</li>
+                <li>추론 성능 최적화 기법</li>
+                <li>대규모 온톨로지 처리</li>
+                <li>실시간 추론 시스템 구축</li>
+            </ul>
+        </div>
+        <div class="objective-category">
+            <h4>🎯 고급 주제</h4>
+            <ul>
+                <li>비단조 추론과 기본 가정</li>
+                <li>확률적 추론과 퍼지 논리</li>
+                <li>분산 추론과 병렬 처리</li>
+                <li>Explainable AI와의 연계</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 학습 로드맵 -->
+<div class="reasoning-journey">
+    <h3><i class="fas fa-map-marked-alt"></i> 추론 마스터 여정</h3>
+    <div class="journey-visualization">
+        <div class="journey-node">
+            <div class="node-icon">🎯</div>
+            <div class="node-title">기초 개념</div>
+            <div class="node-time">1시간</div>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-node">
+            <div class="node-icon">🧮</div>
+            <div class="node-title">DL 이론</div>
+            <div class="node-time">1시간</div>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-node">
+            <div class="node-icon">🔧</div>
+            <div class="node-title">추론 엔진</div>
+            <div class="node-time">1시간</div>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-node">
+            <div class="node-icon">🊚</div>
+            <div class="node-title">실전 프로젝트</div>
+            <div class="node-time">1시간</div>
+        </div>
+    </div>
+</div>
+
+<!-- 섹션 9.1: 추론의 철학과 원리 -->
+<section class="content-section">
+    <h2>9.1 추론의 철학과 원리</h2>
+    
+    <div class="reasoning-philosophy">
+        <h3>🤔 추론이란 무엇인가?</h3>
+        <div class="philosophical-intro">
+            <p>고대 그리스의 아리스토텔레스부터 현대의 AI까지, 인류는 항상 "알려진 것에서 알려지지 않은 것을 도출하는" 방법을 추구해왔습니다.</p>
+            
+            <blockquote class="philosopher-quote">
+                "모든 사람은 죽는다. 소크라테스는 사람이다. 따라서 소크라테스는 죽는다."
+                <cite>- 삼단논법의 고전적 예시</cite>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="reasoning-types">
+        <h3>🎯 추론의 종류</h3>
+        <div class="reasoning-grid">
+            <div class="reasoning-type">
+                <h4>연역적 추론 (Deductive)</h4>
+                <div class="type-icon">🔽</div>
+                <p>일반적 원칙에서 특수한 결론 도출</p>
+                <div class="example">
+                    <strong>예시:</strong><br>
+                    모든 포유류는 온혈동물이다 →<br>
+                    고래는 포유류다 →<br>
+                    ∴ 고래는 온혈동물이다
+                </div>
+            </div>
+            
+            <div class="reasoning-type">
+                <h4>귀납적 추론 (Inductive)</h4>
+                <div class="type-icon">🔼</div>
+                <p>특수한 관찰에서 일반적 규칙 도출</p>
+                <div class="example">
+                    <strong>예시:</strong><br>
+                    백조 1은 희다 →<br>
+                    백조 2는 희다 →<br>
+                    ∴ 모든 백조는 희다 (개연적)
+                </div>
+            </div>
+            
+            <div class="reasoning-type">
+                <h4>귀추적 추론 (Abductive)</h4>
+                <div class="type-icon">🔄</div>
+                <p>관찰로부터 최선의 설명 추측</p>
+                <div class="example">
+                    <strong>예시:</strong><br>
+                    잔디가 젖어있다 →<br>
+                    비가 오면 잔디가 젖는다 →<br>
+                    ∴ 비가 왔다 (추측)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ontology-reasoning-special">
+        <h3>🌐 온톨로지 추론의 특징</h3>
+        
+        <div class="feature-comparison">
+            <div class="traditional-reasoning">
+                <h4>전통적 데이터베이스</h4>
+                <ul>
+                    <li><strong>Closed World Assumption</strong></li>
+                    <li>모르는 것은 거짓</li>
+                    <li>명시된 데이터만 처리</li>
+                    <li>예: SQL NOT EXISTS</li>
+                </ul>
+            </div>
+            
+            <div class="ontology-reasoning">
+                <h4>온톨로지 추론</h4>
+                <ul>
+                    <li><strong>Open World Assumption</strong></li>
+                    <li>모르는 것은 가능성 열어둠</li>
+                    <li>암묵적 지식 도출</li>
+                    <li>예: 명시되지 않아도 추론</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="reasoning-examples">
+        <h3>💡 실제 추론 예시</h3>
+        
+        <div class="example-scenario">
+            <h4>시나리오: 가족 관계 추론</h4>
+            <div class="given-facts">
+                <h5>명시된 사실:</h5>
+                <ul>
+                    <li>John hasChild Mary</li>
+                    <li>Mary hasChild Tom</li>
+                    <li>hasChild는 transitive 속성</li>
+                </ul>
+            </div>
+            
+            <div class="inference-results">
+                <h5>추론된 지식:</h5>
+                <ul>
+                    <li>John hasChild Tom (손자 관계)</li>
+                    <li>Mary hasParent John (역관계)</li>
+                    <li>Tom hasAncestor John (조상 관계)</li>
+                </ul>
+            </div>
+            
+            <div class="reasoning-process">
+                <h5>추론 과정:</h5>
+                <pre><code>1. hasChild(John, Mary) ∧ hasChild(Mary, Tom)
+2. transitive(hasChild)
+3. ∀x,y,z: hasChild(x,y) ∧ hasChild(y,z) → hasChild(x,z)
+4. ∴ hasChild(John, Tom)</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.2: Description Logic 심화 -->
+<section class="content-section">
+    <h2>9.2 Description Logic - 추론의 수학적 기초</h2>
+    
+    <div class="dl-introduction">
+        <h3>🧮 Description Logic의 탄생</h3>
+        <p>1980년대, AI 연구자들은 지식 표현과 추론의 균형을 찾고 있었습니다.</p>
+        
+        <div class="dl-history">
+            <blockquote>
+                "우리는 표현력은 풍부하지만 결정 불가능한 언어와, 
+                결정 가능하지만 표현력이 제한된 언어 사이에서 선택해야 했습니다."
+                <cite>- Ronald J. Brachman, DL 창시자</cite>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="dl-syntax-complete">
+        <h3>📚 DL 구문과 의미론</h3>
+        <table class="dl-syntax-table">
+            <thead>
+                <tr>
+                    <th>DL 구문</th>
+                    <th>의미</th>
+                    <th>OWL 표현</th>
+                    <th>예시</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="category-header">
+                    <td colspan="4"><strong>기본 개념</strong></td>
+                </tr>
+                <tr>
+                    <td>⊤</td>
+                    <td>전체 클래스</td>
+                    <td>owl:Thing</td>
+                    <td>모든 객체</td>
+                </tr>
+                <tr>
+                    <td>⊥</td>
+                    <td>공집합</td>
+                    <td>owl:Nothing</td>
+                    <td>존재하지 않음</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="4"><strong>뺔리 연산자</strong></td>
+                </tr>
+                <tr>
+                    <td>C ⊓ D</td>
+                    <td>교집합</td>
+                    <td>intersectionOf</td>
+                    <td>Student ⊓ Employee</td>
+                </tr>
+                <tr>
+                    <td>C ⊔ D</td>
+                    <td>합집합</td>
+                    <td>unionOf</td>
+                    <td>Cat ⊔ Dog</td>
+                </tr>
+                <tr>
+                    <td>¬C</td>
+                    <td>여집합</td>
+                    <td>complementOf</td>
+                    <td>¬Minor</td>
+                </tr>
+                <tr class="category-header">
+                    <td colspan="4"><strong>양화사</strong></td>
+                </tr>
+                <tr>
+                    <td>∃r.C</td>
+                    <td>존재 한정사</td>
+                    <td>someValuesFrom</td>
+                    <td>∃hasChild.Doctor</td>
+                </tr>
+                <tr>
+                    <td>∀r.C</td>
+                    <td>전칭 한정사</td>
+                    <td>allValuesFrom</td>
+                    <td>∀hasChild.Happy</td>
+                </tr>
+                <tr>
+                    <td>≥n r.C</td>
+                    <td>최소 기수제약</td>
+                    <td>minCardinality</td>
+                    <td>≥2 hasWheel.Wheel</td>
+                </tr>
+                <tr>
+                    <td>≤n r.C</td>
+                    <td>최대 기수제약</td>
+                    <td>maxCardinality</td>
+                    <td>≤1 hasMother.Person</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="dl-families">
+        <h3>🎯 DL 언어 계열</h3>
+        <div class="dl-hierarchy">
+            <div class="dl-level">
+                <h4>AL (Attributive Language)</h4>
+                <div class="features">
+                    <span class="feature">⊤, ⊥</span>
+                    <span class="feature">A (atomic concepts)</span>
+                    <span class="feature">C ⊓ D</span>
+                    <span class="feature">¬A (atomic negation)</span>
+                    <span class="feature">∃r.⊤</span>
+                    <span class="feature">∀r.C</span>
+                </div>
+            </div>
+            
+            <div class="dl-level">
+                <h4>ALC (AL + Complement)</h4>
+                <div class="features">
+                    <span class="feature">AL +</span>
+                    <span class="feature">¬C (full negation)</span>
+                    <span class="feature">C ⊔ D</span>
+                    <span class="feature">∃r.C</span>
+                </div>
+            </div>
+            
+            <div class="dl-level">
+                <h4>SHIQ</h4>
+                <div class="features">
+                    <span class="feature">ALC +</span>
+                    <span class="feature">Transitive roles</span>
+                    <span class="feature">Role hierarchy</span>
+                    <span class="feature">Inverse roles</span>
+                    <span class="feature">Qualified cardinality</span>
+                </div>
+            </div>
+            
+            <div class="dl-level">
+                <h4>SROIQ (OWL 2 DL)</h4>
+                <div class="features">
+                    <span class="feature">SHIQ +</span>
+                    <span class="feature">Role chains</span>
+                    <span class="feature">Nominals</span>
+                    <span class="feature">Datatypes</span>
+                    <span class="feature">Role assertions</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="complexity-analysis">
+        <h3>📋 복잡도 분석</h3>
+        <table class="complexity-table">
+            <thead>
+                <tr>
+                    <th>DL</th>
+                    <th>Satisfiability</th>
+                    <th>Subsumption</th>
+                    <th>실용성</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AL</td>
+                    <td>PTIME</td>
+                    <td>PTIME</td>
+                    <td>매우 빠름</td>
+                </tr>
+                <tr>
+                    <td>ALC</td>
+                    <td>EXPTIME</td>
+                    <td>EXPTIME</td>
+                    <td>실용적</td>
+                </tr>
+                <tr>
+                    <td>SHIQ</td>
+                    <td>EXPTIME</td>
+                    <td>EXPTIME</td>
+                    <td>실용적</td>
+                </tr>
+                <tr>
+                    <td>SROIQ</td>
+                    <td>N2EXPTIME</td>
+                    <td>N2EXPTIME</td>
+                    <td>최적화 필수</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 섹션 9.3: 주요 추론 엔진 -->
+<section class="content-section">
+    <h2>9.3 주요 추론 엔진 상세 분석</h2>
+    
+    <div class="reasoner-deep-dive">
+        <h3>🔧 추론 엔진의 내부 작동</h3>
+        <p>각 추론 엔진은 고유한 알고리즘과 최적화 기법을 사용합니다.</p>
+    </div>
+
+    <div class="reasoner-comparison-detailed">
+        <h3>🎯 주요 추론 엔진 상세 비교</h3>
+        
+        <div class="reasoner-cards">
+            <div class="reasoner-card hermit">
+                <h4>HermiT 1.4</h4>
+                <div class="reasoner-details">
+                    <div class="detail-section">
+                        <h5>🏛️ 개발 배경</h5>
+                        <ul>
+                            <li>Oxford 대학에서 개발</li>
+                            <li>Hypertableau 알고리즘 기반</li>
+                            <li>OWL 2 DL 완전 지원</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h5>💪 강점</h5>
+                        <ul>
+                            <li>가장 정확한 추론 결과</li>
+                            <li>복잡한 기수 제약 처리</li>
+                            <li>상세한 오류 메시지</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h5>🚀 최적 사용 시나리오</h5>
+                        <ul>
+                            <li>중소규모 온톨로지 (~10K axioms)</li>
+                            <li>복잡한 논리 구조 필요 시</li>
+                            <li>정확성이 최우선일 때</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reasoner-card pellet">
+                <h4>Pellet 2.5</h4>
+                <div class="reasoner-details">
+                    <div class="detail-section">
+                        <h5>🏛️ 개발 배경</h5>
+                        <ul>
+                            <li>Clark & Parsia 개발</li>
+                            <li>Tableau 알고리즘 + 최적화</li>
+                            <li>Java 기반 오픈소스</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h5>💪 강점</h5>
+                        <ul>
+                            <li>균형 잡힌 성능</li>
+                            <li>SPARQL-DL 통합</li>
+                            <li>Explanation 기능</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h5>🚀 최적 사용 시나리오</h5>
+                        <ul>
+                            <li>일반적인 비즈니스 온톨로지</li>
+                            <li>SPARQL 쿼리 필요 시</li>
+                            <li>설명 기능 필요 시</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reasoner-card elk">
+                <h4>ELK 0.5</h4>
+                <div class="reasoner-details">
+                    <div class="detail-section">
+                        <h5>🏛️ 개발 배경</h5>
+                        <ul>
+                            <li>독일 드레스덴 대학</li>
+                            <li>Consequence-based 알고리즘</li>
+                            <li>OWL 2 EL 특화</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h5>💪 강점</h5>
+                        <ul>
+                            <li>초고속 성능</li>
+                            <li>병렬 처리 지원</li>
+                            <li>증분적 추론</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h5>🚀 최적 사용 시나리오</h5>
+                        <ul>
+                            <li>대규모 의료 온톨로지 (SNOMED CT)</li>
+                            <li>실시간 분류 필요 시</li>
+                            <li>EL++ 프로파일 사용 시</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reasoner-card konclude">
+                <h4>Konclude</h4>
+                <div class="reasoner-details">
+                    <div class="detail-section">
+                        <h5>🏛️ 개발 배경</h5>
+                        <ul>
+                            <li>독일 Derivo GmbH</li>
+                            <li>최신 병렬 알고리즘</li>
+                            <li>C++ 구현</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h5>💪 강점</h5>
+                        <ul>
+                            <li>현존 최고 성능</li>
+                            <li>멀티코어 최적화</li>
+                            <li>대규모 온톨로지 처리</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h5>🚀 최적 사용 시나리오</h5>
+                        <ul>
+                            <li>초대형 온톨로지</li>
+                            <li>성능이 최우선일 때</li>
+                            <li>병렬 서버 환경</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="reasoning-algorithms">
+        <h3>🧬 추론 알고리즘 심화</h3>
+        
+        <div class="algorithm-explanation">
+            <h4>Tableau 알고리즘</h4>
+            <div class="algorithm-steps">
+                <ol>
+                    <li><strong>초기화</strong>: ABox에 개체와 개념 추가</li>
+                    <li><strong>확장</strong>: 규칙 적용하여 새로운 사실 도출
+                        <ul>
+                            <li>∩-rule: C ∩ D → C, D</li>
+                            <li>⊔-rule: C ⊔ D → C 또는 D (분기)</li>
+                            <li>∃-rule: ∃R.C → 새 개체 b, R(a,b), C(b)</li>
+                            <li>∀-rule: ∀R.C, R(a,b) → C(b)</li>
+                        </ul>
+                    </li>
+                    <li><strong>충돌 검사</strong>: {A(x), ¬A(x)} 같은 모순 확인</li>
+                    <li><strong>종료</strong>: 모든 분기가 충돌하면 unsatisfiable</li>
+                </ol>
+            </div>
+            
+            <div class="algorithm-example">
+                <h5>예시: Parent ⊑ Person 검증</h5>
+                <pre><code>1. 가정: Parent(a), ¬Person(a)
+2. Parent ≡ Person ∩ ∃hasChild.Person 적용
+3. Person(a) ∩ ∃hasChild.Person(a) 도출
+4. 충돌: Person(a) ∧ ¬Person(a)
+5. 결론: Parent ⊑ Person 참</code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.4: 추론 성능 최적화 -->
+<section class="content-section">
+    <h2>9.4 추론 성능 최적화</h2>
+    
+    <div class="optimization-intro">
+        <h3>⚡ 빠른 추론의 비밀</h3>
+        <p>대규모 온톨로지에서 추론 성능은 시스템의 사용성을 결정합니다.</p>
+    </div>
+            <p class="tip">💡 Java 8 이상 필요</p>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.2 -->
+<section class="content-section">
+    <h2>9.2 인터페이스 둘러보기</h2>
+    
+    <h3>주요 인터페이스 구성</h3>
+    <div class="interface-overview">
+        <div class="interface-component">
+            <h4>1. 메뉴바</h4>
+            <div class="menu-items">
+                <p><strong>File:</strong> 온톨로지 열기/저장/내보내기</p>
+                <p><strong>Edit:</strong> 실행취소/재실행/검색</p>
+                <p><strong>View:</strong> 화면 구성 변경</p>
+                <p><strong>Reasoner:</strong> 추론기 선택/실행</p>
+                <p><strong>Tools:</strong> 플러그인/설정</p>
+            </div>
+        </div>
+        
+        <div class="interface-component">
+            <h4>2. 탭 영역</h4>
+            <div class="tab-descriptions">
+                <div class="tab-item">
+                    <h5>Active Ontology</h5>
+                    <p>온톨로지 메타데이터 관리</p>
+                    <ul>
+                        <li>온톨로지 IRI</li>
+                        <li>버전 정보</li>
+                        <li>임포트된 온톨로지</li>
+                        <li>주석과 설명</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-item">
+                    <h5>Entities</h5>
+                    <p>온톨로지 구성요소 편집</p>
+                    <ul>
+                        <li>Classes 탭: 클래스 계층구조</li>
+                        <li>Object properties: 객체 속성</li>
+                        <li>Data properties: 데이터 속성</li>
+                        <li>Annotation properties: 주석 속성</li>
+                        <li>Individuals: 개체</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-item">
+                    <h5>DL Query</h5>
+                    <p>Description Logic 질의 실행</p>
+                </div>
+                
+                <div class="tab-item">
+                    <h5>SPARQL Query</h5>
+                    <p>SPARQL 질의 작성과 실행</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="interface-component">
+            <h4>3. 상태바</h4>
+            <p>추론기 상태, 온톨로지 정보, 선택된 항목 정보 표시</p>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.3 -->
+<section class="content-section">
+    <h2>9.3 클래스 작업하기</h2>
+    
+    <h3>클래스 생성과 편집</h3>
+    <div class="class-operations">
+        <div class="operation-guide">
+            <h4>새 클래스 생성</h4>
+            <ol>
+                <li>Classes 탭 선택</li>
+                <li>상위 클래스 선택 (기본: owl:Thing)</li>
+                <li>Add subclass 버튼 클릭 또는 Ctrl+Alt+C</li>
+                <li>클래스 이름 입력</li>
+            </ol>
+            <div class="example-box">
+                <strong>예시:</strong>
+                <pre>
+Thing
+└── Vehicle
+    ├── Car
+    ├── Bicycle
+    └── Airplane
+                </pre>
+            </div>
+        </div>
+        
+        <div class="operation-guide">
+            <h4>클래스 설명 추가</h4>
+            <div class="description-types">
+                <div class="desc-type">
+                    <h5>SubClass Of</h5>
+                    <p>필요조건 정의</p>
+                    <code>Car SubClassOf hasWheels exactly 4</code>
+                </div>
+                
+                <div class="desc-type">
+                    <h5>Equivalent To</h5>
+                    <p>필요충분조건 정의</p>
+                    <code>Parent EquivalentTo Person and hasChild some Person</code>
+                </div>
+                
+                <div class="desc-type">
+                    <h5>Disjoint With</h5>
+                    <p>상호배타적 클래스</p>
+                    <code>Male DisjointWith Female</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h3>클래스 표현식 만들기</h3>
+    <div class="class-expressions">
+        <div class="expression-example">
+            <h4>교집합 (Intersection)</h4>
+            <p>Manchester 구문: <code>Person and hasAge some int[>=18]</code></p>
+            <p>의미: 18세 이상인 사람</p>
+        </div>
+        
+        <div class="expression-example">
+            <h4>합집합 (Union)</h4>
+            <p>Manchester 구문: <code>Cat or Dog</code></p>
+            <p>의미: 고양이 또는 개</p>
+        </div>
+        
+        <div class="expression-example">
+            <h4>여집합 (Complement)</h4>
+            <p>Manchester 구문: <code>not Vegetarian</code></p>
+            <p>의미: 채식주의자가 아닌 것</p>
+        </div>
+        
+        <div class="expression-example">
+            <h4>속성 제한</h4>
+            <p>Manchester 구문: <code>hasChild only Female</code></p>
+            <p>의미: 딸만 있는 경우</p>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.4 -->
+<section class="content-section">
+    <h2>9.4 속성 작업하기</h2>
+    
+    <h3>Object Properties</h3>
+    <div class="property-work">
+        <div class="property-creation">
+            <h4>속성 생성</h4>
+            <ol>
+                <li>Object properties 탭 선택</li>
+                <li>Add sub property 클릭</li>
+                <li>속성 이름 입력 (예: hasParent)</li>
+                <li>도메인과 레인지 설정</li>
+            </ol>
+        </div>
+        
+        <div class="property-characteristics">
+            <h4>속성 특성 설정</h4>
+            <div class="characteristic-list">
+                <div class="char-item">
+                    <h5>Functional</h5>
+                    <p>하나의 값만 가능</p>
+                    <code>hasBirthDate</code>
+                </div>
+                
+                <div class="char-item">
+                    <h5>Inverse Functional</h5>
+                    <p>값이 유일함</p>
+                    <code>hasSSN</code>
+                </div>
+                
+                <div class="char-item">
+                    <h5>Transitive</h5>
+                    <p>이행적 관계</p>
+                    <code>hasAncestor</code>
+                </div>
+                
+                <div class="char-item">
+                    <h5>Symmetric</h5>
+                    <p>대칭적 관계</p>
+                    <code>marriedTo</code>
+                </div>
+                
+                <div class="char-item">
+                    <h5>Asymmetric</h5>
+                    <p>비대칭적 관계</p>
+                    <code>parentOf</code>
+                </div>
+                
+                <div class="char-item">
+                    <h5>Reflexive</h5>
+                    <p>반사적 관계</p>
+                    <code>knows</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h3>Data Properties</h3>
+    <div class="data-properties">
+        <div class="data-prop-example">
+            <h4>데이터 속성 예시</h4>
+            <ul>
+                <li><strong>hasName:</strong> xsd:string</li>
+                <li><strong>hasAge:</strong> xsd:integer</li>
+                <li><strong>hasBirthDate:</strong> xsd:dateTime</li>
+                <li><strong>hasEmail:</strong> xsd:string[pattern "^.+@.+$"]</li>
+            </ul>
+        </div>
+        
+        <div class="data-type-restrictions">
+            <h4>데이터타입 제약</h4>
+            <pre class="code-block">
+hasAge some xsd:integer[>= 0, <= 150]
+hasGPA some xsd:float[>= 0.0, <= 4.0]
+hasStatus some {"active", "inactive", "pending"}
+            </pre>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.5 -->
+<section class="content-section">
+    <h2>9.5 개체(Individuals) 작업</h2>
+    
+    <h3>개체 생성과 관리</h3>
+    <div class="individuals-work">
+        <div class="individual-creation">
+            <h4>개체 생성 단계</h4>
+            <ol>
+                <li>Individuals by class 뷰 선택</li>
+                <li>해당 클래스 선택</li>
+                <li>Add individual 클릭</li>
+                <li>개체 이름 입력</li>
+                <li>속성 값 추가</li>
+            </ol>
+        </div>
+        
+        <div class="individual-example">
+            <h4>예시: 사람 개체</h4>
+            <pre class="code-block">
+Individual: john_doe
+    Types: Person
+    Facts:
+        hasName "John Doe"
+        hasAge 35
+        hasEmail "john@example.com"
+        worksFor acme_corp
+        knows jane_doe
+            </pre>
+        </div>
+        
+        <div class="assertion-types">
+            <h4>단언(Assertion) 유형</h4>
+            <div class="assertion-item">
+                <h5>Object Property Assertions</h5>
+                <p>개체 간의 관계</p>
+                <code>john_doe knows jane_doe</code>
+            </div>
+            
+            <div class="assertion-item">
+                <h5>Data Property Assertions</h5>
+                <p>개체의 데이터 값</p>
+                <code>john_doe hasAge 35</code>
+            </div>
+            
+            <div class="assertion-item">
+                <h5>Same/Different Individuals</h5>
+                <p>개체 동일성/상이성</p>
+                <code>john SameAs john_doe</code>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.6 -->
+<section class="content-section">
+    <h2>9.6 추론기 활용하기</h2>
+    
+    <h3>추론기 설정과 실행</h3>
+    <div class="reasoner-usage">
+        <div class="reasoner-setup">
+            <h4>추론기 시작하기</h4>
+            <ol>
+                <li>Reasoner 메뉴 열기</li>
+                <li>추론기 선택 (예: HermiT)</li>
+                <li>Start reasoner 클릭 또는 Ctrl+R</li>
+                <li>추론 결과 확인</li>
+            </ol>
+        </div>
+        
+        <div class="inference-types">
+            <h4>추론 유형</h4>
+            <div class="inference-item">
+                <h5>클래스 계층 추론</h5>
+                <p>암묵적 상하위 관계 발견</p>
+                <div class="inference-example">
+                    <p><strong>정의:</strong> Mother ≡ Female ⊓ Parent</p>
+                    <p><strong>추론:</strong> Mother ⊑ Person</p>
+                </div>
+            </div>
+            
+            <div class="inference-item">
+                <h5>개체 분류</h5>
+                <p>개체의 추가 타입 추론</p>
+                <div class="inference-example">
+                    <p><strong>사실:</strong> mary hasChild tom</p>
+                    <p><strong>추론:</strong> mary is Parent</p>
+                </div>
+            </div>
+            
+            <div class="inference-item">
+                <h5>일관성 검사</h5>
+                <p>논리적 모순 검출</p>
+                <div class="inconsistency-signs">
+                    <p>🔴 빨간색 클래스: 불일치</p>
+                    <p>🟡 노란색 표시: 추론된 내용</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reasoner-comparison">
+            <h4>추론기별 특징</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>추론기</th>
+                        <th>장점</th>
+                        <th>단점</th>
+                        <th>사용 시기</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HermiT</td>
+                        <td>정확성, 디버깅</td>
+                        <td>속도</td>
+                        <td>개발/디버깅</td>
+                    </tr>
+                    <tr>
+                        <td>Pellet</td>
+                        <td>균형잡힌 성능</td>
+                        <td>업데이트 중단</td>
+                        <td>일반 용도</td>
+                    </tr>
+                    <tr>
+                        <td>ELK</td>
+                        <td>매우 빠름</td>
+                        <td>EL만 지원</td>
+                        <td>대규모 분류</td>
+                    </tr>
+                    <tr>
+                        <td>FaCT++</td>
+                        <td>빠른 속도</td>
+                        <td>제한된 기능</td>
+                        <td>성능 중요</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.7 -->
+<section class="content-section">
+    <h2>9.7 시각화와 플러그인</h2>
+    
+    <h3>OntoGraf - 온톨로지 시각화</h3>
+    <div class="visualization-tools">
+        <div class="ontograf-guide">
+            <h4>OntoGraf 사용법</h4>
+            <ol>
+                <li>Window → Views → Ontology views → OntoGraf</li>
+                <li>시각화할 클래스 선택</li>
+                <li>Show 버튼 클릭</li>
+            </ol>
+            
+            <div class="visualization-controls">
+                <h5>컨트롤</h5>
+                <ul>
+                    <li><strong>드래그:</strong> 노드 이동</li>
+                    <li><strong>휠:</strong> 확대/축소</li>
+                    <li><strong>더블클릭:</strong> 노드 확장/축소</li>
+                    <li><strong>우클릭:</strong> 컨텍스트 메뉴</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="useful-plugins">
+            <h4>유용한 플러그인</h4>
+            <div class="plugin-list">
+                <div class="plugin-item">
+                    <h5>Ontology Metrics</h5>
+                    <p>온톨로지 통계 분석</p>
+                    <ul>
+                        <li>클래스/속성/개체 수</li>
+                        <li>DL 표현력</li>
+                        <li>복잡도 메트릭</li>
+                    </ul>
+                </div>
+                
+                <div class="plugin-item">
+                    <h5>OWL Doc</h5>
+                    <p>온톨로지 문서 자동 생성</p>
+                    <ul>
+                        <li>HTML 문서화</li>
+                        <li>클래스 다이어그램</li>
+                        <li>API 문서</li>
+                    </ul>
+                </div>
+                
+                <div class="plugin-item">
+                    <h5>Cellfie</h5>
+                    <p>스프레드시트에서 온톨로지 생성</p>
+                    <ul>
+                        <li>Excel 임포트</li>
+                        <li>매핑 규칙</li>
+                        <li>일괄 변환</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 섹션 9.8 -->
+<section class="content-section">
+    <h2>9.8 실전 프로젝트: 도서관 온톨로지</h2>
+    
+    <h3>단계별 구축 가이드</h3>
+    <div class="project-guide">
+        <div class="project-step">
+            <h4>1단계: 프로젝트 설정</h4>
+            <ol>
+                <li>File → New → 온톨로지 IRI 설정</li>
+                <li>Prefix 추가: lib → http://example.org/library#</li>
+                <li>메타데이터 추가 (제목, 설명, 버전)</li>
+            </ol>
+        </div>
+        
+        <div class="project-step">
+            <h4>2단계: 클래스 계층구조</h4>
+            <pre class="code-block">
+Thing
+├── Resource
+│   ├── PhysicalResource
+│   │   ├── Book
+│   │   ├── Magazine
+│   │   └── DVD
+│   └── DigitalResource
+│       ├── EBook
+│       └── AudioBook
+├── Person
+│   ├── Member
+│   │   ├── Student
+│   │   └── Faculty
+│   ├── Author
+│   └── Librarian
+└── Subject
+    ├── Fiction
+    └── NonFiction
+            </pre>
+        </div>
+        
+        <div class="project-step">
+            <h4>3단계: 속성 정의</h4>
+            <div class="property-definitions">
+                <h5>Object Properties</h5>
+                <ul>
+                    <li>borrowedBy (도메인: Resource, 레인지: Member)</li>
+                    <li>writtenBy (도메인: Book, 레인지: Author)</li>
+                    <li>hasSubject (도메인: Resource, 레인지: Subject)</li>
+                </ul>
+                
+                <h5>Data Properties</h5>
+                <ul>
+                    <li>hasISBN (도메인: Book, 레인지: string)</li>
+                    <li>hasTitle (도메인: Resource, 레인지: string)</li>
+                    <li>publishedYear (도메인: Resource, 레인지: integer)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="project-step">
+            <h4>4단계: 제약사항 추가</h4>
+            <ul>
+                <li>Book: hasISBN exactly 1</li>
+                <li>Member: borrowedBy max 5 Resource</li>
+                <li>hasISBN: Functional</li>
+                <li>Student DisjointWith Librarian</li>
+            </ul>
+        </div>
+        
+        <div class="project-step">
+            <h4>5단계: 개체 생성</h4>
+            <pre class="code-block">
+Individual: book_001
+    Types: Book
+    Facts:
+        hasTitle "온톨로지 입문"
+        hasISBN "978-89-123-4567-8"
+        writtenBy author_kim
+        hasSubject ontology_subject
+        publishedYear 2024
+            </pre>
+        </div>
+        
+        <div class="project-step">
+            <h4>6단계: 추론과 검증</h4>
+            <ol>
+                <li>HermiT 추론기 시작</li>
+                <li>일관성 검사</li>
+                <li>추론된 계층구조 확인</li>
+                <li>DL Query로 테스트</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- 실습 과제 -->
+<div class="practice-section">
+    <h2>🎯 실습 과제</h2>
+    
+    <div class="practice-task">
+        <h3>과제 1: 학교 온톨로지 구축</h3>
+        <p>Protégé를 사용하여 다음 요구사항을 만족하는 학교 온톨로지를 구축하세요:</p>
+        <ol>
+            <li>학생, 교사, 과목, 교실 클래스 정의</li>
+            <li>수강(enrolledIn), 가르침(teaches) 관계 정의</li>
+            <li>학생은 최대 7과목 수강 가능 제약</li>
+            <li>각 과목은 반드시 1명의 교사가 담당</li>
+            <li>최소 10개의 개체 생성</li>
+            <li>추론기로 일관성 검증</li>
+        </ol>
+    </div>
+    
+    <div class="practice-task">
+        <h3>과제 2: 플러그인 활용</h3>
+        <p>다음 플러그인을 설치하고 활용해보세요:</p>
+        <ol>
+            <li>OntoGraf로 온톨로지 시각화</li>
+            <li>Ontology Metrics로 복잡도 분석</li>
+            <li>DL Query로 복잡한 질의 실행</li>
+            <li>결과를 스크린샷으로 저장</li>
+        </ol>
+    </div>
+</div>
+
+<!-- 핵심 정리 -->
+<div class="summary-section">
+    <h2>💡 핵심 정리</h2>
+    
+    <div class="summary-grid">
+        <div class="summary-card">
+            <h3>기본 작업</h3>
+            <ul>
+                <li>클래스 계층구조 생성</li>
+                <li>속성 정의와 특성 설정</li>
+                <li>개체 생성과 관계 설정</li>
+                <li>주석과 문서화</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card">
+            <h3>고급 기능</h3>
+            <ul>
+                <li>클래스 표현식 작성</li>
+                <li>추론기 활용</li>
+                <li>일관성 검증</li>
+                <li>DL/SPARQL 질의</li>
+            </ul>
+        </div>
+        
+        <div class="summary-card">
+            <h3>실전 팁</h3>
+            <ul>
+                <li>자주 저장하기</li>
+                <li>버전 관리 활용</li>
+                <li>명명 규칙 일관성</li>
+                <li>점진적 개발</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 다음 장 예고 -->
+<div class="next-chapter">
+    <h3>다음 장에서는...</h3>
+    <p>온톨로지 설계 방법론과 모범 사례에 대해 학습합니다.</p>
+    <button class="next-btn" onclick="OntologyBook.loadChapter('chapter10')">
+        다음 장으로 <i class="fas fa-arrow-right"></i>
+    </button>
+</div>
+
+<!-- 챕터 전용 스타일 -->
+<style>
+/* Protégé 특징 카드 */
+.protege-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.feature-card {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+}
+
+.feature-card h4 {
+    color: #0369a1;
+    margin-bottom: 0.5rem;
+}
+
+/* 설치 가이드 */
+.installation-guide {
+    margin: 2rem 0;
+}
+
+.install-step {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #6366f1;
+}
+
+.install-step h4 {
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+}
+
+.install-step code {
+    background: #f1f5f9;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.tip {
+    background: #fef3c7;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* 인터페이스 개요 */
+.interface-overview {
+    margin: 2rem 0;
+}
+
+.interface-component {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.interface-component h4 {
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.menu-items p {
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+}
+
+/* 탭 설명 */
+.tab-descriptions {
+    display: grid;
+    gap: 1rem;
+}
+
+.tab-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.tab-item h5 {
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+}
+
+/* 클래스 작업 */
+.class-operations {
+    margin: 2rem 0;
+}
+
+.operation-guide {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 2px solid #e5e7eb;
+}
+
+.operation-guide h4 {
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.example-box {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.example-box pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* 클래스 표현식 */
+.class-expressions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.expression-example {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.expression-example h4 {
+    color: #92400e;
+    margin-bottom: 0.5rem;
+}
+
+.expression-example code {
+    background: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+/* 속성 작업 */
+.property-work {
+    margin: 2rem 0;
+}
+
+.property-characteristics {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.characteristic-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.char-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.char-item h5 {
+    color: #4f46e5;
+    margin-bottom: 0.3rem;
+}
+
+.char-item code {
+    color: #64748b;
+    font-family: 'Courier New', monospace;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+/* 데이터 속성 */
+.data-properties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.data-prop-example,
+.data-type-restrictions {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e0e7ff;
+}
+
+/* 개체 작업 */
+.individuals-work {
+    margin: 2rem 0;
+}
+
+.individual-creation {
+    background: #f0f9ff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.assertion-types {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.assertion-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #3b82f6;
+}
+
+/* 추론기 사용 */
+.reasoner-usage {
+    margin: 2rem 0;
+}
+
+.reasoner-setup {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.inference-types {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.inference-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+}
+
+.inference-example {
+    background: #f0f9ff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.inconsistency-signs {
+    background: #fef2f2;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+/* 추론기 비교 테이블 */
+.reasoner-comparison table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.reasoner-comparison th {
+    background: #4f46e5;
+    color: white;
+    padding: 1rem;
+    text-align: left;
+}
+
+.reasoner-comparison td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* 시각화 도구 */
+.visualization-tools {
+    margin: 2rem 0;
+}
+
+.ontograf-guide {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 2px solid #e5e7eb;
+}
+
+.visualization-controls {
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* 플러그인 */
+.plugin-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.plugin-item {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.plugin-item h5 {
+    color: #4c1d95;
+    margin-bottom: 0.5rem;
+}
+
+/* 프로젝트 가이드 */
+.project-guide {
+    margin: 2rem 0;
+}
+
+.project-step {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #6366f1;
+}
+
+.project-step h4 {
+    color: #4f46e5;
+    margin-bottom: 1rem;
+}
+
+.property-definitions {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* 코드 블록 */
+.code-block {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .protege-features,
+    .class-expressions,
+    .characteristic-list,
+    .data-properties,
+    .plugin-list {
+        grid-template-columns: 1fr;
+    }
+}
+</style>

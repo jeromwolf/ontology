@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "📏 파일 크기 체크 중..."
+npm run check:sizes
+
+# Critical 파일이 있으면 커밋 중단
+if npm run check:sizes | grep -q "🔴 CRITICAL"; then
+    echo "❌ 1000줄 이상 파일 발견! 리팩토링 필요"
+    echo "💡 Smart Factory 패턴 참고: CLAUDE.md"
+    exit 1
+fi
+
+npm run lint

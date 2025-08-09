@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>RDF-3D Transfer Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background: #3b82f6;
+            color: white;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        pre {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .success {
+            color: #059669;
+            background: #d1fae5;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>RDF Editor ↔ 3D Graph 데이터 전송 테스트</h1>
+    
+    <div class="section">
+        <h2>1. RDF Editor → 3D Graph 전송 시뮬레이션</h2>
+        <button onclick="simulateRDFToGraph()">RDF Editor에서 3D Graph로 데이터 전송</button>
+        <button onclick="checkRDFData()">localStorage 확인</button>
+        <button onclick="clearRDFData()">데이터 삭제</button>
+        <pre id="rdf-data">localStorage 데이터가 여기에 표시됩니다</pre>
+    </div>
+    
+    <div class="section">
+        <h2>2. 3D Graph → RDF Editor 전송 시뮬레이션</h2>
+        <button onclick="simulateGraphToRDF()">3D Graph에서 RDF Editor로 데이터 전송</button>
+        <button onclick="checkGraphData()">localStorage 확인</button>
+        <button onclick="clearGraphData()">데이터 삭제</button>
+        <pre id="graph-data">localStorage 데이터가 여기에 표시됩니다</pre>
+    </div>
+    
+    <div class="section">
+        <h2>3. 실제 페이지 테스트</h2>
+        <p>아래 링크를 순서대로 클릭하여 실제 데이터 전송을 테스트하세요:</p>
+        <ol>
+            <li><a href="/rdf-editor" target="_blank">RDF Editor 열기</a> - 트리플을 생성하고 "3D 보기" 클릭</li>
+            <li><a href="/3d-graph" target="_blank">3D Graph 열기</a> - 데이터가 로드되는지 확인</li>
+        </ol>
+    </div>
+    
+    <script>
+        // Sample triples for testing
+        const sampleTriples = [
+            { subject: ':테스트주체', predicate: ':has', object: ':테스트객체', type: 'resource' },
+            { subject: ':테스트주체', predicate: ':name', object: '테스트 이름', type: 'literal' },
+            { subject: ':다른주체', predicate: ':관계', object: ':테스트주체', type: 'resource' }
+        ];
+        
+        function simulateRDFToGraph() {
+            const data = {
+                triples: sampleTriples,
+                timestamp: new Date().toISOString(),
+                source: 'rdf-editor'
+            };
+            localStorage.setItem('rdf-editor-triples', JSON.stringify(data));
+            document.getElementById('rdf-data').textContent = JSON.stringify(data, null, 2);
+            showSuccess('RDF Editor 데이터가 저장되었습니다!');
+        }
+        
+        function simulateGraphToRDF() {
+            const modifiedTriples = [
+                ...sampleTriples,
+                { subject: ':새로운주체', predicate: ':추가됨', object: '3D에서 추가', type: 'literal' }
+            ];
+            const data = {
+                triples: modifiedTriples,
+                timestamp: new Date().toISOString(),
+                source: '3d-graph'
+            };
+            localStorage.setItem('3d-graph-triples', JSON.stringify(data));
+            document.getElementById('graph-data').textContent = JSON.stringify(data, null, 2);
+            showSuccess('3D Graph 데이터가 저장되었습니다!');
+        }
+        
+        function checkRDFData() {
+            const data = localStorage.getItem('rdf-editor-triples');
+            document.getElementById('rdf-data').textContent = data ? 
+                JSON.stringify(JSON.parse(data), null, 2) : 
+                '데이터 없음';
+        }
+        
+        function checkGraphData() {
+            const data = localStorage.getItem('3d-graph-triples');
+            document.getElementById('graph-data').textContent = data ? 
+                JSON.stringify(JSON.parse(data), null, 2) : 
+                '데이터 없음';
+        }
+        
+        function clearRDFData() {
+            localStorage.removeItem('rdf-editor-triples');
+            document.getElementById('rdf-data').textContent = '데이터가 삭제되었습니다';
+        }
+        
+        function clearGraphData() {
+            localStorage.removeItem('3d-graph-triples');
+            document.getElementById('graph-data').textContent = '데이터가 삭제되었습니다';
+        }
+        
+        function showSuccess(message) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success';
+            successDiv.textContent = message;
+            document.body.insertBefore(successDiv, document.querySelector('.section'));
+            setTimeout(() => successDiv.remove(), 3000);
+        }
+        
+        // Check initial state
+        window.onload = () => {
+            checkRDFData();
+            checkGraphData();
+        };
+    </script>
+</body>
+</html>

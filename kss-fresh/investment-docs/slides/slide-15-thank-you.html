@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 15: 감사 인사</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Noto+Sans+KR:wght@300;400;600;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .thank-you {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleScale 1s ease-out;
+        }
+
+        .message {
+            font-size: 28px;
+            font-weight: 300;
+            color: #CBD5E1;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 0 auto;
+            animation: slideUp 1s ease-out 1s both;
+        }
+
+        .contact-title {
+            font-size: 20px;
+            color: #94A3B8;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #3B82F6;
+        }
+
+        .contact-link {
+            color: #60A5FA;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #93C5FD;
+            transform: translateX(5px);
+        }
+
+        .logo-bottom {
+            margin-top: 40px;
+            font-size: 32px;
+            font-weight: 900;
+            opacity: 0.3;
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+
+        @keyframes titleScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 배경 애니메이션 */
+        .background-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #3B82F6;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
+        }
+
+        /* 여러 파티클 랜덤 위치 */
+        .particle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.5s; }
+        .particle:nth-child(3) { top: 60%; left: 10%; animation-delay: 1s; }
+        .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 1.5s; }
+        .particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 2s; }
+        .particle:nth-child(6) { top: 70%; left: 30%; animation-delay: 2.5s; }
+        .particle:nth-child(7) { top: 50%; left: 90%; animation-delay: 0.3s; }
+        .particle:nth-child(8) { top: 15%; left: 60%; animation-delay: 0.8s; }
+        .particle:nth-child(9) { top: 85%; left: 40%; animation-delay: 1.3s; }
+        .particle:nth-child(10) { top: 45%; left: 15%; animation-delay: 1.8s; }
+        .particle:nth-child(11) { top: 25%; left: 35%; animation-delay: 2.3s; }
+        .particle:nth-child(12) { top: 65%; left: 85%; animation-delay: 2.8s; }
+
+        /* 빛나는 효과 */
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: glowPulse 4s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .navigation-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            color: #64748B;
+            animation: fadeIn 1s ease-out 2s both;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="glow-effect"></div>
+
+    <div class="container">
+        <h1 class="thank-you">감사합니다</h1>
+        
+        <p class="message">
+            AI 시대의 교육 혁신,<br>
+            KSS와 함께 만들어가겠습니다
+        </p>
+        
+        <div class="contact-info">
+            <div class="contact-title">Contact</div>
+            
+            <div class="contact-item">
+                <span class="contact-icon">🌐</span>
+                <a href="https://kss.ai.kr" class="contact-link">kss.ai.kr</a>
+            </div>
+            
+            <div class="contact-item">
+                <span class="contact-icon">✉️</span>
+                <a href="mailto:contact@kss.ai.kr" class="contact-link">contact@kss.ai.kr</a>
+            </div>
+            
+            <div class="contact-item">
+                <span class="contact-icon">💼</span>
+                <span>Kelly Kim, CEO</span>
+            </div>
+        </div>
+        
+        <div class="logo-bottom">KSS</div>
+    </div>
+
+    <div class="navigation-hint">← 이전 슬라이드로 돌아가기</div>
+
+    <script>
+        // 마지막 슬라이드이므로 다음 페이지 없음
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-14-investment.html';
+            }
+            if (e.key === 'Home') {
+                window.location.href = 'slide-01-title.html';
+            }
+        });
+
+        // 클릭 시 처음으로 돌아가기
+        document.body.addEventListener('click', function() {
+            window.location.href = 'slide-01-title.html';
+        });
+
+        // 파티클 애니메이션 강화
+        document.addEventListener('DOMContentLoaded', function() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                // 랜덤 크기
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // 랜덤 지속 시간
+                const duration = Math.random() * 2 + 2;
+                particle.style.animationDuration = duration + 's';
+            });
+        });
+    </script>
+</body>
+</html>

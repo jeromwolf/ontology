@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSS - Slide 10: 자율주행 교육 모듈</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            color: #F8FAFC;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #94A3B8;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .diagram-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            animation: scaleIn 1s ease-out 0.5s both;
+        }
+
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 10;
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.5);
+        }
+
+        .center-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .module-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeInRotate 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .module-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        /* 원형 배치 */
+        .module-item:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); animation-delay: 0.1s; }
+        .module-item:nth-child(2) { top: 15%; right: 10%; animation-delay: 0.2s; }
+        .module-item:nth-child(3) { bottom: 15%; right: 10%; animation-delay: 0.3s; }
+        .module-item:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); animation-delay: 0.4s; }
+        .module-item:nth-child(5) { bottom: 15%; left: 10%; animation-delay: 0.5s; }
+        .module-item:nth-child(6) { top: 15%; left: 10%; animation-delay: 0.6s; }
+
+        .module-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .module-name {
+            font-size: 14px;
+            color: #CBD5E1;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .connection-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            transform-origin: center;
+            animation: pulse 3s infinite;
+        }
+
+        .info-text {
+            margin-top: 40px;
+            font-size: 20px;
+            color: #94A3B8;
+            animation: slideUp 1s ease-out 1s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInRotate {
+            from {
+                opacity: 0;
+                transform: translateX(var(--tx, 0)) rotate(-180deg) scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(var(--tx, 0)) rotate(0deg) scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>자율주행 & 미래 모빌리티</h1>
+        <p class="subtitle">모듈</p>
+        
+        <div class="diagram-container">
+            <!-- 연결선들 -->
+            <div class="connection-line" style="transform: rotate(0deg);"></div>
+            <div class="connection-line" style="transform: rotate(60deg);"></div>
+            <div class="connection-line" style="transform: rotate(120deg);"></div>
+            
+            <!-- 중앙 -->
+            <div class="center-circle">
+                <div class="center-text">
+                    자율주행<br>
+                    교육 과정
+                </div>
+            </div>
+            
+            <!-- 모듈들 -->
+            <div class="module-item">
+                <span class="module-icon">🔍</span>
+                <span class="module-name">센서융합</span>
+            </div>
+            
+            <div class="module-item">
+                <span class="module-icon">🧠</span>
+                <span class="module-name">AI/딥러닝</span>
+            </div>
+            
+            <div class="module-item">
+                <span class="module-icon">🗺️</span>
+                <span class="module-name">경로계획</span>
+            </div>
+            
+            <div class="module-item">
+                <span class="module-icon">📡</span>
+                <span class="module-name">V2X 통신</span>
+            </div>
+            
+            <div class="module-item">
+                <span class="module-icon">🎮</span>
+                <span class="module-name">시뮬레이션</span>
+            </div>
+            
+            <div class="module-item">
+                <span class="module-icon">🔋</span>
+                <span class="module-name">전동화</span>
+            </div>
+        </div>
+        
+        <p class="info-text">"8개 챕터, 16시간 과정"</p>
+    </div>
+
+    <script>
+        // 모듈 클릭 시 설명 표시
+        const modules = document.querySelectorAll('.module-item');
+        modules.forEach(module => {
+            module.addEventListener('click', function() {
+                const name = this.querySelector('.module-name').textContent;
+                console.log(`${name} 모듈에 대한 상세 정보`);
+            });
+        });
+
+        document.body.addEventListener('click', function(e) {
+            if (!e.target.closest('.module-item')) {
+                window.location.href = 'slide-11-paradigm-shift.html';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                window.location.href = 'slide-11-paradigm-shift.html';
+            }
+            if (e.key === 'ArrowLeft') {
+                window.location.href = 'slide-09-demo-intro.html';
+            }
+        });
+    </script>
+</body>
+</html>
