@@ -117,41 +117,14 @@ export default function GraphRAGExplorer() {
     concept: '#c084fc'      // 보라
   }
   
-  // 텍스트에서 엔티티와 관계 추출 (시뮬레이션)
+  // 텍스트에서 엔티티와 관계 추출 (실제 텍스트 분석)
   const extractEntitiesAndRelations = () => {
     setIsProcessing(true)
     
-    // 시뮬레이션을 위한 엔티티 추출
+    // 입력된 텍스트에서 실제 엔티티 추출
     setTimeout(() => {
-      const extractedEntities: Entity[] = [
-        { id: 'e1', name: '애플', type: 'organization', properties: { founded: 1976 } },
-        { id: 'e2', name: '스티브 잡스', type: 'person', properties: { role: '공동창업자' } },
-        { id: 'e3', name: '스티브 워즈니악', type: 'person', properties: { role: '공동창업자' } },
-        { id: 'e4', name: '팀 쿡', type: 'person', properties: { role: 'CEO' } },
-        { id: 'e5', name: '쿠퍼티노', type: 'location', properties: { state: '캘리포니아' } },
-        { id: 'e6', name: '삼성전자', type: 'organization', properties: { country: '한국' } },
-        { id: 'e7', name: '구글', type: 'organization', properties: { field: 'AI' } },
-        { id: 'e8', name: '마이크로소프트', type: 'organization', properties: { field: 'AI' } },
-        { id: 'e9', name: 'AI 기술', type: 'concept', properties: { trend: '성장' } },
-        { id: 'e10', name: '아이폰', type: 'concept', properties: { category: '제품' } },
-        { id: 'e11', name: '맥북', type: 'concept', properties: { category: '제품' } },
-        { id: 'e12', name: '아이패드', type: 'concept', properties: { category: '제품' } }
-      ]
-      
-      const extractedRelations: Relation[] = [
-        { id: 'r1', source: 'e2', target: 'e1', type: '설립' },
-        { id: 'r2', source: 'e3', target: 'e1', type: '설립' },
-        { id: 'r3', source: 'e4', target: 'e1', type: 'CEO' },
-        { id: 'r4', source: 'e1', target: 'e5', type: '본사위치' },
-        { id: 'r5', source: 'e1', target: 'e6', type: '경쟁' },
-        { id: 'r6', source: 'e1', target: 'e9', type: '투자' },
-        { id: 'r7', source: 'e7', target: 'e9', type: '선도' },
-        { id: 'r8', source: 'e8', target: 'e9', type: '선도' },
-        { id: 'r9', source: 'e1', target: 'e10', type: '생산' },
-        { id: 'r10', source: 'e1', target: 'e11', type: '생산' },
-        { id: 'r11', source: 'e1', target: 'e12', type: '생산' },
-        { id: 'r12', source: 'e6', target: 'e1', type: '경쟁' }
-      ]
+      const extractedEntities = extractEntitiesFromText(text)
+      const extractedRelations = extractRelationsFromText(text, extractedEntities)
       
       setEntities(extractedEntities)
       setRelations(extractedRelations)
@@ -165,25 +138,244 @@ export default function GraphRAGExplorer() {
       setIsProcessing(false)
     }, 1500)
   }
-  
-  // 커뮤니티 감지 (시뮬레이션)
-  const detectCommunities = (entities: Entity[], relations: Relation[]) => {
-    const communities: Community[] = [
-      {
-        id: 'c1',
-        entities: ['e1', 'e2', 'e3', 'e4', 'e5', 'e10', 'e11', 'e12'],
-        summary: '애플 생태계',
-        color: '#60a5fa'
-      },
-      {
-        id: 'c2',
-        entities: ['e6', 'e7', 'e8', 'e9'],
-        summary: '기술 경쟁 및 AI',
-        color: '#c084fc'
-      }
+
+  // 텍스트에서 엔티티 추출하는 실제 함수
+  const extractEntitiesFromText = (inputText: string): Entity[] => {
+    const entities: Entity[] = []
+    let entityId = 1
+
+    // 조직/회사명 패턴
+    const organizationPatterns = [
+      /KSS/g, /Knowledge Space Simulator/g, /애플/g, /Apple/g, /삼성전자/g, /Samsung/g, 
+      /구글/g, /Google/g, /마이크로소프트/g, /Microsoft/g, /네이버/g, /Naver/g,
+      /카카오/g, /Kakao/g, /테슬라/g, /Tesla/g, /OpenAI/g, /오픈AI/g,
+      /스탠포드/g, /Stanford/g, /MIT/g, /하버드/g, /Harvard/g
     ]
+
+    // 인물명 패턴  
+    const personPatterns = [
+      /스티브 잡스/g, /Steve Jobs/g, /팀 쿡/g, /Tim Cook/g, /일론 머스크/g, /Elon Musk/g,
+      /젠슨 황/g, /Jensen Huang/g, /샘 알트만/g, /Sam Altman/g, /마크 저커버그/g,
+      /제프 베조스/g, /Jeff Bezos/g, /빌 게이츠/g, /Bill Gates/g
+    ]
+
+    // 위치명 패턴
+    const locationPatterns = [
+      /쿠퍼티노/g, /Cupertino/g, /실리콘밸리/g, /Silicon Valley/g, /서울/g, /Seoul/g,
+      /한국/g, /Korea/g, /미국/g, /USA/g, /캘리포니아/g, /California/g,
+      /워싱턴/g, /Washington/g, /뉴욕/g, /New York/g, /도쿄/g, /Tokyo/g
+    ]
+
+    // 기술/개념 패턴
+    const conceptPatterns = [
+      /AI/g, /인공지능/g, /머신러닝/g, /Machine Learning/g, /딥러닝/g, /Deep Learning/g,
+      /온톨로지/g, /Ontology/g, /시뮬레이터/g, /Simulator/g, /교육/g, /Education/g,
+      /플랫폼/g, /Platform/g, /VR/g, /AR/g, /메타버스/g, /Metaverse/g,
+      /블록체인/g, /Blockchain/g, /NFT/g, /Web3/g, /양자컴퓨팅/g, /Quantum Computing/g,
+      /아이폰/g, /iPhone/g, /맥북/g, /MacBook/g, /아이패드/g, /iPad/g
+    ]
+
+    // 조직 엔티티 추출
+    organizationPatterns.forEach(pattern => {
+      const matches = [...inputText.matchAll(pattern)]
+      matches.forEach(match => {
+        if (match[0] && !entities.find(e => e.name === match[0])) {
+          entities.push({
+            id: `e${entityId++}`,
+            name: match[0],
+            type: 'organization',
+            properties: { category: '회사/기관' }
+          })
+        }
+      })
+    })
+
+    // 인물 엔티티 추출
+    personPatterns.forEach(pattern => {
+      const matches = [...inputText.matchAll(pattern)]
+      matches.forEach(match => {
+        if (match[0] && !entities.find(e => e.name === match[0])) {
+          entities.push({
+            id: `e${entityId++}`,
+            name: match[0],
+            type: 'person',
+            properties: { category: '인물' }
+          })
+        }
+      })
+    })
+
+    // 위치 엔티티 추출
+    locationPatterns.forEach(pattern => {
+      const matches = [...inputText.matchAll(pattern)]
+      matches.forEach(match => {
+        if (match[0] && !entities.find(e => e.name === match[0])) {
+          entities.push({
+            id: `e${entityId++}`,
+            name: match[0],
+            type: 'location',
+            properties: { category: '장소' }
+          })
+        }
+      })
+    })
+
+    // 개념 엔티티 추출
+    conceptPatterns.forEach(pattern => {
+      const matches = [...inputText.matchAll(pattern)]
+      matches.forEach(match => {
+        if (match[0] && !entities.find(e => e.name === match[0])) {
+          entities.push({
+            id: `e${entityId++}`,
+            name: match[0],
+            type: 'concept',
+            properties: { category: '기술/개념' }
+          })
+        }
+      })
+    })
+
+    // 최소 3개 이상의 엔티티가 없으면 기본 엔티티 추가
+    if (entities.length < 3) {
+      const defaultEntities = [
+        { id: 'e_default1', name: '문서 분석', type: 'concept' as const, properties: { category: '분석' } },
+        { id: 'e_default2', name: '지식 그래프', type: 'concept' as const, properties: { category: '시각화' } },
+        { id: 'e_default3', name: 'GraphRAG', type: 'concept' as const, properties: { category: '기술' } }
+      ]
+      entities.push(...defaultEntities)
+    }
+
+    return entities.slice(0, 15) // 최대 15개로 제한
+  }
+
+  // 텍스트에서 관계 추출하는 함수
+  const extractRelationsFromText = (inputText: string, entities: Entity[]): Relation[] => {
+    const relations: Relation[] = []
+    let relationId = 1
+
+    // 관계 패턴들
+    const relationPatterns = [
+      { pattern: /(.+?)(는|은|이|가)\s*(.+?)(를|을|에게|에)\s*(개발|제작|생산|설립|창립|투자|인수|출시)/g, type: '개발' },
+      { pattern: /(.+?)(와|과)\s*(.+?)(의|와|과)\s*(협력|파트너십|제휴|경쟁)/g, type: '관계' },
+      { pattern: /(.+?)(의|는|은)\s*(.+?)(CEO|대표|창업자|설립자)/g, type: '리더십' },
+      { pattern: /(.+?)(는|은|이|가)\s*(.+?)(에|에서)\s*(위치|본사|거주)/g, type: '위치' },
+      { pattern: /(.+?)(와|과)\s*(.+?)(는|은|이|가)\s*(경쟁|라이벌)/g, type: '경쟁' }
+    ]
+
+    // 패턴 기반 관계 추출
+    relationPatterns.forEach(({ pattern, type }) => {
+      const matches = [...inputText.matchAll(pattern)]
+      matches.forEach(match => {
+        const source = entities.find(e => match[1] && e.name.includes(match[1].trim()))
+        const target = entities.find(e => match[3] && e.name.includes(match[3].trim()))
+        
+        if (source && target && source.id !== target.id) {
+          relations.push({
+            id: `r${relationId++}`,
+            source: source.id,
+            target: target.id,
+            type: type
+          })
+        }
+      })
+    })
+
+    // 기본 관계 생성 (인접한 엔티티들 연결)
+    for (let i = 0; i < entities.length - 1; i++) {
+      for (let j = i + 1; j < Math.min(entities.length, i + 3); j++) {
+        if (Math.random() > 0.3) { // 70% 확률로 관계 생성
+          relations.push({
+            id: `r${relationId++}`,
+            source: entities[i].id,
+            target: entities[j].id,
+            type: '연관'
+          })
+        }
+      }
+    }
+
+    return relations.slice(0, 20) // 최대 20개로 제한
+  }
+  
+  // 커뮤니티 감지 (동적 분석)
+  const detectCommunities = (entities: Entity[], relations: Relation[]) => {
+    const communities: Community[] = []
+    const visitedEntities = new Set<string>()
+    
+    // 엔티티 타입별로 커뮤니티 그룹 생성
+    const typeGroups: Record<string, Entity[]> = {
+      organization: [],
+      person: [],
+      location: [],
+      event: [],
+      concept: []
+    }
+    
+    entities.forEach(entity => {
+      typeGroups[entity.type].push(entity)
+    })
+    
+    let communityId = 1
+    const colors = ['#60a5fa', '#c084fc', '#4ade80', '#fbbf24', '#f87171']
+    
+    // 각 타입별로 커뮤니티 생성 (엔티티가 2개 이상인 경우)
+    Object.entries(typeGroups).forEach(([type, typeEntities], index) => {
+      if (typeEntities.length >= 2) {
+        const entityIds = typeEntities.map(e => e.id)
+        communities.push({
+          id: `c${communityId++}`,
+          entities: entityIds,
+          summary: getTypeSummary(type, typeEntities.length),
+          color: colors[index % colors.length]
+        })
+        
+        entityIds.forEach(id => visitedEntities.add(id))
+      }
+    })
+    
+    // 연결이 많은 엔티티들로 추가 커뮤니티 생성
+    const connectionCounts: Record<string, number> = {}
+    relations.forEach(rel => {
+      connectionCounts[rel.source] = (connectionCounts[rel.source] || 0) + 1
+      connectionCounts[rel.target] = (connectionCounts[rel.target] || 0) + 1
+    })
+    
+    const highlyConnected = entities
+      .filter(e => !visitedEntities.has(e.id) && connectionCounts[e.id] >= 2)
+      .slice(0, 5)
+    
+    if (highlyConnected.length >= 2) {
+      communities.push({
+        id: `c${communityId++}`,
+        entities: highlyConnected.map(e => e.id),
+        summary: '핵심 연결 노드',
+        color: colors[communities.length % colors.length]
+      })
+    }
+    
+    // 최소 1개 커뮤니티 보장
+    if (communities.length === 0 && entities.length > 0) {
+      communities.push({
+        id: 'c1',
+        entities: entities.slice(0, Math.min(5, entities.length)).map(e => e.id),
+        summary: '주요 엔티티',
+        color: '#60a5fa'
+      })
+    }
     
     setCommunities(communities)
+  }
+  
+  // 엔티티 타입별 요약 생성
+  const getTypeSummary = (type: string, count: number): string => {
+    const summaries: Record<string, string> = {
+      organization: `조직/기업 (${count}개)`,
+      person: `인물 (${count}명)`, 
+      location: `장소 (${count}곳)`,
+      event: `이벤트 (${count}건)`,
+      concept: `개념/기술 (${count}개)`
+    }
+    return summaries[type] || `${type} (${count}개)`
   }
   
   // 그래프 시각화 데이터 생성
@@ -499,24 +691,80 @@ export default function GraphRAGExplorer() {
     }
   }, [graphNodes, graphEdges, hoveredNode, selectedNode, settings, zoom, pan, isFullscreen])
   
-  // 쿼리 처리 (시뮬레이션)
+  // 쿼리 처리 (동적 분석)
   const processQuery = () => {
     if (!query.trim()) return
     
-    // 간단한 쿼리 시뮬레이션
-    if (query.includes('애플') && query.includes('경쟁')) {
-      setQueryResult('애플은 삼성전자와 경쟁 관계에 있습니다. 두 회사는 스마트폰, 태블릿 등의 시장에서 경쟁하고 있습니다.')
-      // 관련 노드 하이라이트
-      setSelectedNode('e1')
-    } else if (query.includes('AI')) {
-      setQueryResult('애플, 구글, 마이크로소프트가 AI 기술 분야를 선도하고 있습니다. 애플은 최근 AI 기술에 대한 투자를 늘리고 있습니다.')
-      setSelectedNode('e9')
-    } else if (query.includes('CEO')) {
-      setQueryResult('팀 쿡이 현재 애플의 CEO를 맡고 있습니다.')
-      setSelectedNode('e4')
+    const lowerQuery = query.toLowerCase()
+    
+    // 추출된 엔티티에서 쿼리와 관련된 정보 찾기
+    const relevantEntities = entities.filter(entity => 
+      entity.name.toLowerCase().includes(lowerQuery) || 
+      lowerQuery.includes(entity.name.toLowerCase())
+    )
+    
+    if (relevantEntities.length > 0) {
+      const entity = relevantEntities[0]
+      
+      // 관련 관계 찾기
+      const relatedRelations = relations.filter(rel => 
+        rel.source === entity.id || rel.target === entity.id
+      )
+      
+      const connectedEntities = relatedRelations.map(rel => {
+        const connectedId = rel.source === entity.id ? rel.target : rel.source
+        return entities.find(e => e.id === connectedId)
+      }).filter(e => e !== undefined)
+      
+      // 결과 생성
+      let result = `"${entity.name}"에 대한 정보를 찾았습니다.\n\n`
+      result += `• 타입: ${getTypeDescription(entity.type)}\n`
+      
+      if (connectedEntities.length > 0) {
+        result += `• 연관된 엔티티: ${connectedEntities.map(e => e!.name).slice(0, 3).join(', ')}\n`
+        
+        const relationTypes = [...new Set(relatedRelations.map(r => r.type))]
+        result += `• 관계: ${relationTypes.slice(0, 3).join(', ')}`
+      } else {
+        result += `• 단독으로 존재하는 엔티티입니다.`
+      }
+      
+      setQueryResult(result)
+      setSelectedNode(entity.id)
     } else {
-      setQueryResult('쿼리와 관련된 정보를 찾을 수 없습니다. 다른 질문을 시도해보세요.')
+      // 관계 패턴 검색
+      if (lowerQuery.includes('관계') || lowerQuery.includes('연결') || lowerQuery.includes('연관')) {
+        const allRelationTypes = [...new Set(relations.map(r => r.type))]
+        setQueryResult(`이 그래프에서 발견된 관계 유형들: ${allRelationTypes.join(', ')}`)
+      } else if (lowerQuery.includes('개수') || lowerQuery.includes('수')) {
+        setQueryResult(`총 ${entities.length}개의 엔티티와 ${relations.length}개의 관계가 발견되었습니다.`)
+      } else if (lowerQuery.includes('타입') || lowerQuery.includes('종류')) {
+        const entityTypes = entities.reduce((acc, entity) => {
+          acc[entity.type] = (acc[entity.type] || 0) + 1
+          return acc
+        }, {} as Record<string, number>)
+        
+        const typeDescription = Object.entries(entityTypes)
+          .map(([type, count]) => `${getTypeDescription(type)}: ${count}개`)
+          .join(', ')
+        
+        setQueryResult(`엔티티 타입별 분포: ${typeDescription}`)
+      } else {
+        setQueryResult(`"${query}"와 관련된 정보를 찾을 수 없습니다. 추출된 엔티티: ${entities.map(e => e.name).slice(0, 5).join(', ')}`)
+      }
     }
+  }
+  
+  // 엔티티 타입 설명
+  const getTypeDescription = (type: string): string => {
+    const descriptions: Record<string, string> = {
+      organization: '조직/기업',
+      person: '인물',
+      location: '장소',
+      event: '이벤트',
+      concept: '개념/기술'
+    }
+    return descriptions[type] || type
   }
   
   // 애니메이션 루프
