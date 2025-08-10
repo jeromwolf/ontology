@@ -54,9 +54,9 @@ export default function StockAnalysisSimulatorPage() {
         return <AIMentor />
       case 'news-impact-analyzer':
         return <NewsImpactAnalyzer />
-      case 'news-ontology':
+      case 'news-ontology-analyzer':
         return <NewsOntologyAnalyzer />
-      case 'cache-dashboard':
+      case 'news-cache-dashboard':
         return <NewsCacheDashboard />
       case 'dcf-valuation-model':
         return <DcfValuationModel />

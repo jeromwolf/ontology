@@ -29,7 +29,7 @@ export default function StockAnalysisSimulatorsPage() {
       name: 'AI 도구',
       icon: Brain,
       color: 'from-green-500 to-emerald-500',
-      simulators: ['ai-mentor', 'news-impact-analyzer', 'dcf-valuation-model']
+      simulators: ['ai-mentor', 'news-impact-analyzer', 'news-ontology-analyzer', 'news-cache-dashboard', 'dcf-valuation-model']
     }
   ];
 
@@ -63,8 +63,8 @@ export default function StockAnalysisSimulatorsPage() {
       'market-sentiment-gauge': AlertTriangle,
       'real-time-dashboard': Activity,
       'news-impact-analyzer': Newspaper,
-      'news-ontology': Database,
-      'cache-dashboard': Settings
+      'news-ontology-analyzer': Database,
+      'news-cache-dashboard': Settings
     };
     return iconMap[simulatorId] || Calculator;
   };

@@ -66,62 +66,96 @@ export default function NewsOntologyAnalyzer() {
     setLoading(true)
     setSearchQuery(query)
     
-    // 모의 데이터 생성 (실제로는 API 호출)
-    setTimeout(() => {
-      const mockNews: NewsItem[] = [
-        {
-          id: '1',
-          title: `삼성전자, SK하이닉스와 차세대 AI 반도체 공동 개발 추진`,
-          description: '삼성전자가 SK하이닉스, TSMC와 함께 차세대 AI 반도체 개발을 위한 컨소시엄을 구성. 엔비디아, AMD도 참여 예정',
-          source: '한국경제',
-          publishedAt: new Date().toISOString(),
-          url: '#',
-          sentiment: 0.8,
-          entities: {
-            companies: ['삼성전자', 'SK하이닉스', 'TSMC', '엔비디아', 'AMD'],
-            keywords: ['AI 반도체', 'HBM', '파운드리', '공동개발', '컨소시엄'],
-            sectors: ['반도체', 'IT', '전자']
-          }
-        },
-        {
-          id: '2',
-          title: `현대차·기아, LG에너지솔루션과 2030년까지 배터리 공급 계약`,
-          description: '현대차그룹이 LG에너지솔루션, SK온과 대규모 배터리 공급 계약 체결. 테슬라와의 경쟁 본격화',
-          source: '매일경제',
-          publishedAt: new Date().toISOString(),
-          url: '#',
-          sentiment: 0.7,
-          entities: {
-            companies: ['현대차', '기아', 'LG에너지솔루션', 'SK온', '테슬라'],
-            keywords: ['전기차', '배터리', 'ESG', '탄소중립', '모빌리티'],
-            sectors: ['자동차', '배터리', '친환경']
-          }
-        },
-        {
-          id: '3',
-          title: `카카오뱅크, 네이버페이와 금융 플랫폼 경쟁 심화`,
-          description: '카카오뱅크와 네이버페이가 간편결제 시장에서 치열한 경쟁. 토스, 쿠팡페이도 가세하며 시장 재편',
-          source: '연합뉴스',
-          publishedAt: new Date().toISOString(),
-          url: '#',
-          sentiment: 0.5,
-          entities: {
-            companies: ['카카오뱅크', '네이버페이', '토스', '쿠팡페이', '카카오페이'],
-            keywords: ['핀테크', '간편결제', '디지털금융', '플랫폼', '빅테크'],
-            sectors: ['금융', 'IT', '플랫폼']
-          }
+    try {
+      // API 호출하여 실제 뉴스 데이터 가져오기
+      const response = await fetch(`/api/news/fetch?q=${encodeURIComponent(query)}&priority=high`)
+      const result = await response.json()
+      
+      if (result.success && result.data?.articles) {
+        // API 응답을 NewsItem 형식으로 변환
+        const newsItems: NewsItem[] = result.data.articles.slice(0, 5).map((article: any, index: number) => ({
+          id: String(index + 1),
+          title: article.title,
+          description: article.description || article.content || '',
+          source: article.source?.name || '뉴스',
+          publishedAt: article.publishedAt,
+          url: article.url || '#',
+          sentiment: article.sentiment || Math.random() * 0.4 + 0.4, // 0.4 ~ 0.8
+          entities: extractEntities(article) // 엔티티 추출 함수
+        }))
+        
+        setNewsItems(newsItems)
+        setActiveView('analysis')
+        
+        // 첫 번째 뉴스 자동 선택
+        if (newsItems.length > 0) {
+          handleNewsSelect(newsItems[0])
         }
-      ]
-      
-      setNewsItems(mockNews)
-      setActiveView('analysis')
-      setLoading(false)
-      
-      // 첫 번째 뉴스 자동 선택
-      if (mockNews.length > 0) {
-        handleNewsSelect(mockNews[0])
+      } else {
+        // API 실패 시 목업 데이터 사용
+        const mockNews: NewsItem[] = [
+          {
+            id: '1',
+            title: `${query} 관련 최신 뉴스를 불러오는 중 오류가 발생했습니다`,
+            description: 'API 한도 초과 또는 네트워크 오류로 인해 실시간 뉴스를 가져올 수 없습니다. 잠시 후 다시 시도해주세요.',
+            source: '시스템',
+            publishedAt: new Date().toISOString(),
+            url: '#',
+            sentiment: 0.5,
+            entities: {
+              companies: [query],
+              keywords: ['오류', 'API', '네트워크'],
+              sectors: ['시스템']
+            }
+          }
+        ]
+        setNewsItems(mockNews)
+        setActiveView('analysis')
       }
-    }, 1500)
+    } catch (error) {
+      console.error('뉴스 검색 오류:', error)
+      // 오류 시 사용자에게 알림
+      alert('뉴스를 불러오는 중 오류가 발생했습니다.')
+    } finally {
+      setLoading(false)
+    }
+  }
+  
+  // 뉴스에서 엔티티 추출하는 헬퍼 함수
+  const extractEntities = (article: any) => {
+    // 간단한 키워드 추출 (실제로는 AI로 분석)
+    const text = `${article.title} ${article.description || ''}`.toLowerCase()
+    
+    // 주요 회사명 찾기
+    const companies = []
+    const companyKeywords = ['삼성', '현대', 'LG', 'SK', '네이버', '카카오', '쿠팡', '테슬라', '애플', '구글']
+    companyKeywords.forEach(company => {
+      if (text.includes(company.toLowerCase())) {
+        companies.push(company)
+      }
+    })
+    
+    // 섹터 추정
+    const sectors = []
+    if (text.includes('반도체') || text.includes('chip')) sectors.push('반도체')
+    if (text.includes('자동차') || text.includes('전기차')) sectors.push('자동차')
+    if (text.includes('배터리') || text.includes('2차전지')) sectors.push('배터리')
+    if (text.includes('AI') || text.includes('인공지능')) sectors.push('AI')
+    if (text.includes('금융') || text.includes('은행')) sectors.push('금융')
+    
+    // 키워드 추출
+    const keywords = []
+    if (text.includes('수출')) keywords.push('수출')
+    if (text.includes('투자')) keywords.push('투자')
+    if (text.includes('실적')) keywords.push('실적')
+    if (text.includes('성장')) keywords.push('성장')
+    if (text.includes('위기')) keywords.push('위기')
+    
+    return {
+      companies: companies.length > 0 ? companies : [searchQuery],
+      keywords: keywords.length > 0 ? keywords : ['뉴스', '분석'],
+      sectors: sectors.length > 0 ? sectors : ['일반']
+    }
   }
 
   // 뉴스 선택 시 엔티티 관계 분석

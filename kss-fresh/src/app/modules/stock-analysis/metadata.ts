@@ -415,6 +415,18 @@ export const stockAnalysisModule: Module = {
       description: 'AI 기반 뉴스 감정분석과 주가 영향도 예측',
       component: 'NewsImpactAnalyzer'
     },
+    {
+      id: 'news-ontology-analyzer',
+      name: 'AI 뉴스 온톨로지 분석기',
+      description: '고급 뉴스 검색, 엔티티 추출, 인터랙티브 온톨로지 그래프 시각화',
+      component: 'NewsOntologyAnalyzer'
+    },
+    {
+      id: 'news-cache-dashboard',
+      name: '뉴스 API 캐시 대시보드',
+      description: '실시간 뉴스 데이터 캐시 관리, API 사용량 통계 및 성능 모니터링',
+      component: 'NewsCacheDashboard'
+    },
 
     // === 기타 유용한 도구 ===
     {

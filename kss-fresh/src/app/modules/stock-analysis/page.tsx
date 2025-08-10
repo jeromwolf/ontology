@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, Sparkles, GraduationCap, Target, Award, PlayCircle, Clock, Users, ChevronRight, BookOpen, Calculator, BarChart3, PieChart, Activity, Brain, DollarSign, TrendingUp, AlertTriangle, Shield, Microscope, Newspaper } from 'lucide-react';
+import { ArrowLeft, Sparkles, GraduationCap, Target, Award, PlayCircle, Clock, Users, ChevronRight, BookOpen, Calculator, BarChart3, PieChart, Activity, Brain, DollarSign, TrendingUp, AlertTriangle, Shield, Microscope, Newspaper, Database, Settings } from 'lucide-react';
 
 export default function StockAnalysisModulePage() {
   const learningTracks = [
@@ -226,7 +226,7 @@ export default function StockAnalysisModulePage() {
               모든 시뮬레이터 체험하기 🛠️
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
-              11개의 전문가급 투자 도구를 자유롭게 체험해보세요
+              13개의 전문가급 투자 도구를 자유롭게 체험해보세요
             </p>
           </div>
 
@@ -364,7 +364,7 @@ export default function StockAnalysisModulePage() {
               <Brain className="w-6 h-6 text-red-500" />
               실전 투자에 꼭 필요한 고급 도구
             </h3>
-            <div className="grid md:grid-cols-3 lg:grid-cols-7 gap-3">
+            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-3">
               {[
                 { id: 'real-time-dashboard', name: '실시간 시장 데이터', icon: Activity, color: 'text-blue-500' },
                 { id: 'risk-management-dashboard', name: '리스크 관리', icon: Shield, color: 'text-red-500' },
@@ -372,7 +372,9 @@ export default function StockAnalysisModulePage() {
                 { id: 'dcf-valuation-model', name: 'DCF 가치평가', icon: DollarSign, color: 'text-purple-500' },
                 { id: 'options-strategy-analyzer', name: '옵션 전략', icon: TrendingUp, color: 'text-orange-500' },
                 { id: 'factor-investing-lab', name: '팩터 투자', icon: Microscope, color: 'text-cyan-500' },
-                { id: 'news-impact-analyzer', name: 'AI 뉴스 분석', icon: Newspaper, color: 'text-pink-500' }
+                { id: 'news-impact-analyzer', name: 'AI 뉴스 분석', icon: Newspaper, color: 'text-pink-500' },
+                { id: 'news-ontology-analyzer', name: 'AI 뉴스 온톨로지', icon: Database, color: 'text-indigo-500' },
+                { id: 'news-cache-dashboard', name: '뉴스 캐시 대시보드', icon: Settings, color: 'text-yellow-500' }
               ].map((tool) => {
                 const IconComponent = tool.icon;
                 return (
@@ -402,7 +404,7 @@ export default function StockAnalysisModulePage() {
               className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg font-medium hover:shadow-lg hover:scale-105 transition-all duration-200"
             >
               <PlayCircle className="w-5 h-5" />
-              모든 시뮬레이터 보기 (11개)
+              모든 시뮬레이터 보기 (13개)
               <ChevronRight className="w-5 h-5" />
             </Link>
           </div>
