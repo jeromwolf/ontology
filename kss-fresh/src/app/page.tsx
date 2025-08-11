@@ -1790,6 +1790,21 @@ export default function KSSLandingPage() {
               </div>
             </Link>
 
+            {/* Data Science */}
+            <Link href="/modules/data-science" className="block">
+              <div className="glass-card rounded-2xl p-6 hover:shadow-lg transition-all cursor-pointer">
+              <div className="w-12 h-12 bg-gradient-to-r from-emerald-600 to-green-700 rounded-xl flex items-center justify-center mb-4">
+                <span className="text-white text-xl">📊</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Data Science</h3>
+              <p className="text-gray-600 text-sm mb-4">데이터에서 가치를 창출하는 과학적 접근법</p>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-500">40시간</span>
+                <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">개발중</span>
+              </div>
+              </div>
+            </Link>
+
             {/* Creative AI */}
             <Link href="/modules/creative-ai" className="block">
               <div className="glass-card rounded-2xl p-6 hover:shadow-lg transition-all cursor-pointer">
