@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Play, Pause, RotateCcw, Settings, Info, Download } from 'lucide-react'
+import { Play, Pause, RotateCcw, Settings, Info, Download, ChevronDown, ChevronUp, TrendingDown } from 'lucide-react'
 
 interface DataPoint {
   x: number
@@ -29,6 +29,8 @@ export default function MLPlayground() {
   const [currentIteration, setCurrentIteration] = useState(0)
   const [accuracy, setAccuracy] = useState(0)
   const [selectedDataset, setSelectedDataset] = useState<'linear' | 'circular' | 'xor' | 'custom'>('circular')
+  const [lossHistory, setLossHistory] = useState<number[]>([])
+  const [showAdvanced, setShowAdvanced] = useState(false)
 
   // 데이터셋 생성
   const generateDataset = (type: string) => {
@@ -82,6 +84,13 @@ export default function MLPlayground() {
     setDataPoints(points)
     setCurrentIteration(0)
     setAccuracy(0)
+    setLossHistory([])
+    // 가중치 재초기화
+    setModelWeights({
+      w1: Math.random() - 0.5,
+      w2: Math.random() - 0.5,
+      b: Math.random() - 0.5
+    })
   }
 
   // 캔버스에 데이터 그리기
@@ -127,7 +136,7 @@ export default function MLPlayground() {
     })
   }
 
-  // 결정 경계 그리기 (간단한 시각화)
+  // 결정 경계 그리기 (정밀한 시각화)
   const drawDecisionBoundary = (ctx: CanvasRenderingContext2D) => {
     const imageData = ctx.createImageData(500, 500)
     const data = imageData.data
@@ -136,28 +145,88 @@ export default function MLPlayground() {
     for (let x = 0; x < 500; x += 2) {
       for (let y = 0; y < 500; y += 2) {
         const prediction = predictPoint(x, y)
-        const color = prediction > 0.5 ? [59, 130, 246, 50] : [239, 68, 68, 50]
         
-        const index = (y * 500 + x) * 4
-        data[index] = color[0]
-        data[index + 1] = color[1]
-        data[index + 2] = color[2]
-        data[index + 3] = color[3]
+        // 연속적인 확률 값을 색상으로 매핑
+        let color: number[]
+        if (modelParams.algorithm === 'svm') {
+          // SVM의 경우 마진 영역을 표시
+          if (Math.abs(prediction - 0.5) < 0.01) {
+            color = [128, 128, 128, 100] // 회색 마진
+          } else {
+            color = prediction > 0.5 ? [59, 130, 246, 40] : [239, 68, 68, 40]
+          }
+        } else {
+          // 다른 알고리즘의 경우 확률에 따른 그라데이션
+          const intensity = Math.abs(prediction - 0.5) * 2
+          if (prediction > 0.5) {
+            color = [59, 130, 246, Math.floor(20 + intensity * 60)]
+          } else {
+            color = [239, 68, 68, Math.floor(20 + intensity * 60)]
+          }
+        }
+        
+        // 2x2 픽셀 블록으로 그리기 (성능 향상)
+        for (let dx = 0; dx < 2; dx++) {
+          for (let dy = 0; dy < 2; dy++) {
+            const px = x + dx
+            const py = y + dy
+            if (px < 500 && py < 500) {
+              const index = (py * 500 + px) * 4
+              data[index] = color[0]
+              data[index + 1] = color[1]
+              data[index + 2] = color[2]
+              data[index + 3] = color[3]
+            }
+          }
+        }
       }
     }
     
     ctx.putImageData(imageData, 0, 0)
   }
 
-  // 간단한 예측 함수 (실제로는 더 복잡한 알고리즘 필요)
+  // 모델 파라미터 (학습 중 업데이트됨)
+  const [modelWeights, setModelWeights] = useState<{ w1: number, w2: number, b: number }>({
+    w1: Math.random() - 0.5,
+    w2: Math.random() - 0.5,
+    b: Math.random() - 0.5
+  })
+
+  // 실제 예측 함수
   const predictPoint = (x: number, y: number): number => {
-    if (modelParams.algorithm === 'linear' || modelParams.algorithm === 'logistic') {
-      // 간단한 선형 결정 경계
-      const progress = currentIteration / modelParams.iterations
-      const boundary = 250 + Math.sin(progress * Math.PI) * 100
-      return x + y > boundary ? 1 : 0
+    // 정규화
+    const normX = (x - 250) / 250
+    const normY = (y - 250) / 250
+    
+    switch (modelParams.algorithm) {
+      case 'linear':
+        // 선형 회귀
+        const linearScore = modelWeights.w1 * normX + modelWeights.w2 * normY + modelWeights.b
+        return linearScore > 0 ? 1 : 0
+        
+      case 'logistic':
+        // 로지스틱 회귀 (시그모이드 함수)
+        const logisticScore = modelWeights.w1 * normX + modelWeights.w2 * normY + modelWeights.b
+        return 1 / (1 + Math.exp(-logisticScore))
+        
+      case 'svm':
+        // SVM (간단한 RBF 커널)
+        const svmScore = modelWeights.w1 * normX + modelWeights.w2 * normY + modelWeights.b
+        const margin = 0.1
+        if (Math.abs(svmScore) < margin) return 0.5
+        return svmScore > 0 ? 1 : 0
+        
+      case 'decision-tree':
+        // 의사결정 트리 (간단한 2레벨 트리)
+        if (normX > modelWeights.w1) {
+          return normY > modelWeights.w2 ? 1 : 0
+        } else {
+          return normY > modelWeights.b ? 1 : 0
+        }
+        
+      default:
+        return 0.5
     }
-    return 0.5
   }
 
   // 학습 시뮬레이션
@@ -169,13 +238,72 @@ export default function MLPlayground() {
     
     setCurrentIteration(prev => prev + 1)
     
-    // 정확도 계산 (시뮬레이션)
+    // 미니배치 그라디언트 디센트
+    const batchSize = Math.min(32, dataPoints.length)
+    const batch = dataPoints.slice(0, batchSize)
+    
+    // 그라디언트 계산
+    let gradW1 = 0, gradW2 = 0, gradB = 0
+    
+    batch.forEach(point => {
+      const normX = (point.x - 250) / 250
+      const normY = (point.y - 250) / 250
+      const prediction = predictPoint(point.x, point.y)
+      const error = (point.label || 0) - prediction
+      
+      // 알고리즘별 그라디언트 계산
+      if (modelParams.algorithm === 'logistic') {
+        // 로지스틱 회귀 그라디언트
+        gradW1 += error * normX
+        gradW2 += error * normY
+        gradB += error
+      } else if (modelParams.algorithm === 'linear') {
+        // 선형 회귀 그라디언트
+        gradW1 += error * normX * 2
+        gradW2 += error * normY * 2
+        gradB += error * 2
+      } else if (modelParams.algorithm === 'svm') {
+        // SVM 힌지 손실 그라디언트
+        const margin = 1 - (point.label || 0) * (modelWeights.w1 * normX + modelWeights.w2 * normY + modelWeights.b)
+        if (margin > 0) {
+          gradW1 += -(point.label || 0) * normX
+          gradW2 += -(point.label || 0) * normY
+          gradB += -(point.label || 0)
+        }
+      } else if (modelParams.algorithm === 'decision-tree') {
+        // 의사결정 트리는 다른 방식으로 업데이트
+        gradW1 += error * 0.01
+        gradW2 += error * 0.01
+        gradB += error * 0.01
+      }
+    })
+    
+    // 가중치 업데이트
+    const lr = modelParams.learningRate
+    setModelWeights(prev => ({
+      w1: prev.w1 + lr * gradW1 / batchSize,
+      w2: prev.w2 + lr * gradW2 / batchSize,
+      b: prev.b + lr * gradB / batchSize
+    }))
+    
+    // 정확도 및 손실 계산
+    let totalLoss = 0
     const correctPredictions = dataPoints.filter(point => {
       const prediction = predictPoint(point.x, point.y)
-      return (prediction > 0.5 && point.label === 1) || (prediction <= 0.5 && point.label === 0)
+      const label = point.label || 0
+      
+      // 손실 계산 (크로스 엔트로피)
+      if (modelParams.algorithm === 'logistic') {
+        totalLoss += -(label * Math.log(prediction + 1e-7) + (1 - label) * Math.log(1 - prediction + 1e-7))
+      } else {
+        totalLoss += Math.pow(label - prediction, 2)
+      }
+      
+      return (prediction > 0.5 && label === 1) || (prediction <= 0.5 && label === 0)
     }).length
     
     setAccuracy(correctPredictions / dataPoints.length * 100)
+    setLossHistory(prev => [...prev.slice(-99), totalLoss / dataPoints.length])
   }
 
   useEffect(() => {
@@ -263,11 +391,43 @@ export default function MLPlayground() {
                   setCurrentIteration(0)
                   setAccuracy(0)
                   setIsTraining(false)
+                  setLossHistory([])
+                  setModelWeights({
+                    w1: Math.random() - 0.5,
+                    w2: Math.random() - 0.5,
+                    b: Math.random() - 0.5
+                  })
                 }}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg font-medium hover:bg-gray-600 transition-colors"
               >
                 <RotateCcw className="w-4 h-4" />
                 초기화
+              </button>
+              
+              <button
+                onClick={() => {
+                  const data = {
+                    dataset: dataPoints,
+                    model: {
+                      algorithm: modelParams.algorithm,
+                      weights: modelWeights,
+                      accuracy: accuracy,
+                      iterations: currentIteration
+                    },
+                    lossHistory: lossHistory
+                  }
+                  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+                  const url = URL.createObjectURL(blob)
+                  const a = document.createElement('a')
+                  a.href = url
+                  a.download = `ml-playground-${Date.now()}.json`
+                  a.click()
+                  URL.revokeObjectURL(url)
+                }}
+                className="flex items-center gap-2 px-4 py-2 bg-purple-500 text-white rounded-lg font-medium hover:bg-purple-600 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                내보내기
               </button>
             </div>
           </div>
@@ -386,6 +546,99 @@ export default function MLPlayground() {
                   </div>
                 </div>
               </div>
+            </div>
+            
+            {/* 손실 그래프 */}
+            {lossHistory.length > 0 && (
+              <div>
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <TrendingDown className="w-5 h-5" />
+                  손실 그래프
+                </h3>
+                <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                  <div className="h-32 relative">
+                    <svg className="w-full h-full">
+                      <polyline
+                        fill="none"
+                        stroke="url(#loss-gradient)"
+                        strokeWidth="2"
+                        points={lossHistory.map((loss, i) => {
+                          const x = (i / Math.max(lossHistory.length - 1, 1)) * 100
+                          const y = 100 - (Math.min(loss, 5) / 5) * 100
+                          return `${x},${y}`
+                        }).join(' ')}
+                      />
+                      <defs>
+                        <linearGradient id="loss-gradient">
+                          <stop offset="0%" stopColor="#ef4444" />
+                          <stop offset="100%" stopColor="#f59e0b" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <div className="absolute bottom-0 left-0 text-xs text-gray-500">0</div>
+                    <div className="absolute bottom-0 right-0 text-xs text-gray-500">{lossHistory.length}</div>
+                    <div className="absolute top-0 left-0 text-xs text-gray-500">
+                      {lossHistory.length > 0 ? lossHistory[lossHistory.length - 1].toFixed(3) : '0'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* 고급 설정 */}
+            <div>
+              <button
+                onClick={() => setShowAdvanced(!showAdvanced)}
+                className="w-full flex items-center justify-between text-lg font-semibold mb-3 hover:text-blue-600 transition-colors"
+              >
+                <span>고급 설정</span>
+                {showAdvanced ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+              </button>
+              
+              {showAdvanced && (
+                <div className="space-y-4 bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      정규화 파라미터 (SVM C값): {modelParams.c || 1.0}
+                    </label>
+                    <input
+                      type="range"
+                      min="0.1"
+                      max="10"
+                      step="0.1"
+                      value={modelParams.c || 1.0}
+                      onChange={(e) => setModelParams({...modelParams, c: parseFloat(e.target.value)})}
+                      className="w-full"
+                      disabled={modelParams.algorithm !== 'svm'}
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium mb-1">
+                      트리 최대 깊이: {modelParams.maxDepth || 3}
+                    </label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="10"
+                      step="1"
+                      value={modelParams.maxDepth || 3}
+                      onChange={(e) => setModelParams({...modelParams, maxDepth: parseInt(e.target.value)})}
+                      className="w-full"
+                      disabled={modelParams.algorithm !== 'decision-tree'}
+                    />
+                  </div>
+                  
+                  <div className="pt-2 border-t border-gray-300 dark:border-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">현재 가중치:</p>
+                    <div className="font-mono text-xs space-y-1">
+                      <div>w1: {modelWeights.w1.toFixed(4)}</div>
+                      <div>w2: {modelWeights.w2.toFixed(4)}</div>
+                      <div>b: {modelWeights.b.toFixed(4)}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             
             {/* 정보 */}
