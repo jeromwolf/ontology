@@ -2,8 +2,9 @@
 
 import React, { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame, ThreeElements } from '@react-three/fiber';
-import { OrbitControls, Html, Line } from '@react-three/drei';
+import { OrbitControls, Html, Line, Text, Billboard } from '@react-three/drei';
 import * as THREE from 'three';
+import { SpriteLabel } from './SpriteLabel';
 
 interface Triple {
   subject: string;
@@ -31,9 +32,10 @@ interface NodeMeshProps {
   isSelected: boolean;
   onClick: () => void;
   onHover: (isHovered: boolean) => void;
+  labelType?: 'html' | 'sprite' | 'text' | 'billboard';
 }
 
-function NodeMesh({ node, isSelected, onClick, onHover }: NodeMeshProps) {
+function NodeMesh({ node, isSelected, onClick, onHover, labelType = 'html' }: NodeMeshProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
 
@@ -78,22 +80,83 @@ function NodeMesh({ node, isSelected, onClick, onHover }: NodeMeshProps) {
         emissive={hovered ? node.color : '#000000'}
         emissiveIntensity={hovered ? 0.5 : 0}
       />
-      <Html
-        position={[0, -1, 0]}
-        center
-        distanceFactor={5}
-        style={{
-          fontSize: '12px',
-          color: 'white',
-          backgroundColor: 'rgba(0,0,0,0.7)',
-          padding: '2px 6px',
-          borderRadius: '4px',
-          userSelect: 'none',
-          whiteSpace: 'nowrap'
-        }}
-      >
-        {node.label}
-      </Html>
+      {/* 레이블 렌더링 */}
+      {labelType === 'html' && (
+        <Html
+          position={[0, 1.5, 0]}
+          center
+          distanceFactor={8}
+          occlude={[meshRef]}
+          style={{
+            fontSize: '14px',
+            fontWeight: 'bold',
+            color: '#ffffff',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            userSelect: 'none',
+            whiteSpace: 'nowrap',
+            border: '1px solid rgba(255, 255, 255, 0.3)',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+            pointerEvents: 'none'
+          }}
+        >
+          <div>{node.label}</div>
+        </Html>
+      )}
+      
+      {labelType === 'sprite' && (
+        <SpriteLabel
+          position={[0, 1.5, 0]}
+          text={node.label}
+          color="#ffffff"
+          backgroundColor="rgba(0, 0, 0, 0.8)"
+          fontSize={24}
+        />
+      )}
+      
+      {labelType === 'text' && (
+        <Text
+          position={[0, 1.5, 0]}
+          color="#ffffff"
+          fontSize={0.5}
+          maxWidth={200}
+          lineHeight={1}
+          letterSpacing={0.02}
+          textAlign="center"
+          anchorX="center"
+          anchorY="middle"
+          outlineWidth={0.04}
+          outlineColor="#000000"
+        >
+          {node.label}
+        </Text>
+      )}
+      
+      {labelType === 'billboard' && (
+        <Billboard
+          follow={true}
+          lockX={false}
+          lockY={false}
+          lockZ={false}
+          position={[0, 1.5, 0]}
+        >
+          <Text
+            color="#ffffff"
+            fontSize={0.5}
+            maxWidth={200}
+            lineHeight={1}
+            letterSpacing={0.02}
+            textAlign="center"
+            anchorX="center"
+            anchorY="middle"
+            outlineWidth={0.04}
+            outlineColor="#000000"
+          >
+            {node.label}
+          </Text>
+        </Billboard>
+      )}
     </mesh>
   );
 }
@@ -121,18 +184,22 @@ function EdgeLine({ sourcePos, targetPos, label }: EdgeLineProps) {
       <Html
         position={midPoint}
         center
-        distanceFactor={5}
+        distanceFactor={8}
         style={{
-          fontSize: '10px',
-          color: '#999999',
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          padding: '1px 4px',
+          fontSize: '12px',
+          fontWeight: 'bold',
+          color: '#fbbf24',
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          padding: '2px 6px',
           borderRadius: '3px',
           userSelect: 'none',
-          whiteSpace: 'nowrap'
+          whiteSpace: 'nowrap',
+          border: '1px solid rgba(251, 191, 36, 0.5)',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
+          pointerEvents: 'none'
         }}
       >
-        {label}
+        <div>{label}</div>
       </Html>
     </>
   );
@@ -142,12 +209,14 @@ interface Graph3DProps {
   triples: Triple[];
   selectedNode?: string | null;
   onNodeSelect?: (nodeId: string | null) => void;
+  labelType?: 'html' | 'sprite' | 'text' | 'billboard';
 }
 
 export const Graph3D: React.FC<Graph3DProps> = ({
   triples,
   selectedNode,
-  onNodeSelect
+  onNodeSelect,
+  labelType = 'html'
 }) => {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
@@ -248,7 +317,11 @@ export const Graph3D: React.FC<Graph3DProps> = ({
 
   return (
     <div className="w-full h-full bg-gray-900 rounded-lg relative">
-      <Canvas camera={{ position: [10, 10, 10], fov: 60 }}>
+      <Canvas 
+        camera={{ position: [10, 10, 10], fov: 60 }}
+        gl={{ antialias: true, alpha: true }}
+        dpr={[1, 2]}
+      >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         <pointLight position={[-10, -10, -10]} intensity={0.5} />
@@ -261,6 +334,7 @@ export const Graph3D: React.FC<Graph3DProps> = ({
             isSelected={selectedNode === node.id}
             onClick={() => onNodeSelect?.(node.id)}
             onHover={(isHovered) => setHoveredNode(isHovered ? node.id : null)}
+            labelType={labelType}
           />
         ))}
         
@@ -297,7 +371,7 @@ export const Graph3D: React.FC<Graph3DProps> = ({
       <div className="absolute top-4 left-4 bg-gray-800 bg-opacity-90 text-white p-4 rounded-lg">
         <h3 className="font-semibold mb-2">3D 지식 그래프</h3>
         <p className="text-sm text-gray-300">
-          노드: {nodes.length}개 | 엣지: {edges.length}개
+          노드: {nodes.filter(n => n.type !== 'literal').length}개 | 엣지: {edges.length}개
         </p>
         {hoveredNode && (
           <p className="text-sm text-blue-300 mt-2">
@@ -308,6 +382,38 @@ export const Graph3D: React.FC<Graph3DProps> = ({
           <p>• 마우스로 회전/확대/이동</p>
           <p>• 노드 클릭으로 선택</p>
           <p>• 🟢 리소스 | 🟠 리터럴</p>
+          <p className="mt-2 text-yellow-400">레이블 타입: {labelType}</p>
+        </div>
+      </div>
+      
+      {/* 레이블 타입 선택기 */}
+      <div className="absolute top-4 right-4 bg-gray-800 bg-opacity-90 text-white p-4 rounded-lg">
+        <h4 className="text-sm font-semibold mb-2">레이블 타입 테스트</h4>
+        <div className="space-y-2">
+          <button
+            onClick={() => window.location.href = `?labelType=html`}
+            className={`block w-full text-left px-3 py-1 rounded text-sm ${labelType === 'html' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+          >
+            HTML (drei)
+          </button>
+          <button
+            onClick={() => window.location.href = `?labelType=sprite`}
+            className={`block w-full text-left px-3 py-1 rounded text-sm ${labelType === 'sprite' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+          >
+            Sprite
+          </button>
+          <button
+            onClick={() => window.location.href = `?labelType=text`}
+            className={`block w-full text-left px-3 py-1 rounded text-sm ${labelType === 'text' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+          >
+            Text (drei)
+          </button>
+          <button
+            onClick={() => window.location.href = `?labelType=billboard`}
+            className={`block w-full text-left px-3 py-1 rounded text-sm ${labelType === 'billboard' ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+          >
+            Billboard
+          </button>
         </div>
       </div>
     </div>

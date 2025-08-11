@@ -83,30 +83,48 @@ export default function OntologyMainPage() {
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link 
-            href="/modules/ontology/simulators/rdf-editor"
+            href="/modules/ontology/chapter04"
             className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-indigo-200 dark:hover:border-indigo-700"
           >
             <div className="text-3xl mb-2">📝</div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">RDF Editor</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">트리플 편집</p>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">RDF Triple Editor</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">주어-술어-목적어 구조의 RDF 트리플을 시각적으로 생성하고 편집</p>
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-indigo-600 dark:text-indigo-400 text-sm font-medium">Chapter 4에서 체험하기 →</span>
+              <div className="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded-full text-xs font-medium">
+                챕터 내장
+              </div>
+            </div>
           </Link>
           
           <Link 
-            href="/modules/ontology/simulators/3d-graph"
+            href="/modules/ontology/chapter12"
             className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-green-200 dark:hover:border-green-700"
           >
             <div className="text-3xl mb-2">🌐</div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">3D Graph</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">지식 그래프</p>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">3D Knowledge Graph</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">복잡한 지식 관계를 3차원 공간에서 직관적으로 탐색</p>
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-green-600 dark:text-green-400 text-sm font-medium">Chapter 12에서 체험하기 →</span>
+              <div className="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-full text-xs font-medium">
+                챕터 내장
+              </div>
+            </div>
           </Link>
           
           <Link 
-            href="/modules/ontology/simulators/sparql-playground"
+            href="/modules/ontology/chapter07"
             className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-blue-200 dark:hover:border-blue-700"
           >
             <div className="text-3xl mb-2">🔍</div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">SPARQL</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">쿼리 실행</p>
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">SPARQL Playground</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">실시간으로 SPARQL 쿼리를 작성하고 결과 확인</p>
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">Chapter 7에서 체험하기 →</span>
+              <div className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-full text-xs font-medium">
+                챕터 내장
+              </div>
+            </div>
           </Link>
           
           <Link 
@@ -114,10 +132,13 @@ export default function OntologyMainPage() {
             className="group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all border-2 border-transparent hover:border-purple-200 dark:hover:border-purple-700"
           >
             <div className="text-3xl mb-2">🧠</div>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">추론 엔진</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400">지식 추론</p>
-            <div className="mt-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-2 py-1 rounded-full text-xs font-medium">
-              NEW!
+            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">추론 엔진 시뮬레이터</h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">온톨로지 추론 과정을 단계별로 시각화하여 이해</p>
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-purple-600 dark:text-purple-400 text-sm font-medium">직접 체험하기 →</span>
+              <div className="bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-2 py-1 rounded-full text-xs font-medium">
+                NEW!
+              </div>
             </div>
           </Link>
         </div>

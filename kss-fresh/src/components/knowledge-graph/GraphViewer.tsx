@@ -29,6 +29,7 @@ interface GraphViewerProps {
   pendingEdge?: { source: string; predicate: string } | null;
   onPlaceNode?: (position: { x: number; y: number }) => void;
   onAddEdgeSelect?: (nodeId: string) => void;
+  labelType?: 'html' | 'sprite' | 'text' | 'billboard';
 }
 
 export const GraphViewer: React.FC<GraphViewerProps> = ({
@@ -43,7 +44,8 @@ export const GraphViewer: React.FC<GraphViewerProps> = ({
   pendingNode,
   pendingEdge,
   onPlaceNode,
-  onAddEdgeSelect
+  onAddEdgeSelect,
+  labelType = 'html'
 }) => {
   // Filter triples based on filter options
   const filteredTriples = triples.filter(triple => {
@@ -59,6 +61,7 @@ export const GraphViewer: React.FC<GraphViewerProps> = ({
           triples={filteredTriples}
           selectedNode={selectedNodeId}
           onNodeSelect={onNodeSelect}
+          labelType={labelType}
         />
       ) : (
         <Graph2D
@@ -86,7 +89,10 @@ export const GraphViewer: React.FC<GraphViewerProps> = ({
           <span>{viewConfig.viewMode} Mode Active</span>
         </div>
         <div className="text-xs text-gray-400">
-          <p>Nodes: {new Set([...filteredTriples.map(t => t.subject), ...filteredTriples.map(t => t.object)]).size}</p>
+          <p>Nodes: {new Set([
+            ...filteredTriples.map(t => t.subject), 
+            ...filteredTriples.filter(t => t.type !== 'literal').map(t => t.object)
+          ]).size}</p>
           <p>Edges: {filteredTriples.length}</p>
           <p>Layout: {viewConfig.layout}</p>
         </div>

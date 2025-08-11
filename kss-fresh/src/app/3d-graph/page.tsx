@@ -56,6 +56,16 @@ export default function Graph3DPage() {
   const [isFromRDFEditor, setIsFromRDFEditor] = useState(false);
   const [triples, setTriples] = useState<Triple[]>(sampleTriples);
   const [hasChanges, setHasChanges] = useState(false);
+  const [labelType, setLabelType] = useState<'html' | 'sprite' | 'text' | 'billboard'>('html');
+
+  useEffect(() => {
+    // Check URL params for labelType
+    const searchParams = new URLSearchParams(window.location.search);
+    const lt = searchParams.get('labelType') as 'html' | 'sprite' | 'text' | 'billboard';
+    if (lt && ['html', 'sprite', 'text', 'billboard'].includes(lt)) {
+      setLabelType(lt);
+    }
+  }, []);
 
   useEffect(() => {
     // Check for saved triples from RDF Editor
@@ -152,6 +162,7 @@ export default function Graph3DPage() {
         <KnowledgeGraphContainer 
           initialTriples={triples}
           onTriplesChange={handleTriplesChange}
+          labelType={labelType}
         />
       </div>
     </div>

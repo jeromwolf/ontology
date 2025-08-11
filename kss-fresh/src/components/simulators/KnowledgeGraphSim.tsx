@@ -279,10 +279,16 @@ export default function KnowledgeGraphSim() {
           const midX = (fromNode.x + toNode.x) / 2
           const midY = (fromNode.y + toNode.y) / 2
           
-          ctx.fillStyle = 'rgba(34, 197, 94, 0.8)'
-          ctx.font = '10px monospace'
+          // 엣지 레이블 배경
+          const textWidth = ctx.measureText(edge.label).width
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+          ctx.fillRect(midX - textWidth/2 - 3, midY - 13, textWidth + 6, 18)
+          
+          // 엣지 레이블 텍스트
+          ctx.fillStyle = '#fbbf24'
+          ctx.font = 'bold 12px monospace'
           ctx.textAlign = 'center'
-          ctx.fillText(edge.label, midX, midY - 5)
+          ctx.fillText(edge.label, midX, midY)
         }
       }
     })
@@ -329,10 +335,16 @@ export default function KnowledgeGraphSim() {
       
       // 노드 레이블
       ctx.fillStyle = '#ffffff'
-      ctx.font = '10px monospace'
+      ctx.font = 'bold 14px monospace'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillText(node.label, node.x, node.y + 25)
+      // 배경 박스
+      const textWidth = ctx.measureText(node.label).width
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
+      ctx.fillRect(node.x - textWidth/2 - 4, node.y + 20, textWidth + 8, 20)
+      // 텍스트
+      ctx.fillStyle = '#ffffff'
+      ctx.fillText(node.label, node.x, node.y + 30)
     })
 
     // 선택된 노드 정보

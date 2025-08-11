@@ -87,6 +87,59 @@ export const sampleTriples = {
       { subject: '바둑이', predicate: 'rdf:type', object: '개', type: 'resource' as const },
       { subject: '바둑이', predicate: '나이', object: '5', type: 'literal' as const },
     ]
+  },
+  aceworks: {
+    name: 'ACEWORKS 비즈니스 생태계',
+    description: '박승범 대표이사의 ACEWORKS AI 비즈니스 관계도',
+    data: [
+      // 조직과 인물
+      { subject: '박승범', predicate: 'rdf:type', object: 'foaf:Person', type: 'resource' as const },
+      { subject: '박승범', predicate: '직책', object: '대표이사', type: 'literal' as const },
+      { subject: '박승범', predicate: '이끌다', object: 'ACEWORKS', type: 'resource' as const },
+      { subject: 'ACEWORKS', predicate: 'rdf:type', object: '회사', type: 'resource' as const },
+      { subject: 'ACEWORKS', predicate: '설립년도', object: '2019', type: 'literal' as const },
+      { subject: 'ACEWORKS', predicate: '분야', object: 'AI콘텐츠생성기술', type: 'literal' as const },
+      
+      // 제품 관계
+      { subject: 'ACEWORKS', predicate: '개발하다', object: 'My-Ruby-Play', type: 'resource' as const },
+      { subject: 'My-Ruby-Play', predicate: 'rdf:type', object: 'AI제품', type: 'resource' as const },
+      { subject: 'My-Ruby-Play', predicate: '카테고리', object: 'AI스마트토이', type: 'literal' as const },
+      { subject: 'My-Ruby-Play', predicate: '사용기술', object: 'GPT4', type: 'resource' as const },
+      { subject: 'My-Ruby-Play', predicate: '가격', object: '9만원대', type: 'literal' as const },
+      { subject: 'My-Ruby-Play', predicate: '타겟시장', object: '영유아교육', type: 'literal' as const },
+      
+      { subject: 'ACEWORKS', predicate: '개발하다', object: 'AIQuant', type: 'resource' as const },
+      { subject: 'AIQuant', predicate: 'rdf:type', object: 'AI서비스', type: 'resource' as const },
+      { subject: 'AIQuant', predicate: '제공서비스', object: 'AI자산관리', type: 'literal' as const },
+      { subject: 'AIQuant', predicate: '운용규모', object: '일2000억원', type: 'literal' as const },
+      
+      { subject: 'ACEWORKS', predicate: '개발하다', object: 'AITuberStudio', type: 'resource' as const },
+      { subject: 'AITuberStudio', predicate: 'rdf:type', object: 'AI서비스', type: 'resource' as const },
+      { subject: 'AITuberStudio', predicate: '기능', object: 'AI버튜버생성', type: 'literal' as const },
+      
+      // 파트너십
+      { subject: 'SK텔레콤', predicate: 'rdf:type', object: '대기업', type: 'resource' as const },
+      { subject: 'SK텔레콤', predicate: '투자하다', object: 'ACEWORKS', type: 'resource' as const },
+      { subject: 'SK텔레콤', predicate: '협력분야', object: 'AI기술개발', type: 'literal' as const },
+      
+      { subject: '한화시스템', predicate: 'rdf:type', object: '대기업', type: 'resource' as const },
+      { subject: '한화시스템', predicate: '협력하다', object: 'ACEWORKS', type: 'resource' as const },
+      { subject: '한화시스템', predicate: '협력분야', object: '방산AI', type: 'literal' as const },
+      
+      // 수익과 성과
+      { subject: 'ACEWORKS', predicate: '월매출', object: '3-5억원', type: 'literal' as const },
+      { subject: 'ACEWORKS', predicate: '누적고객수', object: '10만명이상', type: 'literal' as const },
+      { subject: 'ACEWORKS', predicate: '사업모델', object: 'B2B/B2C하이브리드', type: 'literal' as const },
+      
+      // 기술 스택
+      { subject: 'ACEWORKS', predicate: '핵심기술', object: 'PersonalMemory', type: 'resource' as const },
+      { subject: 'PersonalMemory', predicate: 'rdf:type', object: 'AI기술', type: 'resource' as const },
+      { subject: 'PersonalMemory', predicate: '기능', object: '개인화AI메모리', type: 'literal' as const },
+      
+      { subject: 'ACEWORKS', predicate: '활용하다', object: 'RAG', type: 'resource' as const },
+      { subject: 'RAG', predicate: 'rdf:type', object: 'AI기술', type: 'resource' as const },
+      { subject: 'RAG', predicate: '용도', object: '지식증강생성', type: 'literal' as const }
+    ]
   }
 };
 

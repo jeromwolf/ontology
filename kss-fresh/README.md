@@ -415,7 +415,53 @@ KSS는 자체 개발한 CMS를 통해 모든 교육 콘텐츠를 관리합니다
 - 🔄 JWT 토큰 기반 인증 (개선 중)
 - 🔄 학습 진도 개인화 (데이터베이스 연동 예정)
 
-## 📝 최신 업데이트 (2025-08-08)
+## 📝 최신 업데이트 (2025-08-11)
+
+### 🚧 Session 27 - 자율주행 모듈 리팩토링 & 3D 지식그래프 개선
+
+#### 🚗 자율주행 모듈 리팩토링 완료
+- **ChapterContent.tsx 최적화**: 2,719줄 → 107줄 (96.1% 감소)
+- **8개 독립 챕터 파일 분리**: 각 챕터 평균 400줄 이하
+- **4개 시뮬레이터 컴포넌트 분리**:
+  - AutonomousDrivingSimulator
+  - SensorFusionVisualizer
+  - PathPlanningVisualization
+  - V2XCommunicationDemo
+- **빌드 테스트 통과**: 모든 기능 정상 작동 확인
+
+#### 🎨 3D 지식그래프 렌더링 개선
+- **텍스트 가시성 개선**:
+  - SpriteLabel 폰트 크기: 32px → 48px
+  - 스케일 조정: [2, 1, 1] → [5, 2.5, 1]
+  - 더 진한 배경색과 그림자 효과 추가
+- **4가지 레이블 타입 지원**:
+  - HTML (drei) - 기본값
+  - Sprite - 캔버스 기반 텍스트
+  - Text (drei) - 3D 텍스트
+  - Billboard - 항상 카메라를 향하는 텍스트
+- **URL 파라미터 지원**: `?labelType=sprite`로 변경 가능
+
+#### 📊 2D 그래프 개선
+- **패닝 제한 로직 개선**:
+  - 노드 위치 기반 동적 경계 계산
+  - 화면 밖으로 노드가 나가지 않도록 제약
+- **초기 레이아웃 개선**:
+  - 노드 초기 위치를 더 중앙에 가깝게 조정
+  - Force-directed 레이아웃 파라미터 최적화
+
+#### 📈 리팩토링 진행 현황
+**완료된 모듈 (4개)**:
+- ✅ Smart Factory: 8,113줄 → 107줄 (98.7% 감소)
+- ✅ LLM: 853줄 → 47줄 (94.5% 감소)
+- ✅ Ontology: 2,689줄 → 107줄 (96.0% 감소)
+- ✅ Autonomous Mobility: 2,719줄 → 107줄 (96.1% 감소)
+
+**대기 중인 모듈 (우선순위순)**:
+- 🔴 Bioinformatics: 2,544줄
+- 🔴 English Conversation: 1,990줄
+- 🔴 AI Automation: 1,858줄
+- 🔴 Probability Statistics: 1,751줄
+- 🔴 Stock Analysis: 1,740줄
 
 ### 🚀 Session 22 - Smart Factory Chapter Reorganization & Bug Fixes
 

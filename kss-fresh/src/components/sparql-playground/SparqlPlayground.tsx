@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QueryEditor } from './components/QueryEditor';
 import { ResultsView } from './components/ResultsView';
 import { useSparqlQuery } from './hooks/useSparqlQuery';
@@ -75,8 +75,40 @@ const sampleTriples: Triple[] = [
 export const SparqlPlayground: React.FC<SparqlPlaygroundProps> = ({
   initialTriples = sampleTriples
 }) => {
-  const [triples] = useState<Triple[]>(initialTriples);
+  const [triples, setTriples] = useState<Triple[]>(initialTriples);
   const [showHelp, setShowHelp] = useState(false);
+  
+  // RDF Editor에서 데이터 받기
+  useEffect(() => {
+    const savedData = localStorage.getItem('rdf-editor-triples-for-sparql');
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        // 데이터 읽은 후 삭제 (일회성)
+        localStorage.removeItem('rdf-editor-triples-for-sparql');
+        
+        // 시간 체크 (5분 이내)
+        const timestamp = new Date(parsed.timestamp);
+        const now = new Date();
+        const diffMinutes = (now.getTime() - timestamp.getTime()) / (1000 * 60);
+        
+        if (diffMinutes < 5 && parsed.triples && Array.isArray(parsed.triples)) {
+          // Triple 형식으로 변환
+          const convertedTriples = parsed.triples.map((t: any, idx: number) => ({
+            id: `imported-${idx}`,
+            subject: t.subject,
+            predicate: t.predicate,
+            object: t.object,
+            type: t.type || 'resource'
+          }));
+          setTriples(convertedTriples);
+        }
+      } catch (error) {
+        console.error('Error loading triples from RDF Editor:', error);
+      }
+    }
+  }, []);
+  
   const { queryResult, error, isLoading, executeQuery } = useSparqlQuery(triples);
 
   return (

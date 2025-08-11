@@ -28,7 +28,8 @@ export const SparqlPanel: React.FC<SparqlPanelProps> = ({
     try {
       // Simple SPARQL execution simulation
       // In a real implementation, this would use a proper SPARQL engine
-      const mockResults = triples.slice(0, 5).map(t => ({
+      // 모든 트리플을 결과로 반환 (slice 제거)
+      const mockResults = triples.map(t => ({
         subject: t.subject,
         predicate: t.predicate,
         object: t.object

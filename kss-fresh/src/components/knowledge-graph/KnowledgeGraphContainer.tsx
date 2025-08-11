@@ -9,11 +9,13 @@ import { SparqlPanel } from './SparqlPanel';
 interface KnowledgeGraphContainerProps {
   initialTriples?: Triple[];
   onTriplesChange?: (triples: Triple[]) => void;
+  labelType?: 'html' | 'sprite' | 'text' | 'billboard';
 }
 
 export const KnowledgeGraphContainer: React.FC<KnowledgeGraphContainerProps> = ({
   initialTriples = [],
-  onTriplesChange
+  onTriplesChange,
+  labelType = 'html'
 }) => {
   const [triples, setTriples] = useState<Triple[]>(initialTriples);
   const [history, setHistory] = useState<Triple[][]>([initialTriples]);
@@ -161,6 +163,7 @@ WHERE {
           onRedo={handleRedo}
           canUndo={historyIndex > 0}
           canRedo={historyIndex < history.length - 1}
+          triples={triples}
         />
       </div>
 
@@ -177,6 +180,7 @@ WHERE {
           currentTool={currentTool}
           pendingNode={pendingNode}
           pendingEdge={pendingEdge}
+          labelType={labelType}
           onPlaceNode={(position) => {
             if (pendingNode) {
               const newTriple: Triple = {

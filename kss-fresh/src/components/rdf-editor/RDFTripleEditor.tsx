@@ -123,6 +123,14 @@ export const RDFTripleEditor: React.FC = () => {
           </button>
           <Link
             href="/sparql-playground"
+            onClick={() => {
+              // SPARQL Playground로 데이터 전달
+              localStorage.setItem('rdf-editor-triples-for-sparql', JSON.stringify({
+                triples: triples,
+                timestamp: new Date().toISOString(),
+                source: 'rdf-editor'
+              }));
+            }}
             className="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-md hover:bg-purple-200 dark:hover:bg-purple-900/50 flex items-center gap-2"
           >
             <Play className="w-4 h-4" />

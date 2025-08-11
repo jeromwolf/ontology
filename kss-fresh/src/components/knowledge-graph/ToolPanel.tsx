@@ -15,7 +15,7 @@ import {
   Undo,
   Redo
 } from 'lucide-react';
-import { ViewMode, LayoutType, FilterOptions, GraphViewConfig } from './types';
+import { ViewMode, LayoutType, FilterOptions, GraphViewConfig, Triple } from './types';
 
 interface ToolPanelProps {
   viewConfig: GraphViewConfig;
@@ -28,6 +28,7 @@ interface ToolPanelProps {
   onAddEdge: (edge: { source: string; target: string; predicate: string }) => void;
   onDeleteSelected: () => void;
   selectedNodeId: string | null;
+  triples?: Triple[];
   selectedEdgeId: string | null;
   onUndo?: () => void;
   onRedo?: () => void;
@@ -50,7 +51,8 @@ export const ToolPanel: React.FC<ToolPanelProps> = ({
   onUndo,
   onRedo,
   canUndo = false,
-  canRedo = false
+  canRedo = false,
+  triples = []
 }) => {
   const [activeSection, setActiveSection] = useState<string>('도구');
 
@@ -66,11 +68,16 @@ export const ToolPanel: React.FC<ToolPanelProps> = ({
       <div className="p-4 border-b border-gray-700">
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium">노드</span>
-          <span className="text-sm text-gray-400">15</span>
+          <span className="text-sm text-gray-400">
+            {new Set([
+              ...triples.map(t => t.subject), 
+              ...triples.filter(t => t.type !== 'literal').map(t => t.object)
+            ]).size}
+          </span>
         </div>
         <div className="flex items-center justify-between mb-3">
           <span className="text-sm font-medium">엣지</span>
-          <span className="text-sm text-gray-400">18</span>
+          <span className="text-sm text-gray-400">{triples.length}</span>
         </div>
         
         {/* Undo/Redo buttons */}

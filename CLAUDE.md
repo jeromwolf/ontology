@@ -296,6 +296,26 @@ components/
   - 리팩토링 우선순위 재정렬
   - 세션 연결 방법 명확히 기재
 
+### Session 27 Status (2025-08-11) - 자율주행 모듈 리팩토링 & 3D 그래프 개선
+- **Autonomous Mobility 모듈 리팩토링 완료**:
+  - ChapterContent.tsx: 2,719줄 → 107줄 (96.1% 감소)
+  - 8개 독립 챕터 파일로 완전 분리
+  - 4개 시뮬레이터 컴포넌트 분리
+  - 빌드 테스트 통과, 모든 기능 정상 작동
+- **3D 지식그래프 텍스트 렌더링 개선**:
+  - SpriteLabel 컴포넌트 개선 (폰트 48px, 스케일 5x)
+  - 4가지 레이블 타입 지원 (html, sprite, text, billboard)
+  - URL 파라미터로 선택 가능 (?labelType=sprite)
+- **2D 그래프 패닝 제한 개선**:
+  - 노드 위치 기반 동적 경계 계산
+  - 화면 밖으로 노드가 나가지 않도록 제약
+- **리팩토링 완료 모듈 총 4개**:
+  - Smart Factory (98.7% 감소)
+  - LLM (94.5% 감소) 
+  - Ontology (96.0% 감소)
+  - Autonomous Mobility (96.1% 감소)
+- **다음 작업**: Bioinformatics 모듈 (2,544줄)
+
 ### Session 23 Status (2025-08-10) - Ontology 리팩토링 완료
 - **Ontology 모듈 리팩토링 성공적 완료**:
   - ChapterContent.tsx: 2,689줄 → 107줄 (96% 감소)
