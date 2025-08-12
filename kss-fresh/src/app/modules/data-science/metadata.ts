@@ -103,6 +103,22 @@ export const moduleMetadata = {
       component: 'MLPlayground'
     },
     {
+      id: 'ml-playground-pycaret',
+      title: 'ML Playground with PyCaret',
+      description: 'PyCaret AutoML로 코드 없이 머신러닝 모델 학습 및 비교',
+      component: 'MLPlaygroundPyCaret',
+      gradient: 'from-purple-600 to-blue-600',
+      difficulty: '초급'
+    },
+    {
+      id: 'classification-model-comparator',
+      title: '분류 모델 비교 실험실',
+      description: '6가지 분류 알고리즘 성능 비교 및 혼동행렬 분석',
+      component: 'ClassificationModelComparator',
+      gradient: 'from-blue-600 to-indigo-600',
+      difficulty: '중급'
+    },
+    {
       id: 'statistical-lab',
       title: '통계 분석 실험실',
       description: '가설 검정, 분포 시뮬레이션, 통계적 추론',
@@ -121,10 +137,26 @@ export const moduleMetadata = {
       component: 'ClusteringVisualizer'
     },
     {
+      id: 'clustering-visualizer-pycaret',
+      title: '클러스터링 분석 with PyCaret',
+      description: 'PyCaret 자동 클러스터링으로 최적 그룹 발견',
+      component: 'ClusteringVisualizerPyCaret',
+      gradient: 'from-purple-600 to-pink-600',
+      difficulty: '중급'
+    },
+    {
       id: 'time-series-forecaster',
       title: '시계열 예측기',
       description: '실시간 시계열 데이터 분석 및 예측',
       component: 'TimeSeriesForecaster'
+    },
+    {
+      id: 'time-series-forecaster-pycaret',
+      title: '시계열 예측 with PyCaret',
+      description: 'PyCaret으로 여러 시계열 모델 자동 비교 및 예측',
+      component: 'TimeSeriesForecasterPyCaret',
+      gradient: 'from-blue-600 to-purple-600',
+      difficulty: '중급'
     },
     {
       id: 'nlp-analyzer',
@@ -145,6 +177,14 @@ export const moduleMetadata = {
       component: 'FeatureEngineeringLab'
     },
     {
+      id: 'feature-engineering-lab-pycaret',
+      title: '피처 엔지니어링 with PyCaret',
+      description: 'PyCaret 자동 특성 생성으로 ML 성능 향상',
+      component: 'FeatureEngineeringLabPyCaret',
+      gradient: 'from-purple-600 to-pink-600',
+      difficulty: '중급'
+    },
+    {
       id: 'model-explainer',
       title: '모델 설명 도구',
       description: 'SHAP, LIME을 활용한 모델 해석',
@@ -155,6 +195,22 @@ export const moduleMetadata = {
       title: '추천 시스템 엔진',
       description: '협업 필터링, 콘텐츠 기반 추천 구현',
       component: 'RecommendationEngine'
+    },
+    {
+      id: 'wine-price-predictor',
+      title: '와인 가격 예측 AI',
+      description: '와인 특성 분석을 통한 가격 예측 모델',
+      component: 'WinePricePredictor',
+      gradient: 'from-purple-600 to-pink-600',
+      difficulty: '중급'
+    },
+    {
+      id: 'bidding-price-predictor',
+      title: '경매 입찰가 예측',
+      description: '실시간 경매 데이터로 최종 낙찰가 예측',
+      component: 'BiddingPricePredictor',
+      gradient: 'from-orange-600 to-red-600',
+      difficulty: '중급'
     },
   ],
   tools: [

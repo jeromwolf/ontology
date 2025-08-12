@@ -590,6 +590,48 @@ KSS는 자체 개발한 CMS를 통해 모든 교육 콘텐츠를 관리합니다
 - 알림 권한 요청 및 브라우저 알림 API 통합
 - 로컬스토리지와 실시간 구독 패턴 결합
 
+### 🚀 Session 29 - PyCaret 3.0 AutoML 통합 (2025-08-12)
+
+#### 🎯 새로운 PyCaret 기반 시뮬레이터 7개 추가
+1. **MLPlayground with PyCaret**: 5단계 AutoML 워크플로우 시뮬레이션
+   - 데이터 로드 → 전처리 설정 → 모델 비교 → 최적 모델 선택 → 예측
+   - Iris, Boston Housing, Wine Quality 등 5개 샘플 데이터셋
+   
+2. **와인 가격 예측 AI**: 8개 실제 와인 데이터로 가격 예측
+   - 빈티지, 지역, 품종, 알코올 도수, 산도, 당도, 타닌, 평점 기반
+   - CSV/JSON 다운로드 기능
+   
+3. **경매 입찰가 예측**: 실시간 경매 시뮬레이션 및 예측
+   - 6개 카테고리: 미술품, 시계, 자동차, 부동산, 보석, 희귀품
+   - 실시간 모드로 입찰가 변동 시뮬레이션
+   
+4. **분류 모델 비교 실험실**: 6가지 알고리즘 성능 비교
+   - Logistic Regression, Random Forest, XGBoost, SVM, kNN, Gradient Boost
+   - 혼동행렬, F1-Score, One-Hot Encoding 시각화
+   - Min-Max 스케일링, Stratified Split 옵션
+   
+5. **시계열 예측 with PyCaret**: 6개 모델 자동 비교
+   - ARIMA, Prophet, Exponential Smoothing, LSTM, Random Forest, XGBoost
+   - 전자상거래 매출, 주식 가격, 에너지 소비량 등 5개 데이터셋
+   
+6. **클러스터링 분석 with PyCaret**: 최적 클러스터 자동 발견
+   - K-Means, Agglomerative, DBSCAN, Mean Shift, Spectral, HDBSCAN
+   - Elbow Method로 최적 클러스터 수 결정
+   - Silhouette Score, Calinski-Harabasz, Davies-Bouldin 지수
+   
+7. **피처 엔지니어링 with PyCaret**: 자동 특성 생성 및 평가
+   - 수치형 변환: 다항식, 로그, 제곱근, 역수 변환
+   - 범주형 인코딩: Target Encoding, Frequency Encoding
+   - 시간 특성: 날짜 분해, 주기성, 이동 평균
+   - 상호작용 특성: 곱셈, 나눗셈, 조건부 특성
+
+#### 🔧 핵심 기능 구현
+- **CSV/JSON 다운로드**: 모든 예측 결과 내보내기 지원
+- **실시간 시뮬레이션**: 경매 입찰가 1초마다 업데이트
+- **MLOps 파이프라인**: 전체 워크플로우 단계별 시각화
+- **성능 메트릭**: 정확도, 정밀도, 재현율, F1-Score, AUC-ROC
+- **데이터 전처리**: 결측값 처리, 이상치 탐지, 스케일링
+
 ### 🚀 Session 28 - Bioinformatics & English Conversation 모듈 리팩토링 완료
 
 #### 🧬 Bioinformatics 모듈 리팩토링

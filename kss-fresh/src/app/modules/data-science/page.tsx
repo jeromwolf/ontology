@@ -7,7 +7,7 @@ import {
   ChevronRight, Play, FileText, ArrowLeft, Menu,
   CheckCircle, Circle, Lock, Brain, LineChart, Database,
   Zap, FlaskConical, Network, TrendingUp, MessageSquare,
-  TestTube, Settings, Lightbulb, Bot
+  TestTube, Settings, Lightbulb, Bot, Wine, Gavel, GitBranch
 } from 'lucide-react'
 import { moduleMetadata } from './metadata'
 import dynamic from 'next/dynamic'
@@ -70,6 +70,7 @@ export default function DataSciencePage() {
   // 시뮬레이터 아이콘 매핑
   const simulatorIcons: { [key: string]: React.ReactNode } = {
     'ml-playground': <Brain className="w-6 h-6" />,
+    'ml-playground-pycaret': <Zap className="w-6 h-6" />,
     'statistical-lab': <BarChart3 className="w-6 h-6" />,
     'neural-network-builder': <Network className="w-6 h-6" />,
     'clustering-visualizer': <Zap className="w-6 h-6" />,
@@ -78,7 +79,10 @@ export default function DataSciencePage() {
     'ab-test-simulator': <TestTube className="w-6 h-6" />,
     'feature-engineering-lab': <Settings className="w-6 h-6" />,
     'model-explainer': <Lightbulb className="w-6 h-6" />,
-    'recommendation-engine': <Bot className="w-6 h-6" />
+    'recommendation-engine': <Bot className="w-6 h-6" />,
+    'wine-price-predictor': <Wine className="w-6 h-6" />,
+    'bidding-price-predictor': <Gavel className="w-6 h-6" />,
+    'classification-model-comparator': <GitBranch className="w-6 h-6" />
   }
 
   // 난이도별 챕터 필터링
