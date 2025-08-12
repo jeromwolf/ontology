@@ -6,7 +6,8 @@ import {
   ArrowLeft, Clock, Target, Users, BookOpen, 
   Play, ChevronRight, Server, Database, Cloud,
   Network, Shield, Activity, Layers, Cpu,
-  HardDrive, Zap, GitBranch, Box
+  HardDrive, Zap, GitBranch, Box, FileText,
+  Star, Sparkles
 } from 'lucide-react'
 import { metadata } from './metadata'
 
@@ -152,12 +153,78 @@ export default function SystemDesignModule() {
 
       {/* Interactive Simulators */}
       <div className="mb-12">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          인터랙티브 시뮬레이터
-        </h2>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            인터랙티브 시뮬레이터
+          </h2>
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+            <Sparkles className="w-4 h-4" />
+            <span>{metadata.simulators.length}개 도구</span>
+          </div>
+        </div>
         
+        {/* Featured Simulator */}
+        {metadata.simulators.find(s => s.featured) && (
+          <div className="mb-8">
+            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-2xl p-1 shadow-2xl">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-8">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl text-white">
+                      <FileText className="w-8 h-8" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                          {metadata.simulators.find(s => s.featured)?.title}
+                        </h3>
+                        <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-semibold rounded-full">
+                          <Star className="w-3 h-3" />
+                          NEW
+                        </div>
+                      </div>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {metadata.simulators.find(s => s.featured)?.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex flex-wrap items-center gap-4 mb-6">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                    <span>실시간 미리보기</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    <span>6개 전문 템플릿</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                    <span>공간 최적화</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                    <span>고급 내보내기</span>
+                  </div>
+                </div>
+                
+                <Link
+                  href={`/modules/system-design/simulators/${metadata.simulators.find(s => s.featured)?.id}`}
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
+                  <Play className="w-5 h-5" />
+                  지금 시작하기
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {/* Other Simulators */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {metadata.simulators.map((simulator) => (
+          {metadata.simulators.filter(s => !s.featured).map((simulator) => (
             <div
               key={simulator.id}
               className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl p-1"

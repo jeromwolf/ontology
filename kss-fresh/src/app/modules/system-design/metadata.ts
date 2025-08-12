@@ -115,6 +115,13 @@ export const metadata = {
   ],
   simulators: [
     {
+      id: 'mermaid-diagram-editor',
+      title: 'Mermaid 다이어그램 에디터',
+      description: '전문급 시스템 아키텍처 다이어그램 설계 도구',
+      featured: true,
+      category: 'Design Tool'
+    },
+    {
       id: 'load-balancer',
       title: '로드 밸런서 시뮬레이터',
       description: '다양한 로드 밸런싱 알고리즘 시각화'
