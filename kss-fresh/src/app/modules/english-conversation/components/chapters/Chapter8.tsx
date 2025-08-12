@@ -94,3 +94,4 @@ export default function Chapter8() {
       </div>
     </div>
   )
+}
