@@ -18,7 +18,7 @@ export const SpriteLabel: React.FC<SpriteLabelProps> = ({
   text,
   color = '#ffffff',
   backgroundColor = 'rgba(0, 0, 0, 0.9)',
-  fontSize = 48
+  fontSize = 200
 }) => {
   const { gl } = useThree();
   
@@ -71,7 +71,7 @@ export const SpriteLabel: React.FC<SpriteLabelProps> = ({
   if (!texture) return null;
   
   return (
-    <sprite position={position} scale={[5, 2.5, 1]}>
+    <sprite position={position} scale={[20, 10, 1]}>
       <spriteMaterial 
         map={texture} 
         sizeAttenuation={false}

@@ -83,21 +83,21 @@ function NodeMesh({ node, isSelected, onClick, onHover, labelType = 'html' }: No
       {/* 레이블 렌더링 */}
       {labelType === 'html' && (
         <Html
-          position={[0, 1.5, 0]}
+          position={[0, 2.0, 0]}
           center
-          distanceFactor={8}
+          distanceFactor={4}
           occlude={[meshRef]}
           style={{
-            fontSize: '14px',
+            fontSize: '24px',
             fontWeight: 'bold',
             color: '#ffffff',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: '4px 8px',
-            borderRadius: '4px',
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            padding: '8px 16px',
+            borderRadius: '8px',
             userSelect: 'none',
             whiteSpace: 'nowrap',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+            border: '2px solid rgba(255, 255, 255, 0.4)',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
             pointerEvents: 'none'
           }}
         >
@@ -107,26 +107,26 @@ function NodeMesh({ node, isSelected, onClick, onHover, labelType = 'html' }: No
       
       {labelType === 'sprite' && (
         <SpriteLabel
-          position={[0, 1.5, 0]}
+          position={[0, 2.5, 0]}
           text={node.label}
           color="#ffffff"
-          backgroundColor="rgba(0, 0, 0, 0.8)"
-          fontSize={24}
+          backgroundColor="rgba(0, 0, 0, 0.9)"
+          fontSize={160}
         />
       )}
       
       {labelType === 'text' && (
         <Text
-          position={[0, 1.5, 0]}
+          position={[0, 2.0, 0]}
           color="#ffffff"
-          fontSize={0.5}
-          maxWidth={200}
+          fontSize={1.2}
+          maxWidth={300}
           lineHeight={1}
           letterSpacing={0.02}
           textAlign="center"
           anchorX="center"
           anchorY="middle"
-          outlineWidth={0.04}
+          outlineWidth={0.08}
           outlineColor="#000000"
         >
           {node.label}
@@ -139,18 +139,18 @@ function NodeMesh({ node, isSelected, onClick, onHover, labelType = 'html' }: No
           lockX={false}
           lockY={false}
           lockZ={false}
-          position={[0, 1.5, 0]}
+          position={[0, 2.0, 0]}
         >
           <Text
             color="#ffffff"
-            fontSize={0.5}
-            maxWidth={200}
+            fontSize={1.2}
+            maxWidth={300}
             lineHeight={1}
             letterSpacing={0.02}
             textAlign="center"
             anchorX="center"
             anchorY="middle"
-            outlineWidth={0.04}
+            outlineWidth={0.08}
             outlineColor="#000000"
           >
             {node.label}

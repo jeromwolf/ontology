@@ -107,12 +107,35 @@ export const Graph2D: React.FC<Graph2DProps> = ({
     setNodes(nodeArray);
     setEdges(edgeList);
     
-    // Center view on first load
+    // Center view on first load - fit all nodes in view
     if (!isInitialized && nodeArray.length > 0) {
       setIsInitialized(true);
-      // Reset pan to center the graph
-      setPanOffset({ x: 0, y: 0 });
-      setZoom(1);
+      
+      // Calculate bounding box of all nodes
+      const bounds = {
+        minX: Math.min(...nodeArray.map(n => n.position!.x)),
+        maxX: Math.max(...nodeArray.map(n => n.position!.x)),
+        minY: Math.min(...nodeArray.map(n => n.position!.y)),
+        maxY: Math.max(...nodeArray.map(n => n.position!.y))
+      };
+      
+      const graphWidth = bounds.maxX - bounds.minX;
+      const graphHeight = bounds.maxY - bounds.minY;
+      const graphCenterX = (bounds.minX + bounds.maxX) / 2;
+      const graphCenterY = (bounds.minY + bounds.maxY) / 2;
+      
+      // Calculate zoom to fit with padding
+      const padding = 100;
+      const zoomX = (1200 - padding * 2) / graphWidth;
+      const zoomY = (800 - padding * 2) / graphHeight;
+      const optimalZoom = Math.min(zoomX, zoomY, 1.5); // Max zoom 1.5
+      
+      // Center the graph
+      setPanOffset({ 
+        x: 600 - graphCenterX * optimalZoom, 
+        y: 400 - graphCenterY * optimalZoom 
+      });
+      setZoom(optimalZoom);
     }
   }, [triples, isInitialized]); // Remove layout dependency to prevent re-layout on drag
 
@@ -130,11 +153,11 @@ export const Graph2D: React.FC<Graph2DProps> = ({
     const width = 1200;
     const height = 800;
     const centerX = width / 2;
-    const centerY = height / 2;
+    const centerY = height / 2; // Back to center since we have free panning now
 
     switch (layoutType) {
       case 'circular':
-        const radius = Math.min(width, height) * 0.4;
+        const radius = Math.min(width, height) * 0.35; // Normal radius
         nodes.forEach((node, idx) => {
           const angle = (idx / nodes.length) * 2 * Math.PI;
           node.position = {
@@ -213,7 +236,7 @@ export const Graph2D: React.FC<Graph2DProps> = ({
         // Initialize positions more centered and compact
         nodes.forEach((node, idx) => {
           const angle = (idx / nodes.length) * 2 * Math.PI;
-          const radius = Math.min(width, height) * 0.25; // Smaller initial radius
+          const radius = Math.min(width, height - 300) * 0.2; // Smaller initial radius with top margin
           node.position = {
             x: centerX + radius * Math.cos(angle) + (Math.random() - 0.5) * 30,
             y: centerY + radius * Math.sin(angle) + (Math.random() - 0.5) * 30
@@ -244,9 +267,9 @@ export const Graph2D: React.FC<Graph2DProps> = ({
             node1.position!.x += fx * 0.01;
             node1.position!.y += fy * 0.01;
             
-            // Keep nodes within more generous bounds
-            node1.position!.x = Math.max(100, Math.min(width - 100, node1.position!.x));
-            node1.position!.y = Math.max(100, Math.min(height - 100, node1.position!.y));
+            // Keep nodes within reasonable bounds
+            node1.position!.x = Math.max(50, Math.min(width - 50, node1.position!.x));
+            node1.position!.y = Math.max(50, Math.min(height - 50, node1.position!.y));
           });
 
           // Attraction along edges
@@ -284,19 +307,34 @@ export const Graph2D: React.FC<Graph2DProps> = ({
     // Clear canvas
     ctx.fillStyle = '#111827';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Add visual boundary for debugging
+    if (false) { // Set to true to see safe area
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.strokeRect(50, 150, canvas.width - 100, canvas.height - 300);
+    }
 
     // Save context and apply transformations
     ctx.save();
     
-    // Ensure nodes are visible by limiting pan offset
-    const minX = Math.min(...nodes.map(n => n.position!.x * zoom)) - 100;
-    const maxX = Math.max(...nodes.map(n => n.position!.x * zoom)) + 100;
-    const minY = Math.min(...nodes.map(n => n.position!.y * zoom)) - 100;
-    const maxY = Math.max(...nodes.map(n => n.position!.y * zoom)) + 100;
+    // Allow more freedom in panning
+    // Users can pan beyond node boundaries to see them better
+    const nodesBounds = nodes.length > 0 ? {
+      minX: Math.min(...nodes.map(n => n.position!.x)) * zoom,
+      maxX: Math.max(...nodes.map(n => n.position!.x)) * zoom,
+      minY: Math.min(...nodes.map(n => n.position!.y)) * zoom,
+      maxY: Math.max(...nodes.map(n => n.position!.y)) * zoom
+    } : { minX: 0, maxX: canvas.width, minY: 0, maxY: canvas.height };
     
-    // Constrain pan offset to keep all nodes visible
-    const constrainedPanX = Math.max(canvas.width - maxX, Math.min(-minX + 50, panOffset.x));
-    const constrainedPanY = Math.max(canvas.height - maxY, Math.min(-minY + 50, panOffset.y));
+    // Allow panning with generous boundaries (300px extra on all sides)
+    const maxPanX = -nodesBounds.minX + 300;
+    const minPanX = canvas.width - nodesBounds.maxX - 300;
+    const maxPanY = -nodesBounds.minY + 300;
+    const minPanY = canvas.height - nodesBounds.maxY - 300;
+    
+    // Apply soft constraints - allow some overscroll
+    const constrainedPanX = Math.max(minPanX - 200, Math.min(maxPanX + 200, panOffset.x));
+    const constrainedPanY = Math.max(minPanY - 200, Math.min(maxPanY + 200, panOffset.y));
     
     ctx.translate(constrainedPanX, constrainedPanY);
     ctx.scale(zoom, zoom);
@@ -354,7 +392,7 @@ export const Graph2D: React.FC<Graph2DProps> = ({
       // Node label
       if (showLabels) {
         ctx.fillStyle = '#e5e7eb';
-        ctx.font = 'bold 14px sans-serif';
+        ctx.font = '12px sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
         
@@ -362,18 +400,18 @@ export const Graph2D: React.FC<Graph2DProps> = ({
         const text = node.label;
         const metrics = ctx.measureText(text);
         const textWidth = metrics.width;
-        const textHeight = 20;
+        const textHeight = 16;
         
         ctx.fillStyle = 'rgba(17, 24, 39, 0.8)';
         ctx.fillRect(
           node.position!.x - textWidth / 2 - 4,
-          node.position!.y + radius + 10,
+          node.position!.y + radius + 8,
           textWidth + 8,
           textHeight
         );
         
         ctx.fillStyle = '#e5e7eb';
-        ctx.fillText(text, node.position!.x, node.position!.y + radius + 14);
+        ctx.fillText(text, node.position!.x, node.position!.y + radius + 10);
       }
     });
 
@@ -533,24 +571,31 @@ export const Graph2D: React.FC<Graph2DProps> = ({
         return node;
       }));
     } else if (isPanning) {
-      // Update pan offset with better constraints
+      // Update pan offset with much more freedom
       const dx = e.clientX - lastPanPosition.x;
       const dy = e.clientY - lastPanPosition.y;
       
-      // Calculate bounds based on actual node positions
-      const minX = Math.min(...nodes.map(n => n.position!.x * zoom)) - 100;
-      const maxX = Math.max(...nodes.map(n => n.position!.x * zoom)) + 100;
-      const minY = Math.min(...nodes.map(n => n.position!.y * zoom)) - 100;
-      const maxY = Math.max(...nodes.map(n => n.position!.y * zoom)) + 100;
+      // Calculate bounds with generous margins
+      const nodesBounds = nodes.length > 0 ? {
+        minX: Math.min(...nodes.map(n => n.position!.x)) * zoom,
+        maxX: Math.max(...nodes.map(n => n.position!.x)) * zoom,
+        minY: Math.min(...nodes.map(n => n.position!.y)) * zoom,
+        maxY: Math.max(...nodes.map(n => n.position!.y)) * zoom
+      } : { minX: 0, maxX: canvas.width, minY: 0, maxY: canvas.height };
       
       setPanOffset(prev => {
         const newX = prev.x + dx;
         const newY = prev.y + dy;
         
-        // Ensure all nodes remain visible
+        // Very generous boundaries - allow panning well beyond nodes
+        const maxPanX = -nodesBounds.minX + 300;
+        const minPanX = canvas.width - nodesBounds.maxX - 300;
+        const maxPanY = -nodesBounds.minY + 300;
+        const minPanY = canvas.height - nodesBounds.maxY - 300;
+        
         return {
-          x: Math.max(canvas.width - maxX, Math.min(-minX + 50, newX)),
-          y: Math.max(canvas.height - maxY, Math.min(-minY + 50, newY))
+          x: Math.max(minPanX - 200, Math.min(maxPanX + 200, newX)),
+          y: Math.max(minPanY - 200, Math.min(maxPanY + 200, newY))
         };
       });
       setLastPanPosition({
