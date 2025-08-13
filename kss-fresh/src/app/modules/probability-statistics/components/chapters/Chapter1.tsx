@@ -38,13 +38,13 @@ export default function Chapter1() {
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
             <h4 className="font-semibold text-rose-600 dark:text-rose-400 mb-2">표본공간 (Sample Space)</h4>
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              모든 가능한 결과들의 집합. 주사위의 경우 S = { 1, 2, 3, 4, 5, 6 }
+              모든 가능한 결과들의 집합. 주사위의 경우 S = {"{ 1, 2, 3, 4, 5, 6 }"}
             </p>
           </div>
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
             <h4 className="font-semibold text-rose-600 dark:text-rose-400 mb-2">사건 (Event)</h4>
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              표본공간의 부분집합. 예: "짝수가 나오는 사건" = { 2, 4, 6 }
+              표본공간의 부분집합. 예: "짝수가 나오는 사건" = {"{ 2, 4, 6 }"}
             </p>
           </div>
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">

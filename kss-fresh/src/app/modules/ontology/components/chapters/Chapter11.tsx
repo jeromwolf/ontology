@@ -204,7 +204,7 @@ export default function Chapter11() {
               <div className="ml-8">[a owl:Restriction ;</div>
               <div className="ml-12">owl:onProperty stock:MA60 ;</div>
               <div className="ml-12">owl:hasValue ?longMA ]</div>
-              <div className="ml-8">[?shortMA > ?longMA]</div>
+              <div className="ml-8">[?shortMA {'>'} ?longMA]</div>
               <div className="ml-4">)</div>
               <div>] .</div>
             </div>
@@ -248,7 +248,7 @@ export default function Chapter11() {
               <span className="ml-2 pl-7">stock:todayVolume ?today ;</span><br/>
               <span className="ml-2 pl-7">stock:avgVolume20 ?avg20 .</span><br/>
               <span className="ml-2">BIND(?today/?avg20 AS ?volumeRatio)</span><br/>
-              <span className="ml-2">FILTER(?volumeRatio > 2.0)</span><br/>
+              <span className="ml-2">FILTER(?volumeRatio {'>'} 2.0)</span><br/>
               {`}`} ORDER BY DESC(?volumeRatio)
             </div>
           </div>

@@ -153,7 +153,7 @@ export default function SmartFactoryPage() {
                     </p>
                     
                     <div className="space-y-2">
-                      {chapter.learningObjectives.map((objective, idx) => (
+                      {chapter.learningObjectives?.map((objective, idx) => (
                         <div key={idx} className="flex items-start gap-2">
                           <Star className="w-4 h-4 text-slate-500 mt-0.5 flex-shrink-0" />
                           <span className="text-sm text-gray-700 dark:text-gray-300">{objective}</span>

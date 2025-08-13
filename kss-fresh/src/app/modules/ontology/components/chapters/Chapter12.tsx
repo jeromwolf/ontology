@@ -205,7 +205,7 @@ export default function Chapter12() {
               <span className="ml-2 pl-9">news:mentions news:Samsung_Electronics ;</span><br/>
               <span className="ml-2 pl-9">news:headline ?headline ;</span><br/>
               <span className="ml-2 pl-9">news:publishedDate ?date .</span><br/>
-              <span className="ml-2">FILTER(?date >= "2024-01-01")</span><br/>
+              <span className="ml-2">FILTER(?date {'>='} "2024-01-01")</span><br/>
               {`}`} ORDER BY DESC(?date) LIMIT 20
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function Chapter12() {
               <span className="ml-2">?org a news:Organization .</span><br/>
               <span className="ml-2">FILTER(?person != ?org)</span><br/>
               {`}`} GROUP BY ?person ?org<br/>
-              HAVING(?coMentions > 5)<br/>
+              HAVING(?coMentions {'>'} 5)<br/>
               ORDER BY DESC(?coMentions)
             </div>
           </div>
