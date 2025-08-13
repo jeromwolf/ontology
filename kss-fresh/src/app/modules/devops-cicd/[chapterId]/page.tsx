@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ArrowLeft, ArrowRight, CheckCircle, Clock, BookOpen, Target } from 'lucide-react'
 import { devopsMetadata } from '../metadata'
-import ChapterContent from '../ChapterContent'
+import ChapterContent from '../components/ChapterContent'
 import Link from 'next/link'
 
 interface PageProps {
