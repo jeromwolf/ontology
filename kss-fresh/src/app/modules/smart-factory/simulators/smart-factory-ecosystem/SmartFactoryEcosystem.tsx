@@ -778,7 +778,7 @@ export default function SmartFactoryEcosystem({ backUrl = '/modules/smart-factor
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <h4 className="font-medium text-sm text-gray-900 dark:text-white">
-                  {scenarios[currentScenario]?.name}
+                  {scenarios[currentScenario as keyof typeof scenarios]?.name}
                 </h4>
                 <button
                   onClick={stopScenario}
@@ -791,21 +791,21 @@ export default function SmartFactoryEcosystem({ backUrl = '/modules/smart-factor
               <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-2">
                 <div className="flex items-center justify-between mb-1">
                   <div className="text-xs text-gray-600 dark:text-gray-400">
-                    단계 {scenarioStep + 1} / {scenarios[currentScenario]?.steps.length}
+                    단계 {scenarioStep + 1} / {scenarios[currentScenario as keyof typeof scenarios]?.steps.length}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-500">
                     🔴 현재 | ⚪ 완료
                   </div>
                 </div>
                 <div className="text-sm font-medium text-gray-900 dark:text-white">
-                  {scenarios[currentScenario]?.steps[scenarioStep]?.message}
+                  {scenarios[currentScenario as keyof typeof scenarios]?.steps[scenarioStep]?.message}
                 </div>
               </div>
               
               <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1 mb-2">
                 <div 
                   className="bg-purple-600 h-1 rounded-full transition-all duration-500"
-                  style={{ width: `${((scenarioStep + 1) / scenarios[currentScenario]?.steps.length) * 100}%` }}
+                  style={{ width: `${((scenarioStep + 1) / scenarios[currentScenario as keyof typeof scenarios]?.steps.length) * 100}%` }}
                 />
               </div>
               
@@ -822,7 +822,7 @@ export default function SmartFactoryEcosystem({ backUrl = '/modules/smart-factor
                   ← 이전
                 </button>
                 
-                {scenarioStep === scenarios[currentScenario]?.steps.length - 1 ? (
+                {scenarioStep === scenarios[currentScenario as keyof typeof scenarios]?.steps.length - 1 ? (
                   <button
                     onClick={stopScenario}
                     className="px-3 py-1 text-xs bg-purple-600 hover:bg-purple-700 text-white rounded font-medium transition-colors"

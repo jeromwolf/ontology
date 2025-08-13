@@ -610,7 +610,7 @@ export default function PredictiveMaintenanceLabPage() {
                           }
                         </div>
                         <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                          정상: >70%
+                          정상: {'>'}70%
                         </div>
                       </div>
                     </div>

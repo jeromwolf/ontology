@@ -127,7 +127,7 @@ export default function NewsOntologyAnalyzer() {
     const text = `${article.title} ${article.description || ''}`.toLowerCase()
     
     // 주요 회사명 찾기
-    const companies = []
+    const companies: string[] = []
     const companyKeywords = ['삼성', '현대', 'LG', 'SK', '네이버', '카카오', '쿠팡', '테슬라', '애플', '구글']
     companyKeywords.forEach(company => {
       if (text.includes(company.toLowerCase())) {

@@ -74,7 +74,7 @@ export default function Chapter8() {
           <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-6">
             <h3 className="font-semibold text-red-800 dark:text-red-200 mb-3">📈 가격이 오를 때</h3>
             <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-              <li>• 사고 싶은 사람 > 팔고 싶은 사람</li>
+              <li>• 사고 싶은 사람 {'>'} 팔고 싶은 사람</li>
               <li>• 회사 실적이 좋을 때</li>
               <li>• 좋은 뉴스가 나올 때</li>
               <li>• 경제가 좋아질 때</li>
@@ -84,7 +84,7 @@ export default function Chapter8() {
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
             <h3 className="font-semibold text-blue-800 dark:text-blue-200 mb-3">📉 가격이 내릴 때</h3>
             <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-              <li>• 팔고 싶은 사람 > 사고 싶은 사람</li>
+              <li>• 팔고 싶은 사람 {'>'} 사고 싶은 사람</li>
               <li>• 회사 실적이 나쁠 때</li>
               <li>• 나쁜 뉴스가 나올 때</li>
               <li>• 경제가 안 좋을 때</li>
