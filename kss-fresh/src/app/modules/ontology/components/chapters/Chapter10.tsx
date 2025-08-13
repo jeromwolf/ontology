@@ -177,10 +177,10 @@ export default function Chapter10() {
               </p>
               <div className="bg-gray-50 dark:bg-gray-900 rounded p-3 font-mono text-xs">
                 <span className="text-red-600"># 나쁜 예</span><br/>
-                :Thing > :Object > :PhysicalObject > :LivingThing > :Animal > :Mammal > :Dog > :Beagle<br/>
+                :Thing {'>'} :Object {'>'} :PhysicalObject {'>'} :LivingThing {'>'} :Animal {'>'} :Mammal {'>'} :Dog {'>'} :Beagle<br/>
                 <br/>
                 <span className="text-green-600"># 좋은 예</span><br/>
-                :Animal > :Dog > :Beagle
+                :Animal {'>'} :Dog {'>'} :Beagle
               </div>
             </div>
 

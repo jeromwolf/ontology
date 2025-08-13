@@ -622,7 +622,7 @@ export default function StatisticalLab() {
                     {testResult.details && (
                       <div className="mt-2 text-xs text-gray-600 dark:text-gray-400">
                         {Object.entries(testResult.details).map(([key, value]) => (
-                          <div key={key}>{key}: {value}</div>
+                          <div key={key}>{key}: {String(value)}</div>
                         ))}
                       </div>
                     )}

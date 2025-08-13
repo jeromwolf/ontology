@@ -6,7 +6,7 @@ import {
   TrendingUp, AlertCircle, CheckCircle, Info,
   FileSpreadsheet, Search, Filter, Eye,
   Activity, Database, Zap, Brain,
-  ChevronRight, Play, Upload, Download
+  ChevronRight, Play, Upload, Download, Target
 } from 'lucide-react'
 
 export default function Chapter2() {

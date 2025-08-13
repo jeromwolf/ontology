@@ -199,7 +199,7 @@ export default function DataSciencePage() {
                   {moduleMetadata.title}
                 </h1>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                  {moduleMetadata.longDescription || moduleMetadata.description}
+                  {moduleMetadata.description}
                 </p>
                 
                 {/* 모듈 정보 */}

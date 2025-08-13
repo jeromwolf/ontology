@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
       quality: quality as any,
     });
 
-    const imageUrl = response.data[0].url;
+    const imageUrl = response.data?.[0]?.url;
 
     // 이미지를 다운로드하고 public 폴더에 저장
     if (imageUrl) {

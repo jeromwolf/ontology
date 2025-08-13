@@ -276,11 +276,11 @@ export default function AutonomousDrivingSim() {
         )
         
         if (shouldChangeLane && ego.lane > 0) {
-          steeringAngle = -0.1
+          setSteeringAngle(-0.1)
         } else if (shouldChangeLane && ego.lane < 2) {
-          steeringAngle = 0.1
+          setSteeringAngle(0.1)
         } else {
-          steeringAngle = 0
+          setSteeringAngle(0)
         }
       }
 
