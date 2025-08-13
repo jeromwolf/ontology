@@ -2,11 +2,6 @@
 
 import React from 'react';
 import { Text } from '@react-three/drei';
-import { extend } from '@react-three/fiber';
-import * as THREE from 'three';
-
-// Three.js 확장
-extend({ TextGeometry: THREE.TextGeometry });
 
 interface TextLabelProps {
   position: [number, number, number];

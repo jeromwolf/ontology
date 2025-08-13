@@ -60,7 +60,7 @@ const MermaidPreview: React.FC<MermaidPreviewProps> = ({
   autoFit = true,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const svgRef = useRef<SVGElement | null>(null)
+  const svgRef = useRef<SVGSVGElement | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
@@ -119,7 +119,7 @@ const MermaidPreview: React.FC<MermaidPreviewProps> = ({
       container.innerHTML = svg
       
       // SVG 참조 저장
-      svgRef.current = container.querySelector('svg')
+      svgRef.current = container.querySelector('svg') as SVGSVGElement
       
       // 오류 메시지 제거 (Mermaid가 생성하는 오류 텍스트들)
       const errorElements = container.querySelectorAll('text[fill="red"], text[fill="#ff0000"], .error-text, .mermaid-error')

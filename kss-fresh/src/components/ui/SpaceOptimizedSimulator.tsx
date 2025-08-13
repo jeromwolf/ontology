@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import { Play, Pause, RotateCcw, Download, Settings, Palette } from 'lucide-react'
-import ResponsiveCanvas from './ResponsiveCanvas'
+import ResponsiveCanvas, { ResponsiveCanvasRef } from './ResponsiveCanvas'
 import AdaptiveLayout from './AdaptiveLayout'
 import CollapsibleControls, { createControlSection } from './CollapsibleControls'
 import SpaceOptimizedButton, { ButtonGroup, SimulationControls } from './SpaceOptimizedButton'
@@ -14,7 +14,7 @@ import SpaceOptimizedButton, { ButtonGroup, SimulationControls } from './SpaceOp
  * 기존 문제점들이 모두 해결된 완전한 예제
  */
 const SpaceOptimizedSimulator: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<ResponsiveCanvasRef>(null)
   const [isRunning, setIsRunning] = React.useState(false)
   const [settings, setSettings] = React.useState({
     speed: 1,
@@ -74,10 +74,10 @@ const SpaceOptimizedSimulator: React.FC = () => {
 
     const animate = () => {
       if (canvasRef.current && isRunning) {
-        const context = canvasRef.current.getContext('2d')
+        const context = canvasRef.current.context
         if (context) {
-          const rect = canvasRef.current.getBoundingClientRect()
-          drawVisualization(context, { width: rect.width, height: rect.height })
+          const dimensions = canvasRef.current.dimensions
+          drawVisualization(context, dimensions)
         }
       }
       
@@ -192,11 +192,11 @@ const SpaceOptimizedSimulator: React.FC = () => {
           icon={<Download className="w-4 h-4" />}
           onClick={() => {
             // PNG 내보내기 로직
-            const canvas = canvasRef.current
-            if (canvas) {
+            const canvasEl = canvasRef.current?.canvas
+            if (canvasEl) {
               const link = document.createElement('a')
               link.download = 'simulation.png'
-              link.href = canvas.toDataURL()
+              link.href = canvasEl.toDataURL()
               link.click()
             }
           }}
@@ -240,8 +240,8 @@ const SpaceOptimizedSimulator: React.FC = () => {
           onResize={(dimensions) => {
             console.log('Canvas resized:', dimensions)
             // 즉시 다시 그리기
-            if (context) {
-              drawVisualization(context, dimensions)
+            if (canvasRef.current?.context) {
+              drawVisualization(canvasRef.current.context, dimensions)
             }
           }}
           maintainAspectRatio={false}

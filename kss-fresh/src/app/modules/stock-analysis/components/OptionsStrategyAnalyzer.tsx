@@ -42,7 +42,7 @@ export default function OptionsStrategyAnalyzer() {
     rho: 0.08
   });
 
-  const strategies = {
+  const strategies: Record<string, OptionStrategy> = {
     'covered-call': {
       name: '커버드 콜 (Covered Call)',
       type: 'income',
@@ -143,7 +143,7 @@ export default function OptionsStrategyAnalyzer() {
   };
 
   useEffect(() => {
-    setCurrentStrategy(strategies[selectedStrategy as keyof typeof strategies]);
+    setCurrentStrategy(strategies[selectedStrategy]);
   }, [selectedStrategy]);
 
   useEffect(() => {

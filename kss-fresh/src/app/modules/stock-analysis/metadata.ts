@@ -487,85 +487,6 @@ export const stockAnalysisModule: Module = {
       description: '국내외 증권사 리포트와 AI 분석 결과 통합 제공',
       url: '/modules/stock-analysis/tools/research-reports'
     }
-  ],
-
-  // === 학습 경로 및 평가 시스템 ===
-  learningPaths: [
-    {
-      id: 'beginner-path',
-      name: '초보자 완성 코스',
-      description: '투자 기초부터 첫 포트폴리오 구성까지 (3개월)',
-      chapters: ['market-fundamentals', 'investment-psychology', 'financial-statements-deep', 'technical-analysis-foundation', 'modern-portfolio-theory'],
-      estimatedWeeks: 12
-    },
-    {
-      id: 'intermediate-path',
-      name: '중급자 실력 향상 코스',
-      description: '분석 역량 강화와 전략적 투자 (4개월)',
-      chapters: ['valuation-methods', 'industry-analysis', 'technical-indicators-mastery', 'risk-management-advanced', 'quantitative-analysis'],
-      estimatedWeeks: 16
-    },
-    {
-      id: 'advanced-path',
-      name: '고급자 전문가 코스',
-      description: 'AI 투자와 기관투자자급 전략 (5개월)',
-      chapters: ['machine-learning-investing', 'algo-trading-systems', 'alternative-investments', 'investment-case-studies', 'professional-investment-practice'],
-      estimatedWeeks: 20
-    },
-    {
-      id: 'professional-path',
-      name: '금융 전문가 마스터 코스',
-      description: '금융업계 취업 및 자격증 대비 (6개월)',
-      chapters: [], // 전체 23개 챕터
-      estimatedWeeks: 24
-    }
-  ],
-
-  // === 평가 및 인증 시스템 ===
-  assessments: [
-    {
-      id: 'basic-knowledge-test',
-      name: '기초 지식 평가',
-      description: '투자 기초 개념 100문항 객관식 시험',
-      passingScore: 70,
-      timeLimit: 120
-    },
-    {
-      id: 'financial-analysis-practice',
-      name: '재무분석 실무 평가',
-      description: '실제 기업 사례로 DCF 모델 작성 및 투자의견 제시',
-      passingScore: 75,
-      timeLimit: 180
-    },
-    {
-      id: 'portfolio-management-case',
-      name: '포트폴리오 관리 사례 평가',
-      description: '주어진 조건에서 최적 포트폴리오 구성 및 리스크 관리',
-      passingScore: 80,
-      timeLimit: 240
-    }
-  ],
-
-  // === 실습 프로젝트 ===
-  projects: [
-    {
-      id: 'company-valuation-project',
-      name: '기업가치 평가 프로젝트',
-      description: '선택한 기업의 완전한 가치평가 보고서 작성 (20페이지)',
-      deliverables: ['재무분석', 'DCF 모델', '상대가치 평가', '투자의견서']
-    },
-    {
-      id: 'trading-strategy-development',
-      name: '트레이딩 전략 개발 프로젝트',
-      description: '독자적 트레이딩 전략 개발 및 3년간 백테스팅 결과',
-      deliverables: ['전략 설명서', '백테스팅 코드', '성과 분석 보고서']
-    },
-    {
-      id: 'portfolio-construction-project',
-      name: '포트폴리오 구성 프로젝트',
-      description: '1억원 가상 자금으로 최적 포트폴리오 구성 및 6개월 운용',
-      deliverables: ['투자 계획서', '월간 운용 보고서', '최종 성과 분석']
-    }
   ]
 }
 
@@ -581,12 +502,4 @@ export const getNextChapter = (currentChapterId: string) => {
 export const getPrevChapter = (currentChapterId: string) => {
   const currentIndex = stockAnalysisModule.chapters.findIndex(ch => ch.id === currentChapterId)
   return currentIndex > 0 ? stockAnalysisModule.chapters[currentIndex - 1] : undefined
-}
-
-export const getLearningPath = (pathId: string) => {
-  return stockAnalysisModule.learningPaths?.find(path => path.id === pathId)
-}
-
-export const getAssessment = (assessmentId: string) => {
-  return stockAnalysisModule.assessments?.find(assessment => assessment.id === assessmentId)
 }

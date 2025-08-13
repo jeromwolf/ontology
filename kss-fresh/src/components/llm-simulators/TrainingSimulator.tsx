@@ -349,7 +349,7 @@ const TrainingSimulator = () => {
               학습 시작
             </button>
           ) : (
-            <button className={styles.stopBtn} onClick={stopTraining}>
+            <button className={styles.stopBtn} onClick={() => stopTraining()}>
               학습 중지
             </button>
           )}

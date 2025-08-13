@@ -4,6 +4,9 @@ import React, { forwardRef, useImperativeHandle } from 'react'
 import { useResponsiveCanvas, type CanvasConfig } from '@/hooks/useResponsiveCanvas'
 import { cn } from '@/lib/utils'
 
+// Re-export CanvasConfig for convenience
+export type { CanvasConfig }
+
 export interface ResponsiveCanvasProps extends CanvasConfig {
   className?: string
   containerClassName?: string
@@ -126,5 +129,4 @@ ResponsiveCanvas.displayName = 'ResponsiveCanvas'
 
 export default ResponsiveCanvas
 
-// 편의를 위한 타입 내보내기
-export type { ResponsiveCanvasProps, ResponsiveCanvasRef, CanvasConfig }
+// ResponsiveCanvasProps and CanvasConfig are already exported above

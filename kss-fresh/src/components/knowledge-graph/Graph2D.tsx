@@ -308,11 +308,7 @@ export const Graph2D: React.FC<Graph2DProps> = ({
     ctx.fillStyle = '#111827';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Add visual boundary for debugging
-    if (false) { // Set to true to see safe area
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-      ctx.strokeRect(50, 150, canvas.width - 100, canvas.height - 300);
-    }
+    // Debug boundary removed for TypeScript compatibility
 
     // Save context and apply transformations
     ctx.save();

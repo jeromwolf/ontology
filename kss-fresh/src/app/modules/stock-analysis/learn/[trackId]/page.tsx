@@ -2075,7 +2075,7 @@ export default function LearningTrackPage() {
                     </div>
                     <div className="bg-sky-100 dark:bg-sky-900/30 rounded p-2">
                       <p className="font-medium">분산효과</p>
-                      <p className="text-xs">개별 리스크의 합 > 포트폴리오 리스크</p>
+                      <p className="text-xs">개별 리스크의 합 {'>'} 포트폴리오 리스크</p>
                     </div>
                   </div>
                 </div>
@@ -2431,8 +2431,8 @@ export default function LearningTrackPage() {
         }
       ]
     },
-    basic: {
-      title: '차트 읽기 기초',
+    candlesticks: {
+      title: '캔들스틱 차트',
       sections: [
         {
           title: '캔들스틱 차트의 이해',
@@ -2699,8 +2699,8 @@ export default function LearningTrackPage() {
         }
       ]
     },
-    intermediate: {
-      title: '똑똑한 투자자 되기',
+    analysis: {
+      title: '기업 분석',
       sections: [
         {
           title: '기업 분석의 기초',
@@ -3038,8 +3038,8 @@ export default function LearningTrackPage() {
         }
       ]
     },
-    advanced: {
-      title: '기술적 분석 마스터',
+    indicators: {
+      title: '기술적 지표',
       sections: [
         {
           title: '보조지표 활용하기',
@@ -3130,7 +3130,7 @@ export default function LearningTrackPage() {
                     <ul className="text-sm space-y-1">
                       <li>✓ MACD 골든크로스</li>
                       <li>✓ RSI 50 이상 유지</li>
-                      <li>✓ 주가 > 20일 이평선</li>
+                      <li>✓ 주가 {'>'} 20일 이평선</li>
                     </ul>
                   </div>
                   <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
@@ -3422,8 +3422,8 @@ export default function LearningTrackPage() {
         }
       ]
     },
-    professional: {
-      title: '전문 투자자 과정',
+    finance: {
+      title: '재무분석',
       sections: [
         {
           title: '재무분석 심화',
