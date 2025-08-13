@@ -6,6 +6,8 @@ import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 import bcrypt from "bcryptjs"
 import { Role } from "@prisma/client"
+import { getServerSession } from "next-auth/next"
+import { headers, cookies } from "next/headers"
 
 declare module "next-auth" {
   interface Session {
@@ -161,5 +163,10 @@ export const authOptions: NextAuthOptions = {
     },
   },
   debug: process.env.NODE_ENV === "development",
+}
+
+// Helper function to get session in App Router
+export async function auth() {
+  return await getServerSession(authOptions)
 }
 
