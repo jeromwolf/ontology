@@ -18,7 +18,7 @@ export const SpriteLabel: React.FC<SpriteLabelProps> = ({
   text,
   color = '#ffffff',
   backgroundColor = 'rgba(0, 0, 0, 0.9)',
-  fontSize = 200
+  fontSize = 240
 }) => {
   const { gl } = useThree();
   
@@ -34,7 +34,7 @@ export const SpriteLabel: React.FC<SpriteLabelProps> = ({
     // Canvas 크기 설정
     const metrics = context.measureText(text);
     const textWidth = metrics.width;
-    const padding = 30;
+    const padding = 40;
     
     canvas.width = textWidth + padding * 2;
     canvas.height = fontSize + padding * 2;
@@ -71,7 +71,7 @@ export const SpriteLabel: React.FC<SpriteLabelProps> = ({
   if (!texture) return null;
   
   return (
-    <sprite position={position} scale={[20, 10, 1]}>
+    <sprite position={position} scale={[30, 15, 1]}>
       <spriteMaterial 
         map={texture} 
         sizeAttenuation={false}

@@ -88,11 +88,11 @@ function NodeMesh({ node, isSelected, onClick, onHover, labelType = 'html' }: No
           distanceFactor={4}
           occlude={[meshRef]}
           style={{
-            fontSize: '24px',
+            fontSize: '36px',
             fontWeight: 'bold',
             color: '#ffffff',
             backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            padding: '8px 16px',
+            padding: '12px 24px',
             borderRadius: '8px',
             userSelect: 'none',
             whiteSpace: 'nowrap',
@@ -111,7 +111,7 @@ function NodeMesh({ node, isSelected, onClick, onHover, labelType = 'html' }: No
           text={node.label}
           color="#ffffff"
           backgroundColor="rgba(0, 0, 0, 0.9)"
-          fontSize={160}
+          fontSize={240}
         />
       )}
       
@@ -119,14 +119,14 @@ function NodeMesh({ node, isSelected, onClick, onHover, labelType = 'html' }: No
         <Text
           position={[0, 2.0, 0]}
           color="#ffffff"
-          fontSize={1.2}
+          fontSize={2.0}
           maxWidth={300}
           lineHeight={1}
           letterSpacing={0.02}
           textAlign="center"
           anchorX="center"
           anchorY="middle"
-          outlineWidth={0.08}
+          outlineWidth={0.12}
           outlineColor="#000000"
         >
           {node.label}
@@ -143,14 +143,14 @@ function NodeMesh({ node, isSelected, onClick, onHover, labelType = 'html' }: No
         >
           <Text
             color="#ffffff"
-            fontSize={1.2}
+            fontSize={2.0}
             maxWidth={300}
             lineHeight={1}
             letterSpacing={0.02}
             textAlign="center"
             anchorX="center"
             anchorY="middle"
-            outlineWidth={0.08}
+            outlineWidth={0.12}
             outlineColor="#000000"
           >
             {node.label}
@@ -179,23 +179,23 @@ function EdgeLine({ sourcePos, targetPos, label }: EdgeLineProps) {
       <Line
         points={[sourcePos, targetPos]}
         color="#666666"
-        lineWidth={2}
+        lineWidth={3}
       />
       <Html
         position={midPoint}
         center
-        distanceFactor={8}
+        distanceFactor={6}
         style={{
-          fontSize: '12px',
+          fontSize: '20px',
           fontWeight: 'bold',
           color: '#fbbf24',
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          padding: '2px 6px',
-          borderRadius: '3px',
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          padding: '6px 12px',
+          borderRadius: '4px',
           userSelect: 'none',
           whiteSpace: 'nowrap',
-          border: '1px solid rgba(251, 191, 36, 0.5)',
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
+          border: '1px solid rgba(251, 191, 36, 0.6)',
+          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.6)',
           pointerEvents: 'none'
         }}
       >
