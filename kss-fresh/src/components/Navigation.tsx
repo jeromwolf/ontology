@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Brain, TrendingUp, Home, Network, Video } from 'lucide-react';
+import { Brain, TrendingUp, Home, Network, BookOpen, Wrench } from 'lucide-react';
 import KSSLogo from './icons/KSSLogo';
 import UserMenu from './auth/UserMenu';
 
@@ -11,10 +11,9 @@ export default function Navigation() {
 
   const navItems = [
     { href: '/', label: 'Home', icon: Home },
-    { href: '/ontology', label: '온톨로지', icon: Brain },
-    { href: '/stock-analysis', label: '주식투자분석', icon: TrendingUp },
-    { href: '/video-creator', label: '비디오 생성', icon: Video },
-    { href: '/modules/neo4j', label: 'Neo4j', icon: Network },
+    { href: '/modules', label: '모든 모듈', icon: BookOpen },
+    { href: '/learning-path', label: '학습 경로', icon: TrendingUp },
+    { href: '/tools', label: '실전 도구', icon: Wrench },
   ];
 
   return (
@@ -54,35 +53,6 @@ export default function Navigation() {
           </div>
           
           <div className="flex items-center gap-4">
-            {/* 온톨로지 페이지에서만 도구 링크 표시 */}
-            {pathname.startsWith('/ontology') && (
-              <>
-                <Link
-                  href="/rdf-editor"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  RDF 에디터
-                </Link>
-                <Link
-                  href="/sparql-playground"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  SPARQL
-                </Link>
-                <Link
-                  href="/3d-graph"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  3D 그래프
-                </Link>
-                <Link
-                  href="/video-creator"
-                  className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  비디오
-                </Link>
-              </>
-            )}
             {/* User Menu */}
             <UserMenu />
           </div>
