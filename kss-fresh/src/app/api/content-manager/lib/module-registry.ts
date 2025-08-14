@@ -4,7 +4,7 @@ export class ModuleRegistry {
       id: 'ontology',
       name: '온톨로지',
       version: '1.0.0',
-      chapters: 16,
+      chapters: 18,
       simulators: 4
     },
     {
@@ -33,14 +33,7 @@ export class ModuleRegistry {
       name: '자율주행',
       version: '1.0.0',
       chapters: 8,
-      simulators: 5
-    },
-    {
-      id: 'medical-ai',
-      name: '의료 AI',
-      version: '1.0.0',
-      chapters: 8,
-      simulators: 6
+      simulators: 4
     },
     {
       id: 'system-design',
@@ -81,6 +74,20 @@ export class ModuleRegistry {
       id: 'smart-factory',
       name: '스마트 팩토리',
       version: '1.0.0',
+      chapters: 16,
+      simulators: 4
+    },
+    {
+      id: 'computer-vision',
+      name: 'Computer Vision',
+      version: '1.0.0',
+      chapters: 5,
+      simulators: 5
+    },
+    {
+      id: 'ai-security',
+      name: 'AI Security',
+      version: '1.0.0',
       chapters: 8,
       simulators: 4
     },
@@ -92,10 +99,24 @@ export class ModuleRegistry {
       simulators: 4
     },
     {
-      id: 'ai-automation',
-      name: 'AI 자동화',
+      id: 'probability-statistics',
+      name: '확률과 통계',
       version: '1.0.0',
       chapters: 8,
+      simulators: 4
+    },
+    {
+      id: 'english-conversation',
+      name: '영어 회화',
+      version: '1.0.0',
+      chapters: 8,
+      simulators: 5
+    },
+    {
+      id: 'ai-automation',
+      name: '바이블코딩',
+      version: '1.0.0',
+      chapters: 9,
       simulators: 4
     },
     {
@@ -113,15 +134,15 @@ export class ModuleRegistry {
       simulators: 4
     },
     {
-      id: 'english-conversation',
-      name: '영어 회화',
+      id: 'devops-cicd',
+      name: 'DevOps & CI/CD',
       version: '1.0.0',
       chapters: 8,
-      simulators: 5
+      simulators: 4
     },
     {
-      id: 'linear-algebra',
-      name: '선형대수학',
+      id: 'data-engineering',
+      name: 'Data Engineering',
       version: '1.0.0',
       chapters: 8,
       simulators: 4
