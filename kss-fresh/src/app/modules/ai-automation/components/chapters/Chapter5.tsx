@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Workflow, Zap, Brain, Settings } from 'lucide-react'
+import { Workflow, Zap, Brain, Settings } from 'lucide-react';
 
 export default function Chapter5() {
   return (

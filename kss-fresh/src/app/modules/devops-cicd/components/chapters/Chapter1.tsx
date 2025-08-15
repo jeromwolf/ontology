@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Settings, Activity } from 'lucide-react'
+import React from 'react';
+import { Settings, Activity } from 'lucide-react';
 
 export default function Chapter1() {
   return (

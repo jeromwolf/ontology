@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 // 챕터 컴포넌트들을 동적으로 import
 const Chapter1 = dynamic(() => import('./chapters/Chapter1'), { ssr: false })

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { TrendingUp } from 'lucide-react'
+import { useState } from 'react';
+import { TrendingUp } from 'lucide-react';
 
 export default function Chapter7() {
   const [trendType, setTrendType] = useState('linear')

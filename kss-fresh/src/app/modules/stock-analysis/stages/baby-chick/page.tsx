@@ -1,88 +1,127 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, BookOpen, Target, TrendingUp, BarChart3, AlertTriangle, ChevronRight, Play, Clock, Award } from 'lucide-react';
+import { ArrowLeft, BookOpen, Target, TrendingUp, Mouse, Smartphone, ChevronRight, Play, Clock, Award, Sparkles, BarChart, FileText, Users, AlertTriangle } from 'lucide-react';
 
 export default function BabyChickStagePage() {
   const curriculum = [
     {
-      week: '1주차',
-      title: '주식시장의 기본 이해',
+      week: 'Week 1',
+      title: '주식 투자의 첫걸음',
       chapters: [
         {
-          id: 'market-structure',
-          title: '글로벌 금융시장의 구조',
-          description: '한국 주식시장은 어떻게 작동하며, 세계 시장과 어떻게 연결되어 있을까?',
-          duration: '45분',
-          type: 'theory'
-        },
-        {
-          id: 'market-participants',
-          title: '시장 참여자의 이해',
-          description: '개인, 기관, 외국인 투자자들의 행동 패턴과 시장에 미치는 영향',
+          id: 'what-is-stock',
+          title: '주식이란 무엇인가?',
+          description: '기업의 일부를 소유한다는 의미, 주식이 오르고 내리는 이유, 배당금이란?',
           duration: '30분',
-          type: 'theory'
+          type: 'theory',
+          level: 'Beginner'
         },
         {
-          id: 'trading-system',
-          title: '매매 시스템 실습',
-          description: '호가창 읽기, 주문 유형, 체결 원리 등 실전 매매 기초',
+          id: 'open-account',
+          title: '증권계좌 개설하기',
+          description: '증권사 선택 기준, 비대면 계좌 개설 과정, 수수료 비교하기',
+          duration: '45분',
+          type: 'practice',
+          level: 'Beginner'
+        },
+        {
+          id: 'trading-app-basics',
+          title: 'HTS/MTS 사용법',
+          description: '주식 앱 설치하고 둘러보기, 관심종목 등록, 첫 주문 넣어보기',
           duration: '60분',
-          type: 'practice'
+          type: 'hands-on',
+          level: 'Beginner'
         }
       ]
     },
     {
-      week: '2주차',
-      title: '투자 심리와 행동재무학',
+      week: 'Week 2',
+      title: '차트 읽기의 기초',
       chapters: [
         {
-          id: 'investor-psychology',
-          title: '투자자 심리의 함정',
-          description: '손실회피, 확증편향, 군중심리 등 투자 실패의 주요 원인',
-          duration: '40분',
-          type: 'theory'
-        },
-        {
-          id: 'risk-management-basics',
-          title: '리스크 관리 기초',
-          description: '손절선 설정, 포지션 사이징, 분산투자의 기본 원칙',
+          id: 'understanding-candles',
+          title: '캔들 차트 이해하기',
+          description: '빨간색과 파란색의 의미, 몸통과 꼬리 읽기, 일봉/주봉/월봉의 차이',
           duration: '45분',
-          type: 'theory'
+          type: 'visual',
+          level: 'Beginner'
         },
         {
-          id: 'psychology-simulation',
-          title: '투자 심리 시뮬레이션',
-          description: '실제 시장 상황에서 심리적 함정을 체험하고 극복하는 훈련',
-          duration: '90분',
-          type: 'simulation'
+          id: 'volume-basics',
+          title: '거래량이 말해주는 것',
+          description: '거래량이 많다는 것의 의미, 가격과 거래량의 관계, 거래량 급증 신호',
+          duration: '30분',
+          type: 'analysis',
+          level: 'Beginner'
+        },
+        {
+          id: 'order-book',
+          title: '호가창 완전정복',
+          description: '매수/매도 호가 읽기, 잔량의 의미, 시장가와 지정가 주문',
+          duration: '45분',
+          type: 'interactive',
+          level: 'Beginner'
         }
       ]
     },
     {
-      week: '3-4주차',
-      title: '거시경제 지표 분석',
+      week: 'Week 3',
+      title: '기초 용어와 정보 수집',
       chapters: [
         {
-          id: 'economic-indicators',
-          title: '주요 경제지표의 이해',
-          description: 'GDP, 금리, 환율, 인플레이션이 주식시장에 미치는 영향',
+          id: 'basic-terms',
+          title: '꼭 알아야 할 투자 용어',
+          description: '시가총액, PER, PBR, ROE, 배당수익률 등 핵심 지표 이해하기',
           duration: '60분',
-          type: 'theory'
+          type: 'theory',
+          level: 'Beginner'
         },
         {
-          id: 'fomc-analysis',
-          title: 'FOMC와 한국은행 통화정책',
-          description: '중앙은행 정책이 주식시장에 미치는 영향 분석',
+          id: 'reading-news',
+          title: '투자 뉴스 읽는 법',
+          description: '어떤 뉴스가 주가에 영향을 미치나, 공시 읽기, 루머와 사실 구분하기',
           duration: '45분',
-          type: 'theory'
+          type: 'analysis',
+          level: 'Beginner'
         },
         {
-          id: 'macro-practice',
-          title: '거시경제 분석 실습',
-          description: '실제 경제지표 발표를 분석하고 투자 전략 수립하기',
-          duration: '120분',
-          type: 'practice'
+          id: 'sectors-themes',
+          title: '업종과 테마 이해하기',
+          description: 'KOSPI 업종 분류, 테마주란?, 관련주 찾는 방법',
+          duration: '45분',
+          type: 'research',
+          level: 'Beginner'
+        }
+      ]
+    },
+    {
+      week: 'Week 4',
+      title: '첫 투자 시작하기',
+      chapters: [
+        {
+          id: 'stock-selection',
+          title: '종목 선택의 기초',
+          description: '대형주 vs 중소형주, 안전한 종목 찾기, 위험한 종목 피하기',
+          duration: '60분',
+          type: 'strategy',
+          level: 'Beginner'
+        },
+        {
+          id: 'small-start',
+          title: '소액으로 시작하기',
+          description: '얼마로 시작할까?, 분할 매수의 중요성, 첫 수익과 손실 대처법',
+          duration: '45분',
+          type: 'practice',
+          level: 'Beginner'
+        },
+        {
+          id: 'trading-diary',
+          title: '매매일지 작성하기',
+          description: '왜 샀는지 기록하기, 매도 이유 정리하기, 실수에서 배우기',
+          duration: '30분',
+          type: 'reflection',
+          level: 'Beginner'
         }
       ]
     }
@@ -90,16 +129,25 @@ export default function BabyChickStagePage() {
 
   const tools = [
     {
-      name: '호가창 시뮬레이터',
-      description: '실시간 호가 변화를 관찰하고 주문 체결 원리 학습',
-      icon: BarChart3,
-      href: '/modules/stock-analysis/simulators/order-book'
+      name: '모의투자 시뮬레이터',
+      description: '실제 시장 데이터로 연습하는 가상 투자 플랫폼',
+      icon: Mouse,
+      href: '/modules/stock-analysis/simulators/paper-trading',
+      badge: '인기'
     },
     {
-      name: '기초 재무제표 계산기',
-      description: 'PER, PBR, ROE 등 기본 지표 계산 연습',
-      icon: Target,
-      href: '/modules/stock-analysis/tools/basic-calculator'
+      name: '용어 사전',
+      description: '초보자를 위한 주식 용어 완벽 정리',
+      icon: FileText,
+      href: '/modules/stock-analysis/tools/glossary',
+      badge: '필수'
+    },
+    {
+      name: '차트 연습장',
+      description: '캔들 패턴 그려보고 익히기',
+      icon: BarChart,
+      href: '/modules/stock-analysis/simulators/chart-practice',
+      badge: '추천'
     }
   ];
 
@@ -248,10 +296,10 @@ export default function BabyChickStagePage() {
                     </div>
                     <Link
                       href={`/modules/stock-analysis/chapters/${chapter.id}`}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium transition-colors"
                     >
                       <Play className="w-4 h-4" />
-                      시작
+                      시작하기
                     </Link>
                   </div>
                 ))}
@@ -320,17 +368,23 @@ export default function BabyChickStagePage() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/modules/stock-analysis/stages/young-eagle"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
-          >
-            다음 단계로 진행
-            <ChevronRight className="w-5 h-5" />
-          </Link>
-          <p className="text-sm text-gray-500 mt-3">
-            모든 챕터를 완료하면 Young Eagle 단계로 진급할 수 있습니다
+        {/* Next Steps */}
+        <div className="mt-16 text-center bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-12">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            다음 단계: Foundation Program
+          </h3>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            Baby Chick 과정을 마치면, 차트 분석과 기업 분석을 배우는 Foundation Program으로 진급할 수 있습니다.
           </p>
+          <div className="flex items-center justify-center gap-4">
+            <Link
+              href="/modules/stock-analysis/stages/foundation"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-xl font-semibold transition-all transform hover:scale-105"
+            >
+              Foundation Program 미리보기
+              <ChevronRight className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
       </div>
     </div>

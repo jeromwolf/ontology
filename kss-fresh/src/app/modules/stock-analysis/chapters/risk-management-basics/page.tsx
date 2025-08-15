@@ -1331,7 +1331,7 @@ export default function RiskManagementBasicsPage() {
                   <span>총 9개 챕터</span>
                 </div>
                 <Link
-                  href="/modules/stock-analysis/stages/baby-chick"
+                  href="/modules/stock-analysis/stages/foundation"
                   className="inline-flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                 >
                   <span>전체 보기</span>

@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { 
   Users, Heart, BookOpen, Award, TrendingUp
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter15() {
   return (

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { BarChart3, Gauge, PieChart } from 'lucide-react'
+import { useState } from 'react';
+import { BarChart3, Gauge, PieChart } from 'lucide-react';
 
 export default function Chapter3() {
   const [dataSet] = useState([23, 25, 27, 29, 31, 33, 35, 37, 39, 41])

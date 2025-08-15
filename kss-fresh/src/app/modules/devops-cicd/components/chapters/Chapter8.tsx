@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Monitor } from 'lucide-react'
+import React from 'react';
+import { Monitor } from 'lucide-react';
 
 export default function Chapter8() {
   return (

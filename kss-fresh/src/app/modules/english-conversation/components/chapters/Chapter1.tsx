@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { Volume2, Pause } from 'lucide-react'
+import { useState, useEffect } from 'react';
+import { Volume2, Pause } from 'lucide-react';
 
 export default function Chapter1() {
   const [activeDialogue, setActiveDialogue] = useState(0)

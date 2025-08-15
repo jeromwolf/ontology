@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Code } from 'lucide-react'
+import { Code } from 'lucide-react';
 
 export default function Chapter5() {
   return (

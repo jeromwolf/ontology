@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Brain } from 'lucide-react'
+import { useState } from 'react';
+import { Brain } from 'lucide-react';
 
 export default function Chapter5() {
   const [prior, setPrior] = useState(0.1)

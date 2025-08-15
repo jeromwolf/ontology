@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Eye, Cpu, Radio, MapPin, Navigation } from 'lucide-react'
+import { Eye, Cpu, Radio, MapPin, Navigation } from 'lucide-react';
 
 export default function Chapter2() {
   return (

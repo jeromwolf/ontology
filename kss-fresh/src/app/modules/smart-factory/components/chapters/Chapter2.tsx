@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { 
   Globe, Factory, Zap, Cog, Users, Cpu
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter2() {
   return (

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Atom } from 'lucide-react'
+import { Atom } from 'lucide-react';
 
 export default function Chapter1() {
   return (

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { SparqlPlayground } from '@/components/sparql-playground/SparqlPlayground'
+import React from 'react';
+import { SparqlPlayground } from '@/components/sparql-playground/SparqlPlayground';
 
 export default function Chapter7() {
   return (

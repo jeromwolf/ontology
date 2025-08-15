@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { Rocket, Server, Cloud, Shield, Gauge, AlertTriangle, CheckCircle2 } from 'lucide-react'
+import React, { useState } from 'react';
+import { Rocket, Server, Cloud, Shield, Gauge, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 interface Chapter10Props {
   onComplete?: () => void

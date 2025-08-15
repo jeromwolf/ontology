@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Workflow, Zap, GitBranch } from 'lucide-react'
+import { Workflow, Zap, GitBranch } from 'lucide-react';
 
 export default function Chapter7() {
   return (

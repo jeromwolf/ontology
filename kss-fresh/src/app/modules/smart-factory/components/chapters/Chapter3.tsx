@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { 
   MapPin, Eye, BarChart3, Bot, Monitor, Smartphone, Clock, TestTube, HardDrive, AlertTriangle, Code
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter3() {
   return (

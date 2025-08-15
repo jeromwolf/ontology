@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Car, Wifi, Shield, Radio } from 'lucide-react'
+import { Car, Wifi, Shield, Radio } from 'lucide-react';
 
 export default function Chapter5() {
   return (

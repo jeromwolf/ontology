@@ -743,7 +743,7 @@ export default function PsychologySimulationPage() {
               <Play className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
             </div>
             <div className="text-left">
-              <div className="text-sm text-gray-500 mb-1">Baby Chick • Chapter 6</div>
+              <div className="text-sm text-gray-500 mb-1">Foundation Program • Chapter 6</div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
                 투자 심리 시뮬레이션
               </h1>
@@ -1050,7 +1050,7 @@ export default function PsychologySimulationPage() {
                 🏛️ 전체 커리큘럼 보기
               </h3>
               <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                Baby Chick 단계의 전체 학습 경로를 확인하고 나만의 학습 계획을 세워보세요.
+                Foundation Program의 전체 학습 경로를 확인하고 나만의 학습 계획을 세워보세요.
               </p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -1058,7 +1058,7 @@ export default function PsychologySimulationPage() {
                   <span>총 9개 챕터</span>
                 </div>
                 <Link
-                  href="/modules/stock-analysis/stages/baby-chick"
+                  href="/modules/stock-analysis/stages/foundation"
                   className="inline-flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                 >
                   <span>전체 보기</span>
@@ -1071,7 +1071,7 @@ export default function PsychologySimulationPage() {
           {/* Progress Indicator */}
           <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
-              <span>Baby Chick 진행률</span>
+              <span>Foundation Program 진행률</span>
               <span>6/9 완료</span>
             </div>
             <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">

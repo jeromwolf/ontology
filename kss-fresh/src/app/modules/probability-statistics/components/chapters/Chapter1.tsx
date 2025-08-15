@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Dice1, Play, Lightbulb } from 'lucide-react'
+import { useState } from 'react';
+import { Dice1, Play, Lightbulb } from 'lucide-react';
 
 export default function Chapter1() {
   const [diceResult, setDiceResult] = useState<number | null>(null)

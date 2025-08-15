@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import dynamic from 'next/dynamic'
+import React from 'react';
+import dynamic from 'next/dynamic';
 
 // Dynamic imports for all chapters
 const Chapter1 = dynamic(() => import('./chapters/Chapter1'), { ssr: false })

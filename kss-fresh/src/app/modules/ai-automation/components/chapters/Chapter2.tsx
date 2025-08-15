@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Terminal, FileCode, GitBranch, Settings } from 'lucide-react'
+import { Terminal, FileCode, GitBranch, Settings } from 'lucide-react';
 
 export default function Chapter2() {
   return (

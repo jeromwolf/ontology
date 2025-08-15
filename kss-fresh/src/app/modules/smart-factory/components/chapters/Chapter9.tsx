@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import { 
   Activity, Wrench, TestTube, Brain, AlertTriangle, Code
-} from 'lucide-react'
-import CodeEditor from '../CodeEditor'
-import Link from 'next/link'
+} from 'lucide-react';
+import CodeEditor from '../CodeEditor';
+import Link from 'next/link';
 
 export default function Chapter9() {
   return (

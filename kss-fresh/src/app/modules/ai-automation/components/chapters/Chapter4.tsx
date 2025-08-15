@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Code2, Brain } from 'lucide-react'
+import { Code2, Brain } from 'lucide-react';
 
 export default function Chapter4() {
   return (

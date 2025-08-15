@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { BookOpen, TrendingUp, Clock, BarChart2, Lightbulb } from 'lucide-react'
+import React from 'react';
+import { BookOpen, TrendingUp, Clock, BarChart2, Lightbulb } from 'lucide-react';
 
 interface Chapter7Props {
   onComplete?: () => void

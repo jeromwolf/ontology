@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { FlaskConical } from 'lucide-react'
+import Link from 'next/link';
+import { FlaskConical } from 'lucide-react';
 
 export default function Chapter4() {
   return (

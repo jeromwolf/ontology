@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Copy, CheckCircle, Activity } from 'lucide-react'
+import { useState } from 'react';
+import { Copy, CheckCircle, Activity } from 'lucide-react';
 
 export default function Chapter8() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)

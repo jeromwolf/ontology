@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Calculator } from 'lucide-react'
+import { Calculator } from 'lucide-react';
 
 export default function Chapter2() {
   return (

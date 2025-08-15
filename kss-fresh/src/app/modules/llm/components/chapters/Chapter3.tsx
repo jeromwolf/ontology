@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { FlaskConical } from 'lucide-react'
-import dynamic from 'next/dynamic'
+import Link from 'next/link';
+import { FlaskConical } from 'lucide-react';
+import dynamic from 'next/dynamic';
 
 // Dynamic import for TokenizerDemo
 const TokenizerDemo = dynamic(() => import('../TokenizerDemo'), {

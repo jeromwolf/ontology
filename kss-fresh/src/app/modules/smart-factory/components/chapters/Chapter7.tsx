@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import { 
   Bot, Cog, Users, Shield, Network, Eye, Activity, MapPin, Brain, Building, TestTube, Code
-} from 'lucide-react'
-import Link from 'next/link'
+} from 'lucide-react';
+import Link from 'next/link';
 
 export default function Chapter7() {
   return (

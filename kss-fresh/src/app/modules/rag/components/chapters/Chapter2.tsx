@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import ChunkingDemo from '../ChunkingDemo'
+import ChunkingDemo from '../ChunkingDemo';
 
 // Chapter 2: Document Processing
 export default function Chapter2() {

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Image } from 'lucide-react'
+import { Image } from 'lucide-react';
 
 export default function Chapter4() {
   return (

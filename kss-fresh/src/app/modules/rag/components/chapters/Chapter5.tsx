@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 // Chapter 5: Answer Generation
 export default function Chapter5() {

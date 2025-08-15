@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import { 
   Database, Cog, Network, Server, BarChart3
-} from 'lucide-react'
-import Link from 'next/link'
+} from 'lucide-react';
+import Link from 'next/link';
 
 export default function Chapter11() {
   return (

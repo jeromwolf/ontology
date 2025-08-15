@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { Network, Sparkles } from 'lucide-react'
+import Link from 'next/link';
+import { Network, Sparkles } from 'lucide-react';
 
 // Chapter 6: Advanced RAG
 export default function Chapter6() {

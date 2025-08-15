@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import VectorSearchDemo from '../VectorSearchDemo'
+import VectorSearchDemo from '../VectorSearchDemo';
 
 // Chapter 4: Vector Search
 export default function Chapter4() {

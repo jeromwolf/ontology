@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
 import { 
   Brain, Database, TrendingUp, GitBranch, Target,
   ArrowRight, CheckCircle, AlertCircle, Info,
   BarChart3, LineChart, PieChart, Activity,
   Users, Briefcase, GraduationCap, Code2,
   ChevronRight, Play, FileText, Lightbulb
-} from 'lucide-react'
+} from 'lucide-react';
 
 interface ChapterProps {
   onComplete?: () => void

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 // Chapter 1: What is RAG?
 export default function Chapter1() {

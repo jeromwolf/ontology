@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
 import { 
   BarChart3, LineChart, PieChart, ScatterChart, Activity,
   Eye, Search, Filter, Layers, Palette,
   CheckCircle, AlertCircle, Info, Target,
   ChevronRight, Play, Download, Lightbulb
-} from 'lucide-react'
+} from 'lucide-react';
 
 interface ChapterProps {
   onComplete?: () => void

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { ReactNode } from 'react'
-import dynamic from 'next/dynamic'
+import { ReactNode } from 'react';
+import dynamic from 'next/dynamic';
 
 // 동적 임포트로 각 챕터 컴포넌트 로드 (성능 최적화)
 const Chapter1 = dynamic(() => import('./chapters/Chapter1'), { ssr: false })

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 export default function Chapter5Applications3() {
   return (

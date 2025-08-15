@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Globe, TrendingUp, TrendingDown, BarChart3, Calendar, DollarSign, Factory, Building2, Users, Zap, Activity, Target, AlertTriangle, Clock, ChevronRight, RefreshCw, Award } from 'lucide-react';
+import ChapterNavigation from '../../components/ChapterNavigation';
 
 interface MacroData {
   gdp: number;
@@ -252,7 +253,7 @@ function MacroEconomicAnalysis() {
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Baby Chick 9/9 단계 • 완료 예정
+                Foundation Program 9/9 단계 • 완료 예정
               </div>
               <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                 <div className="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 rounded-full" style={{ width: '100%' }}></div>
@@ -682,7 +683,7 @@ function MacroEconomicAnalysis() {
         <div className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-8 shadow-lg">
           <h2 className="text-2xl font-bold mb-6 flex items-center text-green-800 dark:text-green-300">
             <Award className="mr-3" />
-            Baby Chick 단계 완료! 🎉
+            Foundation Program 단계 완료! 🎉
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -915,6 +916,9 @@ export default function MacroPracticePage() {
         
         {showQuiz && <MacroAnalysisQuiz />}
       </div>
+
+      {/* Chapter Navigation */}
+      <ChapterNavigation currentChapterId="macro-practice" programType="foundation" />
     </div>
   );
 }

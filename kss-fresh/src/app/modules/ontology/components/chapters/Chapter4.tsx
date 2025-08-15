@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 // Lazy load RDF Triple Editor
 const RDFTripleEditor = dynamic(() => 

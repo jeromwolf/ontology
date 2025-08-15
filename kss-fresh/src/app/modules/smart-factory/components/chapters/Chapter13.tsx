@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { 
   Settings, Target, Users, Shield, Code
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter13() {
   return (

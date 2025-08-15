@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Activity } from 'lucide-react'
+import { useState } from 'react';
+import { Activity } from 'lucide-react';
 
 export default function Chapter2() {
   const [normalMean, setNormalMean] = useState(0)

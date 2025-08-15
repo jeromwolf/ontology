@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import ThreatDetectionDashboard from '../ThreatDetectionDashboard'
+import ThreatDetectionDashboard from '../ThreatDetectionDashboard';
 
 export default function Chapter1() {
   return (

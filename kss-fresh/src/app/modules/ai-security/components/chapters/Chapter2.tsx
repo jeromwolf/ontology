@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import AdversarialAttackVisualizer from '../AdversarialAttackVisualizer'
+import AdversarialAttackVisualizer from '../AdversarialAttackVisualizer';
 
 export default function Chapter2() {
   return (

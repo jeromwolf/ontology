@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Globe, Building2, Users, TrendingUp, AlertCircle, ChevronRight } from 'lucide-react';
+import ChapterNavigation from '../../components/ChapterNavigation';
 
 function QuizSection() {
   const [answers, setAnswers] = useState<{ q1: string; q2: string }>({ q1: '', q2: '' });
@@ -240,11 +241,11 @@ export default function MarketStructureChapter() {
       <div className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <Link 
-            href="/modules/stock-analysis/stages/baby-chick"
+            href="/modules/stock-analysis/stages/foundation"
             className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>Baby Chick 과정으로 돌아가기</span>
+            <span>Foundation Program으로 돌아가기</span>
           </Link>
         </div>
       </div>
@@ -931,6 +932,9 @@ export default function MarketStructureChapter() {
           </div>
         </section>
       </div>
+
+      {/* Chapter Navigation */}
+      <ChapterNavigation currentChapterId="market-structure" programType="foundation" />
     </div>
   );
 }

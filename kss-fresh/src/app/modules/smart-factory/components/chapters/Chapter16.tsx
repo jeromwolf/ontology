@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { 
   Rocket, Zap, Globe, Leaf, Brain, Eye, TrendingUp, Settings
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter16() {
   return (

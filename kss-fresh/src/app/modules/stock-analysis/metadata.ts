@@ -2,16 +2,16 @@ import { Module } from '@/types/module'
 
 export const stockAnalysisModule: Module = {
   id: 'stock-analysis',
-  name: 'Smart Stock Investment Learning',
-  nameKo: '스마트 주식투자 배우기',
-  description: '주식이 처음이어도 괜찮아요! 기초부터 전문가 수준까지, 나만의 속도로 차근차근 배우는 체계적인 투자 교육',
-  version: '2.0.0',
-  difficulty: 'intermediate',
-  estimatedHours: 240, // 10배 확장: 240시간 (6개월 과정)
-  icon: '💎',
-  color: '#dc2626',
+  name: 'Professional Investment Analysis',
+  nameKo: '전문 투자 분석',
+  description: '금융시장의 구조적 이해부터 퀀트 전략까지, 실무 중심의 체계적인 투자 분석 전문가 양성 프로그램',
+  version: '3.0.0',
+  difficulty: 'advanced',
+  estimatedHours: 240, // 240시간 (6개월 전문 과정)
+  icon: '📊',
+  color: '#1e293b',
   
-  prerequisites: ['기본적인 경제 지식', '수학적 사고력', '엑셀 또는 스프레드시트 활용 능력'],
+  prerequisites: ['경제학/재무관리 기초', '통계학 및 확률론 이해', 'Excel/Python 데이터 분석 능력', '금융시장 기본 지식'],
   
   chapters: [
     // === PART 1: 투자 기초 및 시장 이해 (4개 챕터) ===

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Route } from 'lucide-react'
+import { Route } from 'lucide-react';
 
 export default function Chapter4() {
   return (

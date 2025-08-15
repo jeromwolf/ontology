@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 import { 
   Factory, Settings, Cpu, Eye, Bot, Shield, Activity, Gauge, Cog, Clock,
   TrendingUp, Globe, MapPin, DollarSign, Zap, Database, Wrench, 
   BarChart3, Users, Target, Building, Lightbulb, Rocket, Brain, 
   Network, Wifi, Cloud, HardDrive, AlertTriangle, Lock, Monitor,
   Smartphone, Server, Code, TestTube, ChevronRight
-} from 'lucide-react'
-import CodeEditor from '@/components/common/CodeEditor'
+} from 'lucide-react';
+import CodeEditor from '@/components/common/CodeEditor';
 
 // Dynamic imports for All Chapters 1-16
 const Chapter1 = dynamic(() => import('./chapters/Chapter1'), { ssr: false })

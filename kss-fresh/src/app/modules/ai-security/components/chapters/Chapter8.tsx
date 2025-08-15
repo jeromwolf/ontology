@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import SecurityAuditTool from '../SecurityAuditTool'
+import SecurityAuditTool from '../SecurityAuditTool';
 
 export default function Chapter8() {
   return (

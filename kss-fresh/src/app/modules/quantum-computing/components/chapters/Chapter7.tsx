@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Eye } from 'lucide-react'
+import { Eye } from 'lucide-react';
 
 export default function Chapter7() {
   return (

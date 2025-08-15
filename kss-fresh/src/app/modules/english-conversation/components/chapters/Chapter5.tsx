@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { Volume2, Pause, MessageCircle, Users, Globe, Copy, CheckCircle, Play } from 'lucide-react'
+import { useState, useEffect } from 'react';
+import { Volume2, Pause, MessageCircle, Users, Globe, Copy, CheckCircle, Play } from 'lucide-react';
 
 export default function Chapter5() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)

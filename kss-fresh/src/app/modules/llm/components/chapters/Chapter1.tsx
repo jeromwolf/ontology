@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Link from 'next/link'
-import { BookOpen, FlaskConical, Lightbulb, Target } from 'lucide-react'
+import React from 'react';
+import Link from 'next/link';
+import { BookOpen, FlaskConical, Lightbulb, Target } from 'lucide-react';
 
 export default function Chapter1() {
   return (

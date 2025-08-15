@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { LineChart, Calculator } from 'lucide-react'
+import { useState } from 'react';
+import { LineChart, Calculator } from 'lucide-react';
 
 export default function Chapter6() {
   const [slope] = useState(2.5)

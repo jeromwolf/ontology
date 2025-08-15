@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
 import { 
   Database, Server, Cloud, GitBranch, Layers,
   ArrowRight, CheckCircle, AlertCircle, Info,
   Code2, Terminal, Cpu, HardDrive,
   Network, Shield, Gauge, Users,
   ChevronRight, Play, FileText, Zap
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter1() {
   const [activeSection, setActiveSection] = useState('overview')

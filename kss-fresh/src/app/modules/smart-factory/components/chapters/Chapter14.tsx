@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import { 
   Network, Database, Cloud, Server, Shield, Layers,
   Cpu, HardDrive, Lock, Monitor, Workflow, GitBranch
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter14() {
   return (

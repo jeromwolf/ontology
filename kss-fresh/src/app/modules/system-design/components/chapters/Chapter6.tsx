@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 import { 
   Box, Network, Activity, Zap
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter6() {
   return (

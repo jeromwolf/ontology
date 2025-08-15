@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { TrendingUp, DollarSign, Users, Target, BarChart3, PieChart, LineChart, Lightbulb } from 'lucide-react'
+import React, { useState } from 'react';
+import { TrendingUp, DollarSign, Users, Target, BarChart3, PieChart, LineChart, Lightbulb } from 'lucide-react';
 
 interface Chapter11Props {
   onComplete?: () => void

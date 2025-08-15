@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { 
   Shield, Lock, AlertTriangle, Network, Eye
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter12() {
   return (

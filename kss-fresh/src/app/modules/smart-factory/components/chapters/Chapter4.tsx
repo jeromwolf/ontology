@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
 import { 
   DollarSign
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter4() {
   return (

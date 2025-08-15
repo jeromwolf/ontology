@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { GitBranch } from 'lucide-react'
+import React from 'react';
+import { GitBranch } from 'lucide-react';
 
 export default function Chapter6() {
   return (

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 import { 
   GitBranch, Network, Layers
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter5() {
   return (

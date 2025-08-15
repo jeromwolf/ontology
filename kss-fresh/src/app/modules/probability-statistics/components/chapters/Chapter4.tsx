@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Target, AlertCircle, CheckCircle } from 'lucide-react'
+import { useState } from 'react';
+import { Target, AlertCircle, CheckCircle } from 'lucide-react';
 
 export default function Chapter4() {
   const [sampleSize, setSampleSize] = useState(30)

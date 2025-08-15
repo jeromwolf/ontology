@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { Cpu } from 'lucide-react'
+import React from 'react';
+import { Cpu } from 'lucide-react';
 
 export default function Chapter4() {
   return (

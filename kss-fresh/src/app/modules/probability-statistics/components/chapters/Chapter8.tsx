@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Zap, FlaskConical } from 'lucide-react'
+import { useState } from 'react';
+import { Zap, FlaskConical } from 'lucide-react';
 
 export default function Chapter8() {
   const [regularizationStrength, setRegularizationStrength] = useState(0.1)

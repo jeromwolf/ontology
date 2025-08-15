@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Shield } from 'lucide-react'
+import { Shield } from 'lucide-react';
 
 export default function Chapter5() {
   return (

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Car, Plane, Train, Bike } from 'lucide-react'
+import { Car, Plane, Train, Bike } from 'lucide-react';
 
 export default function Chapter8() {
   return (

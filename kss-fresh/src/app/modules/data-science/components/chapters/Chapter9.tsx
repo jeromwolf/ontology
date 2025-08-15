@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { BookOpen, FlaskConical, Calculator, BarChart3, Lightbulb, AlertTriangle, CheckCircle2 } from 'lucide-react'
+import React, { useState } from 'react';
+import { BookOpen, FlaskConical, Calculator, BarChart3, Lightbulb, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 interface Chapter9Props {
   onComplete?: () => void

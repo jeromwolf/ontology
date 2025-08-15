@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 const Introduction = dynamic(() => import('./chapter5-sections/Introduction'), { ssr: false })
 const ClusteringAlgorithms = dynamic(() => import('./chapter5-sections/ClusteringAlgorithms'), { ssr: false })

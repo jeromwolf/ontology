@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { BookOpen, MessageSquare, Brain, Code, Lightbulb } from 'lucide-react'
+import React from 'react';
+import { BookOpen, MessageSquare, Brain, Code, Lightbulb } from 'lucide-react';
 
 interface Chapter8Props {
   onComplete?: () => void

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Copy, CheckCircle, FlaskConical } from 'lucide-react'
+import { useState } from 'react';
+import { Copy, CheckCircle, FlaskConical } from 'lucide-react';
 
 export default function Chapter5() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)

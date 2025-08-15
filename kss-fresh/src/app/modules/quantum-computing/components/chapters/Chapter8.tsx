@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Beaker } from 'lucide-react'
+import { Beaker } from 'lucide-react';
 
 export default function Chapter8() {
   return (

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { InferenceEngine } from '@/components/rdf-editor/components/InferenceEngine'
+import React from 'react';
+import { InferenceEngine } from '@/components/rdf-editor/components/InferenceEngine';
 
 export default function Chapter6() {
   return (

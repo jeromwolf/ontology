@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { TestTube } from 'lucide-react'
+import { TestTube } from 'lucide-react';
 
 export default function Chapter6() {
   return (

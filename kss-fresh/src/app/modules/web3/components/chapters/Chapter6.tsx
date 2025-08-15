@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Layers, Shield, Zap, Users } from 'lucide-react'
+import { Layers, Shield, Zap, Users } from 'lucide-react';
 
 export default function Chapter6() {
   return (

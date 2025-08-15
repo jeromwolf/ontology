@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
 import { 
   BarChart, LineChart, PieChart, ScatterChart,
   TrendingUp, AlertCircle, CheckCircle, Info,
   FileSpreadsheet, Search, Filter, Eye,
   Activity, Database, Zap, Brain,
   ChevronRight, Play, Upload, Download, Target
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter2() {
   const [selectedDataset, setSelectedDataset] = useState('sales')

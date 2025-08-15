@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import React from 'react'
+import React from 'react';
 import { 
   Database, Shield, CheckCircle, AlertCircle, Layers
-} from 'lucide-react'
+} from 'lucide-react';
 
 export default function Chapter4() {
   return (

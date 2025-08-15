@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import { Code } from 'lucide-react'
-import dynamic from 'next/dynamic'
+import { Code } from 'lucide-react';
+import dynamic from 'next/dynamic';
 
 const CypherPlayground = dynamic(() => import('../CypherPlayground'), {
   ssr: false,

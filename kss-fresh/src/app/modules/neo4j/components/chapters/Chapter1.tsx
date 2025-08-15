@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Database } from 'lucide-react'
+import { Database } from 'lucide-react';
 
 export default function Chapter1() {
   return (

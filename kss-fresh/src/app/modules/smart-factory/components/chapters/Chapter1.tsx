@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import { 
   Factory, TrendingUp, Rocket, Globe, Brain
-} from 'lucide-react'
-import Link from 'next/link'
+} from 'lucide-react';
+import Link from 'next/link';
 
 export default function Chapter1() {
   return (

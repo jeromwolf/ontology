@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { RDFTripleEditor } from '@/components/rdf-editor/RDFTripleEditor'
+import React from 'react';
+import { RDFTripleEditor } from '@/components/rdf-editor/RDFTripleEditor';
 
 export default function Chapter5() {
   return (

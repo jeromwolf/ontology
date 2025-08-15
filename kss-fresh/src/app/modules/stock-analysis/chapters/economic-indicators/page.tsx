@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, TrendingUp, TrendingDown, BarChart3, Globe, DollarSign, Calendar, AlertCircle, Target, Clock, ChevronRight, Zap, Building2, Users, Activity } from 'lucide-react';
+import ChapterNavigation from '../../components/ChapterNavigation';
 
 function EconomicIndicatorSimulator() {
   const [selectedIndicator, setSelectedIndicator] = useState('gdp');
@@ -537,15 +538,16 @@ export default function EconomicIndicatorsPage() {
   const [showQuiz, setShowQuiz] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900">
-      {/* Header */}
-      <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/modules/stock-analysis"
-                className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900">
+        {/* Header */}
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+          <div className="max-w-6xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Link
+                  href="/modules/stock-analysis"
+                  className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
               >
                 <ArrowLeft size={20} className="mr-2" />
                 주식 분석
@@ -557,7 +559,7 @@ export default function EconomicIndicatorsPage() {
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Baby Chick 7/9 단계
+                Foundation Program 7/9 단계
               </div>
               <div className="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                 <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{ width: '78%' }}></div>
@@ -774,7 +776,7 @@ export default function EconomicIndicatorsPage() {
         {/* Progress Indicator */}
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
-            <span>Baby Chick 진행률</span>
+            <span>Foundation Program 진행률</span>
             <span>7/9 완료</span>
           </div>
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -782,6 +784,10 @@ export default function EconomicIndicatorsPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+
+      {/* Chapter Navigation */}
+      <ChapterNavigation currentChapterId="economic-indicators" programType="foundation" />
+    </>
   );
 }

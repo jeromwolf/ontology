@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { BookOpen, Building2, ShoppingCart, Heart, Smartphone, TrendingUp, Users, Lightbulb } from 'lucide-react'
+import React, { useState } from 'react';
+import { BookOpen, Building2, ShoppingCart, Heart, Smartphone, TrendingUp, Users, Lightbulb } from 'lucide-react';
 
 interface Chapter12Props {
   onComplete?: () => void

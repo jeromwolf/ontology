@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Coins } from 'lucide-react'
+import { Coins } from 'lucide-react';
 
 export default function Chapter3() {
   return (

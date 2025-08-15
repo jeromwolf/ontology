@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
 import { 
   Brain, Cpu, BarChart3, Activity, Eye, Cog, Database, Wrench, 
   Rocket, ChevronRight, Building, TestTube, Code
-} from 'lucide-react'
-import CodeEditor from '../CodeEditor'
-import Link from 'next/link'
+} from 'lucide-react';
+import CodeEditor from '../CodeEditor';
+import Link from 'next/link';
 
 export default function Chapter6() {
   return (

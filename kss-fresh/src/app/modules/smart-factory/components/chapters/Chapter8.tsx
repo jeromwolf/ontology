@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import { 
   Monitor, Building, Cog, Cpu, TestTube, AlertTriangle, TrendingUp, Settings, Code
-} from 'lucide-react'
-import CodeEditor from '../CodeEditor'
-import Link from 'next/link'
+} from 'lucide-react';
+import CodeEditor from '../CodeEditor';
+import Link from 'next/link';
 
 export default function Chapter8() {
   return (

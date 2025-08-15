@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import EmbeddingVisualizer from '../EmbeddingVisualizer'
+import EmbeddingVisualizer from '../EmbeddingVisualizer';
 
 // Chapter 3: Embeddings
 export default function Chapter3() {

@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Battery, Zap } from 'lucide-react'
+import { Battery, Zap } from 'lucide-react';
 
 export default function Chapter7() {
   return (

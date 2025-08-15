@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import PrivacyPreservingML from '../PrivacyPreservingML'
+import PrivacyPreservingML from '../PrivacyPreservingML';
 
 export default function Chapter4() {
   return (

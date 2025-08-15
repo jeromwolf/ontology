@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 // Dynamic imports for chapters with SSR disabled
 const Chapter1 = dynamic(() => import('./chapters/Chapter1'), { ssr: false })

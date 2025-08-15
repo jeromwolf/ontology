@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import ModelSecurityAnalyzer from '../ModelSecurityAnalyzer'
+import ModelSecurityAnalyzer from '../ModelSecurityAnalyzer';
 
 export default function Chapter3() {
   return (

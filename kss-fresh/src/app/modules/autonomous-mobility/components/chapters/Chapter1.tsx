@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Car, Navigation, Cpu, MapPin, Route, Zap } from 'lucide-react'
+import { Car, Navigation, Cpu, MapPin, Route, Zap } from 'lucide-react';
 
 export default function Chapter1() {
   return (
