@@ -434,6 +434,80 @@ export const stockAnalysisModule: Module = {
       name: 'DCF 가치평가 모델',
       description: '현금흐름 예측과 민감도 분석이 포함된 기업가치 평가 도구',
       component: 'DCFValuationModel'
+    },
+    
+    // === 글로벌 투자 도구 ===
+    {
+      id: 'global-market-dashboard',
+      name: '글로벌 실시간 대시보드',
+      description: '전 세계 주요 시장의 실시간 현황, 환율, 거래시간을 한눈에 모니터링',
+      component: 'GlobalMarketDashboard'
+    },
+    {
+      id: 'currency-impact-analyzer',
+      name: '환율 영향 분석기',
+      description: '해외 주식 투자 시 환율 변동이 수익률에 미치는 영향을 분석하고 헤지 전략 시뮬레이션',
+      component: 'CurrencyImpactAnalyzer'
+    },
+    {
+      id: 'us-stock-screener',
+      name: '미국 주식 스크리너',
+      description: '100개 이상의 조건으로 NYSE, NASDAQ 전체 종목을 필터링하여 투자 기회 발굴',
+      component: 'USStockScreener'
+    },
+    {
+      id: 'tax-optimization-calculator',
+      name: '세금 최적화 계산기',
+      description: '미국과 한국 주식 투자의 세금을 계산하고 절세 전략을 수립',
+      component: 'TaxOptimizationCalculator'
+    },
+    {
+      id: 'etf-comparator',
+      name: 'ETF 비교 분석기',
+      description: '다양한 ETF의 성과, 리스크, 비용을 종합 비교하고 최적 포트폴리오 구성',
+      component: 'ETFComparator'
+    },
+    {
+      id: 'sector-rotation-analyzer',
+      name: '글로벌 섹터 로테이션 분석기',
+      description: '경제 사이클에 따른 섹터별 성과 분석과 최적의 섹터 로테이션 전략 수립',
+      component: 'SectorRotationAnalyzer'
+    },
+    {
+      id: 'global-macro-dashboard',
+      name: '글로벌 매크로 대시보드',
+      description: '전 세계 경제 지표와 시장 동향을 종합 분석하여 매크로 투자 전략 제시',
+      component: 'GlobalMacroDashboard'
+    },
+    {
+      id: 'options-strategy-simulator',
+      name: '옵션 전략 시뮬레이터',
+      description: '다양한 옵션 전략의 손익 구조를 시각화하고 Greeks를 분석하여 최적 전략 수립',
+      component: 'OptionsStrategySimulator'
+    },
+    {
+      id: 'risk-parity-portfolio',
+      name: '리스크 패리티 포트폴리오',
+      description: '각 자산의 리스크 기여도를 균등 배분하여 안정적이고 효율적인 포트폴리오 구성',
+      component: 'RiskParityPortfolio'
+    },
+    {
+      id: 'pair-trading-analyzer',
+      name: '페어 트레이딩 분석기',
+      description: '상관관계가 높은 주식 쌍을 찾아 통계적 차익거래 기회를 포착하고 백테스트',
+      component: 'PairTradingAnalyzer'
+    },
+    {
+      id: 'dividend-optimizer',
+      name: '배당 수익률 최적화',
+      description: '다양한 배당 전략으로 안정적인 현금흐름을 창출하고 장기적인 배당 성장 추구',
+      component: 'DividendOptimizer'
+    },
+    {
+      id: 'momentum-backtester',
+      name: '모멘텀 전략 백테스터',
+      description: '다양한 모멘텀 지표를 활용하여 추세 추종 전략을 백테스트하고 최적화',
+      component: 'MomentumBacktester'
     }
   ],
   

@@ -1,17 +1,50 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function Chapter1() {
+  const [selectedStrategy, setSelectedStrategy] = useState('value');
+
+  const strategies = {
+    value: {
+      name: '가치투자',
+      description: '기업의 내재가치보다 저평가된 주식을 매수하여 장기 보유',
+      pros: ['안정적 수익', '낮은 리스크', '복리 효과'],
+      cons: ['느린 수익 실현', '인내심 필요', '시장 타이밍 어려움'],
+      example: '워런 버핏의 버크셔 해서웨이 - 연평균 20% 수익률 (1965-2023)'
+    },
+    growth: {
+      name: '성장주 투자',
+      description: '높은 성장률을 보이는 기업에 투자하여 주가 상승 추구',
+      pros: ['높은 수익 잠재력', '트렌드 활용', '명확한 스토리'],
+      cons: ['높은 변동성', '고평가 리스크', '성장 둔화 위험'],
+      example: '피터 린치 마젤란 펀드 - 13년간 연평균 29% 수익률'
+    },
+    momentum: {
+      name: '모멘텀 투자',
+      description: '상승 추세가 강한 종목을 매수하고 추세 전환 시 매도',
+      pros: ['빠른 수익 실현', '시장 추세 활용', '명확한 매매 신호'],
+      cons: ['빈번한 거래', '추세 전환 리스크', '높은 거래비용'],
+      example: '리처드 드라이하우스 - 모멘텀 투자의 아버지'
+    },
+    dividend: {
+      name: '배당주 투자',
+      description: '안정적인 배당을 지급하는 우량 기업에 장기 투자',
+      pros: ['정기적 현금흐름', '안정적 수익', '복리 재투자'],
+      cons: ['제한된 성장성', '금리 민감도', '배당 삭감 위험'],
+      example: 'S&P 500 배당귀족 지수 - 25년 연속 배당 증가 기업'
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto">
       {/* Chapter Title */}
       <div className="mb-12">
         <h1 className="text-4xl font-bold mb-4">
-          글로벌 금융시장의 이해
+          검증된 투자전략 학습
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400">
-          전 세계 주식시장의 구조, 참여자, 거래 시스템을 완전히 파악하고 투자의 기초를 확립합니다
+          역사적으로 검증된 투자 전략들을 학습하고 자신에게 맞는 투자 스타일을 찾아봅시다
         </p>
       </div>
 

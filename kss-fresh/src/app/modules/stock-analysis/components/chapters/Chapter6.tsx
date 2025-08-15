@@ -4,18 +4,18 @@ export default function Chapter6() {
   return (
     <div className="space-y-8">
       <section>
-        <h1 className="text-3xl font-bold mb-6 text-center">주식이 도대체 뭔가요? 🤔</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">주식의 기본 개념</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 text-center">
-          복잡한 용어 없이 정말 쉽게 설명해드릴게요!
+          주식의 본질과 투자의 의미를 이해해봅시다.
         </p>
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-4">🍕 피자로 이해하는 주식</h2>
+        <h2 className="text-2xl font-bold mb-4">주식의 기본 원리</h2>
         <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-6 mb-6">
           <p className="text-gray-700 dark:text-gray-300 mb-4">
-            친구들과 피자 가게를 차리려고 한다고 상상해보세요. 
-            혼자서는 돈이 부족해서 친구 4명이 각자 돈을 모았습니다.
+            회사를 설립할 때 필요한 자본을 여러 투자자가 나누어 부담하는 방식을 예로 들어보겠습니다. 
+            이때 각 투자자의 지분이 바로 주식이 됩니다.
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
@@ -36,68 +36,68 @@ export default function Chapter6() {
         <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
           <h3 className="font-semibold text-blue-800 dark:text-blue-200 mb-3">누가 얼마나 가지고 있나요?</h3>
           <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-            <li>👨 철수: 2조각 (40%) - 가장 많이 투자했어요</li>
-            <li>👩 영희: 1조각 (20%) - 적당히 투자했어요</li>
-            <li>👨 민수: 1조각 (20%) - 영희만큼 투자했어요</li>
-            <li>👩 수진: 1조각 (20%) - 민수만큼 투자했어요</li>
+            <li>투자자 A: 2주 (40%) - 최대 주주</li>
+            <li>투자자 B: 1주 (20%) - 일반 주주</li>
+            <li>투자자 C: 1주 (20%) - 일반 주주</li>
+            <li>투자자 D: 1주 (20%) - 일반 주주</li>
           </ul>
         </div>
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-4">💰 주식을 가지면 뭐가 좋아요?</h2>
+        <h2 className="text-2xl font-bold mb-4">주식 보유의 이점</h2>
         <div className="grid gap-4">
           <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-lg p-6">
             <h3 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-2">1. 주인이 됩니다</h3>
             <p className="text-gray-700 dark:text-gray-300">
               주식을 가진 만큼 그 회사의 주인이 됩니다. 
-              철수는 40%의 주인, 영희는 20%의 주인이에요!
+              투자자 A는 40%의 지분을, 투자자 B는 20%의 지분을 보유하게 됩니다.
             </p>
           </div>
           
           <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6">
             <h3 className="font-semibold text-purple-800 dark:text-purple-200 mb-2">2. 이익을 나눠 가질 수 있어요</h3>
             <p className="text-gray-700 dark:text-gray-300">
-              피자 가게가 돈을 많이 벌면, 가진 주식만큼 이익을 나눠 받을 수 있어요. 
-              이걸 "배당금"이라고 해요.
+              회사가 이익을 창출하면 주주들은 보유 지분에 비례하여 배당금을 받을 수 있습니다. 
+              이는 주식 투자의 중요한 수익원 중 하나입니다.
             </p>
           </div>
           
           <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-6">
             <h3 className="font-semibold text-red-800 dark:text-red-200 mb-2">3. 비싸게 팔 수 있어요</h3>
             <p className="text-gray-700 dark:text-gray-300">
-              피자 가게가 유명해지면, 다른 사람들이 "나도 주인이 되고 싶어!"라고 해요. 
-              그러면 내 주식을 더 비싸게 팔 수 있어요!
+              회사가 성장하고 가치가 상승하면 주식의 시장 가격도 함께 상승합니다. 
+              이를 통해 자본 차익을 실현할 수 있습니다.
             </p>
           </div>
         </div>
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-4">📈 실제 주식은 어떻게 다른가요?</h2>
+        <h2 className="text-2xl font-bold mb-4">실제 주식 시장의 특징</h2>
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6">
           <div className="space-y-4">
             <div>
-              <h3 className="font-semibold mb-2">🏢 큰 회사들의 주식</h3>
+              <h3 className="font-semibold mb-2">상장 기업의 주식</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 삼성전자, 카카오, 네이버 같은 회사들도 주식으로 나뉘어져 있어요. 
-                우리도 이런 회사의 작은 주인이 될 수 있습니다!
+                개인 투자자도 이러한 대기업의 주주가 될 수 있습니다.
               </p>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-2">🏦 주식시장</h3>
+              <h3 className="font-semibold mb-2">주식 거래소</h3>
               <p className="text-gray-700 dark:text-gray-300">
                 주식을 사고 파는 큰 시장이 있어요. 
-                마치 온라인 쇼핑몰처럼, 원하는 회사의 주식을 살 수 있어요.
+                거래소를 통해 주식을 자유롭게 매매할 수 있습니다.
               </p>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-2">💵 가격은 계속 변해요</h3>
+              <h3 className="font-semibold mb-2">가격 변동성</h3>
               <p className="text-gray-700 dark:text-gray-300">
-                많은 사람이 사고 싶으면 가격이 올라가고, 
-                팔고 싶은 사람이 많으면 가격이 내려가요.
+                수요와 공급의 원리에 따라 주가는 실시간으로 변동합니다. 
+                시장 참가자들의 매수/매도 의사가 가격을 결정합니다.
               </p>
             </div>
           </div>
@@ -105,23 +105,23 @@ export default function Chapter6() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-4">🎯 정리하면요!</h2>
+        <h2 className="text-2xl font-bold mb-4">핵심 요약</h2>
         <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6">
           <ul className="space-y-3 text-lg">
             <li className="flex items-start gap-2">
-              <span className="text-2xl">✅</span>
+              <span className="text-green-500">•</span>
               <span>주식 = 회사를 작게 나눈 조각</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-2xl">✅</span>
+              <span className="text-green-500">•</span>
               <span>주식을 사면 = 그 회사의 작은 주인이 됨</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-2xl">✅</span>
+              <span className="text-green-500">•</span>
               <span>회사가 잘 되면 = 내 주식 가치도 올라감</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-2xl">✅</span>
+              <span className="text-green-500">•</span>
               <span>주식시장 = 주식을 사고 파는 곳</span>
             </li>
           </ul>

@@ -38,6 +38,96 @@ export default function Chapter15() {
       </section>
 
       <section>
+        <h2 className="text-2xl font-bold mb-4">📊 실제 기업 재무지표 예시</h2>
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6">
+          <h3 className="font-semibold mb-4">삼성전자 최근 3년 실적 (단위: 조원)</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th className="text-left py-2">구분</th>
+                  <th className="text-right py-2">2021년</th>
+                  <th className="text-right py-2">2022년</th>
+                  <th className="text-right py-2">2023년</th>
+                  <th className="text-right py-2">성장률</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-100 dark:border-gray-800">
+                  <td className="py-2 font-medium">매출액</td>
+                  <td className="text-right py-2">279.6</td>
+                  <td className="text-right py-2">302.2</td>
+                  <td className="text-right py-2">258.9</td>
+                  <td className="text-right py-2 text-red-600">-14.3%</td>
+                </tr>
+                <tr className="border-b border-gray-100 dark:border-gray-800">
+                  <td className="py-2 font-medium">영업이익</td>
+                  <td className="text-right py-2">51.6</td>
+                  <td className="text-right py-2">43.4</td>
+                  <td className="text-right py-2">6.5</td>
+                  <td className="text-right py-2 text-red-600">-85.0%</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">영업이익률</td>
+                  <td className="text-right py-2">18.5%</td>
+                  <td className="text-right py-2">14.4%</td>
+                  <td className="text-right py-2">2.5%</td>
+                  <td className="text-right py-2">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h3 className="font-semibold mb-4">네이버 최근 3년 실적 (단위: 조원)</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <th className="text-left py-2">구분</th>
+                  <th className="text-right py-2">2021년</th>
+                  <th className="text-right py-2">2022년</th>
+                  <th className="text-right py-2">2023년</th>
+                  <th className="text-right py-2">성장률</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-100 dark:border-gray-800">
+                  <td className="py-2 font-medium">매출액</td>
+                  <td className="text-right py-2">6.8</td>
+                  <td className="text-right py-2">8.2</td>
+                  <td className="text-right py-2">9.7</td>
+                  <td className="text-right py-2 text-green-600">+18.3%</td>
+                </tr>
+                <tr className="border-b border-gray-100 dark:border-gray-800">
+                  <td className="py-2 font-medium">영업이익</td>
+                  <td className="text-right py-2">1.5</td>
+                  <td className="text-right py-2">1.3</td>
+                  <td className="text-right py-2">1.5</td>
+                  <td className="text-right py-2 text-green-600">+15.4%</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">영업이익률</td>
+                  <td className="text-right py-2">22.1%</td>
+                  <td className="text-right py-2">15.9%</td>
+                  <td className="text-right py-2">15.5%</td>
+                  <td className="text-right py-2">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div className="mt-4 p-4 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg">
+            <h4 className="font-semibold text-yellow-800 dark:text-yellow-200 mb-2">💡 분석 포인트</h4>
+            <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+              <li>• <strong>삼성전자:</strong> 반도체 시장 침체로 실적 급감, 회복 시점 주목</li>
+              <li>• <strong>네이버:</strong> 꾸준한 성장세 유지, 영업이익률 개선 필요</li>
+              <li>• 동일 업종 내 비교보다 각 기업의 성장 추세가 중요</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
         <h2 className="text-2xl font-bold mb-4">🔍 기업 경쟁력 체크</h2>
         <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6">
           <h3 className="font-semibold text-purple-800 dark:text-purple-200 mb-4">확인해야 할 포인트</h3>
