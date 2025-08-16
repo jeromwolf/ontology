@@ -508,6 +508,32 @@ export const stockAnalysisModule: Module = {
       name: '모멘텀 전략 백테스터',
       description: '다양한 모멘텀 지표를 활용하여 추세 추종 전략을 백테스트하고 최적화',
       component: 'MomentumBacktester'
+    },
+    
+    // === 전문가용 고급 도구 ===
+    {
+      id: 'monte-carlo-simulator',
+      name: '몬테카를로 시뮬레이션',
+      description: '10,000회 이상 시뮬레이션으로 포트폴리오 미래 가치 확률 분석, VaR/CVaR 계산',
+      component: 'MonteCarloSimulator'
+    },
+    {
+      id: 'stress-test-scenarios',
+      name: '스트레스 테스트 시나리오',
+      description: '2008년 금융위기, 코로나 등 역사적 시나리오로 포트폴리오 취약점 분석',
+      component: 'StressTestScenarios'
+    },
+    {
+      id: 'real-time-risk-dashboard',
+      name: '실시간 리스크 대시보드',
+      description: 'P&L 추적, 리스크 한도 모니터링, 포지션 집중도 알림 등 종합 리스크 관리',
+      component: 'RealTimeRiskDashboard'
+    },
+    {
+      id: 'trading-cost-calculator',
+      name: '거래 비용 상세 모델링',
+      description: '슬리피지, 시장충격, 세금, 수수료 등 모든 거래 비용 계산 및 최적화',
+      component: 'TradingCostCalculator'
     }
   ],
   
