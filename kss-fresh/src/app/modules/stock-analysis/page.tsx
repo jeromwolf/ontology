@@ -56,34 +56,37 @@ export default function StockAnalysisModulePage() {
     }
   ];
 
-  // Professional Trading Tools
+  // Professional Trading Tools - 가장 인기 있는 3개
   const tradingTools = [
     {
-      id: 'order-flow',
-      name: 'Order Flow Analytics',
-      description: 'Level 2 데이터 기반 기관투자자 주문흐름 분석',
-      features: ['Dark Pool 거래 감지', '대량매매 분석', 'HFT 패턴 인식'],
-      icon: Database,
+      id: 'ai-chart-analyzer',
+      name: 'AI Chart Pattern Analyzer',
+      description: '딥러닝 기반 차트 패턴 자동 인식 및 매매 신호',
+      features: ['패턴 자동 인식', '추세 예측', '지지/저항 분석'],
+      icon: LineChart,
       status: 'live',
-      users: '2.3K'
+      users: '3.8K',
+      link: '/modules/stock-analysis/tools/ai-chart-analyzer'
     },
     {
-      id: 'risk-dashboard',
-      name: 'Risk Management Dashboard',
-      description: 'VaR, Stress Testing, 포지션 리스크 실시간 모니터링',
-      features: ['Portfolio VaR', 'Factor Analysis', 'Scenario Testing'],
-      icon: Shield,
+      id: 'portfolio-optimizer',
+      name: 'Portfolio Optimizer',
+      description: '현대 포트폴리오 이론 기반 자산배분 최적화',
+      features: ['효율적 투자선', 'Black-Litterman', '리밸런싱 알림'],
+      icon: BarChart3,
       status: 'live',
-      users: '1.8K'
+      users: '2.1K',
+      link: '/modules/stock-analysis/tools/portfolio-optimizer'
     },
     {
-      id: 'algo-trading',
-      name: 'Algorithmic Trading Platform',
-      description: '백테스팅부터 실전 트레이딩까지 통합 플랫폼',
-      features: ['Strategy Builder', 'Paper Trading', 'Live Execution'],
-      icon: Brain,
-      status: 'beta',
-      users: '750'
+      id: 'news-sentiment',
+      name: 'News Sentiment Analyzer',
+      description: 'NLP 기반 뉴스 감성 분석 및 시장 영향도 측정',
+      features: ['실시간 분석', '다국어 지원', '영향도 예측'],
+      icon: Activity,
+      status: 'live',
+      users: '3.2K',
+      link: '/modules/stock-analysis/tools/news-sentiment-analyzer'
     }
   ];
 
@@ -279,7 +282,7 @@ export default function StockAnalysisModulePage() {
                   </div>
 
                   <Link
-                    href={`/modules/stock-analysis/tools/${tool.id}`}
+                    href={tool.link}
                     className="inline-flex items-center gap-2 mt-6 text-blue-400 hover:text-blue-300 transition-colors"
                   >
                     <span className="text-sm font-medium">Launch Tool</span>

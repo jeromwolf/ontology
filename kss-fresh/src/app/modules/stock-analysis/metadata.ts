@@ -71,6 +71,48 @@ export const stockAnalysisModule: Module = {
         '대체투자(사모펀드, 헤지펀드, 크라우드펀딩) 이해'
       ]
     },
+    {
+      id: 'global-brokerage-accounts',
+      title: '해외 증권사 계좌 개설',
+      description: '미국, 일본, 중국, 유럽 등 주요 시장의 증권사 계좌 개설 방법과 실무 노하우를 완벽 가이드합니다',
+      estimatedMinutes: 240,
+      keywords: ['해외증권사', '계좌개설', 'IB', 'Charles Schwab', 'W-8BEN', '환전'],
+      learningObjectives: [
+        '미국 주요 증권사(IB, Charles Schwab, TD Ameritrade) 계좌 개설 절차',
+        '세금 서류(W-8BEN) 작성과 세금 협약 적용 방법',
+        '효율적인 환전과 송금 방법 (전신송금 vs 증권사 환전)',
+        '일본, 중국, 유럽 시장 접근을 위한 증권사 선택',
+        '해외 증권 계좌 관리와 세금 신고 요령'
+      ]
+    },
+    {
+      id: 'global-sectors-understanding',
+      title: '글로벌 섹터 이해',
+      description: '미국 GICS 11개 섹터를 중심으로 글로벌 산업 분류와 섹터별 특성, 대표 기업을 심층 분석합니다',
+      estimatedMinutes: 320,
+      keywords: ['GICS', '섹터분석', 'Technology', 'Healthcare', 'Financials', '산업분류'],
+      learningObjectives: [
+        'GICS(Global Industry Classification Standard) 11개 섹터 완벽 이해',
+        '섹터별 경기 민감도와 사이클 특성 분석',
+        '미국, 유럽, 아시아 주요 시장의 섹터별 대표 기업',
+        '섹터 로테이션 전략과 경제 사이클별 투자 포인트',
+        '신흥 섹터(클린에너지, 우주항공, 사이버보안) 트렌드 분석'
+      ]
+    },
+    {
+      id: 'gaap-vs-ifrs',
+      title: 'GAAP vs IFRS 회계기준',
+      description: '미국 회계기준(GAAP)과 국제회계기준(IFRS)의 차이를 이해하고 해외기업 재무제표를 정확히 분석합니다',
+      estimatedMinutes: 280,
+      keywords: ['GAAP', 'IFRS', '회계기준', '재무제표', '손익인식', '자산평가'],
+      learningObjectives: [
+        'GAAP과 IFRS의 주요 차이점 10가지 완벽 정리',
+        '매출 인식, 재고자산 평가, 무형자산 처리의 차이',
+        '리스 회계, 연구개발비, 금융상품 회계 처리 비교',
+        '실제 기업 사례로 보는 회계기준 차이의 영향',
+        '해외기업 재무제표 읽기와 비교 분석 실무'
+      ]
+    },
 
     // === PART 2: 기본적 분석 마스터 (5개 챕터) ===
     {
@@ -345,6 +387,50 @@ export const stockAnalysisModule: Module = {
         '투자 윤리와 이해상충 관리',
         '금융투자업법과 규제 준수 사항',
         '지속적인 자기개발과 전문성 향상 방법'
+      ]
+    },
+
+    // === PART 7: 글로벌 투자 전문가 과정 (3개 챕터) ===
+    {
+      id: 'currency-hedging-strategies',
+      title: '통화 헤지 전략',
+      description: '해외 투자 시 환율 변동 리스크를 관리하고 효과적인 헤징 전략을 수립하는 전문 기법을 학습합니다',
+      estimatedMinutes: 360,
+      keywords: ['통화헤지', '환율리스크', '선물환', '통화스왑', 'NDF', '크로스헤지'],
+      learningObjectives: [
+        '환율 변동이 해외 투자 수익률에 미치는 영향 정량 분석',
+        '선물환, 통화 옵션, 통화 스왑 등 헤징 수단의 특성과 활용',
+        'Natural Hedge와 Financial Hedge의 차이와 적용 방법',
+        '부분 헤지 vs 완전 헤지의 비용-효익 분석',
+        '신흥국 통화 헤지의 특수성과 NDF(Non-Deliverable Forward) 활용'
+      ]
+    },
+    {
+      id: 'global-macro-investing',
+      title: '글로벌 매크로 투자',
+      description: '전 세계 경제 동향과 정책 변화를 분석하여 자산 배분과 국가별 투자 전략을 수립합니다',
+      estimatedMinutes: 400,
+      keywords: ['글로벌매크로', '자산배분', '국가분석', '통화정책', '재정정책', '지정학'],
+      learningObjectives: [
+        '글로벌 경제 사이클과 국가별 비동조화 현상 분석',
+        '주요국 중앙은행 정책(Fed, ECB, BOJ, PBOC)의 글로벌 영향',
+        'Top-down 접근법을 통한 국가/자산군 선택 프로세스',
+        '신흥국 vs 선진국 투자 기회와 리스크 평가 프레임워크',
+        '지정학적 이벤트(무역전쟁, 전쟁, 제재)의 투자 영향 분석'
+      ]
+    },
+    {
+      id: 'international-diversification',
+      title: '국제 분산투자',
+      description: '효과적인 글로벌 포트폴리오 구축을 위한 국제 분산투자 이론과 실무를 마스터합니다',
+      estimatedMinutes: 340,
+      keywords: ['국제분산투자', '상관관계', '홈바이어스', 'ADR', 'GDR', '국가리스크'],
+      learningObjectives: [
+        '국제 분산투자의 이론적 근거와 실증적 효과 분석',
+        '국가 간 상관계수 변화와 위기 시 상관관계 증가 현상',
+        'ADR, GDR, ETF를 활용한 해외 시장 접근 방법',
+        '홈 바이어스 극복과 최적 해외 투자 비중 결정',
+        '국가 리스크(정치, 규제, 환율) 평가와 관리 방법'
       ]
     }
   ],

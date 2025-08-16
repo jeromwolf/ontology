@@ -39,12 +39,15 @@ export default function ChapterNavigation({ currentChapterId, programType }: Cha
     { id: 'financial-statements', title: '재무제표 읽기의 정석', week: 'Week 3-4' },
     { id: 'valuation-basics', title: '기업가치 평가의 기초', week: 'Week 3-4' },
     { id: 'industry-analysis', title: '산업 분석과 기업 비교', week: 'Week 3-4' },
-    { id: 'investment-strategies', title: '검증된 투자 전략 학습', week: 'Week 5-6' },
-    { id: 'portfolio-basics', title: '포트폴리오 구성의 기본', week: 'Week 5-6' },
-    { id: 'risk-control', title: '리스크 관리와 손절매', week: 'Week 5-6' },
-    { id: 'market-timing', title: '시장 타이밍과 매매 시점', week: 'Week 7-8' },
-    { id: 'real-trading', title: '실전 매매 시뮬레이션', week: 'Week 7-8' },
-    { id: 'investment-plan', title: '나만의 투자 계획 수립', week: 'Week 7-8' }
+    { id: 'global-brokerage-accounts', title: '해외 증권사 계좌 개설', week: 'Week 5' },
+    { id: 'global-sectors-understanding', title: '글로벌 섹터 이해', week: 'Week 5' },
+    { id: 'gaap-vs-ifrs', title: 'GAAP vs IFRS 회계기준', week: 'Week 6' },
+    { id: 'investment-strategies', title: '검증된 투자 전략 학습', week: 'Week 7' },
+    { id: 'portfolio-basics', title: '포트폴리오 구성의 기본', week: 'Week 7' },
+    { id: 'risk-control', title: '리스크 관리와 손절매', week: 'Week 8' },
+    { id: 'market-timing', title: '시장 타이밍과 매매 시점', week: 'Week 9' },
+    { id: 'real-trading', title: '실전 매매 시뮬레이션', week: 'Week 9' },
+    { id: 'investment-plan', title: '나만의 투자 계획 수립', week: 'Week 10' }
   ];
 
   // Advanced Program 챕터 순서
@@ -58,9 +61,12 @@ export default function ChapterNavigation({ currentChapterId, programType }: Cha
     { id: 'derivatives-basics', title: '옵션 거래 전략', week: 'Week 7-9' },
     { id: 'advanced-options', title: '고급 옵션 전략', week: 'Week 7-9' },
     { id: 'hedging-strategies', title: '헤지 전략과 리스크 관리', week: 'Week 7-9' },
-    { id: 'global-markets', title: '글로벌 시장 투자', week: 'Week 10-12' },
-    { id: 'alternative-investments', title: '대안 투자 전략', week: 'Week 10-12' },
-    { id: 'macro-trading', title: '매크로 트레이딩', week: 'Week 10-12' }
+    { id: 'global-markets', title: '글로벌 시장 투자', week: 'Week 10-11' },
+    { id: 'alternative-investments', title: '대안 투자 전략', week: 'Week 10-11' },
+    { id: 'macro-trading', title: '매크로 트레이딩', week: 'Week 12' },
+    { id: 'currency-hedging-strategies', title: '통화 헤지 전략', week: 'Week 13' },
+    { id: 'global-macro-investing', title: '글로벌 매크로 투자', week: 'Week 14' },
+    { id: 'international-diversification', title: '국제 분산투자', week: 'Week 15' }
   ];
 
   // 현재 프로그램에 따른 챕터 목록 선택

@@ -37,6 +37,12 @@ const Chapter30 = dynamic(() => import('./chapters/Chapter30'), { ssr: false })
 const Chapter31 = dynamic(() => import('./chapters/Chapter31'), { ssr: false })
 const Chapter32 = dynamic(() => import('./chapters/Chapter32'), { ssr: false })
 const Chapter33 = dynamic(() => import('./chapters/Chapter33'), { ssr: false })
+const Chapter34 = dynamic(() => import('./chapters/Chapter34'), { ssr: false })
+const Chapter35 = dynamic(() => import('./chapters/Chapter35'), { ssr: false })
+const Chapter36 = dynamic(() => import('./chapters/Chapter36'), { ssr: false })
+const Chapter37 = dynamic(() => import('./chapters/Chapter37'), { ssr: false })
+const Chapter38 = dynamic(() => import('./chapters/Chapter38'), { ssr: false })
+const Chapter39 = dynamic(() => import('./chapters/Chapter39'), { ssr: false })
 
 interface ChapterContentProps {
   chapterId: string
@@ -167,6 +173,22 @@ export default function ChapterContent({ chapterId }: ChapterContentProps) {
         return <Chapter32 />
       case 'macro-trading':
         return <Chapter33 />
+      
+      // Foundation Program - Global Investment Chapters
+      case 'global-brokerage-accounts':
+        return <Chapter34 />
+      case 'global-sectors-understanding':
+        return <Chapter35 />
+      case 'gaap-vs-ifrs':
+        return <Chapter36 />
+      
+      // Advanced Program - Global Investment Chapters
+      case 'currency-hedging-strategies':
+        return <Chapter37 />
+      case 'global-macro-investing':
+        return <Chapter38 />
+      case 'international-diversification':
+        return <Chapter39 />
       
       // Coming Soon
       case 'coming-soon':
