@@ -1,5 +1,8 @@
 'use client';
 
+import React from 'react';
+import { Zap, Monitor, BarChart, Settings } from 'lucide-react';
+
 export default function Chapter7() {
   return (
     <div className="space-y-8">

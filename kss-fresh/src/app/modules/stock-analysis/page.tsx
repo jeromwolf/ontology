@@ -136,6 +136,53 @@ export default function StockAnalysisModulePage() {
         </div>
       </div>
 
+      {/* Market Dashboard Section - 새로 추가 */}
+      <div className="bg-gradient-to-r from-green-600 to-emerald-700 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="flex-1 text-white">
+              <div className="flex items-center gap-3 mb-4">
+                <Activity className="w-8 h-8" />
+                <span className="px-3 py-1 bg-white/20 text-white rounded-full text-sm font-medium">
+                  실시간 업데이트
+                </span>
+              </div>
+              <h2 className="text-3xl font-bold mb-3">
+                실시간 시장 대시보드
+              </h2>
+              <p className="text-lg text-green-100 mb-4">
+                KOSPI, KOSDAQ, 해외 주요 지수와 실시간 상승/하락 종목, 
+                거래량 상위 종목, 섹터별 현황을 한눈에 파악하세요
+              </p>
+              <div className="flex items-center gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4" />
+                  <span>실시간 시세</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <BarChart3 className="w-4 h-4" />
+                  <span>섹터 분석</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Database className="w-4 h-4" />
+                  <span>DB 연동</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex-shrink-0">
+              <Link
+                href="/modules/stock-analysis/market-dashboard"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-green-700 rounded-xl font-semibold hover:bg-gray-100 transition-all shadow-lg"
+              >
+                <Activity className="w-6 h-6" />
+                시장 대시보드 열기
+                <ChevronRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Programs Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">

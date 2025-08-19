@@ -536,3 +536,68 @@ Mermaid Editor 완성 상황을 참고해줘."
   - 모든 현황 정보 업데이트
   - 리팩토링 우선순위 재정렬
   - 세션 연결 방법 명확히 기재
+
+### 🗄️ Database Architecture (2025-08-17 추가)
+
+#### **데이터베이스 설정**
+- **Provider**: Neon (Serverless PostgreSQL)
+- **Connection**: Prisma ORM v6.13.0
+- **Environment**: Production-ready serverless database
+
+#### **스키마 전략 - 하이브리드 접근법 ✅**
+1. **모듈별 프리픽스 사용**:
+   ```
+   Stock_      // 주식 분석 모듈
+   AI_         // AI/ML 모듈
+   Onto_       // 온톨로지 모듈
+   Bio_        // 바이오인포매틱스 모듈
+   Factory_    // 스마트 팩토리 모듈
+   ```
+
+2. **공통 테이블 (프리픽스 없음)**:
+   - User, Profile, Session
+   - Notification, ContentUpdate
+   - Progress, Enrollment
+
+3. **Stock Analysis 모듈 테이블 구조**:
+   ```prisma
+   Stock_Symbol       // 종목 마스터
+   Stock_Quote        // 시세 정보
+   Stock_Financial    // 재무제표
+   Stock_Portfolio    // 포트폴리오
+   Stock_PortfolioItem // 보유 종목
+   Stock_Transaction  // 거래 내역
+   Stock_Watchlist    // 관심종목 그룹
+   Stock_WatchlistItem // 관심종목 상세
+   Stock_MarketIndex  // 시장 지수
+   ```
+
+4. **관계 설계 원칙**:
+   - 모듈 내부: 강한 결합 (Foreign Key)
+   - 모듈 간: 약한 결합 (ID 참조만)
+   - User와의 관계는 모든 모듈이 공유
+
+5. **마이그레이션 전략**:
+   - Phase 1: Stock Analysis + User/Auth ✅
+   - Phase 2: AI/ML 모듈 (예정)
+   - Phase 3: 각 도메인별 순차 확장
+
+#### **Prisma 명령어**:
+```bash
+# 스키마 적용
+npx prisma db push
+
+# Prisma Client 생성
+npx prisma generate
+
+# Prisma Studio 실행
+npx prisma studio
+
+# 마이그레이션 생성 (production)
+npx prisma migrate dev --name [migration-name]
+```
+
+#### **중요 파일 위치**:
+- Schema: `/prisma/schema.prisma`
+- Strategy: `/prisma/schema-strategy.md`
+- Backup: `/prisma/schema.backup.prisma`

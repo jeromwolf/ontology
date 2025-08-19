@@ -156,11 +156,11 @@ export default function OptionsStrategySimulator() {
       const timeDecay = Math.exp(-daysToExpiry / 365);
       
       // 간단한 Black-Scholes 근사
-      const d1 = (Math.log(moneyness) + (0.05 + (volatility/100)**2 / 2) * (daysToExpiry/365)) / 
+      const d1 = (Math.log(moneyness) + (0.05 + Math.pow(volatility/100, 2) / 2) * (daysToExpiry/365)) / 
                  ((volatility/100) * Math.sqrt(daysToExpiry/365));
       
       const delta = leg.type === 'call' ? 0.5 + 0.5 * Math.tanh(d1) : -0.5 + 0.5 * Math.tanh(d1);
-      const gamma = Math.exp(-d1**2/2) / (Math.sqrt(2 * Math.PI) * currentPrice * (volatility/100) * Math.sqrt(daysToExpiry/365));
+      const gamma = Math.exp(-(d1 * d1)/2) / (Math.sqrt(2 * Math.PI) * currentPrice * (volatility/100) * Math.sqrt(daysToExpiry/365));
       const theta = -currentPrice * gamma * (volatility/100) / (2 * Math.sqrt(daysToExpiry/365)) / 365;
       const vega = currentPrice * gamma * Math.sqrt(daysToExpiry/365) / 100;
       const rho = leg.type === 'call' ? leg.strike * timeDecay * delta / 100 : -leg.strike * timeDecay * delta / 100;

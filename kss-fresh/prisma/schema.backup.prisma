@@ -44,10 +44,6 @@ model User {
   notifications Notification[]
   learningSession LearningSession[]
   
-  // Stock Module Relations
-  stockPortfolios Stock_Portfolio[]
-  stockWatchlists Stock_Watchlist[]
-  
   @@index([email])
   @@index([role])
 }
@@ -180,11 +176,11 @@ model Submission {
 }
 
 // ============================================
-// Stock Market Module (주식 분석 모듈)
+// Stock Market Models
 // ============================================
 
-// 주식 종목 마스터
-model Stock_Symbol {
+// 주식 종목 정보
+model Stock {
   id            String   @id @default(cuid())
   symbol        String   @unique // 종목코드 (005930)
   nameKr        String   // 삼성전자
@@ -198,21 +194,21 @@ model Stock_Symbol {
   updatedAt     DateTime @updatedAt
   
   // Relations
-  quotes        Stock_Quote[]
-  financials    Stock_Financial[]
-  portfolioStocks Stock_PortfolioItem[]
-  watchlistItems Stock_WatchlistItem[]
+  quotes        Quote[]
+  financials    Financial[]
+  portfolios    PortfolioStock[]
+  watchlists    WatchlistStock[]
   
   @@index([market])
   @@index([sector])
   @@index([nameKr])
 }
 
-// 주식 시세 데이터
-model Stock_Quote {
+// 실시간 시세 정보
+model Quote {
   id            String   @id @default(cuid())
   stockId       String
-  stock         Stock_Symbol @relation(fields: [stockId], references: [id], onDelete: Cascade)
+  stock         Stock    @relation(fields: [stockId], references: [id], onDelete: Cascade)
   
   date          DateTime @default(now())
   open          Float
@@ -232,10 +228,10 @@ model Stock_Quote {
 }
 
 // 재무제표 정보
-model Stock_Financial {
+model Financial {
   id            String   @id @default(cuid())
   stockId       String
-  stock         Stock_Symbol @relation(fields: [stockId], references: [id], onDelete: Cascade)
+  stock         Stock    @relation(fields: [stockId], references: [id], onDelete: Cascade)
   
   fiscalYear    Int      // 회계연도
   quarter       Int?     // 분기 (1-4, null이면 연간)
@@ -265,10 +261,9 @@ model Stock_Financial {
 }
 
 // 포트폴리오
-model Stock_Portfolio {
+model Portfolio {
   id            String   @id @default(cuid())
   userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   name          String   // 포트폴리오 이름
   type          String   @default("real") // real, simulation
   initialCash   Float    @default(10000000) // 초기 현금
@@ -278,19 +273,19 @@ model Stock_Portfolio {
   updatedAt     DateTime @updatedAt
   
   // Relations
-  holdings      Stock_PortfolioItem[]
-  transactions  Stock_Transaction[]
+  stocks        PortfolioStock[]
+  transactions  Transaction[]
   
   @@index([userId])
 }
 
 // 포트폴리오 보유 종목
-model Stock_PortfolioItem {
+model PortfolioStock {
   id            String   @id @default(cuid())
   portfolioId   String
-  portfolio     Stock_Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  portfolio     Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
   stockId       String
-  stock         Stock_Symbol @relation(fields: [stockId], references: [id])
+  stock         Stock    @relation(fields: [stockId], references: [id])
   
   quantity      Int      // 보유수량
   avgPrice      Float    // 평균매수가
@@ -305,10 +300,10 @@ model Stock_PortfolioItem {
 }
 
 // 거래 내역
-model Stock_Transaction {
+model Transaction {
   id            String   @id @default(cuid())
   portfolioId   String
-  portfolio     Stock_Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  portfolio     Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
   
   type          String   // buy, sell
   symbol        String   // 종목코드
@@ -322,27 +317,26 @@ model Stock_Transaction {
   @@index([executedAt])
 }
 
-// 관심종목 그룹
-model Stock_Watchlist {
+// 관심종목
+model Watchlist {
   id            String   @id @default(cuid())
   userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   name          String   // 관심종목 그룹명
   
   createdAt     DateTime @default(now())
   
-  items         Stock_WatchlistItem[]
+  stocks        WatchlistStock[]
   
   @@index([userId])
 }
 
 // 관심종목 상세
-model Stock_WatchlistItem {
+model WatchlistStock {
   id            String   @id @default(cuid())
   watchlistId   String
-  watchlist     Stock_Watchlist @relation(fields: [watchlistId], references: [id], onDelete: Cascade)
+  watchlist     Watchlist @relation(fields: [watchlistId], references: [id], onDelete: Cascade)
   stockId       String
-  stock         Stock_Symbol @relation(fields: [stockId], references: [id])
+  stock         Stock    @relation(fields: [stockId], references: [id])
   
   targetPrice   Float?   // 목표가
   stopLoss      Float?   // 손절가
@@ -356,7 +350,7 @@ model Stock_WatchlistItem {
 }
 
 // 시장 지수
-model Stock_MarketIndex {
+model MarketIndex {
   id            String   @id @default(cuid())
   symbol        String   @unique // KOSPI, KOSDAQ, DJI, IXIC
   name          String   // 코스피, 코스닥, 다우존스, 나스닥

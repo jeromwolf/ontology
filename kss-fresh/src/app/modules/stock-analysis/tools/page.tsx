@@ -16,16 +16,113 @@ interface Tool {
   pricing: 'free' | 'premium' | 'enterprise';
   badge?: string;
   requirements?: string[];
+  level: 'beginner' | 'professional';
 }
 
 export default function ToolsOverviewPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [viewMode, setViewMode] = useState<'all' | 'beginner' | 'professional'>('all');
 
-  // 전체 도구 목록
-  const allTools: Tool[] = [
+  // 일반용 도구 (초보자 친화적)
+  const beginnerTools: Tool[] = [
+    {
+      id: 'investment-calculator',
+      name: '투자 수익률 계산기',
+      description: '복리 수익률, 적립식 투자, 목표 수익 달성 계산',
+      category: 'portfolio',
+      features: ['복리 계산기', '적립식 시뮬레이션', '목표 달성 기간', '세금 계산'],
+      icon: Calculator,
+      status: 'live',
+      users: '5.2K',
+      pricing: 'free',
+      badge: 'Essential',
+      level: 'beginner'
+    },
+    {
+      id: 'chart-learning-tool',
+      name: '차트 기초 학습기',
+      description: '캔들차트, 이동평균선, 거래량 등 차트 읽기 연습',
+      category: 'analytics',
+      features: ['인터랙티브 차트', '패턴 인식 연습', '실시간 퀴즈', '학습 진도 관리'],
+      icon: LineChart,
+      status: 'live',
+      users: '4.8K',
+      pricing: 'free',
+      badge: 'Educational',
+      level: 'beginner'
+    },
+    {
+      id: 'portfolio-tracker',
+      name: '포트폴리오 관리',
+      description: '보유 종목 관리, 수익률 추적, 자산 배분 분석',
+      category: 'portfolio',
+      features: ['실시간 시세', '수익률 추적', '배당 관리', '자산 배분 차트'],
+      icon: BarChart3,
+      status: 'live',
+      users: '3.9K',
+      pricing: 'free',
+      badge: 'Popular',
+      level: 'beginner'
+    },
+    {
+      id: 'stock-screener-basic',
+      name: '종목 스크리너 (기초)',
+      description: 'PER, PBR, ROE 등 기본 지표로 종목 검색',
+      category: 'research',
+      features: ['기본 재무지표', '업종별 필터', '시가총액 필터', '결과 저장'],
+      icon: Search,
+      status: 'coming-soon',
+      users: '0',
+      pricing: 'free',
+      badge: 'Basic',
+      level: 'beginner'
+    },
+    {
+      id: 'dividend-tracker',
+      name: '배당주 투자 도구',
+      description: '배당수익률 계산, 배당 캘린더, 배당 성장률 분석',
+      category: 'portfolio',
+      features: ['배당 캘린더', '배당 수익률', '배당 성장 분석', '세금 계산'],
+      icon: DollarSign,
+      status: 'coming-soon',
+      users: '0',
+      pricing: 'free',
+      badge: 'Income Focus',
+      level: 'beginner'
+    }
+  ];
+
+  // 전문가용 도구
+  const professionalTools: Tool[] = [
     // Analytics Tools
+    {
+      id: 'pro-trading-chart',
+      name: 'Professional Trading Chart',
+      description: 'TradingView 수준의 실시간 차트 시스템',
+      category: 'analytics',
+      features: ['실시간 호가창', '30+ 기술지표', '그리기 도구', '멀티 차트'],
+      icon: BarChart3,
+      status: 'live',
+      users: '5.2K',
+      pricing: 'free',
+      badge: '🔥 NEW',
+      level: 'professional'
+    },
+    {
+      id: 'kis-manager',
+      name: 'KIS API 관리자',
+      description: '한국투자증권 API 토큰 및 연결 상태 관리 도구',
+      category: 'trading',
+      features: ['토큰 자동 갱신', '연결 상태 모니터링', '실시간 API 테스트', '환경 설정 관리'],
+      icon: Shield,
+      status: 'live',
+      users: '1.2K',
+      pricing: 'free',
+      badge: '개발자 도구',
+      level: 'professional'
+    },
     {
       id: 'order-flow-analytics',
       name: 'Order Flow Analytics',
@@ -34,10 +131,11 @@ export default function ToolsOverviewPage() {
       features: ['Dark Pool Detection', 'Block Trade Analysis', 'HFT Pattern Recognition', 'Liquidity Heatmap'],
       icon: Database,
       status: 'live',
-      users: '2.3K',
+      users: '320',
       pricing: 'premium',
       badge: 'Institutional Grade',
-      requirements: ['Level 2 Data Access', 'Premium Account']
+      requirements: ['Level 2 Data Access', 'Premium Account'],
+      level: 'professional'
     },
     {
       id: 'market-microstructure-lab',
@@ -46,10 +144,11 @@ export default function ToolsOverviewPage() {
       category: 'analytics',
       features: ['Tick Data Analysis', 'Spread Decomposition', 'Market Impact Cost', 'Order Book Dynamics'],
       icon: Activity,
-      status: 'live',
-      users: '1.5K',
+      status: 'coming-soon',
+      users: '0',
       pricing: 'enterprise',
-      badge: 'Advanced'
+      badge: 'Advanced',
+      level: 'professional'
     },
     {
       id: 'ai-chart-analyzer',
@@ -61,12 +160,13 @@ export default function ToolsOverviewPage() {
       status: 'live',
       users: '3.8K',
       pricing: 'premium',
-      badge: 'AI Powered'
+      badge: 'AI Powered',
+      level: 'professional'
     },
     
     // Risk Management Tools
     {
-      id: 'risk-dashboard',
+      id: 'risk-management-dashboard',
       name: 'Risk Management Dashboard',
       description: 'VaR, Stress Testing, 포트폴리오 리스크 모니터링',
       category: 'risk',
@@ -75,19 +175,8 @@ export default function ToolsOverviewPage() {
       status: 'live',
       users: '1.8K',
       pricing: 'premium',
-      badge: 'Professional'
-    },
-    {
-      id: 'risk-metrics-calculator',
-      name: 'Risk Metrics Calculator',
-      description: 'Sharpe, Sortino, Maximum Drawdown 등 리스크 지표 산출',
-      category: 'risk',
-      features: ['20+ Risk Metrics', 'Historical Analysis', 'Peer Comparison', 'Custom Benchmarks'],
-      icon: Calculator,
-      status: 'live',
-      users: '4.2K',
-      pricing: 'free',
-      badge: 'Essential'
+      badge: 'Professional',
+      level: 'professional'
     },
     {
       id: 'stress-testing-suite',
@@ -96,10 +185,11 @@ export default function ToolsOverviewPage() {
       category: 'risk',
       features: ['Historical Scenarios', 'Custom Stress Tests', 'Monte Carlo Simulation', 'Regulatory Compliance'],
       icon: AlertTriangle,
-      status: 'beta',
-      users: '650',
+      status: 'coming-soon',
+      users: '0',
       pricing: 'enterprise',
-      badge: 'Regulatory Compliant'
+      badge: 'Regulatory Compliant',
+      level: 'professional'
     },
     
     // Trading Tools
@@ -110,10 +200,11 @@ export default function ToolsOverviewPage() {
       category: 'trading',
       features: ['Strategy Builder', 'Backtesting Engine', 'Paper Trading', 'Live Execution'],
       icon: Brain,
-      status: 'beta',
-      users: '750',
+      status: 'coming-soon',
+      users: '0',
       pricing: 'enterprise',
-      badge: 'Quant Platform'
+      badge: 'Quant Platform',
+      level: 'professional'
     },
     {
       id: 'smart-order-router',
@@ -122,10 +213,11 @@ export default function ToolsOverviewPage() {
       category: 'trading',
       features: ['Best Execution', 'Multi-Venue Routing', 'Slippage Minimization', 'Transaction Cost Analysis'],
       icon: Zap,
-      status: 'live',
-      users: '920',
+      status: 'coming-soon',
+      users: '0',
       pricing: 'enterprise',
-      badge: 'HFT Ready'
+      badge: 'HFT Ready',
+      level: 'professional'
     },
     {
       id: 'options-strategy-analyzer',
@@ -137,7 +229,8 @@ export default function ToolsOverviewPage() {
       status: 'live',
       users: '1.1K',
       pricing: 'premium',
-      badge: 'Derivatives'
+      badge: 'Derivatives',
+      level: 'professional'
     },
     
     // Research Tools
@@ -151,19 +244,8 @@ export default function ToolsOverviewPage() {
       status: 'live',
       users: '2.7K',
       pricing: 'premium',
-      badge: 'AI Enhanced'
-    },
-    {
-      id: 'dcf-valuation-model',
-      name: 'DCF Valuation Model',
-      description: '현금흐름할인법 기반 기업가치 평가',
-      category: 'research',
-      features: ['Sensitivity Analysis', 'Scenario Modeling', 'Comparable Analysis', 'Report Generation'],
-      icon: DollarSign,
-      status: 'live',
-      users: '1.9K',
-      pricing: 'free',
-      badge: 'Fundamental'
+      badge: 'AI Enhanced',
+      level: 'professional'
     },
     {
       id: 'news-sentiment-analyzer',
@@ -175,7 +257,8 @@ export default function ToolsOverviewPage() {
       status: 'live',
       users: '3.2K',
       pricing: 'premium',
-      badge: 'NLP Powered'
+      badge: 'NLP Powered',
+      level: 'professional'
     },
     
     // Portfolio Management Tools
@@ -189,7 +272,8 @@ export default function ToolsOverviewPage() {
       status: 'live',
       users: '2.1K',
       pricing: 'premium',
-      badge: 'MPT Based'
+      badge: 'MPT Based',
+      level: 'professional'
     },
     {
       id: 'factor-investing-lab',
@@ -198,10 +282,11 @@ export default function ToolsOverviewPage() {
       category: 'portfolio',
       features: ['Factor Analysis', 'Multi-factor Models', 'Factor Timing', 'Custom Factors'],
       icon: Target,
-      status: 'live',
-      users: '890',
+      status: 'coming-soon',
+      users: '0',
       pricing: 'enterprise',
-      badge: 'Quantitative'
+      badge: 'Quantitative',
+      level: 'professional'
     },
     {
       id: 'tax-optimization-engine',
@@ -211,10 +296,14 @@ export default function ToolsOverviewPage() {
       features: ['Tax Loss Harvesting', 'Holding Period Optimization', 'After-tax Returns', 'Regulatory Compliance'],
       icon: Settings,
       status: 'coming-soon',
+      users: '0',
       pricing: 'enterprise',
-      badge: 'Coming Q2 2025'
+      badge: 'Coming Q2 2025',
+      level: 'professional'
     }
   ];
+
+  const allTools = [...beginnerTools, ...professionalTools];
 
   // 카테고리 정의
   const categories = [
@@ -233,8 +322,11 @@ export default function ToolsOverviewPage() {
                          tool.features.some(f => f.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
     const matchesStatus = selectedStatus === 'all' || tool.status === selectedStatus;
+    const matchesLevel = viewMode === 'all' || 
+                        (viewMode === 'beginner' && tool.level === 'beginner') ||
+                        (viewMode === 'professional' && tool.level === 'professional');
     
-    return matchesSearch && matchesCategory && matchesStatus;
+    return matchesSearch && matchesCategory && matchesStatus && matchesLevel;
   });
 
   const getPricingBadgeColor = (pricing: string) => {
@@ -295,8 +387,44 @@ export default function ToolsOverviewPage() {
               전문 투자를 위한 모든 도구를 한 곳에서
             </p>
             
+            {/* View Mode Selector */}
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-lg p-1">
+              <button
+                onClick={() => setViewMode('all')}
+                className={`px-6 py-2 rounded-md font-medium transition-all ${
+                  viewMode === 'all'
+                    ? 'bg-white text-slate-900'
+                    : 'text-white hover:bg-white/10'
+                }`}
+              >
+                전체 도구
+              </button>
+              <button
+                onClick={() => setViewMode('beginner')}
+                className={`px-6 py-2 rounded-md font-medium transition-all ${
+                  viewMode === 'beginner'
+                    ? 'bg-white text-slate-900'
+                    : 'text-white hover:bg-white/10'
+                }`}
+              >
+                <Users className="w-4 h-4 inline mr-2" />
+                일반용
+              </button>
+              <button
+                onClick={() => setViewMode('professional')}
+                className={`px-6 py-2 rounded-md font-medium transition-all ${
+                  viewMode === 'professional'
+                    ? 'bg-white text-slate-900'
+                    : 'text-white hover:bg-white/10'
+                }`}
+              >
+                <Shield className="w-4 h-4 inline mr-2" />
+                전문가용
+              </button>
+            </div>
+            
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mt-8">
               <div>
                 <div className="text-3xl font-bold mb-1">{allTools.length}</div>
                 <div className="text-gray-400">전체 도구</div>
@@ -315,6 +443,41 @@ export default function ToolsOverviewPage() {
           </div>
         </div>
       </div>
+
+      {/* Level Description */}
+      {viewMode !== 'all' && (
+        <div className="bg-blue-50 dark:bg-blue-900/20 border-b border-blue-100 dark:border-blue-900">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex items-center gap-3">
+              {viewMode === 'beginner' ? (
+                <>
+                  <Users className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <div>
+                    <p className="font-medium text-blue-900 dark:text-blue-100">
+                      일반 투자자를 위한 도구
+                    </p>
+                    <p className="text-sm text-blue-700 dark:text-blue-300">
+                      투자를 시작하는 분들을 위한 무료 기본 도구들입니다. 복잡한 설정 없이 바로 사용 가능합니다.
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  <div>
+                    <p className="font-medium text-purple-900 dark:text-purple-100">
+                      전문 투자자를 위한 도구
+                    </p>
+                    <p className="text-sm text-purple-700 dark:text-purple-300">
+                      기관투자자와 전문 트레이더를 위한 고급 분석 도구입니다. Premium/Enterprise 계정이 필요할 수 있습니다.
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Filters and Search */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

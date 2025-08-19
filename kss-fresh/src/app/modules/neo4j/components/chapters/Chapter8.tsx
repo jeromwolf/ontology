@@ -1,5 +1,8 @@
 'use client';
 
+import React from 'react';
+import { Rocket, Code, Users, Target } from 'lucide-react';
+
 export default function Chapter8() {
   return (
     <div className="space-y-8">

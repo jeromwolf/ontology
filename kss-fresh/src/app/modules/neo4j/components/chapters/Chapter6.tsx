@@ -1,279 +1,280 @@
 'use client';
 
+import React from 'react';
+import { Database, Network, Zap, Globe } from 'lucide-react';
+
 export default function Chapter6() {
   return (
     <div className="space-y-8">
       <section>
         <h1 className="text-3xl font-bold mb-6 text-center">KSS 도메인 통합 🌐</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 text-center">
-          온톨로지, LLM, RAG의 강력한 기능들을 Neo4j 그래프로 통합하여
-          차세대 지식 플랫폼을 구축하세요!
+          Knowledge Space Simulator의 다양한 도메인 데이터를 
+          Neo4j 그래프로 통합하여 지식의 연결성을 탐험하세요!
         </p>
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-4">🔗 온톨로지 데이터 통합</h2>
+        <h2 className="text-2xl font-bold mb-4">🎯 KSS 지식 그래프 아키텍처</h2>
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6">
-          <p className="text-gray-700 dark:text-gray-300 mb-4">
-            RDF 트리플, OWL 온톨로지, SKOS 분류체계를 Neo4j의 프로퍼티 그래프로 변환하여
-            더 직관적이고 성능이 뛰어난 지식 그래프를 구축합니다.
-          </p>
+          <h3 className="font-semibold mb-4">모든 학습 도메인을 하나의 그래프로</h3>
           
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
-              <h3 className="font-bold text-blue-600 dark:text-blue-400 mb-3">RDF to Neo4j 변환</h3>
-              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-                <div className="text-green-600 dark:text-green-400">// RDF 트리플 임포트</div>
-                <div>CALL n10s.rdf.import.fetch(</div>
-                <div>  'https://example.com/ontology.ttl',</div>
-                <div>  'Turtle'</div>
-                <div>)</div>
-                <div></div>
-                <div className="text-green-600 dark:text-green-400">// 클래스 계층구조 매핑</div>
-                <div>MATCH (c:Class)</div>
-                <div>WHERE c.uri STARTS WITH 'http://kss.com/'</div>
-                <div>MERGE (domain:Domain {name: 'KSS'})</div>
-                <div>MERGE (c)-[:BELONGS_TO]->(domain)</div>
-                <div>RETURN c.label, c.uri</div>
-              </div>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
-              <h3 className="font-bold text-indigo-600 dark:text-indigo-400 mb-3">온톨로지 관계 모델링</h3>
-              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-                <div className="text-green-600 dark:text-green-400">// 개념 간 관계 생성</div>
-                <div>MATCH (concept:Concept)</div>
-                <div>MATCH (related:Concept)</div>
-                <div>WHERE concept.broader = related.uri</div>
-                <div>MERGE (concept)-[:BROADER_THAN]->(related)</div>
-                <div></div>
-                <div className="text-green-600 dark:text-green-400">// 동의어 관계</div>
-                <div>MERGE (concept)-[:SYNONYM]-(related)</div>
-                <div>WHERE concept.altLabel CONTAINS related.prefLabel</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
-            <h3 className="font-bold text-gray-800 dark:text-gray-200 mb-3">온톨로지 추론 규칙</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-6">
+            <h4 className="font-bold text-blue-600 dark:text-blue-400 mb-3">통합 노드 타입</h4>
             <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-              <div className="text-green-600 dark:text-green-400">// 전이적 관계 추론</div>
-              <div>MATCH path = (a:Concept)-[:IS_A*]->(c:Concept)</div>
-              <div>WHERE a.name = 'Electric Vehicle' </div>
-              <div>  AND c.name = 'Thing'</div>
-              <div>WITH a, c, length(path) as distance</div>
-              <div>MERGE (a)-[r:INFERRED_IS_A {distance: distance}]->(c)</div>
+              <div className="text-green-600 dark:text-green-400">// 1. 도메인 노드</div>
+              <div>(:Domain {name: 'Data Science', modules: 12})</div>
+              <div>(:Domain {name: 'AI/ML', modules: 8})</div>
+              <div>(:Domain {name: 'Blockchain', modules: 5})</div>
               <div></div>
-              <div className="text-green-600 dark:text-green-400">// 역관계 자동 생성</div>
-              <div>MATCH (a)-[r:HAS_PART]->(b)</div>
-              <div>MERGE (b)-[:PART_OF]->(a)</div>
-            </div>
-          </div>
-
-          <div className="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-4">
-            <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">💡 온톨로지 통합 이점</h4>
-            <p className="text-sm text-blue-800 dark:text-blue-300">
-              • SPARQL보다 직관적인 Cypher 쿼리 • 빠른 그래프 순회 성능
-              • 유연한 스키마 확장 • 실시간 추론 가능
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold mb-4">🤖 LLM 데이터 연동</h2>
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6">
-          <h3 className="font-semibold mb-4">언어 모델의 지식을 그래프로 구조화</h3>
-          
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
-              <h4 className="font-bold text-purple-600 dark:text-purple-400 mb-3">엔티티 추출 및 저장</h4>
-              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-                <div className="text-green-600 dark:text-green-400">// LLM 응답에서 엔티티 추출</div>
-                <div>WITH apoc.ml.openai.extract({</div>
-                <div>  text: $llm_response,</div>
-                <div>  prompt: "Extract entities and relations"</div>
-                <div>}) AS extraction</div>
-                <div></div>
-                <div>UNWIND extraction.entities AS entity</div>
-                <div>MERGE (e:Entity {</div>
-                <div>  name: entity.name,</div>
-                <div>  type: entity.type</div>
-                <div>})</div>
-                <div>SET e.confidence = entity.confidence</div>
-              </div>
-            </div>
-            
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
-              <h4 className="font-bold text-pink-600 dark:text-pink-400 mb-3">임베딩 벡터 저장</h4>
-              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-                <div className="text-green-600 dark:text-green-400">// 텍스트 임베딩 생성</div>
-                <div>MATCH (doc:Document)</div>
-                <div>WITH doc, apoc.ml.openai.embedding(</div>
-                <div>  doc.content, </div>
-                <div>  {model: 'text-embedding-ada-002'}</div>
-                <div>) AS embedding</div>
-                <div>SET doc.embedding = embedding</div>
-                <div></div>
-                <div className="text-green-600 dark:text-green-400">// 벡터 인덱스 생성</div>
-                <div>CREATE VECTOR INDEX doc_embeddings</div>
-                <div>FOR (d:Document) ON d.embedding</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
-            <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-3">대화 히스토리 그래프</h4>
-            <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-              <div className="text-green-600 dark:text-green-400">// 대화 세션 모델링</div>
-              <div>CREATE (session:ChatSession {</div>
-              <div>  id: randomUUID(),</div>
-              <div>  startTime: datetime()</div>
-              <div>})</div>
+              <div className="text-green-600 dark:text-green-400">// 2. 모듈 노드</div>
+              <div>(:Module {name: 'Deep Learning', difficulty: 'Advanced'})</div>
+              <div>(:Module {name: 'Smart Contracts', difficulty: 'Intermediate'})</div>
               <div></div>
-              <div>CREATE (msg:Message {</div>
-              <div>  role: 'user',</div>
-              <div>  content: $user_input,</div>
-              <div>  timestamp: datetime()</div>
-              <div>})</div>
-              <div>CREATE (session)-[:HAS_MESSAGE {order: 1}]->(msg)</div>
+              <div className="text-green-600 dark:text-green-400">// 3. 개념 노드</div>
+              <div>(:Concept {name: 'Neural Network', category: 'Algorithm'})</div>
+              <div>(:Concept {name: 'Consensus', category: 'Protocol'})</div>
               <div></div>
-              <div className="text-green-600 dark:text-green-400">// 컨텍스트 연결</div>
-              <div>MATCH (prev:Message)<-[:HAS_MESSAGE]-(session)</div>
-              <div>CREATE (prev)-[:FOLLOWED_BY]->(msg)</div>
-            </div>
-          </div>
-
-          <div className="bg-purple-100 dark:bg-purple-900/30 rounded-lg p-4">
-            <h4 className="font-semibold text-purple-800 dark:text-purple-200 mb-2">🚀 LLM + Graph 시너지</h4>
-            <div className="text-sm text-purple-800 dark:text-purple-300 space-y-1">
-              <div>• 구조화된 지식으로 환각 현상 감소</div>
-              <div>• 대화 맥락의 영구 저장 및 추적</div>
-              <div>• 팩트 체크를 위한 지식 그래프 활용</div>
-              <div>• 멀티턴 대화의 효과적 관리</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-bold mb-4">📚 RAG 시스템 구축</h2>
-        <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-xl p-6">
-          <h3 className="font-semibold mb-4">검색 증강 생성을 위한 그래프 기반 아키텍처</h3>
-          
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
-            <h4 className="font-bold text-green-600 dark:text-green-400 mb-3">문서 청킹과 인덱싱</h4>
-            <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-              <div className="text-green-600 dark:text-green-400">// 문서를 청크로 분할</div>
-              <div>CALL apoc.load.json($document_path) YIELD value</div>
-              <div>WITH value.content AS content</div>
-              <div>UNWIND apoc.text.split(content, '.', 1000) AS chunk</div>
-              <div>CREATE (c:Chunk {</div>
-              <div>  text: chunk,</div>
-              <div>  embedding: apoc.ml.openai.embedding(chunk)</div>
-              <div>})</div>
-              <div></div>
-              <div className="text-green-600 dark:text-green-400">// 청크 간 관계 생성</div>
-              <div>MATCH (c1:Chunk), (c2:Chunk)</div>
-              <div>WHERE id(c1) < id(c2)</div>
-              <div>WITH c1, c2, gds.similarity.cosine(</div>
-              <div>  c1.embedding, c2.embedding</div>
-              <div>) AS similarity</div>
-              <div>WHERE similarity > 0.8</div>
-              <div>MERGE (c1)-[:SIMILAR {score: similarity}]->(c2)</div>
+              <div className="text-green-600 dark:text-green-400">// 4. 학습자 노드</div>
+              <div>(:Learner {id: 'user123', level: 'Expert'})</div>
+              <div>(:Progress {module: 'Deep Learning', completion: 85})</div>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
-              <h4 className="font-bold text-teal-600 dark:text-teal-400 mb-3">하이브리드 검색</h4>
+              <h4 className="font-bold text-indigo-600 dark:text-indigo-400 mb-3">도메인 간 관계</h4>
               <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-                <div className="text-green-600 dark:text-green-400">// 벡터 + 키워드 검색</div>
-                <div>WITH apoc.ml.openai.embedding($query) AS qVec</div>
-                <div>MATCH (c:Chunk)</div>
-                <div>WHERE c.text CONTAINS $keyword</div>
-                <div>  OR gds.similarity.cosine(</div>
-                <div>    c.embedding, qVec) > 0.7</div>
-                <div>RETURN c.text, </div>
-                <div>  gds.similarity.cosine(</div>
-                <div>    c.embedding, qVec) AS score</div>
-                <div>ORDER BY score DESC LIMIT 5</div>
+                <div className="text-green-600 dark:text-green-400">// 선수 지식 관계</div>
+                <div>(ml:Module)-[:REQUIRES]->(stat:Module)</div>
+                <div>(dl:Module)-[:REQUIRES]->(ml:Module)</div>
+                <div></div>
+                <div className="text-green-600 dark:text-green-400">// 연관 개념 관계</div>
+                <div>(nn:Concept)-[:RELATED_TO]->(dl:Concept)</div>
+                <div>(blockchain:Concept)-[:USES]->(crypto:Concept)</div>
+                <div></div>
+                <div className="text-green-600 dark:text-green-400">// 학습 경로 관계</div>
+                <div>(learner)-[:COMPLETED]->(module)</div>
+                <div>(learner)-[:NEXT_RECOMMENDED]->(module)</div>
               </div>
             </div>
             
             <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
-              <h4 className="font-bold text-green-600 dark:text-green-400 mb-3">컨텍스트 확장</h4>
+              <h4 className="font-bold text-purple-600 dark:text-purple-400 mb-3">메타데이터 활용</h4>
               <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-                <div className="text-green-600 dark:text-green-400">// 관련 청크 수집</div>
-                <div>MATCH (c:Chunk)</div>
-                <div>WHERE c.id IN $relevant_chunks</div>
-                <div>MATCH path = (c)-[:SIMILAR*1..2]-(related)</div>
-                <div>WITH c, collect(DISTINCT related) AS context</div>
-                <div>RETURN c.text + ' ' + </div>
-                <div>  reduce(s='', r IN context | </div>
-                <div>    s + ' ' + r.text</div>
-                <div>  ) AS expanded_context</div>
+                <div className="text-green-600 dark:text-green-400">// 학습 분석 속성</div>
+                <div>MATCH (l:Learner)-[r:STUDIED]->(m:Module)</div>
+                <div>SET r.duration = 3600,</div>
+                <div>    r.score = 92,</div>
+                <div>    r.timestamp = datetime()</div>
+                <div></div>
+                <div className="text-green-600 dark:text-green-400">// 난이도 가중치</div>
+                <div>MATCH (m1:Module)-[r:REQUIRES]->(m2:Module)</div>
+                <div>SET r.weight = CASE</div>
+                <div>  WHEN m2.difficulty = 'Advanced' THEN 0.8</div>
+                <div>  WHEN m2.difficulty = 'Intermediate' THEN 0.5</div>
+                <div>  ELSE 0.3 END</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-blue-100 dark:bg-blue-900/30 rounded-lg p-4">
+            <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">💡 통합의 가치</h4>
+            <ul className="text-sm text-blue-800 dark:text-blue-300 space-y-1">
+              <li>• 도메인 간 지식 연결성 시각화</li>
+              <li>• 개인화된 학습 경로 자동 생성</li>
+              <li>• 선수 지식 갭 자동 탐지</li>
+              <li>• 학습 커뮤니티 네트워크 분석</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-bold mb-4">🔍 지능형 학습 추천 시스템</h2>
+        <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-xl p-6">
+          <h3 className="font-semibold mb-4">그래프 기반 개인화 추천 알고리즘</h3>
+          
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 className="font-bold text-green-600 dark:text-green-400 mb-3">협업 필터링 + 콘텐츠 기반</h4>
+            <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
+              <div className="text-green-600 dark:text-green-400">// 유사 학습자 찾기</div>
+              <div>MATCH (me:Learner {id: $userId})</div>
+              <div>      -[:COMPLETED]->(m:Module)</div>
+              <div>      <-[:COMPLETED]-(other:Learner)</div>
+              <div>WITH me, other, COUNT(m) AS shared</div>
+              <div>WHERE shared > 5</div>
+              <div></div>
+              <div className="text-green-600 dark:text-green-400">// 추천 모듈 도출</div>
+              <div>MATCH (other)-[:COMPLETED]->(rec:Module)</div>
+              <div>WHERE NOT EXISTS((me)-[:COMPLETED]->(rec))</div>
+              <div>WITH rec, COUNT(other) AS popularity</div>
+              <div></div>
+              <div className="text-green-600 dark:text-green-400">// 선수 지식 체크</div>
+              <div>MATCH (rec)-[:REQUIRES*]->(prereq:Module)</div>
+              <div>WHERE NOT EXISTS((me)-[:COMPLETED]->(prereq))</div>
+              <div>WITH rec, popularity, COLLECT(prereq) AS missing</div>
+              <div></div>
+              <div>RETURN rec.name AS recommendation,</div>
+              <div>       popularity AS score,</div>
+              <div>       SIZE(missing) AS prerequisites_needed</div>
+              <div>ORDER BY score DESC, prerequisites_needed ASC</div>
+              <div>LIMIT 5</div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+              <h4 className="font-bold text-teal-600 dark:text-teal-400 mb-3">학습 경로 최적화</h4>
+              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
+                <div className="text-green-600 dark:text-green-400">// 목표까지 최단 경로</div>
+                <div>MATCH (me:Learner {id: $userId})</div>
+                <div>MATCH (goal:Module {name: $target})</div>
+                <div>MATCH path = shortestPath(</div>
+                <div>  (me)-[:COMPLETED|REQUIRES*]-(goal)</div>
+                <div>)</div>
+                <div>WITH [n IN nodes(path) WHERE</div>
+                <div>  n:Module AND NOT EXISTS(</div>
+                <div>    (me)-[:COMPLETED]->(n)</div>
+                <div>  )] AS todo</div>
+                <div>RETURN todo</div>
+              </div>
+            </div>
+            
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+              <h4 className="font-bold text-green-600 dark:text-green-400 mb-3">학습 성과 예측</h4>
+              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
+                <div className="text-green-600 dark:text-green-400">// ML 피처 추출</div>
+                <div>MATCH (l:Learner)-[r:STUDIED]->(m:Module)</div>
+                <div>WITH l, </div>
+                <div>  AVG(r.score) AS avg_score,</div>
+                <div>  COUNT(m) AS modules_done,</div>
+                <div>  SUM(r.duration) AS total_time</div>
+                <div>MATCH (l)-[:INTERESTED_IN]->(c:Concept)</div>
+                <div>WITH l, avg_score, modules_done,</div>
+                <div>     total_time, COUNT(c) AS interests</div>
+                <div>RETURN l.id, avg_score, modules_done,</div>
+                <div>       total_time/modules_done AS pace,</div>
+                <div>       interests AS diversity</div>
               </div>
             </div>
           </div>
 
           <div className="bg-green-100 dark:bg-green-900/30 rounded-lg p-4">
-            <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">📊 GraphRAG 아키텍처</h4>
-            <div className="text-sm text-green-800 dark:text-green-300">
-              <div>1️⃣ <strong>인덱싱:</strong> 문서 → 청크 → 임베딩 → 그래프 저장</div>
-              <div>2️⃣ <strong>검색:</strong> 쿼리 → 벡터/키워드 검색 → 컨텍스트 확장</div>
-              <div>3️⃣ <strong>생성:</strong> 확장된 컨텍스트 → LLM → 답변 생성</div>
-              <div>4️⃣ <strong>피드백:</strong> 사용자 평가 → 그래프 가중치 업데이트</div>
+            <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">🎓 추천 시스템 특징</h4>
+            <div className="text-sm text-green-800 dark:text-green-300 space-y-1">
+              <div>• 실시간 학습 패턴 분석</div>
+              <div>• 난이도 적응형 추천</div>
+              <div>• 선수 지식 자동 보완</div>
+              <div>• 동료 학습자 매칭</div>
             </div>
           </div>
         </div>
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-4">🔮 통합 시나리오</h2>
-        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-6">
-          <h3 className="font-semibold mb-4">온톨로지 + LLM + RAG의 완벽한 조화</h3>
+        <h2 className="text-2xl font-bold mb-4">📊 학습 분석 대시보드</h2>
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6">
+          <h3 className="font-semibold mb-4">실시간 학습 인사이트</h3>
           
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
-            <h4 className="font-bold text-indigo-600 dark:text-indigo-400 mb-3">지능형 Q&A 시스템</h4>
-            <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
-              <div className="text-green-600 dark:text-green-400">// 통합 쿼리 파이프라인</div>
-              <div>CALL {`{`}</div>
-              <div>  // 1. 온톨로지에서 개념 확인</div>
-              <div>  MATCH (concept:Concept)</div>
-              <div>  WHERE concept.label CONTAINS $query</div>
-              <div>  OPTIONAL MATCH (concept)-[:RELATED_TO]-(related)</div>
-              <div>  WITH collect(DISTINCT related.label) AS concepts</div>
-              <div>  </div>
-              <div>  // 2. RAG로 관련 문서 검색</div>
-              <div>  CALL db.index.vector.queryNodes(</div>
-              <div>    'doc_embeddings', 5, $query_embedding</div>
-              <div>  ) YIELD node AS doc, score</div>
-              <div>  </div>
-              <div>  // 3. LLM 대화 히스토리 참조</div>
-              <div>  MATCH (session:ChatSession)-[:HAS_MESSAGE]->(m)</div>
-              <div>  WHERE session.userId = $userId</div>
-              <div>  WITH concepts, collect(doc) AS docs, </div>
-              <div>       collect(m) AS history</div>
-              <div>  </div>
-              <div>  // 4. 통합 컨텍스트 생성</div>
-              <div>  RETURN {</div>
-              <div>    ontology: concepts,</div>
-              <div>    documents: [d IN docs | d.content],</div>
-              <div>    history: [h IN history | h.content]</div>
-              <div>  } AS context</div>
-              <div>{`}`}</div>
+          <div className="grid md:grid-cols-3 gap-4 mb-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+              <h4 className="font-bold text-purple-600 dark:text-purple-400 mb-3">개인 통계</h4>
+              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
+                <div className="text-green-600 dark:text-green-400">// 학습 현황</div>
+                <div>MATCH (me:Learner {id: $userId})</div>
+                <div>MATCH (me)-[:COMPLETED]->(m:Module)</div>
+                <div>RETURN COUNT(m) AS completed,</div>
+                <div>  SUM(m.credits) AS total_credits,</div>
+                <div>  COLLECT(DISTINCT m.domain) AS domains</div>
+              </div>
+            </div>
+            
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+              <h4 className="font-bold text-pink-600 dark:text-pink-400 mb-3">커뮤니티 랭킹</h4>
+              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
+                <div className="text-green-600 dark:text-green-400">// 상위 학습자</div>
+                <div>MATCH (l:Learner)-[:COMPLETED]->(m)</div>
+                <div>WITH l, COUNT(m) AS modules,</div>
+                <div>     AVG(m.difficulty) AS avg_diff</div>
+                <div>RETURN l.name, modules,</div>
+                <div>  modules * avg_diff AS score</div>
+                <div>ORDER BY score DESC LIMIT 10</div>
+              </div>
+            </div>
+            
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+              <h4 className="font-bold text-indigo-600 dark:text-indigo-400 mb-3">트렌드 분석</h4>
+              <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono">
+                <div className="text-green-600 dark:text-green-400">// 인기 모듈</div>
+                <div>MATCH (m:Module)<-[r:STUDYING]-()</div>
+                <div>WHERE r.timestamp > </div>
+                <div>  datetime() - duration('P7D')</div>
+                <div>RETURN m.name,</div>
+                <div>  COUNT(r) AS weekly_learners</div>
+                <div>ORDER BY weekly_learners DESC</div>
+              </div>
             </div>
           </div>
 
-          <div className="bg-indigo-100 dark:bg-indigo-900/30 rounded-lg p-4">
-            <h4 className="font-semibold text-indigo-800 dark:text-indigo-200 mb-2">✨ 통합의 시너지 효과</h4>
-            <div className="text-sm text-indigo-800 dark:text-indigo-300 space-y-1">
-              <div>• <strong>정확성:</strong> 온톨로지로 검증된 팩트 기반 응답</div>
-              <div>• <strong>맥락성:</strong> RAG로 최신 정보 반영</div>
-              <div>• <strong>개인화:</strong> LLM 대화 히스토리 활용</div>
-              <div>• <strong>확장성:</strong> 그래프 구조로 무한 확장 가능</div>
+          <div className="bg-purple-100 dark:bg-purple-900/30 rounded-lg p-4">
+            <h4 className="font-semibold text-purple-800 dark:text-purple-200 mb-2">📈 분석 가능 지표</h4>
+            <div className="grid md:grid-cols-2 gap-4 text-sm text-purple-800 dark:text-purple-300">
+              <ul className="space-y-1">
+                <li>• 학습 속도 및 패턴 분석</li>
+                <li>• 강점/약점 도메인 파악</li>
+                <li>• 최적 학습 시간대 분석</li>
+              </ul>
+              <ul className="space-y-1">
+                <li>• 동료 학습자 비교 분석</li>
+                <li>• 목표 달성 예측</li>
+                <li>• 학습 효율성 점수</li>
+              </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-bold mb-4">🛠️ KSS 통합 실습</h2>
+        <div className="bg-gradient-to-r from-gray-50 to-slate-50 dark:from-gray-900/20 dark:to-slate-900/20 rounded-xl p-6">
+          <h3 className="font-semibold mb-4">직접 구현해보는 KSS 지식 그래프</h3>
+          
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
+            <h4 className="font-bold text-gray-700 dark:text-gray-300 mb-3">전체 도메인 임포트</h4>
+            <div className="bg-gray-100 dark:bg-gray-700 rounded p-3 text-sm font-mono overflow-x-auto">
+              <div className="text-green-600 dark:text-green-400">// KSS 전체 구조 생성</div>
+              <div>CREATE</div>
+              <div>// 도메인 생성</div>
+              <div>(ai:Domain {name: 'AI/ML', color: '#3B82F6'}),</div>
+              <div>(data:Domain {name: 'Data Science', color: '#10B981'}),</div>
+              <div>(blockchain:Domain {name: 'Blockchain', color: '#F59E0B'}),</div>
+              <div>(quantum:Domain {name: 'Quantum Computing', color: '#8B5CF6'}),</div>
+              <div></div>
+              <div>// 모듈 생성</div>
+              <div>(dl:Module {name: 'Deep Learning', domain: 'AI/ML', difficulty: 3}),</div>
+              <div>(ml:Module {name: 'Machine Learning', domain: 'AI/ML', difficulty: 2}),</div>
+              <div>(stats:Module {name: 'Statistics', domain: 'Data Science', difficulty: 1}),</div>
+              <div>(smart:Module {name: 'Smart Contracts', domain: 'Blockchain', difficulty: 2}),</div>
+              <div></div>
+              <div>// 관계 생성</div>
+              <div>(ai)-[:CONTAINS]->(dl),</div>
+              <div>(ai)-[:CONTAINS]->(ml),</div>
+              <div>(data)-[:CONTAINS]->(stats),</div>
+              <div>(blockchain)-[:CONTAINS]->(smart),</div>
+              <div>(dl)-[:REQUIRES]->(ml),</div>
+              <div>(ml)-[:REQUIRES]->(stats)</div>
+            </div>
+          </div>
+
+          <div className="bg-slate-100 dark:bg-slate-900/30 rounded-lg p-4">
+            <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-2">💡 실습 과제</h4>
+            <ol className="text-sm text-slate-800 dark:text-slate-300 space-y-2">
+              <li>1. 학습자 프로필과 진도 데이터 추가</li>
+              <li>2. 도메인 간 연결 관계 탐색</li>
+              <li>3. 개인화 추천 쿼리 작성</li>
+              <li>4. 학습 네트워크 시각화</li>
+            </ol>
           </div>
         </div>
       </section>
@@ -284,23 +285,23 @@ export default function Chapter6() {
           <ul className="space-y-3 text-lg">
             <li className="flex items-start gap-2">
               <span className="text-2xl">✅</span>
-              <span><strong>온톨로지 통합:</strong> RDF/OWL을 Neo4j 프로퍼티 그래프로 변환</span>
+              <span><strong>통합 아키텍처:</strong> 모든 KSS 도메인을 하나의 그래프로 연결</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-2xl">✅</span>
-              <span><strong>LLM 연동:</strong> 대화 히스토리와 임베딩 벡터 관리</span>
+              <span><strong>추천 시스템:</strong> 협업 필터링과 그래프 알고리즘 결합</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-2xl">✅</span>
-              <span><strong>RAG 구축:</strong> 그래프 기반 검색 증강 생성 시스템</span>
+              <span><strong>학습 분석:</strong> 실시간 인사이트와 예측 모델</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-2xl">✅</span>
-              <span><strong>통합 아키텍처:</strong> 세 기술의 시너지로 지능형 시스템 구현</span>
+              <span><strong>실전 활용:</strong> KSS 플랫폼에 즉시 적용 가능한 그래프 모델</span>
             </li>
           </ul>
         </div>
       </section>
     </div>
-  )
+  );
 }
