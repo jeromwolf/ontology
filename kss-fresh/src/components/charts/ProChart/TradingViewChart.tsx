@@ -13,6 +13,7 @@ interface TradingViewChartProps {
     ma60?: boolean;
     bollinger?: boolean;
   };
+  previousClose?: number;
   onCrosshairMove?: (price: number | null, time: string | null) => void;
 }
 
@@ -21,6 +22,7 @@ export default function TradingViewChart({
   height = 400,
   showVolume = true,
   indicators = {},
+  previousClose,
   onCrosshairMove
 }: TradingViewChartProps) {
   const chartRef = useRef<HTMLCanvasElement>(null);
@@ -39,7 +41,7 @@ export default function TradingViewChart({
     ctx.scale(devicePixelRatio, devicePixelRatio);
 
     // 차트 영역 계산
-    const padding = 40;
+    const padding = 80; // Y축 레이블 공간 확보
     const chartWidth = rect.width - padding * 2;
     const chartHeight = rect.height - padding * 2;
 
@@ -76,7 +78,14 @@ export default function TradingViewChart({
       ctx.fillStyle = '#64748b';
       ctx.font = '12px monospace';
       ctx.textAlign = 'right';
-      ctx.fillText(price.toLocaleString(), padding - 5, y + 4);
+      
+      // 미국 주식인지 확인 (가격이 1000보다 작으면 미국 주식으로 간주)
+      const isUSStock = maxPrice < 1000;
+      const formattedPrice = isUSStock 
+        ? `$${price.toFixed(2)}` 
+        : `₩${Math.round(price).toLocaleString()}`;
+      
+      ctx.fillText(formattedPrice, padding - 5, y + 4);
     }
 
     // 수직선 (시간)
@@ -179,18 +188,28 @@ export default function TradingViewChart({
     let legendY = 25;
     if (data.length > 0) {
       const lastCandle = data[data.length - 1];
-      ctx.fillText(`현재가: ₩${lastCandle.close.toLocaleString()}`, 10, legendY);
+      const isUSStock = maxPrice < 1000;
+      const priceFormat = isUSStock 
+        ? `$${lastCandle.close.toFixed(2)}` 
+        : `₩${Math.round(lastCandle.close).toLocaleString()}`;
+      
+      ctx.fillText(`현재가: ${priceFormat}`, 10, legendY);
       legendY += 20;
       
-      const change = lastCandle.close - lastCandle.open;
-      const changePercent = ((change / lastCandle.open) * 100).toFixed(2);
+      // 전일 종가 기준으로 계산
+      const basePrice = previousClose || data[0].close;
+      const change = lastCandle.close - basePrice;
+      const changePercent = ((change / basePrice) * 100).toFixed(2);
       const changeColor = change >= 0 ? '#10b981' : '#ef4444';
       
       ctx.fillStyle = changeColor;
-      ctx.fillText(`${change >= 0 ? '+' : ''}${change.toLocaleString()} (${changePercent}%)`, 10, legendY);
+      const changeFormat = isUSStock 
+        ? `${change >= 0 ? '+' : ''}$${Math.abs(change).toFixed(2)}` 
+        : `${change >= 0 ? '+' : ''}${Math.round(change).toLocaleString()}`;
+      ctx.fillText(`${changeFormat} (${changePercent}%)`, 10, legendY);
     }
 
-  }, [data, height, showVolume, indicators]);
+  }, [data, height, showVolume, indicators, previousClose]);
 
   return (
     <div className="relative w-full bg-gray-950 rounded-lg overflow-hidden" style={{ height }}>
@@ -206,7 +225,7 @@ export default function TradingViewChart({
           const y = e.clientY - rect.top;
           
           // 간단한 크로스헤어 계산
-          const padding = 40;
+          const padding = 80; // Y축 레이블 공간과 동일하게
           const chartWidth = rect.width - padding * 2;
           const chartHeight = rect.height - padding * 2;
           

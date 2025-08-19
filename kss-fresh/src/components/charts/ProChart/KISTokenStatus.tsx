@@ -192,19 +192,50 @@ export default function KISTokenStatus() {
         </div>
       )}
 
-      {!process.env.NEXT_PUBLIC_KIS_APP_KEY || !process.env.NEXT_PUBLIC_KIS_APP_SECRET ? (
-        <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
-          <div className="flex items-start gap-2">
-            <AlertTriangle className="w-4 h-4 text-blue-400 mt-0.5" />
-            <div>
-              <p className="text-sm text-blue-200 font-medium">데모 모드</p>
-              <p className="text-xs text-blue-300 mt-1">
-                KIS API 키가 설정되지 않아 데모 데이터로 동작합니다. 실제 데이터를 보려면 환경변수를 설정하세요.
-              </p>
+      {/* 거래시간 외 안내 추가 */}
+      {(() => {
+        const now = new Date();
+        const hour = now.getHours();
+        const day = now.getDay();
+        const isMarketClosed = day === 0 || day === 6 || hour < 9 || hour >= 15.5;
+        
+        if (isMarketClosed && process.env.NEXT_PUBLIC_KIS_APP_KEY && process.env.NEXT_PUBLIC_KIS_APP_SECRET) {
+          return (
+            <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-3">
+              <div className="flex items-start gap-2">
+                <Clock className="w-4 h-4 text-orange-400 mt-0.5" />
+                <div>
+                  <p className="text-sm text-orange-200 font-medium">거래시간 외</p>
+                  <p className="text-xs text-orange-300 mt-1">
+                    현재는 주식시장 거래시간(평일 09:00-15:30)이 아닙니다. 
+                    과거 데이터는 조회 가능하지만 실시간 데이터는 제한됩니다.
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      ) : !tokenStatus.hasToken && (
+          );
+        }
+        
+        if (!process.env.NEXT_PUBLIC_KIS_APP_KEY || !process.env.NEXT_PUBLIC_KIS_APP_SECRET) {
+          return (
+            <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="w-4 h-4 text-blue-400 mt-0.5" />
+                <div>
+                  <p className="text-sm text-blue-200 font-medium">데모 모드</p>
+                  <p className="text-xs text-blue-300 mt-1">
+                    KIS API 키가 설정되지 않아 데모 데이터로 동작합니다. 실제 데이터를 보려면 환경변수를 설정하세요.
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        }
+        
+        return null;
+      })()}
+      
+      {!tokenStatus.hasToken && process.env.NEXT_PUBLIC_KIS_APP_KEY && process.env.NEXT_PUBLIC_KIS_APP_SECRET && (
         <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-3">
           <div className="flex items-start gap-2">
             <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5" />

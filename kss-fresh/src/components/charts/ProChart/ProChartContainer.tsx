@@ -29,6 +29,7 @@ interface ProChartContainerProps {
   children: ReactNode;
   headerContent?: ReactNode;
   sidebarContent?: ReactNode;
+  rightSidebarContent?: ReactNode;
   bottomContent?: ReactNode;
 }
 
@@ -37,6 +38,7 @@ export default function ProChartContainer({
   children,
   headerContent,
   sidebarContent,
+  rightSidebarContent,
   bottomContent
 }: ProChartContainerProps) {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -149,6 +151,13 @@ export default function ProChartContainer({
             </div>
           )}
         </div>
+        
+        {/* 오른쪽 사이드바 (옵션) */}
+        {rightSidebarContent && (
+          <div className="w-64 bg-gray-900/30 border-l border-gray-800 overflow-y-auto">
+            {rightSidebarContent}
+          </div>
+        )}
       </div>
 
       {/* 설정 패널 */}

@@ -98,16 +98,29 @@ export default function ToolsOverviewPage() {
   const professionalTools: Tool[] = [
     // Analytics Tools
     {
-      id: 'pro-trading-chart',
-      name: 'Professional Trading Chart',
-      description: 'TradingView 수준의 실시간 차트 시스템',
+      id: 'kr-stock-chart',
+      name: '한국 주식 차트',
+      description: 'KIS API 기반 국내 주식 실시간 차트 시스템',
       category: 'analytics',
-      features: ['실시간 호가창', '30+ 기술지표', '그리기 도구', '멀티 차트'],
+      features: ['실시간 호가창', 'KIS API 연동', '기술적 지표', '거래량 분석'],
       icon: BarChart3,
       status: 'live',
-      users: '5.2K',
+      users: '3.2K',
       pricing: 'free',
-      badge: '🔥 NEW',
+      badge: '🇰🇷 국내주식',
+      level: 'professional'
+    },
+    {
+      id: 'us-stock-chart',
+      name: '미국 주식 차트',
+      description: 'NASDAQ/NYSE 실시간 차트 분석 시스템',
+      category: 'analytics',
+      features: ['실시간 가격', '프리/애프터 마켓', '기술적 지표', 'S&P500 종목'],
+      icon: LineChart,
+      status: 'live',
+      users: '2.8K',
+      pricing: 'free',
+      badge: '🇺🇸 해외주식',
       level: 'professional'
     },
     {

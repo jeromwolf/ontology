@@ -13,6 +13,7 @@ interface OrderBookProps {
   onPriceClick?: (price: number, type: 'bid' | 'ask') => void;
   depth?: number;
   realtime?: boolean;
+  market?: 'KR' | 'US';
 }
 
 export default function OrderBook({
@@ -23,7 +24,8 @@ export default function OrderBook({
   volume24h,
   onPriceClick,
   depth = 10,
-  realtime = true
+  realtime = true,
+  market = 'KR'
 }: OrderBookProps) {
   const [marketDepth, setMarketDepth] = useState<MarketDepth>({
     bids: [],
@@ -45,14 +47,18 @@ export default function OrderBook({
       const bids: OrderBookEntry[] = [];
       const asks: OrderBookEntry[] = [];
       
+      // 가격 단위 설정 (미국 주식은 0.01달러, 한국 주식은 10원)
+      const priceStep = market === 'US' ? 0.01 : 10;
+      const quantityRange = market === 'US' ? [10, 1000] : [1000, 10000];
+      
       // 매수 호가
       let bidTotal = 0;
       for (let i = 0; i < depth; i++) {
-        const price = lastPrice - (i + 1) * 10;
-        const quantity = Math.floor(Math.random() * 10000) + 1000;
+        const price = lastPrice - (i + 1) * priceStep;
+        const quantity = Math.floor(Math.random() * (quantityRange[1] - quantityRange[0])) + quantityRange[0];
         bidTotal += quantity;
         bids.push({
-          price,
+          price: Math.round(price * 100) / 100,
           quantity,
           total: bidTotal,
           percentage: Math.random() * 100
@@ -62,11 +68,11 @@ export default function OrderBook({
       // 매도 호가
       let askTotal = 0;
       for (let i = 0; i < depth; i++) {
-        const price = lastPrice + (depth - i) * 10;
-        const quantity = Math.floor(Math.random() * 10000) + 1000;
+        const price = lastPrice + (depth - i) * priceStep;
+        const quantity = Math.floor(Math.random() * (quantityRange[1] - quantityRange[0])) + quantityRange[0];
         askTotal += quantity;
         asks.unshift({
-          price,
+          price: Math.round(price * 100) / 100,
           quantity,
           total: askTotal,
           percentage: Math.random() * 100
@@ -87,16 +93,19 @@ export default function OrderBook({
       const interval = setInterval(generateOrderBook, 500);
       return () => clearInterval(interval);
     }
-  }, [lastPrice, depth, realtime]);
+  }, [lastPrice, depth, realtime, market]);
 
   // 최근 체결 시뮬레이션
   useEffect(() => {
     if (!realtime) return;
 
+    const priceVariation = market === 'US' ? 0.5 : 20;
+    const quantityRange = market === 'US' ? [10, 500] : [100, 1000];
+
     const interval = setInterval(() => {
       const newTrade = {
-        price: lastPrice + (Math.random() - 0.5) * 20,
-        quantity: Math.floor(Math.random() * 1000) + 100,
+        price: lastPrice + (Math.random() - 0.5) * priceVariation,
+        quantity: Math.floor(Math.random() * (quantityRange[1] - quantityRange[0])) + quantityRange[0],
         type: Math.random() > 0.5 ? 'buy' as const : 'sell' as const,
         time: new Date()
       };
@@ -105,53 +114,88 @@ export default function OrderBook({
     }, Math.random() * 2000 + 500);
 
     return () => clearInterval(interval);
-  }, [lastPrice, realtime]);
+  }, [lastPrice, realtime, market]);
 
   return (
     <div className="h-full flex flex-col bg-gray-900/50">
       {/* 헤더 */}
       <div className="p-4 border-b border-gray-700">
-        <h3 className="text-sm font-semibold mb-2">호가창</h3>
-        <div className="flex items-center gap-2 text-xs">
-          <button className="flex-1 py-1 bg-gray-800 rounded hover:bg-gray-700">호가</button>
-          <button className="flex-1 py-1 bg-gray-800 rounded hover:bg-gray-700">체결</button>
-          <button className="flex-1 py-1 bg-gray-800 rounded hover:bg-gray-700">일별</button>
+        <h3 className="text-sm font-semibold mb-2">
+          {market === 'US' ? '주식 정보' : '호가 시뮬레이션 (데모)'}
+        </h3>
+        <div className="text-xs text-gray-400">
+          {market === 'US' ? 'API 제공 데이터' : '실제 호가가 아닌 시뮬레이션입니다'}
         </div>
       </div>
       
-      {/* 호가 테이블 */}
+      {/* 콘텐츠 영역 */}
       <div className="flex-1 overflow-hidden">
-        <div className="h-full overflow-y-auto">
-          {/* 매도 호가 */}
-          <div className="space-y-px">
-            {marketDepth.asks.map((ask, i) => (
-              <div
-                key={`ask-${i}`}
-                className="flex items-center bg-red-900/20 hover:bg-red-900/30 transition-colors cursor-pointer"
-                onClick={() => onPriceClick?.(ask.price, 'ask')}
-              >
-                <div className="flex-1 px-2 py-1 text-right">
-                  <div className="text-xs text-gray-400">{ask.quantity.toLocaleString()}</div>
-                </div>
-                <div className="px-3 py-1 text-red-400 font-medium text-sm">
-                  ₩{ask.price.toLocaleString()}
-                </div>
-                <div className="w-20 px-2 py-1">
-                  <div 
-                    className="h-4 bg-red-500/30 rounded-sm transition-all duration-300"
-                    style={{ width: `${ask.percentage}%` }}
-                  />
-                </div>
+        {market === 'US' ? (
+          // 미국 주식 정보
+          <div className="p-4 space-y-4">
+            {/* 주요 지표 */}
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div className="bg-gray-800/50 rounded p-2">
+                <div className="text-gray-400 text-xs">52주 최고</div>
+                <div className="font-medium">-</div>
               </div>
-            ))}
+              <div className="bg-gray-800/50 rounded p-2">
+                <div className="text-gray-400 text-xs">52주 최저</div>
+                <div className="font-medium">-</div>
+              </div>
+              <div className="bg-gray-800/50 rounded p-2">
+                <div className="text-gray-400 text-xs">시가총액</div>
+                <div className="font-medium">-</div>
+              </div>
+              <div className="bg-gray-800/50 rounded p-2">
+                <div className="text-gray-400 text-xs">PER</div>
+                <div className="font-medium">-</div>
+              </div>
+            </div>
+            
+            {/* 차트 업데이트 정보 */}
+            <div className="bg-blue-900/20 border border-blue-500/30 rounded p-3">
+              <div className="text-xs text-blue-300">
+                <div className="font-medium mb-1">데이터 업데이트</div>
+                <div>• 차트: 실시간 (2-3초 간격)</div>
+                <div>• 가격: API 제공 데이터</div>
+                <div>• 지연: 15분 (무료 플랜)</div>
+              </div>
+            </div>
           </div>
+        ) : (
+          // 한국 주식 호가창
+          <div className="h-full overflow-y-auto">
+            {/* 매도 호가 */}
+            <div className="space-y-px">
+              {marketDepth.asks.map((ask, i) => (
+                <div
+                  key={`ask-${i}`}
+                  className="flex items-center bg-red-900/20 hover:bg-red-900/30 transition-colors cursor-pointer"
+                  onClick={() => onPriceClick?.(ask.price, 'ask')}
+                >
+                  <div className="flex-1 px-2 py-1 text-right">
+                    <div className="text-xs text-gray-400">{ask.quantity.toLocaleString()}</div>
+                  </div>
+                  <div className="px-3 py-1 text-red-400 font-medium text-sm">
+                    ₩{ask.price.toLocaleString()}
+                  </div>
+                  <div className="w-20 px-2 py-1">
+                    <div 
+                      className="h-4 bg-red-500/30 rounded-sm transition-all duration-300"
+                      style={{ width: `${ask.percentage}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           
           {/* 현재가 */}
           <div className="bg-gray-800 p-3 border-y border-gray-700 sticky top-0 z-10">
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-xl font-bold">
-                  ₩{lastPrice.toLocaleString()}
+                  {market === 'US' ? `$${lastPrice.toFixed(2)}` : `₩${lastPrice.toLocaleString()}`}
                 </div>
                 <div className={`flex items-center gap-1 text-sm ${
                   priceChange >= 0 ? 'text-green-400' : 'text-red-400'
@@ -166,7 +210,11 @@ export default function OrderBook({
               </div>
               <div className="text-right text-sm">
                 <div className="text-gray-400">거래량</div>
-                <div className="font-medium">{(volume24h / 1000000).toFixed(1)}M</div>
+                <div className="font-medium">{
+                  market === 'US' 
+                    ? volume24h.toLocaleString() 
+                    : `${(volume24h / 1000000).toFixed(1)}M`
+                }</div>
               </div>
             </div>
           </div>
@@ -186,7 +234,7 @@ export default function OrderBook({
                   />
                 </div>
                 <div className="px-3 py-1 text-blue-400 font-medium text-sm">
-                  ₩{bid.price.toLocaleString()}
+                  {market === 'US' ? `$${bid.price.toFixed(2)}` : `₩${bid.price.toLocaleString()}`}
                 </div>
                 <div className="flex-1 px-2 py-1">
                   <div className="text-xs text-gray-400">{bid.quantity.toLocaleString()}</div>
@@ -194,7 +242,8 @@ export default function OrderBook({
               </div>
             ))}
           </div>
-        </div>
+          </div>
+        )}
       </div>
       
       {/* 주문 입력 */}

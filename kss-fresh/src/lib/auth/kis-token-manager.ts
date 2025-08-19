@@ -90,7 +90,12 @@ export class KISTokenManager {
    * KIS API에서 새 토큰 요청
    */
   private async fetchNewToken(): Promise<StoredToken> {
-    if (!this.APP_KEY || !this.APP_SECRET) {
+    // 클라이언트 사이드에서 환경변수 체크
+    const hasKeys = typeof window !== 'undefined' && 
+                   process.env.NEXT_PUBLIC_KIS_APP_KEY && 
+                   process.env.NEXT_PUBLIC_KIS_APP_SECRET;
+    
+    if (!hasKeys) {
       console.warn('KIS API 인증 정보가 설정되지 않았습니다. 데모 모드로 전환합니다.');
       // 데모용 가짜 토큰 반환
       const now = Date.now();
@@ -101,36 +106,38 @@ export class KISTokenManager {
       };
     }
     
-    const response = await fetch(`${this.API_BASE}/oauth2/tokenP`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify({
-        grant_type: 'client_credentials',
-        appkey: this.APP_KEY,
-        appsecret: this.APP_SECRET,
-      }),
-    });
-    
-    if (!response.ok) {
-      throw new Error(`토큰 요청 실패: ${response.status} ${response.statusText}`);
+    try {
+      // API Route를 통해 서버사이드에서 토큰 요청
+      const response = await fetch('/api/kis/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        console.error('토큰 요청 실패:', data);
+        throw new Error(data.error || `토큰 요청 실패: ${response.status}`);
+      }
+      
+      if (!data.access_token) {
+        throw new Error('유효하지 않은 토큰 응답');
+      }
+      
+      const now = Date.now();
+      const expiresIn = data.expires_in * 1000; // 초를 밀리초로 변환
+      
+      return {
+        access_token: data.access_token,
+        expires_at: now + expiresIn,
+        created_at: now,
+      };
+    } catch (error) {
+      console.error('토큰 요청 중 오류:', error);
+      throw error;
     }
-    
-    const tokenData: KISTokenResponse = await response.json();
-    
-    if (!tokenData.access_token) {
-      throw new Error('유효하지 않은 토큰 응답');
-    }
-    
-    const now = Date.now();
-    const expiresIn = tokenData.expires_in * 1000; // 초를 밀리초로 변환
-    
-    return {
-      access_token: tokenData.access_token,
-      expires_at: now + expiresIn,
-      created_at: now,
-    };
   }
   
   /**
