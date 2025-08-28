@@ -604,6 +604,54 @@ npx prisma migrate dev --name [migration-name]
 - Strategy: `/prisma/schema-strategy.md`
 - Backup: `/prisma/schema.backup.prisma`
 
+### Session 34 Status (2025-08-28) - RAG 모듈 메인 화면 개선
+
+**🎯 핵심 성과 - 단계별 학습 경로 시스템 구축**
+
+#### **1. RAG 모듈 메인 화면 전면 개편 ✅**
+- **3단계 학습 경로**: Step 1(초급) → Step 2(중급) → Step 3(고급)
+- **단계별 잠금 시스템**: 이전 단계 완료 후 다음 단계 해제
+- **시뮬레이터 직접 접근**: 6개 시뮬레이터 그리드 뷰
+- **학습 경로별 챕터 표시**: 각 챕터가 속한 단계를 뱃지로 표시
+
+#### **2. 학습 경로 구조**
+```
+Step 1: 초급 (10시간)
+├── LLM의 한계점
+├── RAG란 무엇인가
+├── 기본 파이프라인 이해
+└── 간단한 예제 실습
+
+Step 2: 중급 (15시간)
+├── 임베딩 모델 이해
+├── 벡터 데이터베이스
+├── 검색 알고리즘
+└── 성능 최적화
+
+Step 3: 고급 (20시간)
+├── GraphRAG 아키텍처
+├── 하이브리드 검색
+├── 프롬프트 엔지니어링
+└── 대규모 시스템 설계
+```
+
+#### **3. 시뮬레이터 매핑**
+- **초급**: Document Uploader, Chunking Demo
+- **중급**: Embedding Visualizer, Vector Search Demo
+- **고급**: GraphRAG Explorer, RAG Playground
+
+#### **4. UI/UX 개선사항**
+- 선택된 경로 하이라이트 및 상세 정보 표시
+- 잠금된 경로 시각적 표시 (Lock 아이콘)
+- 진행률 표시 및 커뮤니티 섹션 추가
+- 반응형 그리드 레이아웃 적용
+
+#### **🎯 다음 작업**
+1. RAG 초급 커리큘럼 상세 정리
+2. RAG 중급 커리큘럼 상세 정리
+3. RAG 고급 커리큘럼 상세 정리
+4. 세부적 커리큘럼 내용 정리
+
 ### Session 33 Status (2025-08-19) - 🚀 Professional Trading Chart & KIS API 통합
 
 **🎯 핵심 성과 - "시뮬레이터를 리얼처럼" 목표 달성!**

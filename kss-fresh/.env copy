@@ -1,0 +1,149 @@
+# ============================================
+# Database Configuration
+# ============================================
+# For production, use PostgreSQL
+# Example: postgresql://user:password@localhost:5432/kss_db
+# For development, you can use SQLite
+# Example: file:./dev.db
+#DATABASE_URL="file:./dev.db"
+
+
+# Recommended for most uses
+DATABASE_URL=postgres://neondb_owner:npg_K26aTeOuMDZq@ep-icy-credit-a1g04jau-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+
+# For uses requiring a connection without pgbouncer
+DATABASE_URL_UNPOOLED=postgresql://neondb_owner:npg_K26aTeOuMDZq@ep-icy-credit-a1g04jau.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+
+# Parameters for constructing your own connection string
+PGHOST=ep-icy-credit-a1g04jau-pooler.ap-southeast-1.aws.neon.tech
+PGHOST_UNPOOLED=ep-icy-credit-a1g04jau.ap-southeast-1.aws.neon.tech
+PGUSER=neondb_owner
+PGDATABASE=neondb
+PGPASSWORD=npg_K26aTeOuMDZq
+
+# Parameters for Vercel Postgres Templates
+POSTGRES_URL=postgres://neondb_owner:npg_K26aTeOuMDZq@ep-icy-credit-a1g04jau-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+POSTGRES_URL_NON_POOLING=postgres://neondb_owner:npg_K26aTeOuMDZq@ep-icy-credit-a1g04jau.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+POSTGRES_USER=neondb_owner
+POSTGRES_HOST=ep-icy-credit-a1g04jau-pooler.ap-southeast-1.aws.neon.tech
+POSTGRES_PASSWORD=npg_K26aTeOuMDZq
+POSTGRES_DATABASE=neondb
+POSTGRES_URL_NO_SSL=postgres://neondb_owner:npg_K26aTeOuMDZq@ep-icy-credit-a1g04jau-pooler.ap-southeast-1.aws.neon.tech/neondb
+POSTGRES_PRISMA_URL=postgres://neondb_owner:npg_K26aTeOuMDZq@ep-icy-credit-a1g04jau-pooler.ap-southeast-1.aws.neon.tech/neondb?connect_timeout=15&sslmode=require
+
+# Neon Auth environment variables for Next.js
+NEXT_PUBLIC_STACK_PROJECT_ID=1ce6702f-1f18-46a8-9dea-57f72181e758
+NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY=pck_6hyj2hb2exzzmtx830wb97mdam2c23tnq2hpvab9yzvag
+STACK_SECRET_SERVER_KEY=ssk_6s6v6tfwgh0m0jd7mc9kahhe4jjakr6c3xhfsvex9h14r
+
+
+
+# ============================================
+# NextAuth Configuration
+# ============================================
+# Generate a secret key: openssl rand -base64 32
+NEXTAUTH_SECRET="PPkSXU6jP9YQZIXBkPimvWVL4+FYjYuAUoTNA4uz+8s="
+NEXTAUTH_URL="http://localhost:3002"
+
+# ============================================
+# OAuth Providers (Optional)
+# ============================================
+# Google OAuth
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+
+# GitHub OAuth
+GITHUB_CLIENT_ID=""
+GITHUB_CLIENT_SECRET=""
+
+# Kakao OAuth
+KAKAO_CLIENT_ID=""
+KAKAO_CLIENT_SECRET=""
+
+# Naver OAuth
+NAVER_CLIENT_ID=""
+NAVER_CLIENT_SECRET=""
+
+# ============================================
+# Email Service (For Magic Links - Optional)
+# ============================================
+EMAIL_SERVER_HOST=""
+EMAIL_SERVER_PORT=""
+EMAIL_SERVER_USER=""
+EMAIL_SERVER_PASSWORD=""
+EMAIL_FROM="noreply@kss-platform.com"
+
+# ============================================
+# Redis Configuration (Optional - For Session Store)
+# ============================================
+REDIS_URL="redis://localhost:6379"
+
+# ============================================
+# Application Settings
+# ============================================
+# Environment: development, staging, production
+NODE_ENV="development"
+
+# ============================================
+# API Keys (Existing)
+# ============================================
+# News API
+NEWS_API_KEY=864ea048148544f1b8f5e3c51c2ea560
+
+# OpenAI API (for content analysis)
+OPENAI_API_KEY=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
+
+
+# API Keys
+UNSPLASH_ACCESS_KEY=8-LArex5a5jUu0v3HVvO76NISaRRbQQfXdrw-gIy_hg
+AZURE_SPEECH_KEY=your_azure_speech_key
+AZURE_SPEECH_REGION=your_azure_region
+YOUTUBE_API_KEY=your_youtube_api_key
+
+
+# Google Cloud TTS (existing)
+GOOGLE_APPLICATION_CREDENTIALS=""
+GOOGLE_CLOUD_PROJECT=""
+
+
+# Alpha Vantage API (무료)
+ALPHA_VANTAGE_API_KEY=7JD5XP9H2T8WZBKQ
+
+TWELVE_DATA_API_KEY=018d00040c594ca38859f098871cc4e5
+
+DEEPL_API_KEY=66f4cbfa-b451-45e7-b76a-c33b7716b2b7:fx
+
+DART_API_KEY=073db823200a3a60278166c45c3cf01fa3a3924b
+
+# ============================================
+# Feature Flags
+# ============================================
+# Enable/disable specific features
+ENABLE_OAUTH="true"
+ENABLE_EMAIL_VERIFICATION="false"
+ENABLE_2FA="false"
+
+# ============================================
+# Security Settings
+# ============================================
+# Rate limiting (requests per minute)
+RATE_LIMIT_PER_MINUTE="60"
+
+# Session settings (in days)
+SESSION_MAX_AGE="30"
+
+# Password requirements
+MIN_PASSWORD_LENGTH="8"
+REQUIRE_PASSWORD_COMPLEXITY="true"
+
+
+# 한국투자증권 홈페이지에서 API서비스 신청시 받은 Appkey, Appsecret 값 설정
+#APP_KEY="PSu1K7EUyXHxhBT3unVt1IuemgusXlthqRoZ"
+#APP_SECRET="xSN7GZ1W07waxi/lLZxM0rZoXUhbY7IxweKlZGyBh/66OKvLEe71w0UcJkSZkUmhB36DxeGJtfHC0DDmdgLFDsUuPyEKn3KHE8jCyZqGrFa2pC+z1mRzb0uFhtOJYjx00wm0EORbyTnB57zEE5kZYB2usRGlUc57tXIyjwdd9FAUvNCaMEY="
+
+
+
+NEXT_PUBLIC_KIS_APP_KEY="PSu1K7EUyXHxhBT3unVt1IuemgusXlthqRoZ"
+NEXT_PUBLIC_KIS_APP_SECRET="/0EzFTLCvtyEnb5n5+turDjxtPd89UuVtqgKs2vha52Qd7P39fTxWWuwDZ6L74anX+ZdeQHB2oWbnf/mvefSVU4az7GgpGF4no9lOiVhb8ZWEQkei8PGicNyLA1+hpUECWqf9pdWlExwCduMemO/lDv17JabBNZonsI55qPFYWpJQUyN8lQ="
+
+
