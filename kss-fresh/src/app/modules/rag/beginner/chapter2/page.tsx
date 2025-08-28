@@ -398,10 +398,10 @@ for i, chunk in enumerate(chunks[:3]):
           </Link>
           
           <Link
-            href="/modules/rag/beginner"
+            href="/modules/rag/beginner/chapter3"
             className="inline-flex items-center gap-2 bg-emerald-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-600 transition-colors"
           >
-            초급 과정으로
+            다음: 청킹 전략 이해
             <ArrowRight size={16} />
           </Link>
         </div>

@@ -233,7 +233,7 @@ export default function Chapter1Page() {
             href="/modules/rag/beginner/chapter2"
             className="inline-flex items-center gap-2 bg-emerald-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-600 transition-colors"
           >
-            다음: RAG란 무엇인가?
+            다음: 문서 처리와 청킹
             <ArrowRight size={16} />
           </Link>
         </div>

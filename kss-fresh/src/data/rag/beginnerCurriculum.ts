@@ -33,24 +33,6 @@ export const beginnerCurriculum: CurriculumItem[] = [
         title: 'Chapter 1: LLM의 한계점 이해하기',
         url: '/modules/rag/beginner/chapter1',
         duration: '30분'
-      },
-      {
-        type: 'simulator',
-        title: 'RAG 플레이그라운드 - 기본 체험',
-        url: '/modules/rag/simulators/rag-playground',
-        duration: '20분'
-      }
-    ],
-    quiz: [
-      {
-        question: 'RAG가 해결하는 LLM의 주요 문제는?',
-        options: [
-          '느린 응답 속도',
-          '할루시네이션과 최신 정보 부족',
-          '높은 비용',
-          '복잡한 설정'
-        ],
-        answer: 1
       }
     ]
   },
@@ -70,12 +52,6 @@ export const beginnerCurriculum: CurriculumItem[] = [
         title: 'Chapter 2: 문서 처리와 청킹',
         url: '/modules/rag/beginner/chapter2',
         duration: '45분'
-      },
-      {
-        type: 'simulator',
-        title: '문서 업로더 시뮬레이터',
-        url: '/modules/rag/simulators/document-uploader',
-        duration: '15분'
       }
     ]
   },
@@ -91,16 +67,16 @@ export const beginnerCurriculum: CurriculumItem[] = [
     ],
     resources: [
       {
+        type: 'chapter',
+        title: 'Chapter 3: 청킹 전략의 모든 것',
+        url: '/modules/rag/beginner/chapter3',
+        duration: '40분'
+      },
+      {
         type: 'simulator',
         title: '청킹 데모 - 5가지 전략 비교',
         url: '/modules/rag/simulators/chunking-demo',
         duration: '30분'
-      },
-      {
-        type: 'external',
-        title: 'LangChain 청킹 가이드',
-        url: 'https://python.langchain.com/docs/modules/data_connection/document_transformers/',
-        duration: '20분'
       }
     ]
   },
@@ -115,6 +91,12 @@ export const beginnerCurriculum: CurriculumItem[] = [
       '결과 확인 및 개선'
     ],
     resources: [
+      {
+        type: 'chapter',
+        title: 'Chapter 4: 첫 RAG 시스템 구축하기',
+        url: '/modules/rag/beginner/chapter4',
+        duration: '60분'
+      },
       {
         type: 'simulator',
         title: 'RAG 플레이그라운드 - 전체 파이프라인',

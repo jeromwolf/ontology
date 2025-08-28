@@ -15,6 +15,11 @@ export { default as MermaidTemplates, searchTemplates, TEMPLATES, CATEGORIES } f
 // 완성된 시뮬레이터 템플릿
 export { default as SpaceOptimizedSimulator } from './SpaceOptimizedSimulator'
 
+// 문서 처리 컴포넌트들
+export { default as PDFViewer, extractTextFromPDF } from './PDFViewer'
+export { default as PDFViewerWrapper, extractTextFromPDFWrapper } from './PDFViewerWrapper'
+export { default as DocumentViewer, getSupportedFileTypes, isFileSupported } from './DocumentViewer'
+
 // 타입 정의들
 export type { 
   ResponsiveCanvasProps, 

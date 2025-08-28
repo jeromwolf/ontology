@@ -14,8 +14,8 @@ export const advancedCurriculum: CurriculumItem[] = [
     resources: [
       {
         type: 'chapter',
-        title: 'Chapter 6: 고급 RAG 기법',
-        url: '/modules/rag/advanced-architectures',
+        title: 'Chapter 1: GraphRAG 아키텍처',
+        url: '/modules/rag/advanced/chapter1',
         duration: '60분'
       },
       {
@@ -37,6 +37,12 @@ export const advancedCurriculum: CurriculumItem[] = [
       'Answer synthesis'
     ],
     resources: [
+      {
+        type: 'chapter',
+        title: 'Chapter 2: Multi-hop Reasoning',
+        url: '/modules/rag/advanced/chapter2',
+        duration: '55분'
+      },
       {
         type: 'simulator',
         title: 'Multi-hop RAG 실습',
@@ -100,6 +106,12 @@ export const advancedCurriculum: CurriculumItem[] = [
       'Cost optimization'
     ],
     resources: [
+      {
+        type: 'chapter',
+        title: 'Chapter 3: 프로덕션 RAG at Scale',
+        url: '/modules/rag/advanced/chapter3',
+        duration: '70분'
+      },
       {
         type: 'simulator',
         title: '전체 RAG 파이프라인 구축',

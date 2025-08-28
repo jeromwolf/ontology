@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     const existingItem = await prisma.stock_PortfolioItem.findFirst({
       where: {
         portfolioId,
-        symbolId
+        stockId: symbolId
       }
     });
 
@@ -64,14 +64,14 @@ export async function POST(request: NextRequest) {
     if (existingItem) {
       // 평균 단가 계산
       const totalQuantity = existingItem.quantity + quantity;
-      const totalCost = (existingItem.quantity * existingItem.purchasePrice) + (quantity * purchasePrice);
+      const totalCost = (existingItem.quantity * existingItem.avgPrice) + (quantity * purchasePrice);
       const avgPrice = totalCost / totalQuantity;
 
       item = await prisma.stock_PortfolioItem.update({
         where: { id: existingItem.id },
         data: {
           quantity: totalQuantity,
-          purchasePrice: avgPrice,
+          avgPrice: avgPrice,
           currentPrice: purchasePrice // 최신 가격으로 업데이트
         }
       });
@@ -80,12 +80,10 @@ export async function POST(request: NextRequest) {
       item = await prisma.stock_PortfolioItem.create({
         data: {
           portfolioId,
-          symbolId,
+          stockId: symbolId,
           quantity,
-          purchasePrice,
-          currentPrice: purchasePrice,
-          purchaseDate: purchaseDate ? new Date(purchaseDate) : new Date(),
-          notes
+          avgPrice: purchasePrice,
+          currentPrice: purchasePrice
         }
       });
     }
@@ -94,13 +92,10 @@ export async function POST(request: NextRequest) {
     await prisma.stock_Transaction.create({
       data: {
         portfolioId,
-        symbolId,
-        type: 'BUY',
+        symbol: symbolId,
+        type: 'buy',
         quantity,
-        price: purchasePrice,
-        totalAmount: quantity * purchasePrice,
-        transactionDate: purchaseDate ? new Date(purchaseDate) : new Date(),
-        notes
+        price: purchasePrice
       }
     });
 
@@ -113,10 +108,8 @@ export async function POST(request: NextRequest) {
       return sum + (item.quantity * item.currentPrice);
     }, portfolio.cash);
 
-    await prisma.stock_Portfolio.update({
-      where: { id: portfolioId },
-      data: { totalValue }
-    });
+    // 현재 스키마에는 totalValue 필드가 없으므로 업데이트 생략
+    // totalValue 계산만 수행: ${totalValue}
 
     return NextResponse.json(item);
   } catch (error) {
@@ -168,8 +161,7 @@ export async function PUT(request: NextRequest) {
       where: { id },
       data: {
         quantity,
-        currentPrice,
-        notes
+        currentPrice
       }
     });
 
@@ -182,10 +174,7 @@ export async function PUT(request: NextRequest) {
       return sum + (item.quantity * item.currentPrice);
     }, item.portfolio.cash);
 
-    await prisma.stock_Portfolio.update({
-      where: { id: item.portfolioId },
-      data: { totalValue }
-    });
+    // 포트폴리오 총 가치 업데이트는 스키마에 totalValue 필드가 없으므로 생략
 
     return NextResponse.json(updated);
   } catch (error) {
@@ -237,13 +226,10 @@ export async function DELETE(request: NextRequest) {
     await prisma.stock_Transaction.create({
       data: {
         portfolioId: item.portfolioId,
-        symbolId: item.symbolId,
-        type: 'SELL',
+        symbol: item.stockId,
+        type: 'sell',
         quantity: item.quantity,
-        price: item.currentPrice,
-        totalAmount: item.quantity * item.currentPrice,
-        transactionDate: new Date(),
-        notes: 'Portfolio item removed'
+        price: item.currentPrice
       }
     });
 
@@ -261,10 +247,7 @@ export async function DELETE(request: NextRequest) {
       return sum + (item.quantity * item.currentPrice);
     }, item.portfolio.cash);
 
-    await prisma.stock_Portfolio.update({
-      where: { id: item.portfolioId },
-      data: { totalValue }
-    });
+    // 포트폴리오 총 가치 업데이트는 스키마에 totalValue 필드가 없으므로 생략
 
     return NextResponse.json({ success: true });
   } catch (error) {

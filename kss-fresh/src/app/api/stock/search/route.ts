@@ -52,46 +52,47 @@ export async function GET(request: NextRequest) {
     let results = await prisma.stock_Symbol.findMany({
       where: {
         OR: [
-          { code: { contains: query, mode: 'insensitive' } },
-          { name: { contains: query, mode: 'insensitive' } },
+          { symbol: { contains: query, mode: 'insensitive' } },
+          { nameKr: { contains: query, mode: 'insensitive' } },
         ]
       },
       take: limit,
       orderBy: [
         { marketCap: 'desc' },
-        { name: 'asc' }
+        { nameKr: 'asc' }
       ]
     });
 
     // DB에 데이터가 없으면 초기 데이터로 검색
     if (results.length === 0) {
-      results = KOREAN_STOCKS
-        .filter(stock => 
-          stock.code.toLowerCase().includes(query) ||
-          stock.name.toLowerCase().includes(query)
+      const filteredResults = (KOREAN_STOCKS as any)
+        .filter((stock: any) => 
+          stock.code?.toLowerCase().includes(query) ||
+          stock.name?.toLowerCase().includes(query)
         )
         .slice(0, limit)
-        .map(stock => ({
+        .map((stock: any) => ({
           id: stock.code,
-          code: stock.code,
-          name: stock.name,
+          symbol: stock.code,
+          nameKr: stock.name,
+          nameEn: null,
           market: stock.market,
           sector: stock.sector,
-          currentPrice: 0,
-          marketCap: 0,
-          isActive: true,
+          marketCap: BigInt(stock.marketCap || 0),
+          listedShares: null,
           createdAt: new Date(),
           updatedAt: new Date()
         }));
+      results = filteredResults;
     }
 
     // 결과 포맷팅
     const formattedResults = results.map(stock => ({
-      code: stock.code,
-      name: stock.name,
+      code: stock.symbol,
+      name: stock.nameKr,
       market: stock.market,
       sector: stock.sector,
-      display: `${stock.code} - ${stock.name}`
+      display: `${stock.symbol} - ${stock.nameKr}`
     }));
 
     return NextResponse.json({ 

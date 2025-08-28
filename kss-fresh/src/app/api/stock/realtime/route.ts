@@ -190,7 +190,7 @@ export async function GET(request: Request) {
                 (sectorStocks.reduce((sum, s) => sum + s.regularMarketChangePercent, 0) / sectorStocks.length).toFixed(2)
               );
               
-              sector.leaders = sectorStocks.map(s => ({
+              (sector as any).leaders = sectorStocks.map(s => ({
                 symbol: s.symbol,
                 name: s.longName,
                 changePercent: s.regularMarketChangePercent

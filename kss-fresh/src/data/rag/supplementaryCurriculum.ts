@@ -2,103 +2,102 @@ import { CurriculumItem } from './beginnerCurriculum'
 
 export const supplementaryCurriculum: CurriculumItem[] = [
   {
-    id: 'rag-for-korean',
-    title: '한국어 특화 RAG',
-    description: '한국어 문서 처리를 위한 특별한 고려사항',
+    id: 'ragas-evaluation',
+    title: '1. RAGAS 평가 프레임워크',
+    description: 'RAG 시스템의 정확성과 품질을 측정하는 체계적 방법',
     topics: [
-      '한국어 토크나이저 선택',
-      '형태소 분석과 청킹',
-      '한영 혼용 문서 처리',
-      '한국어 임베딩 모델 비교'
+      'Context relevancy 측정',
+      'Answer faithfulness 평가',
+      'Answer relevancy 검증',
+      '자동화된 평가 파이프라인'
     ],
     resources: [
       {
-        type: 'external',
-        title: 'KoBART와 KoGPT 활용',
-        url: 'https://github.com/SKT-AI/KoBART',
-        duration: '30분'
+        type: 'chapter',
+        title: 'Chapter 1: RAGAS 평가 프레임워크',
+        url: '/modules/rag/supplementary/chapter1',
+        duration: '45분'
       },
       {
-        type: 'simulator',
-        title: '한국어 문서 처리 실습',
-        url: '/modules/rag/simulators/document-uploader',
-        duration: '25분'
-      }
-    ]
-  },
-  {
-    id: 'multimodal-rag',
-    title: 'Multimodal RAG',
-    description: '텍스트를 넘어선 이미지, 표, 차트 처리',
-    topics: [
-      '이미지 캡션과 OCR',
-      '표 데이터 구조 보존',
-      'Layout-aware 청킹',
-      'Cross-modal 검색'
-    ],
-    resources: [
-      {
         type: 'external',
-        title: 'LayoutLM 모델 이해',
-        url: 'https://huggingface.co/microsoft/layoutlm-base-uncased',
-        duration: '35분'
+        title: 'RAGAS GitHub',
+        url: 'https://github.com/explodinggradients/ragas',
+        duration: '30분'
       }
     ]
   },
   {
-    id: 'domain-specific-rag',
-    title: '도메인 특화 RAG',
-    description: '특정 분야를 위한 맞춤형 RAG 구축',
-    topics: [
-      '의료 분야 RAG (HIPAA 준수)',
-      '법률 문서 RAG',
-      '금융 보고서 RAG',
-      '학술 논문 RAG'
-    ],
-    resources: [
-      {
-        type: 'external',
-        title: 'BioBERT와 의료 RAG',
-        url: 'https://github.com/dmis-lab/biobert',
-        duration: '40분'
-      }
-    ]
-  },
-  {
-    id: 'privacy-security',
-    title: 'RAG 보안과 프라이버시',
-    description: '민감한 데이터를 다루는 RAG 시스템',
+    id: 'security-privacy',
+    title: '2. 보안과 프라이버시',
+    description: 'RAG 시스템의 데이터 보안과 사용자 프라이버시 보호',
     topics: [
       'PII 감지와 마스킹',
-      'Access control in RAG',
-      'Differential privacy',
-      'Secure enclaves'
+      'Prompt injection 방어',
+      'Data access control',
+      'GDPR 준수 방법'
     ],
     resources: [
+      {
+        type: 'chapter',
+        title: 'Chapter 2: 보안과 프라이버시',
+        url: '/modules/rag/supplementary/chapter2',
+        duration: '50분'
+      },
       {
         type: 'external',
         title: 'PrivateGPT 프로젝트',
         url: 'https://github.com/imartinez/privateGPT',
+        duration: '35분'
+      }
+    ]
+  },
+  {
+    id: 'cost-optimization',
+    title: '3. 비용 최적화',
+    description: 'RAG 시스템 운영 비용을 80% 절감하는 전략',
+    topics: [
+      'Token usage 최적화',
+      '캐싱 전략으로 API 호출 감소',
+      '모델 선택과 비용 효율성',
+      'Batch processing 기법'
+    ],
+    resources: [
+      {
+        type: 'chapter',
+        title: 'Chapter 3: 비용 최적화',
+        url: '/modules/rag/supplementary/chapter3',
+        duration: '40분'
+      },
+      {
+        type: 'external',
+        title: '비용 최적화 사례연구',
+        url: 'https://www.pinecone.io/learn/cost-optimization/',
         duration: '30분'
       }
     ]
   },
   {
-    id: 'rag-alternatives',
-    title: 'RAG 대안 기술',
-    description: 'RAG와 함께 고려할 수 있는 다른 접근법',
+    id: 'high-availability',
+    title: '4. 고가용성과 복구 시스템',
+    description: '99.9% 가동률을 위한 RAG 시스템 안정성 확보',
     topics: [
-      'Fine-tuning vs RAG',
-      'Prompt tuning',
-      'Adapter modules',
-      'Knowledge distillation'
+      'Failover 전략',
+      '백업과 복구 절차',
+      'Circuit breaker 패턴',
+      '재해 복구 계획'
     ],
     resources: [
       {
+        type: 'chapter',
+        title: 'Chapter 4: 고가용성과 복구 시스템',
+        url: '/modules/rag/supplementary/chapter4',
+        duration: '45분'
+      },
+      {
         type: 'external',
-        title: 'PEFT 라이브러리 튜토리얼',
-        url: 'https://github.com/huggingface/peft',
-        duration: '35분'
+        title: 'AWS Well-Architected Framework',
+        url: 'https://aws.amazon.com/architecture/well-architected/',
+        duration: '30분'
       }
     ]
   }

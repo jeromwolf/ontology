@@ -1,0 +1,185 @@
+RAG (Retrieval-Augmented Generation) 시스템 완전 가이드
+
+1. RAG란 무엇인가?
+
+RAG는 검색 증강 생성(Retrieval-Augmented Generation)의 약자로, 대규모 언어 모델(LLM)의 한계를 극복하기 위해 개발된 혁신적인 기술입니다. 
+
+기존 LLM의 주요 문제점:
+- 학습 데이터의 시점에서 지식이 고정됨 (Knowledge Cutoff)
+- 환각 현상(Hallucination) - 없는 정보를 그럴듯하게 생성
+- 특정 도메인이나 내부 정보에 대한 접근 불가
+- 답변의 출처를 확인할 수 없음
+
+RAG는 이러한 문제를 해결하기 위해 외부 지식 베이스에서 관련 정보를 검색한 후, 이를 컨텍스트로 활용하여 더 정확하고 신뢰할 수 있는 답변을 생성합니다.
+
+2. RAG 시스템의 핵심 구성 요소
+
+2.1 문서 전처리 (Document Processing)
+- 다양한 형식의 문서를 텍스트로 변환 (PDF, DOCX, HTML 등)
+- 텍스트를 의미 있는 청크(chunk)로 분할
+- 메타데이터 추출 및 관리
+
+2.2 임베딩 생성 (Embedding Generation)
+- 각 텍스트 청크를 고차원 벡터로 변환
+- OpenAI ada-002, sentence-transformers 등 임베딩 모델 활용
+- 의미적 유사성을 수치적으로 표현
+
+2.3 벡터 데이터베이스 (Vector Database)
+- 임베딩 벡터를 효율적으로 저장하고 검색
+- Pinecone, Weaviate, Qdrant, ChromaDB 등
+- 유사도 기반 검색 알고리즘 (코사인 유사도, 유클리디안 거리)
+
+2.4 검색 모듈 (Retrieval Module)
+- 사용자 쿼리를 임베딩으로 변환
+- 벡터 DB에서 가장 유사한 청크 검색
+- 하이브리드 검색 (키워드 + 시맨틱 검색)
+
+2.5 생성 모듈 (Generation Module)
+- 검색된 컨텍스트와 사용자 쿼리를 조합
+- LLM을 통해 최종 답변 생성
+- 프롬프트 엔지니어링 적용
+
+3. 청킹 전략 (Chunking Strategies)
+
+3.1 고정 크기 청킹
+- 일정한 토큰 수 또는 문자 수로 분할
+- 구현이 간단하지만 의미 단위 분리 가능성
+
+3.2 문장/단락 기반 청킹
+- 자연스러운 의미 단위 유지
+- 크기가 불균일할 수 있음
+
+3.3 슬라이딩 윈도우 청킹
+- 청크 간 겹침(overlap) 허용
+- 경계에서의 정보 손실 방지
+
+3.4 계층적 청킹
+- 문서 구조를 활용한 청킹
+- 섹션, 하위섹션 단위로 분할
+
+4. RAG 성능 최적화 기법
+
+4.1 검색 정확도 향상
+- Query Expansion: 쿼리 확장으로 검색 범위 확대
+- Re-ranking: 초기 검색 결과를 재정렬
+- Hybrid Search: 키워드 검색과 시맨틱 검색 결합
+
+4.2 컨텍스트 최적화
+- Compression: 검색된 텍스트 압축
+- Summarization: 핵심 내용 요약
+- Deduplication: 중복 정보 제거
+
+4.3 시스템 성능
+- Caching: 자주 사용되는 쿼리 캐싱
+- Batch Processing: 대량 처리 최적화
+- Async Operations: 비동기 처리로 응답성 향상
+
+5. RAG 평가 지표
+
+5.1 검색 품질
+- Precision@K: 상위 K개 결과의 정확도
+- Recall@K: 관련 문서 검색률
+- MRR (Mean Reciprocal Rank): 첫 번째 관련 문서의 순위
+
+5.2 생성 품질
+- ROUGE Score: 생성된 답변과 참조 답변 비교
+- BERTScore: 의미적 유사성 평가
+- Human Evaluation: 인간 평가자의 품질 평가
+
+5.3 시스템 지표
+- Latency: 응답 시간
+- Throughput: 처리량
+- Cost per Query: 쿼리당 비용
+
+6. 실제 구현 예제 (Python)
+
+```python
+# 간단한 RAG 시스템 구현
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.llms import OpenAI
+
+# 1. 문서 로드 및 청킹
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200
+)
+chunks = text_splitter.split_text(document_text)
+
+# 2. 임베딩 생성 및 벡터 DB 구축
+embeddings = OpenAIEmbeddings()
+vector_store = FAISS.from_texts(chunks, embeddings)
+
+# 3. 검색 및 생성
+query = "RAG의 장점은 무엇인가요?"
+relevant_docs = vector_store.similarity_search(query, k=3)
+
+# 4. LLM으로 답변 생성
+llm = OpenAI()
+context = "\n".join([doc.page_content for doc in relevant_docs])
+prompt = f"Context: {context}\n\nQuestion: {query}\n\nAnswer:"
+answer = llm(prompt)
+```
+
+7. 고급 RAG 아키텍처
+
+7.1 Multi-hop RAG
+- 여러 단계의 검색을 통한 복잡한 추론
+- 질문을 분해하여 순차적 검색 수행
+
+7.2 Graph RAG
+- 지식 그래프 구조 활용
+- 엔티티 간 관계를 통한 추론
+
+7.3 Adaptive RAG
+- 쿼리 유형에 따른 동적 전략 선택
+- 간단한 질문은 직접 생성, 복잡한 질문은 검색 활용
+
+8. RAG 시스템의 도전 과제
+
+8.1 스케일링 문제
+- 대용량 문서 처리
+- 실시간 업데이트
+- 분산 시스템 구축
+
+8.2 품질 관리
+- 노이즈 데이터 필터링
+- 모순되는 정보 처리
+- 신뢰도 평가
+
+8.3 보안 및 프라이버시
+- 민감 정보 보호
+- 접근 권한 관리
+- 감사 추적
+
+9. RAG의 미래 전망
+
+- LLM의 컨텍스트 윈도우 확장에 따른 변화
+- 멀티모달 RAG (텍스트, 이미지, 오디오 통합)
+- 실시간 학습 및 적응형 시스템
+- 도메인 특화 RAG 솔루션의 발전
+
+10. 실무 적용 사례
+
+10.1 기업 내부 지식 관리
+- 사내 문서 검색 및 Q&A 시스템
+- 기술 지원 챗봇
+- 온보딩 도우미
+
+10.2 의료 분야
+- 의학 문헌 검색
+- 진단 보조 시스템
+- 약물 정보 제공
+
+10.3 법률 분야
+- 판례 검색 및 분석
+- 계약서 검토
+- 법률 자문 보조
+
+10.4 교육 분야
+- 개인화된 학습 도우미
+- 교재 기반 Q&A
+- 연구 자료 검색
+
+이 문서는 RAG 시스템의 기본부터 고급 개념까지를 다루며, 실제 구현과 적용 사례를 통해 실무에서 RAG를 활용하는 방법을 제시합니다.

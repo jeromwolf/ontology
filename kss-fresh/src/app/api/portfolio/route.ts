@@ -24,9 +24,9 @@ export async function GET(request: NextRequest) {
     const portfolios = await prisma.stock_Portfolio.findMany({
       where: { userId: user.id },
       include: {
-        items: {
+        holdings: {
           include: {
-            symbol: true
+            stock: true
           }
         }
       },
@@ -35,12 +35,12 @@ export async function GET(request: NextRequest) {
 
     // 포트폴리오 통계 계산
     const portfoliosWithStats = portfolios.map(portfolio => {
-      const totalValue = portfolio.items.reduce((sum, item) => {
+      const totalValue = portfolio.holdings.reduce((sum, item) => {
         return sum + (item.quantity * item.currentPrice);
       }, 0);
 
-      const totalCost = portfolio.items.reduce((sum, item) => {
-        return sum + (item.quantity * item.purchasePrice);
+      const totalCost = portfolio.holdings.reduce((sum, item) => {
+        return sum + (item.quantity * item.avgPrice);
       }, 0);
 
       const totalReturn = totalValue - totalCost;
@@ -93,10 +93,8 @@ export async function POST(request: NextRequest) {
       data: {
         userId: user.id,
         name,
-        description,
-        totalValue: initialCash,
-        cash: initialCash,
-        isActive: true
+        initialCash,
+        cash: initialCash
       }
     });
 
@@ -149,9 +147,7 @@ export async function PUT(request: NextRequest) {
     const updated = await prisma.stock_Portfolio.update({
       where: { id },
       data: {
-        name,
-        description,
-        isActive
+        name
       }
     });
 
