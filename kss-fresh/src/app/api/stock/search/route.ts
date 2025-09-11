@@ -117,13 +117,12 @@ export async function POST(request: NextRequest) {
     if (existingCount === 0) {
       // 초기 데이터가 없을 때만 삽입
       const symbols = KOREAN_STOCKS.map(stock => ({
-        code: stock.code,
-        name: stock.name,
+        symbol: stock.code,
+        nameKr: stock.name,
         market: stock.market,
         sector: stock.sector,
-        currentPrice: 0,
-        marketCap: 0,
-        isActive: true
+        marketCap: BigInt(0),
+        listedShares: BigInt(0)
       }));
 
       await prisma.stock_Symbol.createMany({

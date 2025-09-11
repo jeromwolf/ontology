@@ -781,8 +781,8 @@ if __name__ == "__main__":
               <div className="bg-white/10 p-4 rounded-lg">
                 <h4 className="font-medium mb-2">🎯 평가 기준</h4>
                 <ul className="space-y-1 text-sm">
-                  <li>• 엔티티 추출 정확도 (F1-Score > 0.8)</li>
-                  <li>• 커뮤니티 응집도 (Modularity > 0.3)</li>
+                  <li>• 엔티티 추출 정확도 (F1-Score &gt; 0.8)</li>
+                  <li>• 커뮤니티 응집도 (Modularity &gt; 0.3)</li>
                   <li>• 질의응답 품질 (BLEU Score, 사람 평가)</li>
                   <li>• 시스템 확장성 (처리 시간, 메모리 사용량)</li>
                 </ul>

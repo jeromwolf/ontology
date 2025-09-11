@@ -7,7 +7,7 @@ async function extractPDFText(buffer: Buffer): Promise<{ text: string; pages: nu
     console.log('pdf-parse 라이브러리 로딩...');
     
     // pdf-parse 동적 import
-    let pdfParse;
+    let pdfParse: any;
     try {
       pdfParse = (await import('pdf-parse')).default;
     } catch (importError) {

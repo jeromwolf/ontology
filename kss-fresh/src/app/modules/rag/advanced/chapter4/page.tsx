@@ -647,7 +647,7 @@ for doc_id, score in results:
 
           <div className="space-y-6">
             <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-200 dark:border-green-700">
-              <h3 className="font-bold text-green-800 dark:text-green-200 mb-4">MMR (Maximal Marginal Relevance) 고급 구현</sensation>
+              <h3 className="font-bold text-green-800 dark:text-green-200 mb-4">MMR (Maximal Marginal Relevance) 고급 구현</h3>
               
               <div className="prose prose-sm dark:prose-invert mb-4">
                 <p className="text-gray-700 dark:text-gray-300">

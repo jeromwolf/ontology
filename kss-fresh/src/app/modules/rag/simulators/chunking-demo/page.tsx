@@ -175,7 +175,7 @@ FAISS, Pinecone, Chroma 등이 대표적인 솔루션으로 널리 사용되고 
 
   const recursiveChunking = (text: string) => {
     const separators = ['\n\n', '\n', '. ', ' ', '']
-    const chunks = []
+    const chunks: any[] = []
     let chunkId = 1
 
     const splitRecursively = (text: string, separators: string[], targetSize: number = 200): string[] => {
