@@ -124,6 +124,22 @@ const modules: Module[] = [
     simulators: 5
   },
   {
+    id: 'deep-learning',
+    title: 'Deep Learning',
+    description: '신경망 기초부터 CNN, Transformer, GAN까지 완전 정복',
+    icon: Brain,
+    color: 'from-violet-500 to-purple-600',
+    category: 'AI/ML',
+    difficulty: 'intermediate',
+    duration: '25시간',
+    students: 0,
+    rating: 5.0,
+    status: 'active',
+    link: '/modules/deep-learning',
+    chapters: 8,
+    simulators: 6
+  },
+  {
     id: 'stock-analysis',
     title: 'Financial Analysis',
     description: '실전 투자 전략과 심리까지 포함한 종합 투자 마스터',

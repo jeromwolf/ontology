@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { 
+import {
   Brain, Database, TrendingUp, GitBranch, Target,
   ArrowRight, CheckCircle, AlertCircle, Info,
   BarChart3, LineChart, PieChart, Activity,
   Users, Briefcase, GraduationCap, Code2,
   ChevronRight, Play, FileText, Lightbulb
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface ChapterProps {
   onComplete?: () => void
@@ -722,6 +723,128 @@ print(feature_importance)`}</code>
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Essential Reading',
+            icon: 'paper',
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'Data Science for Business',
+                authors: 'Foster Provost, Tom Fawcett',
+                year: '2013',
+                description: '비즈니스 관점에서의 데이터 사이언스 - 의사결정자를 위한 필독서',
+                link: 'https://www.oreilly.com/library/view/data-science-for/9781449374273/'
+              },
+              {
+                title: 'The Art of Data Science',
+                authors: 'Roger D. Peng, Elizabeth Matsui',
+                year: '2015',
+                description: '데이터 분석의 실제 프로세스 - 무료 온라인 제공',
+                link: 'https://bookdown.org/rdpeng/artofdatascience/'
+              },
+              {
+                title: 'Python for Data Analysis',
+                authors: 'Wes McKinney',
+                year: '2022',
+                description: 'Pandas 창시자가 쓴 데이터 분석 바이블 (3rd Edition)',
+                link: 'https://wesmckinney.com/book/'
+              },
+              {
+                title: 'Doing Data Science',
+                authors: 'Cathy O\'Neil, Rachel Schutt',
+                year: '2013',
+                description: '컬럼비아 대학 데이터 사이언스 강의 기반',
+                link: 'https://www.oreilly.com/library/view/doing-data-science/9781449363871/'
+              }
+            ]
+          },
+          {
+            title: 'Data Science Process & Methodology',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'CRISP-DM Methodology',
+                authors: 'Chapman et al.',
+                year: '2000',
+                description: '업계 표준 데이터 마이닝 프로세스 (Cross-Industry Standard Process)',
+                link: 'https://www.datascience-pm.com/crisp-dm-2/'
+              },
+              {
+                title: 'Reproducible Research in Computational Science',
+                authors: 'Roger D. Peng',
+                year: '2011',
+                description: '재현 가능한 연구의 중요성 (Science)',
+                link: 'https://www.science.org/doi/10.1126/science.1213847'
+              },
+              {
+                title: 'Data Science: An Introduction',
+                authors: 'Jeffrey Stanton',
+                year: '2013',
+                description: '데이터 사이언스 입문 - 무료 온라인 교재',
+                link: 'https://surface.syr.edu/istpub/165/'
+              }
+            ]
+          },
+          {
+            title: 'Tools & Platforms',
+            icon: 'web',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Kaggle Learn',
+                description: '무료 인터랙티브 데이터 사이언스 강의 플랫폼',
+                link: 'https://www.kaggle.com/learn'
+              },
+              {
+                title: 'Jupyter Project',
+                description: '데이터 사이언티스트의 필수 노트북 환경',
+                link: 'https://jupyter.org/'
+              },
+              {
+                title: 'Anaconda Distribution',
+                description: '데이터 사이언스를 위한 파이썬 배포판',
+                link: 'https://www.anaconda.com/'
+              },
+              {
+                title: 'Google Colab',
+                description: '무료 GPU를 제공하는 클라우드 Jupyter 환경',
+                link: 'https://colab.research.google.com/'
+              }
+            ]
+          },
+          {
+            title: 'Community & Resources',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Towards Data Science',
+                description: 'Medium의 데이터 사이언스 전문 퍼블리케이션',
+                link: 'https://towardsdatascience.com/'
+              },
+              {
+                title: 'Data Science Stack Exchange',
+                description: '데이터 사이언스 Q&A 커뮤니티',
+                link: 'https://datascience.stackexchange.com/'
+              },
+              {
+                title: 'KDnuggets',
+                description: '데이터 사이언스 뉴스 및 튜토리얼',
+                link: 'https://www.kdnuggets.com/'
+              },
+              {
+                title: 'DataCamp Community',
+                description: '데이터 사이언스 학습 커뮤니티',
+                link: 'https://www.datacamp.com/community'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

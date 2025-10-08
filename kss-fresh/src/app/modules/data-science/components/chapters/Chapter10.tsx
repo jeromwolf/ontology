@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Rocket, Server, Cloud, Shield, Gauge, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface Chapter10Props {
   onComplete?: () => void
@@ -499,6 +500,114 @@ client.transition_model_version_stage(
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: 'ML Deployment & MLOps',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Machine Learning Systems Design',
+                authors: 'Chip Huyen',
+                year: '2022',
+                description: '프로덕션 ML 시스템 설계 완벽 가이드 - Stanford CS 329S',
+                link: 'https://huyenchip.com/machine-learning-systems-design/toc.html'
+              },
+              {
+                title: 'Hidden Technical Debt in Machine Learning Systems',
+                authors: 'D. Sculley, et al.',
+                year: '2015',
+                description: 'ML 시스템의 기술 부채 - Google 경험 (NeurIPS 2015)',
+                link: 'https://papers.nips.cc/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html'
+              },
+              {
+                title: 'Challenges in Deploying Machine Learning',
+                authors: 'Andrei Paleyes, et al.',
+                year: '2022',
+                description: 'ML 배포의 도전과제 완벽 정리 (ACM Computing Surveys)',
+                link: 'https://arxiv.org/abs/2011.09926'
+              }
+            ]
+          },
+          {
+            title: 'Model Serving & Monitoring',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'TFX: A TensorFlow-Based Production-Scale ML Platform',
+                authors: 'Denis Baylor, et al.',
+                year: '2017',
+                description: 'Google TFX 플랫폼 - 프로덕션 ML 파이프라인 (KDD 2017)',
+                link: 'https://dl.acm.org/doi/10.1145/3097983.3098021'
+              },
+              {
+                title: 'Monitoring Machine Learning Models in Production',
+                authors: 'Christopher Samiullah',
+                year: '2020',
+                description: '프로덕션 모델 모니터링 가이드',
+                link: 'https://christophergs.com/machine%20learning/2020/03/14/how-to-monitor-machine-learning-models/'
+              }
+            ]
+          },
+          {
+            title: 'Infrastructure & Platforms',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Kubeflow Documentation',
+                description: 'Kubernetes 기반 ML 워크플로우 플랫폼',
+                link: 'https://www.kubeflow.org/'
+              },
+              {
+                title: 'MLflow',
+                description: 'Databricks의 ML 라이프사이클 관리 플랫폼',
+                link: 'https://mlflow.org/'
+              },
+              {
+                title: 'BentoML',
+                description: 'ML 모델 서빙 프레임워크 - 쉽고 빠른 배포',
+                link: 'https://www.bentoml.com/'
+              },
+              {
+                title: 'Seldon Core',
+                description: 'Kubernetes 네이티브 ML 배포 플랫폼',
+                link: 'https://www.seldon.io/products/core'
+              }
+            ]
+          },
+          {
+            title: 'Production Best Practices',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Google ML Best Practices',
+                description: 'Google의 프로덕션 ML 베스트 프랙티스',
+                link: 'https://developers.google.com/machine-learning/guides/rules-of-ml'
+              },
+              {
+                title: 'AWS SageMaker',
+                description: 'AWS의 완전 관리형 ML 서비스',
+                link: 'https://aws.amazon.com/sagemaker/'
+              },
+              {
+                title: 'Azure ML',
+                description: 'Microsoft Azure ML 플랫폼',
+                link: 'https://azure.microsoft.com/en-us/products/machine-learning/'
+              },
+              {
+                title: 'Evidently AI',
+                description: 'ML 모델 모니터링 및 테스팅 도구',
+                link: 'https://www.evidentlyai.com/'
+              }
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between items-center pt-8">
         <p className="text-sm text-gray-600 dark:text-gray-400">

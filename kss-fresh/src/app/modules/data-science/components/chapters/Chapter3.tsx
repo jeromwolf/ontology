@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { 
+import {
   BarChart3, LineChart, PieChart, ScatterChart, Activity,
   Eye, Search, Filter, Layers, Palette,
   CheckCircle, AlertCircle, Info, Target,
   ChevronRight, Play, Download, Lightbulb
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface ChapterProps {
   onComplete?: () => void
@@ -773,7 +774,7 @@ print(insights)`}</code>
             사용자가 직접 데이터를 탐색할 수 있는 도구를 제공하는 것이 목표입니다.
           </p>
           <div className="flex gap-4">
-            <button 
+            <button
               onClick={onComplete}
               className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
@@ -785,6 +786,128 @@ print(insights)`}</code>
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'EDA Fundamentals',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Exploratory Data Analysis',
+                authors: 'John W. Tukey',
+                year: '1977',
+                description: 'EDA의 아버지 - 탐색적 데이터 분석의 고전적 기초서 (Addison-Wesley)',
+                link: 'https://www.pearson.com/en-us/subject-catalog/p/exploratory-data-analysis/P200000003142'
+              },
+              {
+                title: 'The Visual Display of Quantitative Information',
+                authors: 'Edward R. Tufte',
+                year: '2001',
+                description: '데이터 시각화의 바이블 - 정보 디자인의 원칙',
+                link: 'https://www.edwardtufte.com/tufte/books_vdqi'
+              },
+              {
+                title: 'The Grammar of Graphics',
+                authors: 'Leland Wilkinson',
+                year: '2005',
+                description: 'ggplot2의 이론적 기반 - 시각화 문법 체계 (Springer)',
+                link: 'https://www.springer.com/gp/book/9780387245447'
+              },
+              {
+                title: 'Data Visualization: A Practical Introduction',
+                authors: 'Kieran Healy',
+                year: '2018',
+                description: 'R과 ggplot2 기반 실용적 시각화 가이드 - 무료 온라인 제공',
+                link: 'https://socviz.co/'
+              }
+            ]
+          },
+          {
+            title: 'Visualization Libraries',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Matplotlib Documentation',
+                description: 'Python 시각화의 기본 - 공식 튜토리얼 및 갤러리',
+                link: 'https://matplotlib.org/stable/index.html'
+              },
+              {
+                title: 'Seaborn Tutorial',
+                description: '통계적 시각화 라이브러리 - 공식 가이드',
+                link: 'https://seaborn.pydata.org/tutorial.html'
+              },
+              {
+                title: 'Plotly Python Documentation',
+                description: '인터랙티브 시각화 - Dash 통합 가이드',
+                link: 'https://plotly.com/python/'
+              },
+              {
+                title: 'Python Graph Gallery',
+                description: '400+ Python 차트 예제 - 코드 포함',
+                link: 'https://python-graph-gallery.com/'
+              }
+            ]
+          },
+          {
+            title: 'Best Practices & Design',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Fundamentals of Data Visualization',
+                authors: 'Claus O. Wilke',
+                year: '2019',
+                description: '현대적 데이터 시각화 가이드 - 무료 온라인북',
+                link: 'https://clauswilke.com/dataviz/'
+              },
+              {
+                title: 'Storytelling with Data',
+                authors: 'Cole Nussbaumer Knaflic',
+                year: '2015',
+                description: '데이터 스토리텔링 - 비즈니스 커뮤니케이션 중심',
+                link: 'https://www.storytellingwithdata.com/'
+              },
+              {
+                title: 'The Truthful Art',
+                authors: 'Alberto Cairo',
+                year: '2016',
+                description: '정확한 데이터 시각화 - 저널리즘 관점',
+                link: 'https://www.albertocairo.com/the-truthful-art'
+              }
+            ]
+          },
+          {
+            title: 'Interactive Tools & Frameworks',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'D3.js Documentation',
+                description: '웹 기반 데이터 시각화의 표준 - JavaScript 라이브러리',
+                link: 'https://d3js.org/'
+              },
+              {
+                title: 'Streamlit Documentation',
+                description: 'Python 데이터 앱 빌더 - 빠른 대시보드 개발',
+                link: 'https://docs.streamlit.io/'
+              },
+              {
+                title: 'Tableau Public Resources',
+                description: '무료 Tableau 버전 - 학습 리소스 및 갤러리',
+                link: 'https://public.tableau.com/app/resources/learn'
+              },
+              {
+                title: 'Observable',
+                description: 'D3.js 창시자의 인터랙티브 노트북 플랫폼',
+                link: 'https://observablehq.com/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

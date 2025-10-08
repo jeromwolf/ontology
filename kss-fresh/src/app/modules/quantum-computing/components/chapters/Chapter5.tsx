@@ -1,6 +1,7 @@
 'use client';
 
 import { Shield } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter5() {
   return (
@@ -109,6 +110,123 @@ export default function Chapter5() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Foundational Papers on Error Correction',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Scheme for reducing decoherence in quantum computer memory',
+                authors: 'Peter W. Shor',
+                year: '1995',
+                description: 'Shor Code - 최초의 양자 오류 정정 코드 (Physical Review A)',
+                link: 'https://journals.aps.org/pra/abstract/10.1103/PhysRevA.52.R2493'
+              },
+              {
+                title: 'Theory of quantum error-correcting codes',
+                authors: 'Emanuel Knill, Raymond Laflamme',
+                year: '1997',
+                description: '양자 오류 정정의 수학적 이론 확립 (Physical Review A)',
+                link: 'https://journals.aps.org/pra/abstract/10.1103/PhysRevA.55.900'
+              },
+              {
+                title: 'Quantum Error Correction and Orthogonal Geometry',
+                authors: 'A. R. Calderbank, Peter W. Shor',
+                year: '1996',
+                description: 'CSS 코드 제안 - 효율적 오류 정정 (Physical Review A)',
+                link: 'https://journals.aps.org/pra/abstract/10.1103/PhysRevA.54.1098'
+              }
+            ]
+          },
+          {
+            title: 'Surface Codes & Topological Codes',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Topological quantum memory',
+                authors: 'Eric Dennis, Alexei Kitaev, Andrew Landahl, John Preskill',
+                year: '2002',
+                description: 'Surface Code - 가장 유망한 오류 정정 방식 (Journal of Mathematical Physics)',
+                link: 'https://arxiv.org/abs/quant-ph/0110143'
+              },
+              {
+                title: 'Surface codes: Towards practical large-scale quantum computation',
+                authors: 'Austin G. Fowler, Matteo Mariantoni, John M. Martinis, Andrew N. Cleland',
+                year: '2012',
+                description: 'Surface Code의 실용적 구현 (Physical Review A)',
+                link: 'https://journals.aps.org/pra/abstract/10.1103/PhysRevA.86.032324'
+              },
+              {
+                title: 'Fault-tolerant quantum computation by anyons',
+                authors: 'Alexei Yu. Kitaev',
+                year: '2003',
+                description: 'Topological quantum computing 이론 (Annals of Physics)',
+                link: 'https://arxiv.org/abs/quant-ph/9707021'
+              }
+            ]
+          },
+          {
+            title: 'Fault-Tolerant Quantum Computing',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Threshold Accuracy for Quantum Computation',
+                authors: 'John Preskill',
+                year: '1998',
+                description: '오류 임계값 이론 - 양자 컴퓨터 실현 가능성 증명 (LANL)',
+                link: 'https://arxiv.org/abs/quant-ph/9712048'
+              },
+              {
+                title: 'Resilient Quantum Computation',
+                authors: 'Dorit Aharonov, Michael Ben-Or',
+                year: '1997',
+                description: '결함 허용 양자 계산의 이론적 기초 (STOC 1997)',
+                link: 'https://arxiv.org/abs/quant-ph/9611025'
+              },
+              {
+                title: 'Quantum Error Correction for Beginners',
+                authors: 'Simon J. Devitt, William J. Munro, Kae Nemoto',
+                year: '2013',
+                description: '오류 정정 입문 리뷰 (Reports on Progress in Physics)',
+                link: 'https://arxiv.org/abs/0905.2794'
+              }
+            ]
+          },
+          {
+            title: 'Experimental Implementations',
+            icon: 'paper',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Demonstration of quantum error correction',
+                authors: 'J. Chiaverini, D. Leibfried, T. Schaetz, et al.',
+                year: '2004',
+                description: '이온 트랩에서 3큐비트 오류 정정 최초 실험 (Nature)',
+                link: 'https://www.nature.com/articles/nature03074'
+              },
+              {
+                title: 'Quantum error correction in a solid-state hybrid spin register',
+                authors: 'G. Waldherr, Y. Wang, S. Zaiser, et al.',
+                year: '2014',
+                description: 'NV 센터에서 오류 정정 실증 (Nature)',
+                link: 'https://www.nature.com/articles/nature12919'
+              },
+              {
+                title: 'Suppressing quantum errors by scaling a surface code logical qubit',
+                authors: 'Google Quantum AI',
+                year: '2023',
+                description: 'Surface Code 오류율 감소 실증 - 역사적 milestone (Nature)',
+                link: 'https://www.nature.com/articles/s41586-022-05434-1'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

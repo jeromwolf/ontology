@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { TrendingUp, DollarSign, Users, Target, BarChart3, PieChart, LineChart, Lightbulb } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface Chapter11Props {
   onComplete?: () => void
@@ -962,6 +963,108 @@ def ab_test_analysis(control, variant):
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: 'Data-Driven Business',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Competing on Analytics',
+                authors: 'Thomas H. Davenport, Jeanne G. Harris',
+                year: '2007',
+                description: '분석 경쟁의 시대 - 데이터 기반 경영의 바이블 (Harvard Business Review Press)',
+                link: 'https://hbr.org/2006/01/competing-on-analytics'
+              },
+              {
+                title: 'Big Data: A Revolution That Will Transform How We Live',
+                authors: 'Viktor Mayer-Schönberger, Kenneth Cukier',
+                year: '2013',
+                description: '빅데이터 혁명 - 비즈니스 전환 (Houghton Mifflin Harcourt)',
+                link: 'https://www.amazon.com/Big-Data-Revolution-Transform-Think/dp/0544227751'
+              },
+              {
+                title: 'The Model Thinker',
+                authors: 'Scott E. Page',
+                year: '2018',
+                description: '모델 사고 - 데이터 분석의 다양한 프레임워크 (Basic Books)',
+                link: 'https://www.basicbooks.com/titles/scott-e-page/the-model-thinker/9780465094639/'
+              }
+            ]
+          },
+          {
+            title: 'ROI & Value Measurement',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Lean Analytics',
+                authors: 'Alistair Croll, Benjamin Yoskovitz',
+                year: '2013',
+                description: '린 분석 - 스타트업 지표 측정 (O\'Reilly)',
+                link: 'https://www.oreilly.com/library/view/lean-analytics/9781449335687/'
+              },
+              {
+                title: 'Measure What Matters',
+                authors: 'John Doerr',
+                year: '2018',
+                description: 'OKR 방법론 - Google의 목표 관리 (Portfolio)',
+                link: 'https://www.whatmatters.com/'
+              }
+            ]
+          },
+          {
+            title: 'Strategy & Implementation',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Agile Data Science 2.0',
+                authors: 'Russell Jurney',
+                year: '2017',
+                description: '애자일 데이터 사이언스 - 실용적 접근법 (O\'Reilly)',
+                link: 'https://www.oreilly.com/library/view/agile-data-science/9781491960103/'
+              },
+              {
+                title: 'Building a Data-Driven Organization',
+                authors: 'Carl Anderson',
+                year: '2015',
+                description: '데이터 조직 구축 가이드 (O\'Reilly)',
+                link: 'https://www.oreilly.com/library/view/creating-a-data-driven/9781491916902/'
+              }
+            ]
+          },
+          {
+            title: 'Business Intelligence Tools',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Tableau',
+                description: '업계 표준 BI 도구 - 시각화 및 대시보드',
+                link: 'https://www.tableau.com/'
+              },
+              {
+                title: 'Power BI',
+                description: 'Microsoft의 BI 플랫폼',
+                link: 'https://powerbi.microsoft.com/'
+              },
+              {
+                title: 'Looker',
+                description: 'Google Cloud의 최신 BI 플랫폼',
+                link: 'https://www.looker.com/'
+              },
+              {
+                title: 'Metabase',
+                description: '오픈소스 BI 도구 - 쉽고 빠른 시작',
+                link: 'https://www.metabase.com/'
+              }
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between items-center pt-8">
         <p className="text-sm text-gray-600 dark:text-gray-400">

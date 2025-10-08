@@ -1580,6 +1580,36 @@ export default function KSSLandingPage() {
               </div>
             </Link>
 
+            {/* Deep Learning */}
+            <Link href="/modules/deep-learning" className="block">
+              <div className="glass-card rounded-2xl p-6 hover:shadow-lg transition-all cursor-pointer">
+                <div className="w-12 h-12 bg-gradient-to-r from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-white text-xl">🧠</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Deep Learning</h3>
+                <p className="text-gray-600 text-sm mb-4">신경망 기초부터 CNN, Transformer, GAN까지 완전 정복</p>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-500">25시간</span>
+                  <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">학습 가능</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Semiconductor */}
+            <Link href="/modules/semiconductor" className="block">
+              <div className="glass-card rounded-2xl p-6 hover:shadow-lg transition-all cursor-pointer">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-white text-xl">💎</span>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">반도체</h3>
+                <p className="text-gray-600 text-sm mb-4">반도체 설계부터 제조까지 - 칩의 모든 것</p>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-gray-500">40시간</span>
+                  <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">학습 가능</span>
+                </div>
+              </div>
+            </Link>
+
             {/* Web3 & Blockchain */}
             <Link href="/modules/web3" className="block">
               <div className="glass-card rounded-2xl p-6 hover:shadow-lg transition-all cursor-pointer">

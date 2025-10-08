@@ -1,0 +1,25 @@
+# Simple Docker Compose with Volume Mount
+services:
+  kss-app:
+    image: node:20-alpine
+    container_name: kss-platform
+    working_dir: /app
+    command: sh -c "apk add --no-cache python3 make g++ && npm install --legacy-peer-deps && npx prisma generate && npm run dev"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - kss-network
+
+networks:
+  kss-network:
+    driver: bridge

@@ -1,6 +1,7 @@
 'use client';
 
 import { Beaker } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -148,6 +149,122 @@ export default function Chapter8() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Quantum Simulation & Chemistry',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Simulated Quantum Computation of Molecular Energies',
+                authors: 'Peter J. J. O\'Malley, et al.',
+                year: '2016',
+                description: 'VQE를 이용한 분자 에너지 시뮬레이션 실증 (Physical Review X)',
+                link: 'https://journals.aps.org/prx/abstract/10.1103/PhysRevX.6.031007'
+              },
+              {
+                title: 'Quantum algorithms for quantum chemistry and quantum materials',
+                authors: 'Bela Bauer, et al.',
+                year: '2020',
+                description: '양자 화학 및 재료과학을 위한 양자 알고리즘 종합 리뷰 (Chemical Reviews)',
+                link: 'https://pubs.acs.org/doi/10.1021/acs.chemrev.9b00829'
+              },
+              {
+                title: 'Quantum computational chemistry',
+                authors: 'Sam McArdle, Suguru Endo, Alan Aspuru-Guzik, et al.',
+                year: '2020',
+                description: '양자 컴퓨팅 화학 응용 종합 리뷰 (Reviews of Modern Physics)',
+                link: 'https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.92.015003'
+              }
+            ]
+          },
+          {
+            title: 'Quantum Finance',
+            icon: 'paper',
+            color: 'border-yellow-500',
+            items: [
+              {
+                title: 'Quantum computational finance: Monte Carlo pricing of financial derivatives',
+                authors: 'Nikitas Stamatopoulos, et al.',
+                year: '2020',
+                description: '양자 몬테카를로 기반 금융상품 가격 결정 (Quantum)',
+                link: 'https://quantum-journal.org/papers/q-2020-07-06-291/'
+              },
+              {
+                title: 'Quantum optimization for finance',
+                authors: 'Stefan Woerner, Daniel J. Egger',
+                year: '2019',
+                description: 'QAOA를 이용한 포트폴리오 최적화 (IEEE QCE)',
+                link: 'https://arxiv.org/abs/1907.04769'
+              },
+              {
+                title: 'Quantum Machine Learning in Finance: Credit Risk Analysis',
+                authors: 'IBM Quantum Research',
+                year: '2021',
+                description: 'IBM의 양자 머신러닝 금융 응용 (arXiv)',
+                link: 'https://arxiv.org/abs/2103.15192'
+              }
+            ]
+          },
+          {
+            title: 'Quantum Cryptography & Security',
+            icon: 'paper',
+            color: 'border-red-500',
+            items: [
+              {
+                title: 'Quantum cryptography: Public key distribution and coin tossing',
+                authors: 'Charles H. Bennett, Gilles Brassard',
+                year: '1984',
+                description: 'BB84 프로토콜 - 양자 키 분배의 시작 (IEEE Conference)',
+                link: 'https://arxiv.org/abs/2003.06557'
+              },
+              {
+                title: 'Post-Quantum Cryptography',
+                authors: 'Daniel J. Bernstein, Johannes Buchmann, Erik Dahmen',
+                year: '2009',
+                description: '포스트 양자 암호학 종합서 (Springer)',
+                link: 'https://pqcrypto.org/'
+              },
+              {
+                title: 'Satellite-based entanglement distribution over 1200 kilometers',
+                authors: 'Juan Yin, et al.',
+                year: '2017',
+                description: '중국 묵자(Micius) 위성 기반 QKD 실증 (Science)',
+                link: 'https://www.science.org/doi/10.1126/science.aan3211'
+              }
+            ]
+          },
+          {
+            title: 'Industry & Investment',
+            icon: 'web',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Boston Consulting Group: Quantum Computing Market Report',
+                description: '양자 컴퓨팅 시장 규모 및 투자 동향 분석',
+                link: 'https://www.bcg.com/publications/2023/quantum-computing-just-might-save-the-planet'
+              },
+              {
+                title: 'McKinsey: Quantum Technology Monitor',
+                description: '글로벌 양자 기술 투자 및 산업 현황',
+                link: 'https://www.mckinsey.com/industries/life-sciences/our-insights/quantum-computing-just-might-save-the-planet'
+              },
+              {
+                title: 'EU Quantum Flagship',
+                description: '유럽연합 양자 기술 10년 프로젝트 (€10억)',
+                link: 'https://qt.eu/'
+              },
+              {
+                title: 'US National Quantum Initiative',
+                description: '미국 국가 양자 이니셔티브 현황',
+                link: 'https://www.quantum.gov/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

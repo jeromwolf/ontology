@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { BookOpen, Building2, ShoppingCart, Heart, Smartphone, TrendingUp, Users, Lightbulb } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface Chapter12Props {
   onComplete?: () => void
@@ -887,6 +888,121 @@ class AmazonDemandForecaster:
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: 'Data Science Case Studies',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Data Science Case Studies',
+                authors: 'Cathy O\'Neil, Rachel Schutt',
+                year: '2013',
+                description: 'Columbia University 강의 기반 실전 사례 (O\'Reilly)',
+                link: 'https://www.oreilly.com/library/view/doing-data-science/9781449363871/'
+              },
+              {
+                title: 'Netflix Recommendation System',
+                authors: 'Carlos A. Gomez-Uribe, Neil Hunt',
+                year: '2015',
+                description: 'Netflix 추천 시스템 상세 설명 (ACM Transactions)',
+                link: 'https://dl.acm.org/doi/10.1145/2843948'
+              },
+              {
+                title: 'Airbnb Search Ranking',
+                authors: 'Mihajlo Grbovic, Haibin Cheng',
+                year: '2018',
+                description: 'Airbnb 검색 랭킹 ML 시스템 (KDD 2018)',
+                link: 'https://dl.acm.org/doi/10.1145/3219819.3219885'
+              }
+            ]
+          },
+          {
+            title: 'Industry Applications',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Winning the Netflix Prize',
+                authors: 'BellKor Team',
+                year: '2009',
+                description: 'Netflix Prize 우승 솔루션 - 협업 필터링',
+                link: 'https://www.netflixprize.com/assets/GrandPrize2009_BPC_BellKor.pdf'
+              },
+              {
+                title: 'Ad Click Prediction: a View from the Trenches',
+                authors: 'H. Brendan McMahan, et al.',
+                year: '2013',
+                description: 'Google 광고 클릭 예측 시스템 (KDD 2013)',
+                link: 'https://research.google/pubs/pub41159/'
+              },
+              {
+                title: 'Deep Learning for Understanding Consumer Histories',
+                authors: 'Dmitry Ryzhikov, et al.',
+                year: '2018',
+                description: 'Spotify 음악 추천 시스템 (RecSys 2018)',
+                link: 'https://dl.acm.org/doi/10.1145/3240323.3240342'
+              }
+            ]
+          },
+          {
+            title: 'Real-World Solutions',
+            icon: 'web',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Kaggle Case Studies',
+                description: '실전 ML 경진대회 우승 솔루션 모음',
+                link: 'https://www.kaggle.com/learn'
+              },
+              {
+                title: 'AWS Case Studies',
+                description: 'AWS ML 고객 성공 사례',
+                link: 'https://aws.amazon.com/machine-learning/customers/'
+              },
+              {
+                title: 'Google AI Blog',
+                description: 'Google의 최신 AI/ML 연구 및 응용',
+                link: 'https://ai.googleblog.com/'
+              },
+              {
+                title: 'Uber Engineering Blog',
+                description: 'Uber의 ML 시스템 구축 사례',
+                link: 'https://www.uber.com/blog/engineering/'
+              }
+            ]
+          },
+          {
+            title: 'Learning Resources',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Papers with Code',
+                description: '최신 논문과 구현 코드 - Benchmarks & SOTA',
+                link: 'https://paperswithcode.com/'
+              },
+              {
+                title: 'Towards Data Science',
+                description: '데이터 사이언스 실무 블로그 모음 (Medium)',
+                link: 'https://towardsdatascience.com/'
+              },
+              {
+                title: 'KDnuggets',
+                description: 'ML/DS 뉴스 및 튜토리얼 종합 사이트',
+                link: 'https://www.kdnuggets.com/'
+              },
+              {
+                title: 'Analytics Vidhya',
+                description: '초보자 친화적 DS 학습 플랫폼',
+                link: 'https://www.analyticsvidhya.com/'
+              }
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between items-center pt-8">
         <p className="text-sm text-gray-600 dark:text-gray-400">

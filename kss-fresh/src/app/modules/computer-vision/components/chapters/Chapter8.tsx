@@ -1,9 +1,10 @@
 'use client';
 
-import { 
+import {
   CheckCircle,
   ExternalLink
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -111,6 +112,165 @@ export default function Chapter8() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'AR & SLAM',
+            icon: 'paper' as const,
+            color: 'border-teal-500',
+            items: [
+              {
+                title: 'ARCore: Augmented Reality SDK',
+                authors: 'Google',
+                year: '2024',
+                description: 'Motion tracking, Environmental understanding, Light estimation',
+                link: 'https://developers.google.com/ar'
+              },
+              {
+                title: 'ARKit: iOS AR Platform',
+                authors: 'Apple',
+                year: '2024',
+                description: 'World tracking, Face tracking, Image detection',
+                link: 'https://developer.apple.com/augmented-reality/'
+              },
+              {
+                title: 'ORB-SLAM2',
+                authors: 'Raul Mur-Artal, Juan D. Tardos',
+                year: '2017',
+                description: 'Monocular, Stereo, RGB-D SLAM - AR/로봇의 핵심',
+                link: 'https://github.com/raulmur/ORB_SLAM2'
+              }
+            ]
+          },
+          {
+            title: 'Autonomous Driving',
+            icon: 'paper' as const,
+            color: 'border-cyan-500',
+            items: [
+              {
+                title: 'End to End Learning for Self-Driving Cars',
+                authors: 'Mariusz Bojarski, et al.',
+                year: '2016',
+                description: 'NVIDIA - CNN으로 스티어링 각도 직접 학습',
+                link: 'https://arxiv.org/abs/1604.07316'
+              },
+              {
+                title: 'PointNet: Deep Learning on Point Sets',
+                authors: 'Charles R. Qi, et al.',
+                year: '2017',
+                description: 'LiDAR 포인트 클라우드 처리 - 자율주행 인식',
+                link: 'https://arxiv.org/abs/1612.00593'
+              },
+              {
+                title: 'BEVFormer: Bird-Eye-View Transformer',
+                authors: 'Zhiqi Li, et al.',
+                year: '2022',
+                description: '다중 카메라 3D 객체 검출 - Tesla FSD 스타일',
+                link: 'https://arxiv.org/abs/2203.17270'
+              },
+              {
+                title: 'nuScenes Dataset',
+                authors: 'Holger Caesar, et al.',
+                year: '2020',
+                description: '1,000 시퀀스, 40K 프레임 - 자율주행 벤치마크',
+                link: 'https://www.nuscenes.org/'
+              }
+            ]
+          },
+          {
+            title: 'Medical Imaging',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'U-Net: Biomedical Image Segmentation',
+                authors: 'Olaf Ronneberger, et al.',
+                year: '2015',
+                description: '의료 영상 세그멘테이션의 표준 - 40,000+ 인용',
+                link: 'https://arxiv.org/abs/1505.04597'
+              },
+              {
+                title: 'ChexNet: Radiologist-Level Pneumonia Detection',
+                authors: 'Pranav Rajpurkar, et al.',
+                year: '2017',
+                description: 'Stanford - X-ray에서 폐렴 검출, 의사 수준 정확도',
+                link: 'https://arxiv.org/abs/1711.05225'
+              },
+              {
+                title: 'Skin Cancer Detection with Deep Learning',
+                authors: 'Andre Esteva, et al.',
+                year: '2017',
+                description: 'Nature 논문 - 피부암 진단, 피부과 전문의 수준',
+                link: 'https://www.nature.com/articles/nature21056'
+              }
+            ]
+          },
+          {
+            title: 'Edge AI & Optimization',
+            icon: 'paper' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'MobileNets: Efficient CNNs',
+                authors: 'Andrew G. Howard, et al.',
+                year: '2017',
+                description: 'Depthwise Separable Convolution - 모바일 최적화',
+                link: 'https://arxiv.org/abs/1704.04861'
+              },
+              {
+                title: 'EfficientNet-Lite for Edge Devices',
+                authors: 'Mingxing Tan, Quoc V. Le',
+                year: '2020',
+                description: '모바일/IoT에 최적화된 경량 모델',
+                link: 'https://blog.tensorflow.org/2020/03/higher-accuracy-on-vision-models-with-efficientnet-lite.html'
+              },
+              {
+                title: 'TensorFlow Lite',
+                authors: 'Google',
+                year: '2024',
+                description: '모바일/임베디드 ML - Android, iOS, Raspberry Pi',
+                link: 'https://www.tensorflow.org/lite'
+              }
+            ]
+          },
+          {
+            title: 'Tools & Platforms',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'OpenCV for Mobile',
+                authors: 'OpenCV Team',
+                year: '2024',
+                description: 'Android, iOS CV 라이브러리',
+                link: 'https://opencv.org/platforms/'
+              },
+              {
+                title: 'CARLA Simulator',
+                authors: 'Intel',
+                year: '2024',
+                description: '자율주행 시뮬레이터 - Unreal Engine 기반',
+                link: 'https://carla.org/'
+              },
+              {
+                title: 'MONAI: Medical AI',
+                authors: 'MONAI Consortium',
+                year: '2024',
+                description: 'PyTorch 기반 의료 영상 AI 프레임워크',
+                link: 'https://monai.io/'
+              },
+              {
+                title: 'MediaPipe',
+                authors: 'Google',
+                year: '2024',
+                description: '실시간 ML 파이프라인 - Pose, Face, Hand tracking',
+                link: 'https://mediapipe.dev/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

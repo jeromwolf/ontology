@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { 
+import {
   Brain, TrendingUp, AlertCircle, Info, Target,
   BarChart3, LineChart, Calculator, Zap,
   CheckCircle, XCircle, HelpCircle, Activity,
   ChevronRight, Play, FileText, Lightbulb
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface ChapterProps {
   onComplete?: () => void
@@ -591,6 +592,136 @@ print(f"95% 신용구간: [{credible_interval[0]:.3f}, {credible_interval[1]:.3f
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Statistical Foundations',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Statistics',
+                authors: 'David Freedman, Robert Pisani, Roger Purves',
+                year: '2007',
+                description: '비수학 전공자를 위한 최고의 통계학 입문서 (4th Edition)',
+                link: 'https://wwnorton.com/books/9780393929720'
+              },
+              {
+                title: 'The Elements of Statistical Learning',
+                authors: 'Trevor Hastie, Robert Tibshirani, Jerome Friedman',
+                year: '2009',
+                description: '머신러닝을 위한 통계학 바이블 - 무료 PDF 제공',
+                link: 'https://hastie.su.domains/ElemStatLearn/'
+              },
+              {
+                title: 'Think Stats',
+                authors: 'Allen B. Downey',
+                year: '2014',
+                description: '프로그래머를 위한 실용적인 통계학 - 무료 온라인 제공',
+                link: 'https://greenteapress.com/thinkstats2/html/index.html'
+              },
+              {
+                title: 'Statistical Rethinking',
+                authors: 'Richard McElreath',
+                year: '2020',
+                description: '베이지안 통계의 직관적 이해 (2nd Edition)',
+                link: 'https://xcelab.net/rm/statistical-rethinking/'
+              }
+            ]
+          },
+          {
+            title: 'Hypothesis Testing & p-values',
+            icon: 'paper',
+            color: 'border-red-500',
+            items: [
+              {
+                title: 'Statistical tests, P values, confidence intervals, and power',
+                authors: 'Scott Goodman',
+                year: '2008',
+                description: '가설 검정의 기초 개념 정리 (British Journal of Anaesthesia)',
+                link: 'https://academic.oup.com/bja/article/100/5/567/298347'
+              },
+              {
+                title: 'The ASA Statement on p-Values: Context, Process, and Purpose',
+                authors: 'Ronald L. Wasserstein, Nicole A. Lazar',
+                year: '2016',
+                description: 'p-value의 올바른 해석 - 미국통계학회 공식 성명 (The American Statistician)',
+                link: 'https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108'
+              },
+              {
+                title: 'Why Most Published Research Findings Are False',
+                authors: 'John P. A. Ioannidis',
+                year: '2005',
+                description: 'p-hacking과 재현성 위기 - 가장 많이 인용된 논문 (PLOS Medicine)',
+                link: 'https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124'
+              },
+              {
+                title: 'Moving to a World Beyond "p < 0.05"',
+                authors: 'Ronald L. Wasserstein, et al.',
+                year: '2019',
+                description: 'p-value의 한계와 대안 (The American Statistician)',
+                link: 'https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913'
+              }
+            ]
+          },
+          {
+            title: 'Bayesian Statistics',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'An Essay towards solving a Problem in the Doctrine of Chances',
+                authors: 'Thomas Bayes',
+                year: '1763',
+                description: '베이즈 정리의 원조 논문 (Philosophical Transactions)',
+                link: 'https://royalsocietypublishing.org/doi/10.1098/rstl.1763.0053'
+              },
+              {
+                title: 'Bayesian Data Analysis',
+                authors: 'Andrew Gelman, et al.',
+                year: '2013',
+                description: '베이지안 통계의 실무 적용 표준 교재 (3rd Edition)',
+                link: 'http://www.stat.columbia.edu/~gelman/book/'
+              },
+              {
+                title: 'Probabilistic Programming & Bayesian Methods for Hackers',
+                authors: 'Cameron Davidson-Pilon',
+                year: '2015',
+                description: 'PyMC로 배우는 베이지안 통계 - 무료 온라인',
+                link: 'https://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/'
+              }
+            ]
+          },
+          {
+            title: 'Tools & Libraries',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'SciPy Stats Module',
+                description: 'Python 통계 분석 핵심 라이브러리',
+                link: 'https://docs.scipy.org/doc/scipy/reference/stats.html'
+              },
+              {
+                title: 'statsmodels',
+                description: '통계 모델링 및 검정 전문 라이브러리',
+                link: 'https://www.statsmodels.org/'
+              },
+              {
+                title: 'PyMC',
+                description: '베이지안 통계 모델링을 위한 확률 프로그래밍',
+                link: 'https://www.pymc.io/'
+              },
+              {
+                title: 'Seeing Theory',
+                description: '확률과 통계의 시각적 인터랙티브 학습',
+                link: 'https://seeing-theory.brown.edu/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

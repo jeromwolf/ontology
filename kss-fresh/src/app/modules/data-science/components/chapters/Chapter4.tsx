@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { 
+import {
   Brain, Target, TrendingUp, GitBranch, BarChart3,
   CheckCircle, AlertCircle, Info, Activity,
   ChevronRight, Play, Zap, FileText, Settings
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface ChapterProps {
   onComplete?: () => void
@@ -949,11 +950,11 @@ plt.show()`}</code>
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-8 rounded-xl">
           <h2 className="text-2xl font-bold mb-4">🎯 실전 프로젝트: 고객 이탈 예측</h2>
           <p className="mb-6">
-            배운 알고리즘들을 활용해 실제 비즈니스 문제를 해결해보세요. 
+            배운 알고리즘들을 활용해 실제 비즈니스 문제를 해결해보세요.
             통신사 고객 데이터를 사용해 이탈 가능성이 높은 고객을 예측하는 모델을 만들어봅시다.
           </p>
           <div className="flex gap-4">
-            <button 
+            <button
               onClick={onComplete}
               className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
@@ -965,6 +966,129 @@ plt.show()`}</code>
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Classic Supervised Learning Algorithms',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Classification and Regression Trees',
+                authors: 'Leo Breiman, Jerome Friedman, Richard Olshen, Charles Stone',
+                year: '1984',
+                description: '의사결정 트리의 고전 - CART 알고리즘 (Wadsworth)',
+                link: 'https://www.taylorfrancis.com/books/mono/10.1201/9781315139470/classification-regression-trees-leo-breiman-jerome-friedman-richard-olshen-charles-stone'
+              },
+              {
+                title: 'Random Forests',
+                authors: 'Leo Breiman',
+                year: '2001',
+                description: '랜덤 포레스트 알고리즘 - 앙상블 학습의 혁명 (Machine Learning)',
+                link: 'https://link.springer.com/article/10.1023/A:1010933404324'
+              },
+              {
+                title: 'Support-Vector Networks',
+                authors: 'Corinna Cortes, Vladimir Vapnik',
+                year: '1995',
+                description: 'SVM의 기초 논문 - 커널 트릭과 최대 마진 (Machine Learning)',
+                link: 'https://link.springer.com/article/10.1007/BF00994018'
+              },
+              {
+                title: 'Greedy Function Approximation: A Gradient Boosting Machine',
+                authors: 'Jerome H. Friedman',
+                year: '2001',
+                description: '그래디언트 부스팅의 이론적 기반 (Annals of Statistics)',
+                link: 'https://projecteuclid.org/journals/annals-of-statistics/volume-29/issue-5/Greedy-function-approximation-A-gradient-boosting-machine/10.1214/aos/1013203451.full'
+              }
+            ]
+          },
+          {
+            title: 'Model Evaluation & Selection',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'A Study of Cross-Validation and Bootstrap',
+                authors: 'Ron Kohavi',
+                year: '1995',
+                description: '교차검증과 부트스트랩 비교 연구 - IJCAI',
+                link: 'https://www.ijcai.org/Proceedings/95-2/Papers/016.pdf'
+              },
+              {
+                title: 'The Advantages of the Matthews Correlation Coefficient',
+                authors: 'Davide Chicco, Giuseppe Jurman',
+                year: '2020',
+                description: '불균형 데이터셋 평가 지표 - MCC의 우수성 (BMC Genomics)',
+                link: 'https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-019-6413-7'
+              },
+              {
+                title: 'An introduction to ROC analysis',
+                authors: 'Tom Fawcett',
+                year: '2006',
+                description: 'ROC 곡선 분석의 완벽 가이드 (Pattern Recognition Letters)',
+                link: 'https://www.sciencedirect.com/science/article/abs/pii/S016786550500303X'
+              }
+            ]
+          },
+          {
+            title: 'Ensemble Methods',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'XGBoost: A Scalable Tree Boosting System',
+                authors: 'Tianqi Chen, Carlos Guestrin',
+                year: '2016',
+                description: 'XGBoost 알고리즘 - Kaggle 우승의 비밀 (KDD 2016)',
+                link: 'https://arxiv.org/abs/1603.02754'
+              },
+              {
+                title: 'LightGBM: A Highly Efficient Gradient Boosting Decision Tree',
+                authors: 'Guolin Ke, et al.',
+                year: '2017',
+                description: 'Microsoft의 고속 GBDT 구현 (NeurIPS 2017)',
+                link: 'https://papers.nips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html'
+              },
+              {
+                title: 'Stacked Generalization',
+                authors: 'David H. Wolpert',
+                year: '1992',
+                description: '스태킹 앙상블 기법의 이론 (Neural Networks)',
+                link: 'https://www.sciencedirect.com/science/article/abs/pii/S0893608005800231'
+              }
+            ]
+          },
+          {
+            title: 'Libraries & Tools',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Scikit-learn Documentation',
+                description: 'Python ML 라이브러리 표준 - 모든 알고리즘 구현 및 튜토리얼',
+                link: 'https://scikit-learn.org/stable/'
+              },
+              {
+                title: 'XGBoost Documentation',
+                description: '고성능 그래디언트 부스팅 - 공식 가이드',
+                link: 'https://xgboost.readthedocs.io/'
+              },
+              {
+                title: 'CatBoost Documentation',
+                description: 'Yandex의 범주형 부스팅 - 자동 특성 처리',
+                link: 'https://catboost.ai/docs/'
+              },
+              {
+                title: 'MLxtend',
+                description: '스태킹 앙상블 등 고급 ML 유틸리티',
+                link: 'http://rasbt.github.io/mlxtend/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

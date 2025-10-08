@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { BookOpen, TrendingUp, Clock, BarChart2, Lightbulb } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface Chapter7Props {
   onComplete?: () => void
@@ -240,6 +241,120 @@ print(forecast)`}</pre>
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: 'Time Series Analysis Foundations',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Time Series Analysis: Forecasting and Control',
+                authors: 'George E. P. Box, Gwilym M. Jenkins, Gregory C. Reinsel',
+                year: '2015',
+                description: '시계열 분석의 바이블 - ARIMA 모델의 고전 (Wiley, 5th Edition)',
+                link: 'https://www.wiley.com/en-us/Time+Series+Analysis%3A+Forecasting+and+Control%2C+5th+Edition-p-9781118675021'
+              },
+              {
+                title: 'Forecasting: Principles and Practice',
+                authors: 'Rob J Hyndman, George Athanasopoulos',
+                year: '2021',
+                description: '현대적 예측 기법 완벽 가이드 - 무료 온라인북 (3rd Edition)',
+                link: 'https://otexts.com/fpp3/'
+              },
+              {
+                title: 'Autoregressive Conditional Heteroscedasticity',
+                authors: 'Robert F. Engle',
+                year: '1982',
+                description: 'ARCH 모델 - 변동성 모델링의 시작 (노벨경제학상, Econometrica)',
+                link: 'https://www.jstor.org/stable/1912773'
+              }
+            ]
+          },
+          {
+            title: 'Modern Forecasting Methods',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Forecasting at Scale',
+                authors: 'Sean J. Taylor, Benjamin Letham',
+                year: '2018',
+                description: 'Facebook Prophet - 자동화된 시계열 예측 (The American Statistician)',
+                link: 'https://peerj.com/preprints/3190/'
+              },
+              {
+                title: 'N-BEATS: Neural basis expansion analysis for time series',
+                authors: 'Boris N. Oreshkin, et al.',
+                year: '2020',
+                description: '딥러닝 기반 시계열 예측 - SOTA 성능 (ICLR 2020)',
+                link: 'https://arxiv.org/abs/1905.10437'
+              },
+              {
+                title: 'Informer: Beyond Efficient Transformer',
+                authors: 'Haoyi Zhou, et al.',
+                year: '2021',
+                description: 'Transformer 기반 장기 시계열 예측 (AAAI 2021)',
+                link: 'https://arxiv.org/abs/2012.07436'
+              }
+            ]
+          },
+          {
+            title: 'Specialized Techniques',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Seasonal and Trend decomposition using Loess',
+                authors: 'R. B. Cleveland, et al.',
+                year: '1990',
+                description: 'STL 분해 - 계절성과 트렌드 분리 (Journal of Official Statistics)',
+                link: 'https://www.scb.se/contentassets/ca21efb41fee47d293bbee5bf7be7fb3/stl-a-seasonal-trend-decomposition-procedure-based-on-loess.pdf'
+              },
+              {
+                title: 'Dynamic Time Warping Algorithm Review',
+                authors: 'Toni Giorgino',
+                year: '2009',
+                description: 'DTW - 시계열 유사도 측정 (R Package)',
+                link: 'https://www.jstatsoft.org/article/view/v031i07'
+              }
+            ]
+          },
+          {
+            title: 'Libraries & Tools',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Prophet Documentation',
+                description: 'Facebook의 자동 시계열 예측 라이브러리',
+                link: 'https://facebook.github.io/prophet/'
+              },
+              {
+                title: 'statsmodels Time Series',
+                description: 'Python ARIMA, SARIMAX, VAR 등 고전 모델',
+                link: 'https://www.statsmodels.org/stable/tsa.html'
+              },
+              {
+                title: 'pmdarima',
+                description: 'Auto ARIMA - 자동 파라미터 선택',
+                link: 'http://alkaline-ml.com/pmdarima/'
+              },
+              {
+                title: 'NeuralProphet',
+                description: 'Prophet + 딥러닝 - 차세대 예측 도구',
+                link: 'https://neuralprophet.com/'
+              },
+              {
+                title: 'Darts',
+                description: '통합 시계열 라이브러리 - 고전부터 딥러닝까지',
+                link: 'https://unit8co.github.io/darts/'
+              }
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between items-center pt-8">
         <p className="text-sm text-gray-600 dark:text-gray-400">

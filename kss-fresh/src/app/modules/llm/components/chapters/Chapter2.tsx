@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Code, FlaskConical } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter2() {
   return (
@@ -160,6 +161,103 @@ export default function Chapter2() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '원본 논문 (Original Papers)',
+            icon: 'paper',
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Attention Is All You Need',
+                authors: 'Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin',
+                year: '2017',
+                description: 'Transformer 아키텍처를 최초로 제안한 역사적 논문',
+                link: 'https://arxiv.org/abs/1706.03762'
+              },
+              {
+                title: 'BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding',
+                authors: 'Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova',
+                year: '2018',
+                description: 'Transformer Encoder 기반 양방향 사전학습 모델',
+                link: 'https://arxiv.org/abs/1810.04805'
+              },
+              {
+                title: 'Language Models are Unsupervised Multitask Learners',
+                authors: 'Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever',
+                year: '2019',
+                description: 'GPT-2: Transformer Decoder 기반 생성 모델의 발전',
+                link: 'https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf'
+              },
+              {
+                title: 'Language Models are Few-Shot Learners',
+                authors: 'Tom B. Brown et al.',
+                year: '2020',
+                description: 'GPT-3: 175B 파라미터 대규모 언어 모델',
+                link: 'https://arxiv.org/abs/2005.14165'
+              }
+            ]
+          },
+          {
+            title: '기술 분석 자료 (Technical Resources)',
+            icon: 'book',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'The Illustrated Transformer',
+                authors: 'Jay Alammar',
+                year: '2018',
+                description: 'Transformer를 시각적으로 이해하기 쉽게 설명한 필독 자료',
+                link: 'https://jalammar.github.io/illustrated-transformer/'
+              },
+              {
+                title: 'The Annotated Transformer',
+                authors: 'Harvard NLP Group',
+                year: '2018',
+                description: '논문의 코드 구현을 라인별로 설명한 상세 가이드',
+                link: 'http://nlp.seas.harvard.edu/annotated-transformer/'
+              },
+              {
+                title: 'Formal Algorithms for Transformers',
+                authors: 'Mary Phuong, Marcus Hutter',
+                year: '2022',
+                description: 'Transformer의 수학적 알고리즘을 엄밀하게 정리한 논문',
+                link: 'https://arxiv.org/abs/2207.09238'
+              }
+            ]
+          },
+          {
+            title: '학습 자료 (Learning Resources)',
+            icon: 'web',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Stanford CS224N: Natural Language Processing with Deep Learning',
+                description: 'Transformer와 NLP의 기초부터 고급까지 다루는 스탠포드 강의',
+                link: 'http://web.stanford.edu/class/cs224n/'
+              },
+              {
+                title: 'Hugging Face Transformers Documentation',
+                description: '실무에서 가장 많이 사용되는 Transformers 라이브러리 공식 문서',
+                link: 'https://huggingface.co/docs/transformers/index'
+              },
+              {
+                title: 'Transformers from Scratch',
+                authors: 'Peter Bloem',
+                description: 'Transformer를 처음부터 구현하며 배우는 튜토리얼',
+                link: 'https://peterbloem.nl/blog/transformers'
+              },
+              {
+                title: 'Attention? Attention!',
+                authors: 'Lilian Weng',
+                description: 'Attention 메커니즘의 발전 과정을 정리한 포괄적 블로그',
+                link: 'https://lilianweng.github.io/posts/2018-06-24-attention/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

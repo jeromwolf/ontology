@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { 
+import {
   AlertCircle,
   Terminal,
   Copy,
   Check
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter2() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
@@ -99,6 +100,123 @@ sharpened = cv2.filter2D(img, -1, kernel)`}</code>
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Classic Image Processing',
+            icon: 'paper' as const,
+            color: 'border-teal-500',
+            items: [
+              {
+                title: 'A Computational Approach to Edge Detection',
+                authors: 'John Canny',
+                year: '1986',
+                description: 'Canny Edge Detector - CV에서 가장 널리 쓰이는 엣지 검출 알고리즘',
+                link: 'https://ieeexplore.ieee.org/document/4767851'
+              },
+              {
+                title: 'Theory of Edge Detection',
+                authors: 'David Marr, Ellen Hildreth',
+                year: '1980',
+                description: '엣지의 생물학적/수학적 이론 - Marr의 시각 이론 기초',
+                link: 'https://royalsocietypublishing.org/doi/10.1098/rspb.1980.0020'
+              },
+              {
+                title: 'Scale-Space and Edge Detection',
+                authors: 'Tony Lindeberg',
+                year: '1998',
+                description: '스케일 공간 이론 - 다중 해상도 이미지 분석',
+                link: 'https://link.springer.com/article/10.1023/A:1008045108935'
+              }
+            ]
+          },
+          {
+            title: 'Filtering & Convolution',
+            icon: 'paper' as const,
+            color: 'border-cyan-500',
+            items: [
+              {
+                title: 'Gaussian Smoothing',
+                authors: 'Deriche, Rachid',
+                year: '1993',
+                description: '가우시안 필터의 최적 근사 - 실시간 블러링 구현',
+                link: 'https://hal.inria.fr/inria-00074778'
+              },
+              {
+                title: 'Bilateral Filtering',
+                authors: 'Tomasi, Manduchi',
+                year: '1998',
+                description: '엣지 보존 스무딩 - 포토샵 필터의 핵심 기술',
+                link: 'https://ieeexplore.ieee.org/document/710815'
+              },
+              {
+                title: 'Guided Image Filtering',
+                authors: 'Kaiming He, et al.',
+                year: '2013',
+                description: 'Fast edge-preserving filter - O(1) 시간 복잡도',
+                link: 'https://ieeexplore.ieee.org/document/6319316'
+              }
+            ]
+          },
+          {
+            title: 'Frequency Domain',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'The Fast Fourier Transform',
+                authors: 'Cooley, Tukey',
+                year: '1965',
+                description: 'FFT 알고리즘 - 신호처리 혁명의 시작',
+                link: 'https://www.ams.org/journals/mcom/1965-19-090/S0025-5718-1965-0178586-1/'
+              },
+              {
+                title: 'Frequency Domain Image Processing',
+                authors: 'Gonzalez, Woods',
+                year: '2008',
+                description: '주파수 도메인 필터링 - Low-pass, High-pass, Band-pass',
+                link: 'https://www.imageprocessingplace.com/'
+              },
+              {
+                title: 'Wavelet Transform',
+                authors: 'Stephane Mallat',
+                year: '1989',
+                description: '웨이블릿 변환 - JPEG2000, 이미지 압축의 핵심',
+                link: 'https://ieeexplore.ieee.org/document/192463'
+              }
+            ]
+          },
+          {
+            title: 'Tools & Tutorials',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'OpenCV Image Filtering',
+                authors: 'OpenCV Team',
+                year: '2024',
+                description: 'Blur, Sharpen, Edge Detection 튜토리얼',
+                link: 'https://docs.opencv.org/4.x/d4/d13/tutorial_py_filtering.html'
+              },
+              {
+                title: 'scikit-image Filters',
+                authors: 'scikit-image developers',
+                year: '2024',
+                description: '50+ 필터 라이브러리 - Sobel, Canny, Gaussian 등',
+                link: 'https://scikit-image.org/docs/stable/api/skimage.filters.html'
+              },
+              {
+                title: 'Image Processing Tutorial',
+                authors: 'Stanford CS231A',
+                year: '2023',
+                description: '스탠포드 CV 강의 - 이미지 처리 기초',
+                link: 'https://web.stanford.edu/class/cs231a/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { BookOpen, FlaskConical, Calculator, BarChart3, Lightbulb, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface Chapter9Props {
   onComplete?: () => void
@@ -543,6 +544,120 @@ button_test = ABTest(
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: 'A/B Testing Foundations',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Statistical Methods for A/B Testing',
+                authors: 'Ron Kohavi, Roger Longbotham, et al.',
+                year: '2009',
+                description: 'Controlled Experiments의 실무 가이드 (KDD 2009)',
+                link: 'https://exp-platform.com/Documents/2009-ExPpitfalls.pdf'
+              },
+              {
+                title: 'Trustworthy Online Controlled Experiments',
+                authors: 'Ron Kohavi, Diane Tang, Ya Xu',
+                year: '2020',
+                description: 'A/B 테스팅 완벽 가이드북 - Microsoft, Google 경험 집약',
+                link: 'https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/D97B26382EB0EB2DC2019A7A7B518F59'
+              },
+              {
+                title: 'Seven Rules of Thumb for Web Site Experimenters',
+                authors: 'Ron Kohavi, et al.',
+                year: '2014',
+                description: '실무자를 위한 7가지 법칙 (KDD 2014)',
+                link: 'https://exp-platform.com/Documents/2014%20experimentersRulesOfThumb.pdf'
+              }
+            ]
+          },
+          {
+            title: 'Advanced Methods',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Multi-Armed Bandit Algorithms',
+                authors: 'John Myles White',
+                year: '2012',
+                description: 'MAB 알고리즘 - 동적 최적화 (O\'Reilly)',
+                link: 'https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/'
+              },
+              {
+                title: 'Sequential Testing for Multiple Testing',
+                authors: 'Adam Deng, Jiannan Lu, Jonathan Litz',
+                year: '2016',
+                description: 'Sequential Testing 방법론 - LinkedIn (KDD 2016)',
+                link: 'https://arxiv.org/abs/1512.04922'
+              },
+              {
+                title: 'A/B Testing with Fat Tails',
+                authors: 'Ramesh Johari, et al.',
+                year: '2022',
+                description: '분산이 큰 데이터의 A/B 테스팅 (Management Science)',
+                link: 'https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2021.4115'
+              }
+            ]
+          },
+          {
+            title: 'Statistical Considerations',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'The Design and Analysis of Experiments',
+                authors: 'Douglas C. Montgomery',
+                year: '2017',
+                description: '실험 설계의 고전 - 통계학 교과서 (Wiley, 9th Edition)',
+                link: 'https://www.wiley.com/en-us/Design+and+Analysis+of+Experiments%2C+9th+Edition-p-9781119113478'
+              },
+              {
+                title: 'False-Positive Psychology',
+                authors: 'Joseph P. Simmons, Leif D. Nelson, Uri Simonsohn',
+                year: '2011',
+                description: 'p-hacking과 다중 비교 문제 (Psychological Science)',
+                link: 'https://journals.sagepub.com/doi/10.1177/0956797611417632'
+              }
+            ]
+          },
+          {
+            title: 'Tools & Platforms',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Optimizely Platform',
+                description: 'A/B 테스팅 및 피처 플래깅 플랫폼',
+                link: 'https://www.optimizely.com/'
+              },
+              {
+                title: 'Google Optimize',
+                description: 'Google의 무료 A/B 테스팅 도구',
+                link: 'https://marketingplatform.google.com/about/optimize/'
+              },
+              {
+                title: 'VWO (Visual Website Optimizer)',
+                description: '종합 CRO(전환율 최적화) 플랫폼',
+                link: 'https://vwo.com/'
+              },
+              {
+                title: 'Statsig',
+                description: 'Facebook 출신 팀의 실험 플랫폼',
+                link: 'https://www.statsig.com/'
+              },
+              {
+                title: 'GrowthBook',
+                description: '오픈소스 실험 플랫폼 - 개발자 친화적',
+                link: 'https://www.growthbook.io/'
+              }
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between items-center pt-8">
         <p className="text-sm text-gray-600 dark:text-gray-400">

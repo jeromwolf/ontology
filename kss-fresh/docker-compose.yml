@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  kss-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: kss-platform
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - NEXTAUTH_URL=http://localhost:3000
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - kss-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Database (if not using external DB)
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: kss-db
+  #   environment:
+  #     POSTGRES_USER: kss
+  #     POSTGRES_PASSWORD: kss_password
+  #     POSTGRES_DB: kss_db
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - kss-network
+
+networks:
+  kss-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:

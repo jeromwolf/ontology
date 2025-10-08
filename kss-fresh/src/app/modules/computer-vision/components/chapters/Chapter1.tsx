@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  Lightbulb, 
+import {
+  Lightbulb,
   CheckCircle,
   Terminal,
   Copy,
   Check
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter1() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
@@ -143,6 +144,123 @@ plt.show()`}</code>
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Foundational Textbooks',
+            icon: 'paper' as const,
+            color: 'border-teal-500',
+            items: [
+              {
+                title: 'Computer Vision: Algorithms and Applications',
+                authors: 'Richard Szeliski',
+                year: '2022',
+                description: 'CV 바이블 - MS Research 무료 온라인 제공 (2nd Edition)',
+                link: 'https://szeliski.org/Book/'
+              },
+              {
+                title: 'Digital Image Processing',
+                authors: 'Rafael C. Gonzalez, Richard E. Woods',
+                year: '2018',
+                description: '이미지 처리의 고전 - 픽셀, 색상 공간, 히스토그램의 원리',
+                link: 'https://www.imageprocessingplace.com/'
+              },
+              {
+                title: 'Multiple View Geometry in Computer Vision',
+                authors: 'Richard Hartley, Andrew Zisserman',
+                year: '2004',
+                description: '3D CV의 수학적 기초 - 카메라 모델, 투영 기하학',
+                link: 'https://www.robots.ox.ac.uk/~vgg/hzbook/'
+              }
+            ]
+          },
+          {
+            title: 'Image Processing Fundamentals',
+            icon: 'paper' as const,
+            color: 'border-cyan-500',
+            items: [
+              {
+                title: 'The Structure of Images',
+                authors: 'Michael Brady, et al.',
+                year: '1984',
+                description: '이미지 구조의 계층적 표현 - 픽셀에서 객체까지',
+                link: 'https://link.springer.com/chapter/10.1007/978-1-4613-2551-5_1'
+              },
+              {
+                title: 'Histogram Equalization',
+                authors: 'Stephen M. Pizer, et al.',
+                year: '1987',
+                description: 'Adaptive Histogram Equalization (AHE) - 의료 영상에 혁명',
+                link: 'https://pubmed.ncbi.nlm.nih.gov/18230511/'
+              },
+              {
+                title: 'Color Image Processing',
+                authors: 'Sankar K. Pal, Alfred Rosenfeld',
+                year: '1993',
+                description: 'RGB, HSV, LAB 색상 공간의 이론과 응용',
+                link: 'https://ieeexplore.ieee.org/document/229903'
+              }
+            ]
+          },
+          {
+            title: 'Modern Color Science',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Color Constancy',
+                authors: 'Marc Ebner',
+                year: '2007',
+                description: '조명 변화 속 색상 일관성 유지 - CV의 핵심 도전과제',
+                link: 'https://www.wiley.com/en-us/Color+Constancy-p-9780470058299'
+              },
+              {
+                title: 'A Comparative Study of Color Models',
+                authors: 'K. N. Plataniotis, A. N. Venetsanopoulos',
+                year: '2000',
+                description: 'RGB vs HSV vs YCbCr - 각 색상 모델의 장단점 비교',
+                link: 'https://ieeexplore.ieee.org/document/841950'
+              }
+            ]
+          },
+          {
+            title: 'Tools & Libraries',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'OpenCV Documentation',
+                authors: 'OpenCV Team',
+                year: '2024',
+                description: 'CV 라이브러리의 표준 - Python, C++ 튜토리얼',
+                link: 'https://docs.opencv.org/'
+              },
+              {
+                title: 'Pillow (PIL Fork)',
+                authors: 'Python Imaging Library',
+                year: '2024',
+                description: 'Python 이미지 처리 라이브러리 - 간단하고 직관적',
+                link: 'https://pillow.readthedocs.io/'
+              },
+              {
+                title: 'scikit-image',
+                authors: 'scikit-image developers',
+                year: '2024',
+                description: 'NumPy 기반 이미지 처리 - 과학 연구에 최적화',
+                link: 'https://scikit-image.org/'
+              },
+              {
+                title: 'ImageMagick',
+                authors: 'ImageMagick Studio LLC',
+                year: '2024',
+                description: '커맨드라인 이미지 편집 - 포맷 변환, 배치 처리',
+                link: 'https://imagemagick.org/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

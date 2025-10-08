@@ -1,6 +1,7 @@
 'use client';
 
 import { Eye } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter7() {
   return (
@@ -111,6 +112,110 @@ export default function Chapter7() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Superconducting Qubits',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Charge-insensitive qubit design derived from the Cooper pair box',
+                authors: 'Jens Koch, Terri M. Yu, Jay Gambetta, et al.',
+                year: '2007',
+                description: 'Transmon 큐비트 개발 - IBM/Google의 기반 기술 (Physical Review A)',
+                link: 'https://journals.aps.org/pra/abstract/10.1103/PhysRevA.76.042319'
+              },
+              {
+                title: 'Superconducting quantum bits',
+                authors: 'John Clarke, Frank K. Wilhelm',
+                year: '2008',
+                description: '초전도 큐비트 종합 리뷰 (Nature)',
+                link: 'https://www.nature.com/articles/nature07128'
+              },
+              {
+                title: 'Building logical qubits in a superconducting quantum computing system',
+                authors: 'J. M. Gambetta, et al. (IBM Quantum)',
+                year: '2017',
+                description: 'IBM의 논리 큐비트 구축 전략 (npj Quantum Information)',
+                link: 'https://www.nature.com/articles/s41534-016-0004-0'
+              }
+            ]
+          },
+          {
+            title: 'Trapped Ion Systems',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Experimental Issues in Coherent Quantum-State Manipulation of Trapped Atomic Ions',
+                authors: 'D. J. Wineland, et al.',
+                year: '1998',
+                description: '이온 트랩 양자 컴퓨팅의 실험적 기초 (Journal of Research of NIST)',
+                link: 'https://nvlpubs.nist.gov/nistpubs/jres/103/jresv103n3p259_A1b.pdf'
+              },
+              {
+                title: 'High-Fidelity Quantum Logic Gates Using Trapped-Ion Hyperfine Qubits',
+                authors: 'J. P. Gaebler, et al.',
+                year: '2016',
+                description: '99.9% 게이트 충실도 달성 (Physical Review Letters)',
+                link: 'https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.117.060505'
+              },
+              {
+                title: 'Quantum supremacy using a programmable superconducting processor',
+                authors: 'Honeywell Quantum Solutions',
+                year: '2020',
+                description: 'IonQ/Honeywell의 이온 트랩 양자 컴퓨터',
+                link: 'https://www.honeywell.com/us/en/company/quantum'
+              }
+            ]
+          },
+          {
+            title: 'Photonic & Silicon Qubits',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Quantum computational advantage using photons',
+                authors: 'Han-Sen Zhong, et al.',
+                year: '2020',
+                description: '중국의 광자 기반 양자 우위 달성 (Science)',
+                link: 'https://www.science.org/doi/10.1126/science.abe8770'
+              },
+              {
+                title: 'Silicon quantum electronics',
+                authors: 'F. A. Zwanenburg, et al.',
+                year: '2013',
+                description: '실리콘 기반 양자 컴퓨팅 리뷰 (Reviews of Modern Physics)',
+                link: 'https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.85.961'
+              }
+            ]
+          },
+          {
+            title: 'Platform Comparisons & Future',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'IBM Quantum Roadmap',
+                description: 'IBM의 1000+ 큐비트 시스템 로드맵',
+                link: 'https://www.ibm.com/quantum/roadmap'
+              },
+              {
+                title: 'Google Quantum AI',
+                description: 'Google의 양자 하드웨어 및 알고리즘 연구',
+                link: 'https://quantumai.google/'
+              },
+              {
+                title: 'IonQ Technology',
+                description: '상업용 이온 트랩 양자 컴퓨터',
+                link: 'https://ionq.com/technology'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

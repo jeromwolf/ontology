@@ -1,6 +1,7 @@
 'use client';
 
 import { Shield } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter4() {
   return (
@@ -83,6 +84,129 @@ export default function Chapter4() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '원본 논문 (Original Papers)',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Polynomial-Time Algorithms for Prime Factorization and Discrete Logarithms on a Quantum Computer',
+                authors: 'Peter W. Shor',
+                year: '1997',
+                description: '양자 컴퓨팅의 킬러 앱, Shor 알고리즘을 최초로 제안한 역사적 논문',
+                link: 'https://arxiv.org/abs/quant-ph/9508027'
+              },
+              {
+                title: 'Quantum Computation and Shor\'s Factoring Algorithm',
+                authors: 'Richard Jozsa',
+                year: '1998',
+                description: 'Shor 알고리즘의 수학적 원리를 명확하게 설명한 리뷰 논문',
+                link: 'https://arxiv.org/abs/quant-ph/9707033'
+              },
+              {
+                title: 'Realization of a scalable Shor algorithm',
+                authors: 'Thomas Monz et al.',
+                year: '2016',
+                description: 'Shor 알고리즘의 실제 양자 컴퓨터 구현 (Science)',
+                link: 'https://www.science.org/doi/10.1126/science.aad9480'
+              },
+              {
+                title: 'Quantum Fourier Transform and Its Applications',
+                authors: 'Michele Mosca',
+                year: '1999',
+                description: '양자 푸리에 변환(QFT)의 수학적 기초와 응용',
+                link: 'https://arxiv.org/abs/quant-ph/9903071'
+              }
+            ]
+          },
+          {
+            title: 'RSA 암호화와 양자 위협 (RSA & Quantum Threat)',
+            icon: 'paper',
+            color: 'border-red-500',
+            items: [
+              {
+                title: 'A Method for Obtaining Digital Signatures and Public-Key Cryptosystems',
+                authors: 'Ronald L. Rivest, Adi Shamir, Leonard Adleman',
+                year: '1978',
+                description: 'RSA 암호화를 최초로 제안한 역사적 논문',
+                link: 'https://people.csail.mit.edu/rivest/Rsapaper.pdf'
+              },
+              {
+                title: 'Post-Quantum Cryptography',
+                authors: 'Daniel J. Bernstein, Johannes Buchmann, Erik Dahmen',
+                year: '2009',
+                description: '양자 컴퓨터에 안전한 암호화 알고리즘 (포스트 양자 암호학)',
+                link: 'https://pqcrypto.org/'
+              },
+              {
+                title: 'NIST Post-Quantum Cryptography Standardization',
+                authors: 'NIST',
+                year: '2022',
+                description: 'NIST의 양자 내성 암호 표준화 프로젝트',
+                link: 'https://csrc.nist.gov/projects/post-quantum-cryptography'
+              }
+            ]
+          },
+          {
+            title: '양자 알고리즘 교재 (Quantum Algorithm Textbooks)',
+            icon: 'book',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Quantum Computation and Quantum Information',
+                authors: 'Michael A. Nielsen, Isaac L. Chuang',
+                year: '2010',
+                description: '양자 컴퓨팅의 바이블 - Shor 알고리즘 상세 설명 (Chapter 5)',
+                link: 'http://mmrc.amss.cas.cn/tlb/201702/W020170224608149940643.pdf'
+              },
+              {
+                title: 'Quantum Computing: A Gentle Introduction',
+                authors: 'Eleanor Rieffel, Wolfgang Polak',
+                year: '2011',
+                description: '양자 컴퓨팅 입문서 - Shor 알고리즘 단계별 설명',
+                link: 'https://mitpress.mit.edu/9780262526678/'
+              },
+              {
+                title: 'Quantum Algorithms via Linear Algebra',
+                authors: 'Richard J. Lipton, Kenneth W. Regan',
+                year: '2014',
+                description: '선형대수 관점에서 본 양자 알고리즘 (MIT Press)',
+                link: 'https://mitpress.mit.edu/9780262028394/'
+              }
+            ]
+          },
+          {
+            title: '실습 및 구현 자료 (Implementation Resources)',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Qiskit: Shor\'s Algorithm Tutorial',
+                description: 'IBM Qiskit에서 Shor 알고리즘 구현 튜토리얼',
+                link: 'https://qiskit.org/textbook/ch-algorithms/shor.html'
+              },
+              {
+                title: 'Cirq: Implementing Shor\'s Algorithm',
+                description: 'Google Cirq로 Shor 알고리즘 실습',
+                link: 'https://quantumai.google/cirq/experiments/shor'
+              },
+              {
+                title: 'Microsoft Quantum: Q# Shor Implementation',
+                description: 'Microsoft Q#로 작성된 Shor 알고리즘 샘플',
+                link: 'https://github.com/microsoft/QuantumKatas'
+              },
+              {
+                title: 'Quantum Algorithm Zoo',
+                description: 'Stephen Jordan의 양자 알고리즘 종합 데이터베이스',
+                link: 'https://quantumalgorithmzoo.org/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

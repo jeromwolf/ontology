@@ -1,7 +1,7 @@
 export const moduleMetadata = {
   title: 'Web3 & Blockchain',
   description: '블록체인 기술과 Web3 생태계를 체험하는 실전 학습 플랫폼',
-  duration: '12시간',
+  duration: '14시간',
   level: 'intermediate',
   chapters: [
     {
@@ -99,6 +99,18 @@ export const moduleMetadata = {
         'Reentrancy, Flash Loan 공격',
         '보안 감사 도구와 방법론',
         'Bug Bounty와 보안 베스트 프랙티스'
+      ]
+    },
+    {
+      id: 9,
+      title: '블록체인 백서와 철학',
+      description: '비트코인과 이더리움 백서의 핵심 개념',
+      duration: '120분',
+      learningObjectives: [
+        '비트코인 백서: 이중 지불 문제와 PoW',
+        '이더리움 백서: 스마트 컨트랙트와 EVM',
+        '블록체인 트릴레마와 확장성 솔루션',
+        '탈중앙화, 무신뢰성, 검열 저항성의 철학'
       ]
     }
   ],

@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { 
+import {
   Terminal,
   Copy,
   Check
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter6() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
@@ -118,6 +119,165 @@ for r in results:
           </pre>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'YOLO Series',
+            icon: 'paper' as const,
+            color: 'border-teal-500',
+            items: [
+              {
+                title: 'You Only Look Once (YOLOv1)',
+                authors: 'Joseph Redmon, et al.',
+                year: '2016',
+                description: 'Single-shot 객체 검출의 시작 - 실시간 처리 혁명',
+                link: 'https://arxiv.org/abs/1506.02640'
+              },
+              {
+                title: 'YOLOv3: An Incremental Improvement',
+                authors: 'Joseph Redmon, Ali Farhadi',
+                year: '2018',
+                description: '다중 스케일 예측 - 작은 객체 검출 개선',
+                link: 'https://arxiv.org/abs/1804.02767'
+              },
+              {
+                title: 'YOLOv7: Trainable Bag-of-Freebies',
+                authors: 'Chien-Yao Wang, et al.',
+                year: '2022',
+                description: '추가 비용 없는 정확도 향상 - SOTA 속도/정확도 트레이드오프',
+                link: 'https://arxiv.org/abs/2207.02696'
+              },
+              {
+                title: 'YOLOv8',
+                authors: 'Ultralytics',
+                year: '2023',
+                description: '최신 YOLO - 사용하기 쉬운 Python API',
+                link: 'https://docs.ultralytics.com/'
+              }
+            ]
+          },
+          {
+            title: 'R-CNN Family',
+            icon: 'paper' as const,
+            color: 'border-cyan-500',
+            items: [
+              {
+                title: 'Rich Feature Hierarchies (R-CNN)',
+                authors: 'Ross Girshick, et al.',
+                year: '2014',
+                description: 'Region-based CNN - 객체 검출의 패러다임 전환',
+                link: 'https://arxiv.org/abs/1311.2524'
+              },
+              {
+                title: 'Fast R-CNN',
+                authors: 'Ross Girshick',
+                year: '2015',
+                description: 'R-CNN 9배 가속 - RoI Pooling 도입',
+                link: 'https://arxiv.org/abs/1504.08083'
+              },
+              {
+                title: 'Faster R-CNN',
+                authors: 'Shaoqing Ren, et al.',
+                year: '2015',
+                description: 'Region Proposal Network - End-to-end 학습',
+                link: 'https://arxiv.org/abs/1506.01497'
+              },
+              {
+                title: 'Mask R-CNN',
+                authors: 'Kaiming He, et al.',
+                year: '2017',
+                description: '인스턴스 세그멘테이션 - 객체별 픽셀 마스크',
+                link: 'https://arxiv.org/abs/1703.06870'
+              }
+            ]
+          },
+          {
+            title: 'Modern Detectors',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Focal Loss for Dense Object Detection (RetinaNet)',
+                authors: 'Tsung-Yi Lin, et al.',
+                year: '2017',
+                description: 'Focal Loss로 클래스 불균형 해결 - One-stage SOTA',
+                link: 'https://arxiv.org/abs/1708.02002'
+              },
+              {
+                title: 'End-to-End Object Detection with Transformers (DETR)',
+                authors: 'Nicolas Carion, et al.',
+                year: '2020',
+                description: 'Transformer 기반 검출 - NMS 불필요',
+                link: 'https://arxiv.org/abs/2005.12872'
+              },
+              {
+                title: 'EfficientDet',
+                authors: 'Mingxing Tan, et al.',
+                year: '2020',
+                description: 'Compound Scaling - 효율적인 객체 검출',
+                link: 'https://arxiv.org/abs/1911.09070'
+              }
+            ]
+          },
+          {
+            title: 'Datasets & Benchmarks',
+            icon: 'paper' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Microsoft COCO Dataset',
+                authors: 'Tsung-Yi Lin, et al.',
+                year: '2014',
+                description: '80 클래스, 330K 이미지 - 객체 검출의 표준 벤치마크',
+                link: 'https://cocodataset.org/'
+              },
+              {
+                title: 'PASCAL VOC Challenge',
+                authors: 'Mark Everingham, et al.',
+                year: '2010',
+                description: '20 클래스 - 객체 검출/세그멘테이션 벤치마크',
+                link: 'http://host.robots.ox.ac.uk/pascal/VOC/'
+              }
+            ]
+          },
+          {
+            title: 'Tools & Frameworks',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Ultralytics YOLOv8',
+                authors: 'Ultralytics',
+                year: '2024',
+                description: 'YOLO 공식 구현 - Detection, Segmentation, Pose',
+                link: 'https://github.com/ultralytics/ultralytics'
+              },
+              {
+                title: 'Detectron2',
+                authors: 'Facebook AI Research',
+                year: '2024',
+                description: 'Meta의 객체 검출 라이브러리 - Mask R-CNN, RetinaNet',
+                link: 'https://github.com/facebookresearch/detectron2'
+              },
+              {
+                title: 'MMDetection',
+                authors: 'OpenMMLab',
+                year: '2024',
+                description: '50+ 검출 모델 - PyTorch 기반 통합 툴박스',
+                link: 'https://github.com/open-mmlab/mmdetection'
+              },
+              {
+                title: 'Roboflow',
+                authors: 'Roboflow',
+                year: '2024',
+                description: 'CV 데이터셋 관리 - 라벨링, 증강, 배포',
+                link: 'https://roboflow.com/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

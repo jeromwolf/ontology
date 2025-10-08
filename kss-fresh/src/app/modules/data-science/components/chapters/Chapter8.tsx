@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { BookOpen, MessageSquare, Brain, Code, Lightbulb } from 'lucide-react';
+import References from '@/components/common/References';
 
 interface Chapter8Props {
   onComplete?: () => void
@@ -279,6 +280,120 @@ print("'파이썬'과 유사한 단어:", similar_words)`}</pre>
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: 'NLP Foundations',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Speech and Language Processing',
+                authors: 'Daniel Jurafsky, James H. Martin',
+                year: '2024',
+                description: 'NLP 교과서의 표준 - 무료 온라인 제공 (3rd Edition Draft)',
+                link: 'https://web.stanford.edu/~jurafsky/slp3/'
+              },
+              {
+                title: 'Efficient Estimation of Word Representations',
+                authors: 'Tomas Mikolov, et al.',
+                year: '2013',
+                description: 'Word2Vec - 단어 임베딩의 시작 (ICLR 2013)',
+                link: 'https://arxiv.org/abs/1301.3781'
+              },
+              {
+                title: 'GloVe: Global Vectors for Word Representation',
+                authors: 'Jeffrey Pennington, Richard Socher, Christopher Manning',
+                year: '2014',
+                description: 'GloVe - 전역 벡터 임베딩 (EMNLP 2014)',
+                link: 'https://aclanthology.org/D14-1162/'
+              }
+            ]
+          },
+          {
+            title: 'Transformer & Modern NLP',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Attention Is All You Need',
+                authors: 'Ashish Vaswani, et al.',
+                year: '2017',
+                description: 'Transformer 아키텍처 - NLP의 패러다임 전환 (NeurIPS 2017)',
+                link: 'https://arxiv.org/abs/1706.03762'
+              },
+              {
+                title: 'BERT: Pre-training of Deep Bidirectional Transformers',
+                authors: 'Jacob Devlin, et al.',
+                year: '2019',
+                description: 'BERT - 양방향 사전학습의 혁명 (NAACL 2019)',
+                link: 'https://arxiv.org/abs/1810.04805'
+              },
+              {
+                title: 'Language Models are Few-Shot Learners',
+                authors: 'Tom B. Brown, et al.',
+                year: '2020',
+                description: 'GPT-3 - 대규모 언어모델의 시작 (NeurIPS 2020)',
+                link: 'https://arxiv.org/abs/2005.14165'
+              }
+            ]
+          },
+          {
+            title: 'Specialized Tasks',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Neural Machine Translation by Jointly Learning to Align',
+                authors: 'Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio',
+                year: '2015',
+                description: 'Attention 메커니즘의 기원 - 기계번역 (ICLR 2015)',
+                link: 'https://arxiv.org/abs/1409.0473'
+              },
+              {
+                title: 'A Unified Architecture for Natural Language Processing',
+                authors: 'Ronan Collobert, Jason Weston',
+                year: '2008',
+                description: '다중 NLP 태스크 통합 아키텍처 (ICML 2008)',
+                link: 'https://ronan.collobert.com/pub/matos/2008_nlp_icml.pdf'
+              }
+            ]
+          },
+          {
+            title: 'Libraries & Tools',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Hugging Face Transformers',
+                description: '사전학습된 모델 허브 - BERT, GPT, T5 등',
+                link: 'https://huggingface.co/docs/transformers/index'
+              },
+              {
+                title: 'spaCy',
+                description: '산업용 NLP 라이브러리 - 빠르고 효율적',
+                link: 'https://spacy.io/'
+              },
+              {
+                title: 'NLTK',
+                description: 'NLP 교육용 라이브러리 - 풍부한 리소스',
+                link: 'https://www.nltk.org/'
+              },
+              {
+                title: 'Gensim',
+                description: 'Topic Modeling & Word Embeddings',
+                link: 'https://radimrehurek.com/gensim/'
+              },
+              {
+                title: 'Stanford CoreNLP',
+                description: 'Stanford의 NLP 도구 모음',
+                link: 'https://stanfordnlp.github.io/CoreNLP/'
+              }
+            ]
+          }
+        ]}
+      />
 
       <div className="flex justify-between items-center pt-8">
         <p className="text-sm text-gray-600 dark:text-gray-400">

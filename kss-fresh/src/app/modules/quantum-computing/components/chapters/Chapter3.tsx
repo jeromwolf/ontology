@@ -1,6 +1,7 @@
 'use client';
 
 import { Zap } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter3() {
   return (
@@ -147,6 +148,122 @@ export default function Chapter3() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Original Algorithm Papers',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Rapid solution of problems by quantum computation',
+                authors: 'David Deutsch, Richard Jozsa',
+                year: '1992',
+                description: 'Deutsch-Jozsa 알고리즘 원본 논문 - 첫 양자 우위 증명 (Proc. R. Soc. Lond. A)',
+                link: 'https://royalsocietypublishing.org/doi/10.1098/rspa.1992.0167'
+              },
+              {
+                title: 'A fast quantum mechanical algorithm for database search',
+                authors: 'Lov K. Grover',
+                year: '1996',
+                description: 'Grover 알고리즘 원본 논문 - O(√N) 탐색 알고리즘 (STOC 1996)',
+                link: 'https://arxiv.org/abs/quant-ph/9605043'
+              },
+              {
+                title: 'Quantum Algorithms for Quantum Field Theories',
+                authors: 'Stephen P. Jordan, Keith S. M. Lee, John Preskill',
+                year: '2012',
+                description: '양자 알고리즘의 물리학 응용 (Science)',
+                link: 'https://arxiv.org/abs/1111.3633'
+              }
+            ]
+          },
+          {
+            title: 'Grover Algorithm Analysis',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Tight bounds on quantum searching',
+                authors: 'Michel Boyer, Gilles Brassard, Peter Høyer, Alain Tapp',
+                year: '1998',
+                description: 'Grover 알고리즘의 최적성 증명 (Fortschritte der Physik)',
+                link: 'https://arxiv.org/abs/quant-ph/9605034'
+              },
+              {
+                title: 'Quantum amplitude amplification and estimation',
+                authors: 'Gilles Brassard, Peter Høyer, Michele Mosca, Alain Tapp',
+                year: '2002',
+                description: '진폭 증폭의 일반화 이론 (Contemporary Mathematics)',
+                link: 'https://arxiv.org/abs/quant-ph/0005055'
+              },
+              {
+                title: 'Optimal Quantum Adversary Lower Bounds for Ordered Search',
+                authors: 'Andrew M. Childs, Troy Lee',
+                year: '2008',
+                description: '양자 탐색의 하한선 증명 (ICALP)',
+                link: 'https://arxiv.org/abs/0708.3396'
+              }
+            ]
+          },
+          {
+            title: 'Quantum Advantage & Supremacy',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Quantum supremacy using a programmable superconducting processor',
+                authors: 'Frank Arute, et al. (Google AI Quantum)',
+                year: '2019',
+                description: 'Google의 양자 우위 달성 (Nature)',
+                link: 'https://www.nature.com/articles/s41586-019-1666-5'
+              },
+              {
+                title: 'Quantum computational advantage using photons',
+                authors: 'Han-Sen Zhong, et al.',
+                year: '2020',
+                description: '중국의 양자 우위 달성 - 광자 기반 (Science)',
+                link: 'https://www.science.org/doi/10.1126/science.abe8770'
+              },
+              {
+                title: 'Quantum advantage with shallow circuits',
+                authors: 'Sergey Bravyi, David Gosset, Robert König',
+                year: '2018',
+                description: '얕은 회로로도 양자 우위 가능 (Science)',
+                link: 'https://www.science.org/doi/10.1126/science.aar3106'
+              }
+            ]
+          },
+          {
+            title: 'Learning Resources',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Qiskit: Deutsch-Jozsa Tutorial',
+                description: 'IBM Qiskit에서 Deutsch-Jozsa 알고리즘 실습',
+                link: 'https://qiskit.org/textbook/ch-algorithms/deutsch-jozsa.html'
+              },
+              {
+                title: 'Qiskit: Grover\'s Algorithm',
+                description: 'Grover 알고리즘 단계별 구현 가이드',
+                link: 'https://qiskit.org/textbook/ch-algorithms/grover.html'
+              },
+              {
+                title: 'Quantum Algorithm Zoo',
+                description: 'Stephen Jordan의 양자 알고리즘 종합 데이터베이스',
+                link: 'https://quantumalgorithmzoo.org/'
+              },
+              {
+                title: 'Microsoft Q#: Grover Implementation',
+                description: 'Q#로 작성된 Grover 알고리즘 샘플',
+                link: 'https://github.com/microsoft/QuantumKatas/tree/main/GroversAlgorithm'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

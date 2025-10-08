@@ -1,6 +1,7 @@
 'use client';
 
 import { Brain } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter6() {
   return (
@@ -114,6 +115,122 @@ for i in range(100):
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'NISQ Era Foundations',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Quantum Computing in the NISQ era and beyond',
+                authors: 'John Preskill',
+                year: '2018',
+                description: 'NISQ 시대를 정의한 논문 - 양자우위 달성 전략 (Quantum)',
+                link: 'https://arxiv.org/abs/1801.00862'
+              },
+              {
+                title: 'Variational Quantum Eigensolver: A review',
+                authors: 'Alberto Peruzzo, et al.',
+                year: '2014',
+                description: 'VQE 최초 제안 - 화학 시뮬레이션 응용 (Nature Communications)',
+                link: 'https://www.nature.com/articles/ncomms5213'
+              },
+              {
+                title: 'A variational eigenvalue solver on a photonic quantum processor',
+                authors: 'Alberto Peruzzo, Jarrod McClean, Peter Shadbolt, et al.',
+                year: '2014',
+                description: 'VQE 실험 실증 - 광자 기반 (Nature Communications)',
+                link: 'https://www.nature.com/articles/ncomms5213'
+              }
+            ]
+          },
+          {
+            title: 'Variational Quantum Algorithms',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'The theory of variational hybrid quantum-classical algorithms',
+                authors: 'Jarrod R. McClean, Jonathan Romero, Ryan Babbush, Alán Aspuru-Guzik',
+                year: '2016',
+                description: 'VQA 이론적 기초 확립 (New Journal of Physics)',
+                link: 'https://arxiv.org/abs/1509.04279'
+              },
+              {
+                title: 'Quantum Approximate Optimization Algorithm',
+                authors: 'Edward Farhi, Jeffrey Goldstone, Sam Gutmann',
+                year: '2014',
+                description: 'QAOA 최초 제안 - 조합최적화 문제 (arXiv)',
+                link: 'https://arxiv.org/abs/1411.4028'
+              },
+              {
+                title: 'Variational quantum algorithms',
+                authors: 'M. Cerezo, Andrew Arrasmith, Ryan Babbush, et al.',
+                year: '2021',
+                description: 'VQA 종합 리뷰 논문 (Nature Reviews Physics)',
+                link: 'https://www.nature.com/articles/s42254-021-00348-9'
+              }
+            ]
+          },
+          {
+            title: 'Quantum Machine Learning',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Quantum Machine Learning in Feature Hilbert Spaces',
+                authors: 'Maria Schuld, Nathan Killoran',
+                year: '2019',
+                description: '양자 커널 방법론 - 머신러닝 응용 (Physical Review Letters)',
+                link: 'https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.122.040504'
+              },
+              {
+                title: 'Supervised learning with quantum-enhanced feature spaces',
+                authors: 'Vojtech Havlicek, et al.',
+                year: '2019',
+                description: 'IBM의 양자 머신러닝 실험 (Nature)',
+                link: 'https://www.nature.com/articles/s41586-019-0980-2'
+              },
+              {
+                title: 'Quantum advantage in learning from experiments',
+                authors: 'Hsin-Yuan Huang, Michael Broughton, Masoud Mohseni, et al.',
+                year: '2022',
+                description: '양자 머신러닝의 실험적 우위 증명 (Science)',
+                link: 'https://www.science.org/doi/10.1126/science.abn7293'
+              }
+            ]
+          },
+          {
+            title: 'Practical Implementations & Tools',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'PennyLane: Automatic differentiation of hybrid quantum-classical computations',
+                description: 'PennyLane - 변분 양자 알고리즘 프레임워크',
+                link: 'https://pennylane.ai/'
+              },
+              {
+                title: 'Qiskit: Quantum Machine Learning Tutorials',
+                description: 'IBM Qiskit의 NISQ 알고리즘 실습 자료',
+                link: 'https://qiskit.org/textbook/ch-applications/vqe-molecules.html'
+              },
+              {
+                title: 'TensorFlow Quantum',
+                description: 'Google의 양자-고전 하이브리드 머신러닝 라이브러리',
+                link: 'https://www.tensorflow.org/quantum'
+              },
+              {
+                title: 'Cirq: QAOA Tutorial',
+                description: 'Google Cirq의 QAOA 구현 가이드',
+                link: 'https://quantumai.google/cirq/experiments/qaoa'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

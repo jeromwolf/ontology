@@ -8,10 +8,10 @@ const nextConfig = {
     // PDF.js worker 설정
     config.resolve.alias.canvas = false;
     config.resolve.alias.encoding = false;
-    
+
     return config;
   },
-  
+
   // 외부 CDN 리소스 허용
   async headers() {
     return [

@@ -1,6 +1,7 @@
 'use client';
 
 import { Coins } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter3() {
   return (
@@ -253,6 +254,32 @@ if (healthFactor < 1) {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'DeFi 프로토콜 백서 (Protocol Whitepapers)',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'The Maker Protocol: MakerDAO Multi-Collateral Dai (MCD) System',
+                authors: 'MakerDAO Team',
+                year: '2020',
+                description: 'DAI 스테이블코인과 담보부채포지션(CDP) 메커니즘',
+                link: 'https://makerdao.com/whitepaper/'
+              },
+              {
+                title: 'Uniswap v2 Core',
+                authors: 'Hayden Adams, Noah Zinsmeister, Dan Robinson',
+                year: '2020',
+                description: 'AMM과 Constant Product Formula의 핵심 설계',
+                link: 'https://uniswap.org/whitepaper.pdf'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

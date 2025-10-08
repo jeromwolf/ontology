@@ -1,6 +1,7 @@
 'use client'
 
 import { CheckCircle, AlertCircle } from 'lucide-react'
+import References from '@/components/common/References'
 
 interface PracticalTipsProps {
   onComplete?: () => void
@@ -164,6 +165,148 @@ class EarlyStopping:
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Foundational Books & Courses',
+            icon: 'paper',
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Deep Learning',
+                authors: 'Ian Goodfellow, Yoshua Bengio, Aaron Courville',
+                year: '2016',
+                description: '딥러닝의 바이블 - MIT Press 무료 온라인 제공',
+                link: 'https://www.deeplearningbook.org/'
+              },
+              {
+                title: 'Neural Networks and Deep Learning',
+                authors: 'Michael Nielsen',
+                year: '2015',
+                description: '직관적이고 이해하기 쉬운 딥러닝 입문서',
+                link: 'http://neuralnetworksanddeeplearning.com/'
+              },
+              {
+                title: 'CS231n: Convolutional Neural Networks for Visual Recognition',
+                authors: 'Stanford University',
+                year: '2024',
+                description: 'Stanford의 유명한 CNN 강의 - 전체 강의 영상 및 노트 제공',
+                link: 'http://cs231n.stanford.edu/'
+              },
+              {
+                title: 'Fast.ai Practical Deep Learning',
+                authors: 'Jeremy Howard',
+                year: '2024',
+                description: '코드 중심의 실용적인 딥러닝 강의',
+                link: 'https://course.fast.ai/'
+              }
+            ]
+          },
+          {
+            title: 'Neural Network Architectures',
+            icon: 'paper',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Learning representations by back-propagating errors',
+                authors: 'David Rumelhart, Geoffrey Hinton, Ronald Williams',
+                year: '1986',
+                description: '역전파 알고리즘의 기초를 확립한 논문 (Nature)',
+                link: 'https://www.nature.com/articles/323533a0'
+              },
+              {
+                title: 'Gradient-based learning applied to document recognition',
+                authors: 'Yann LeCun, et al.',
+                year: '1998',
+                description: 'LeNet - 현대 CNN의 시초 (Proceedings of the IEEE)',
+                link: 'http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf'
+              },
+              {
+                title: 'Deep Residual Learning for Image Recognition',
+                authors: 'Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun',
+                year: '2015',
+                description: 'ResNet - 잔차 연결로 초심층 네트워크 학습 가능 (CVPR 2016)',
+                link: 'https://arxiv.org/abs/1512.03385'
+              },
+              {
+                title: 'Long Short-Term Memory',
+                authors: 'Sepp Hochreiter, Jürgen Schmidhuber',
+                year: '1997',
+                description: 'LSTM - 장기 의존성 문제 해결 (Neural Computation)',
+                link: 'https://www.bioinf.jku.at/publications/older/2604.pdf'
+              }
+            ]
+          },
+          {
+            title: 'Optimization & Training Techniques',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Adam: A Method for Stochastic Optimization',
+                authors: 'Diederik P. Kingma, Jimmy Ba',
+                year: '2014',
+                description: '가장 널리 사용되는 최적화 알고리즘 (ICLR 2015)',
+                link: 'https://arxiv.org/abs/1412.6980'
+              },
+              {
+                title: 'Batch Normalization: Accelerating Deep Network Training',
+                authors: 'Sergey Ioffe, Christian Szegedy',
+                year: '2015',
+                description: '배치 정규화로 학습 안정화 및 가속 (ICML 2015)',
+                link: 'https://arxiv.org/abs/1502.03167'
+              },
+              {
+                title: 'Dropout: A Simple Way to Prevent Neural Networks from Overfitting',
+                authors: 'Nitish Srivastava, et al.',
+                year: '2014',
+                description: '과적합 방지를 위한 Dropout 기법 (JMLR)',
+                link: 'http://jmlr.org/papers/v15/srivastava14a.html'
+              },
+              {
+                title: 'Understanding the difficulty of training deep feedforward neural networks',
+                authors: 'Xavier Glorot, Yoshua Bengio',
+                year: '2010',
+                description: 'Xavier 초기화 - 가중치 초기화의 중요성 (AISTATS)',
+                link: 'http://proceedings.mlr.press/v9/glorot10a.html'
+              }
+            ]
+          },
+          {
+            title: 'Frameworks & Practical Resources',
+            icon: 'web',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'PyTorch Documentation',
+                description: 'PyTorch 공식 문서 및 튜토리얼',
+                link: 'https://pytorch.org/docs/stable/index.html'
+              },
+              {
+                title: 'TensorFlow Tutorials',
+                description: 'TensorFlow 2.x 공식 가이드',
+                link: 'https://www.tensorflow.org/tutorials'
+              },
+              {
+                title: 'Keras Documentation',
+                description: '초보자 친화적인 고수준 딥러닝 API',
+                link: 'https://keras.io/'
+              },
+              {
+                title: 'Papers with Code',
+                description: '최신 논문과 구현 코드 모음',
+                link: 'https://paperswithcode.com/'
+              },
+              {
+                title: 'Distill.pub',
+                description: '시각화 중심의 머신러닝 설명',
+                link: 'https://distill.pub/'
+              }
+            ]
+          }
+        ]}
+      />
     </>
   )
 }

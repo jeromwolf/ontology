@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
-import { 
+import {
   Database, Shield, CheckCircle, AlertCircle, Layers
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter4() {
   return (
@@ -209,6 +210,141 @@ export default function Chapter4() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Foundational Papers',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'CAP Twelve Years Later: How the "Rules" Have Changed',
+                authors: 'Eric Brewer',
+                year: '2012',
+                description: 'CAP 이론 창시자가 직접 설명하는 실용적 CAP 이해',
+                link: 'https://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed/'
+              },
+              {
+                title: 'Dynamo: Amazon\'s Highly Available Key-value Store',
+                authors: 'Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, et al.',
+                year: '2007',
+                description: 'DynamoDB의 기초가 된 Amazon의 분산 key-value 스토어 (SOSP)',
+                link: 'https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf'
+              },
+              {
+                title: 'Bigtable: A Distributed Storage System for Structured Data',
+                authors: 'Fay Chang, Jeffrey Dean, Sanjay Ghemawat, et al.',
+                year: '2006',
+                description: 'Google의 분산 스토리지 시스템 - HBase의 모델 (OSDI)',
+                link: 'https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf'
+              },
+              {
+                title: 'ACID Properties in Database Systems',
+                authors: 'Theo Härder, Andreas Reuter',
+                year: '1983',
+                description: 'ACID 개념을 처음 정립한 역사적 논문',
+                link: 'https://dl.acm.org/doi/10.1145/289.291'
+              }
+            ]
+          },
+          {
+            title: 'NoSQL Database Papers',
+            icon: 'paper',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Cassandra: A Decentralized Structured Storage System',
+                authors: 'Avinash Lakshman, Prashant Malik',
+                year: '2010',
+                description: 'Facebook에서 개발한 분산 NoSQL 데이터베이스',
+                link: 'https://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf'
+              },
+              {
+                title: 'MongoDB Architecture Guide',
+                authors: 'MongoDB Inc.',
+                year: '2023',
+                description: 'Document-oriented NoSQL 데이터베이스 아키텍처',
+                link: 'https://www.mongodb.com/docs/manual/core/databases-and-collections/'
+              },
+              {
+                title: 'Redis: In-Memory Data Structure Store',
+                authors: 'Salvatore Sanfilippo',
+                year: '2009',
+                description: '고성능 인메모리 key-value 스토어',
+                link: 'https://redis.io/docs/about/'
+              },
+              {
+                title: 'CouchDB: The Definitive Guide',
+                authors: 'J. Chris Anderson, Jan Lehnardt, Noah Slater',
+                year: '2010',
+                description: 'Document-oriented 분산 데이터베이스',
+                link: 'https://guide.couchdb.org/'
+              }
+            ]
+          },
+          {
+            title: 'Database Textbooks & Guides',
+            icon: 'book',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Designing Data-Intensive Applications',
+                authors: 'Martin Kleppmann',
+                year: '2017',
+                description: '분산 시스템과 데이터베이스 설계의 바이블 (O\'Reilly)',
+                link: 'https://dataintensive.net/'
+              },
+              {
+                title: 'Database System Concepts',
+                authors: 'Abraham Silberschatz, Henry Korth, S. Sudarshan',
+                year: '2019',
+                description: '데이터베이스 이론의 고전 교과서 (7th Edition)',
+                link: 'https://www.db-book.com/'
+              },
+              {
+                title: 'NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence',
+                authors: 'Pramod J. Sadalage, Martin Fowler',
+                year: '2012',
+                description: 'NoSQL 데이터베이스 개념과 선택 가이드',
+                link: 'https://martinfowler.com/books/nosql.html'
+              }
+            ]
+          },
+          {
+            title: 'Industry Documentation & Resources',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'AWS Database Migration Service',
+                description: 'AWS의 데이터베이스 마이그레이션 모범 사례',
+                link: 'https://aws.amazon.com/dms/'
+              },
+              {
+                title: 'Google Cloud Spanner: TrueTime and External Consistency',
+                description: 'Google의 globally-distributed 데이터베이스',
+                link: 'https://cloud.google.com/spanner/docs/true-time-external-consistency'
+              },
+              {
+                title: 'PostgreSQL Documentation',
+                description: '오픈소스 관계형 데이터베이스의 표준',
+                link: 'https://www.postgresql.org/docs/'
+              },
+              {
+                title: 'Database of Databases',
+                description: 'CMU의 데이터베이스 시스템 종합 카탈로그',
+                link: 'https://dbdb.io/'
+              },
+              {
+                title: 'Jepsen: Distributed Systems Safety Research',
+                description: '분산 데이터베이스의 일관성 테스트 분석',
+                link: 'https://jepsen.io/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

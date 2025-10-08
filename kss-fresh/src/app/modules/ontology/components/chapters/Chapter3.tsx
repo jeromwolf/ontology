@@ -1,5 +1,7 @@
 'use client';
 
+import References from '@/components/common/References';
+
 export default function Chapter3() {
   return (
     <div className="space-y-8">
@@ -236,10 +238,153 @@ export default function Chapter3() {
           다음 단계
         </h2>
         <p className="text-gray-700 dark:text-gray-300">
-          이제 시맨틱 웹의 개념을 이해했으니, 다음 챕터부터는 실제로 이를 구현하는 
+          이제 시맨틱 웹의 개념을 이해했으니, 다음 챕터부터는 실제로 이를 구현하는
           기술들(RDF, RDFS, OWL, SPARQL)을 하나씩 학습하고 실습해보겠습니다.
         </p>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Foundational Papers',
+            icon: 'paper',
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'The Semantic Web',
+                authors: 'Tim Berners-Lee, James Hendler, Ora Lassila',
+                year: '2001',
+                description: 'Semantic Web의 비전을 제시한 역사적 논문 (Scientific American)',
+                link: 'https://www-sop.inria.fr/acacia/cours/essi2006/Scientific%20American_%20Feature%20Article_%20The%20Semantic%20Web_%20May%202001.pdf'
+              },
+              {
+                title: 'Linked Data - Design Issues',
+                authors: 'Tim Berners-Lee',
+                year: '2006',
+                description: 'Linked Data의 4가지 원칙을 최초로 정의한 문서',
+                link: 'https://www.w3.org/DesignIssues/LinkedData.html'
+              },
+              {
+                title: 'A Survey of the First 20 Years of Research on Semantic Web and Linked Data',
+                authors: 'Amit Sheth, Prateek Jain',
+                year: '2018',
+                description: 'Semantic Web 20년의 발전사를 정리한 종합 서베이',
+                link: 'https://cacm.acm.org/magazines/2018/11/232219-a-survey-of-the-first-20-years-of-research-on-semantic-web-and-linked-data/'
+              },
+              {
+                title: 'Ontology-Based Information Integration',
+                authors: 'Maurizio Lenzerini',
+                year: '2002',
+                description: '온톨로지 기반 정보 통합의 이론적 기초 (ICDT)',
+                link: 'https://dl.acm.org/doi/10.5555/646136.680093'
+              }
+            ]
+          },
+          {
+            title: 'W3C Standards & Specifications',
+            icon: 'book',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'RDF 1.1 Primer',
+                authors: 'W3C',
+                year: '2014',
+                description: 'RDF (Resource Description Framework) 공식 표준',
+                link: 'https://www.w3.org/TR/rdf11-primer/'
+              },
+              {
+                title: 'OWL 2 Web Ontology Language Primer',
+                authors: 'W3C',
+                year: '2012',
+                description: 'OWL 2 Web Ontology Language 공식 표준',
+                link: 'https://www.w3.org/TR/owl2-primer/'
+              },
+              {
+                title: 'SPARQL 1.1 Query Language',
+                authors: 'W3C',
+                year: '2013',
+                description: 'SPARQL 쿼리 언어 공식 표준',
+                link: 'https://www.w3.org/TR/sparql11-query/'
+              },
+              {
+                title: 'JSON-LD 1.1: A JSON-based Serialization for Linked Data',
+                authors: 'W3C',
+                year: '2020',
+                description: 'JSON 기반 Linked Data 직렬화 포맷',
+                link: 'https://www.w3.org/TR/json-ld11/'
+              }
+            ]
+          },
+          {
+            title: 'Linked Open Data Resources',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'DBpedia: A Large-scale, Multilingual Knowledge Base Extracted from Wikipedia',
+                authors: 'Jens Lehmann, Robert Isele, Max Jakob, et al.',
+                year: '2015',
+                description: 'Wikipedia의 구조화된 지식베이스 DBpedia',
+                link: 'https://www.semantic-web-journal.net/content/dbpedia-large-scale-multilingual-knowledge-base-extracted-wikipedia-1'
+              },
+              {
+                title: 'Wikidata: A Free Collaborative Knowledge Base',
+                authors: 'Denny Vrandečić, Markus Krötzsch',
+                year: '2014',
+                description: 'Wikimedia의 협업 지식베이스',
+                link: 'https://cacm.acm.org/magazines/2014/10/178785-wikidata/fulltext'
+              },
+              {
+                title: 'Schema.org: Evolution of Structured Data on the Web',
+                authors: 'R.V. Guha, Dan Brickley, Steve Macbeth',
+                year: '2016',
+                description: 'Google, Microsoft, Yahoo가 만든 구조화 데이터 어휘',
+                link: 'https://dl.acm.org/doi/10.1145/2844544'
+              },
+              {
+                title: 'The Linked Open Data Cloud',
+                description: 'LOD 클라우드 데이터셋 카탈로그와 시각화',
+                link: 'https://lod-cloud.net/'
+              }
+            ]
+          },
+          {
+            title: 'Textbooks & Learning Resources',
+            icon: 'book',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Semantic Web for the Working Ontologist',
+                authors: 'Dean Allemang, James Hendler, Fabien Gandon',
+                year: '2020',
+                description: 'Semantic Web 실무자를 위한 종합 가이드 (3rd Edition)',
+                link: 'https://www.workingontologist.org/'
+              },
+              {
+                title: 'A Semantic Web Primer',
+                authors: 'Grigoris Antoniou, Paul Groth, Frank van Harmelen, Rinke Hoekstra',
+                year: '2012',
+                description: 'Semantic Web 기술 입문서 (3rd Edition, MIT Press)',
+                link: 'https://mitpress.mit.edu/9780262018289/'
+              },
+              {
+                title: 'Linked Data: Evolving the Web into a Global Data Space',
+                authors: 'Tom Heath, Christian Bizer',
+                year: '2011',
+                description: 'Linked Data의 개념과 실무 완벽 가이드',
+                link: 'https://linkeddatabook.com/'
+              },
+              {
+                title: 'Knowledge Graphs',
+                authors: 'Aidan Hogan, Eva Blomqvist, Michael Cochez, et al.',
+                year: '2021',
+                description: '지식 그래프의 이론과 실무 (ACM Computing Surveys)',
+                link: 'https://arxiv.org/abs/2003.02320'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

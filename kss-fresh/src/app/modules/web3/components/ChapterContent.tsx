@@ -11,6 +11,7 @@ const Chapter5 = dynamic(() => import('./chapters/Chapter5'), { ssr: false })
 const Chapter6 = dynamic(() => import('./chapters/Chapter6'), { ssr: false })
 const Chapter7 = dynamic(() => import('./chapters/Chapter7'), { ssr: false })
 const Chapter8 = dynamic(() => import('./chapters/Chapter8'), { ssr: false })
+const Chapter9 = dynamic(() => import('./chapters/Chapter9'), { ssr: false })
 
 export default function ChapterContent({ chapterId }: { chapterId: number }) {
   const content = getChapterContent(chapterId)
@@ -35,6 +36,8 @@ function getChapterContent(chapterId: number) {
       return <Chapter7 />
     case 8:
       return <Chapter8 />
+    case 9:
+      return <Chapter9 />
     default:
       return <div>챕터 콘텐츠를 준비 중입니다.</div>
   }
