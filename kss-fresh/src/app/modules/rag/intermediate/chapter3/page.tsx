@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, BookOpen, MessageSquare, Brain, AlertCircle, Repeat, Lightbulb } from 'lucide-react'
 import References from '@/components/common/References'
+import CodeSandbox from '../../components/CodeSandbox'
 
 export default function Chapter3Page() {
   return (
