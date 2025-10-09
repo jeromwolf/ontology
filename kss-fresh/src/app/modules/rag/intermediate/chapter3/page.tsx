@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, BookOpen, MessageSquare, Brain, AlertCircle, Repeat, Lightbulb } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter3Page() {
   return (
@@ -649,6 +650,131 @@ response3 = manager.process_turn("자바와 비교하면 어떤가요?", 3)`}
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 프롬프트 엔지니어링 가이드',
+              icon: 'web' as const,
+              color: 'border-teal-500',
+              items: [
+                {
+                  title: 'OpenAI Prompt Engineering Guide',
+                  authors: 'OpenAI',
+                  year: '2025',
+                  description: 'GPT 모델을 위한 공식 프롬프트 작성 가이드 - 6가지 전략',
+                  link: 'https://platform.openai.com/docs/guides/prompt-engineering'
+                },
+                {
+                  title: 'Anthropic Prompt Engineering',
+                  authors: 'Anthropic',
+                  year: '2025',
+                  description: 'Claude를 위한 프롬프트 최적화 - Chain of Thought 강조',
+                  link: 'https://docs.anthropic.com/claude/docs/prompt-engineering'
+                },
+                {
+                  title: 'LangChain Prompt Templates',
+                  authors: 'LangChain',
+                  year: '2025',
+                  description: 'RAG용 프롬프트 템플릿 라이브러리 - 재사용 가능',
+                  link: 'https://python.langchain.com/docs/modules/model_io/prompts/'
+                },
+                {
+                  title: 'Prompt Engineering by DAIR.AI',
+                  authors: 'DAIR.AI',
+                  year: '2024',
+                  description: '실전 프롬프트 엔지니어링 가이드 - 40+ 예제',
+                  link: 'https://www.promptingguide.ai/'
+                },
+                {
+                  title: 'AWS RAG Prompt Best Practices',
+                  authors: 'AWS',
+                  year: '2025',
+                  description: 'Bedrock을 위한 RAG 프롬프트 최적화 패턴',
+                  link: 'https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html'
+                }
+              ]
+            },
+            {
+              title: '📖 Chain of Thought & Few-shot 연구',
+              icon: 'research' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'Chain-of-Thought Prompting',
+                  authors: 'Wei et al., Google Research',
+                  year: '2022',
+                  description: 'CoT 프롬프팅으로 추론 성능 대폭 향상 - 540B 모델',
+                  link: 'https://arxiv.org/abs/2201.11903'
+                },
+                {
+                  title: 'Self-Ask: Decomposing Complex Questions',
+                  authors: 'Press et al., UW & AI2',
+                  year: '2023',
+                  description: '복잡한 질문을 하위 질문으로 분해 - 정확도 30% 향상',
+                  link: 'https://arxiv.org/abs/2210.03350'
+                },
+                {
+                  title: 'Few-Shot Parameter-Efficient Fine-Tuning',
+                  authors: 'Liu et al., Stanford',
+                  year: '2022',
+                  description: 'In-Context Learning의 이론적 기반 - GPT-3',
+                  link: 'https://arxiv.org/abs/2012.15723'
+                },
+                {
+                  title: 'Tree of Thoughts (ToT)',
+                  authors: 'Yao et al., Princeton',
+                  year: '2023',
+                  description: '트리 구조로 사고 확장 - CoT의 고급 버전',
+                  link: 'https://arxiv.org/abs/2305.10601'
+                }
+              ]
+            },
+            {
+              title: '🛠️ RAG 프롬프트 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'LlamaIndex Prompt Optimizer',
+                  authors: 'LlamaIndex',
+                  year: '2025',
+                  description: 'RAG 프롬프트 자동 최적화 - A/B 테스트 내장',
+                  link: 'https://docs.llamaindex.ai/en/stable/module_guides/querying/prompts/'
+                },
+                {
+                  title: 'Haystack PromptNode',
+                  authors: 'deepset',
+                  year: '2025',
+                  description: '다양한 LLM용 프롬프트 통합 관리 - 템플릿 시스템',
+                  link: 'https://docs.haystack.deepset.ai/docs/prompt_node'
+                },
+                {
+                  title: 'Guidance (Microsoft)',
+                  authors: 'Microsoft Research',
+                  year: '2024',
+                  description: '구조화된 프롬프트 생성 - 제약 조건 적용',
+                  link: 'https://github.com/microsoft/guidance'
+                },
+                {
+                  title: 'Prompttools',
+                  authors: 'Hegel AI',
+                  year: '2024',
+                  description: '프롬프트 실험 및 평가 프레임워크 - 벤치마킹',
+                  link: 'https://github.com/hegelai/prompttools'
+                },
+                {
+                  title: 'LangSmith Prompt Hub',
+                  authors: 'LangChain',
+                  year: '2025',
+                  description: '커뮤니티 검증된 프롬프트 템플릿 저장소',
+                  link: 'https://smith.langchain.com/hub'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
 
       {/* Navigation */}

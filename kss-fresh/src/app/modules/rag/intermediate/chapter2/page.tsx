@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, BookOpen, Search, Zap, Filter, GitMerge, BarChart2 } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter2Page() {
   return (
@@ -490,6 +491,131 @@ if "error" in query and doc.type == "error_guide":
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 하이브리드 검색 공식 문서',
+              icon: 'web' as const,
+              color: 'border-teal-500',
+              items: [
+                {
+                  title: 'Elasticsearch Hybrid Search',
+                  authors: 'Elastic',
+                  year: '2025',
+                  description: 'BM25 + kNN 벡터 검색 결합 - 프로덕션급 구현',
+                  link: 'https://www.elastic.co/guide/en/elasticsearch/reference/current/knn-search.html'
+                },
+                {
+                  title: 'Weaviate Hybrid Search',
+                  authors: 'Weaviate',
+                  year: '2025',
+                  description: 'BM25 + ANN 벡터 검색 - 실시간 융합 알고리즘',
+                  link: 'https://weaviate.io/developers/weaviate/search/hybrid'
+                },
+                {
+                  title: 'LangChain Ensemble Retriever',
+                  authors: 'LangChain',
+                  year: '2025',
+                  description: '다중 리트리버 결합 - RRF(Reciprocal Rank Fusion)',
+                  link: 'https://python.langchain.com/docs/modules/data_connection/retrievers/ensemble'
+                },
+                {
+                  title: 'LlamaIndex Hybrid Retriever',
+                  authors: 'LlamaIndex',
+                  year: '2025',
+                  description: '벡터 + 키워드 검색 통합 - 자동 가중치 조정',
+                  link: 'https://docs.llamaindex.ai/en/stable/examples/retrievers/reciprocal_rerank_fusion/'
+                },
+                {
+                  title: 'Pinecone Sparse-Dense Search',
+                  authors: 'Pinecone',
+                  year: '2025',
+                  description: '단일 인덱스에서 하이브리드 검색 - 통합 API',
+                  link: 'https://docs.pinecone.io/docs/hybrid-search'
+                }
+              ]
+            },
+            {
+              title: '📖 검색 알고리즘 연구 논문',
+              icon: 'research' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'BM25: The Probabilistic Relevance Framework',
+                  authors: 'Robertson & Zaragoza',
+                  year: '2009',
+                  description: 'BM25 알고리즘의 이론적 기반 - TF-IDF 확률론적 개선',
+                  link: 'https://www.staff.city.ac.uk/~sbrp622/papers/foundations_bm25_review.pdf'
+                },
+                {
+                  title: 'Dense Passage Retrieval for Open-Domain QA',
+                  authors: 'Karpukhin et al., Meta AI',
+                  year: '2020',
+                  description: '벡터 검색 기반 QA - BM25 대비 9-19% 성능 향상',
+                  link: 'https://arxiv.org/abs/2004.04906'
+                },
+                {
+                  title: 'Reciprocal Rank Fusion (RRF)',
+                  authors: 'Cormack et al.',
+                  year: '2009',
+                  description: '다중 순위 결합 알고리즘 - 점수 정규화 불필요',
+                  link: 'https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf'
+                },
+                {
+                  title: 'BEIR: Heterogeneous Benchmark for IR',
+                  authors: 'Thakur et al.',
+                  year: '2021',
+                  description: '18개 데이터셋으로 하이브리드 검색 벤치마크',
+                  link: 'https://arxiv.org/abs/2104.08663'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 구현 & 도구',
+              icon: 'tools' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'rank_bm25 (Python)',
+                  authors: 'dorianbrown',
+                  year: '2024',
+                  description: '순수 Python BM25 구현 - Gensim 기반, 한국어 지원',
+                  link: 'https://github.com/dorianbrown/rank_bm25'
+                },
+                {
+                  title: 'Haystack Hybrid Retrieval',
+                  authors: 'deepset',
+                  year: '2025',
+                  description: 'NLP 프레임워크 - BM25 + DPR 통합 파이프라인',
+                  link: 'https://haystack.deepset.ai/tutorials/08_preprocessing'
+                },
+                {
+                  title: 'Qdrant Hybrid Search',
+                  authors: 'Qdrant',
+                  year: '2025',
+                  description: 'Rust 기반 벡터 DB - 빠른 하이브리드 검색 API',
+                  link: 'https://qdrant.tech/documentation/concepts/hybrid-queries/'
+                },
+                {
+                  title: 'ColBERT: Efficient Passage Retrieval',
+                  authors: 'Stanford NLP',
+                  year: '2023',
+                  description: '지연 상호작용 모델 - 벡터+키워드 장점 결합',
+                  link: 'https://github.com/stanford-futuredata/ColBERT'
+                },
+                {
+                  title: 'Vespa Hybrid Search',
+                  authors: 'Vespa.ai',
+                  year: '2025',
+                  description: '대규모 검색 엔진 - BM25 + ANN + 신경망 순위화',
+                  link: 'https://docs.vespa.ai/en/reference/ranking-expressions.html'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
 
       {/* Navigation */}
