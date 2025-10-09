@@ -20,7 +20,7 @@ export const MODULE_METADATA = {
   icon: '🤖',
   color: 'purple', // Purple 테마 - AI 에이전트를 상징
   version: '1.0.0',
-  totalDuration: '10시간',
+  totalDuration: '10.5시간',
   level: 'Intermediate',
   prerequisites: ['LLM 기초', 'API 통신 기본'],
 };
@@ -88,38 +88,15 @@ export const CHAPTERS: Chapter[] = [
   },
   {
     id: '6',
-    title: 'MCP Client 통합',
-    description: 'Claude Desktop과 커스텀 클라이언트에서 MCP 활용',
-    duration: '90분',
+    title: 'MCP 통합 & 프로덕션',
+    description: 'MCP Client 통합, Agent 결합, 프로덕션 배포까지 완전 정복',
+    duration: '150분',
     objectives: [
-      'Claude Desktop MCP 설정',
-      'Custom Client 구현',
-      'Server-Client 통신 최적화',
-      'Security와 Authentication'
-    ]
-  },
-  {
-    id: '7',
-    title: 'Agent + MCP 통합 아키텍처',
-    description: 'Agent와 MCP를 결합한 강력한 시스템 구축',
-    duration: '105분',
-    objectives: [
-      'Agent에 MCP 통합하기',
-      'Tool Orchestration',
-      'Context Management',
-      'Hybrid Architecture 설계'
-    ]
-  },
-  {
-    id: '8',
-    title: '프로덕션 배포와 모니터링',
-    description: '실제 서비스를 위한 Agent-MCP 시스템 운영',
-    duration: '90분',
-    objectives: [
-      '컨테이너화와 오케스트레이션',
-      '로깅과 모니터링 설정',
-      '성능 튜닝과 최적화',
-      'Cost 관리 전략'
+      'Claude Desktop & Custom Client MCP 설정',
+      'Agent와 MCP 통합 아키텍처',
+      'Tool Orchestration & Context Management',
+      '컨테이너화, 모니터링, 성능 최적화',
+      'Security, Authentication, Cost 관리'
     ]
   }
 ];
