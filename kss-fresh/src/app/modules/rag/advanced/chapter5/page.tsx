@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, BarChart3, Activity, AlertTriangle, TrendingUp, Shield, Gauge } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter5Page() {
   return (
@@ -1780,6 +1781,131 @@ asyncio.run(simulate_rag_traffic())`}
           </div>
         </section>
       </div>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 RAG 평가 프레임워크',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'RAGAS: RAG Assessment Framework',
+                authors: 'Explodinggradients',
+                year: '2024',
+                description: 'RAG 전용 평가 - Faithfulness, Answer Relevancy, Context Precision',
+                link: 'https://docs.ragas.io/'
+              },
+              {
+                title: 'TruLens: LLM App Evaluation',
+                authors: 'TruEra',
+                year: '2024',
+                description: 'RAG 추적 및 평가 - Context Relevance, Groundedness, Answer Relevance',
+                link: 'https://www.trulens.org/trulens_eval/getting_started/'
+              },
+              {
+                title: 'DeepEval: LLM Testing',
+                authors: 'Confident AI',
+                year: '2024',
+                description: 'Unit Testing for RAG - BLEU, ROUGE, BERTScore, Hallucination Detection',
+                link: 'https://docs.confident-ai.com/'
+              },
+              {
+                title: 'Phoenix by Arize AI',
+                authors: 'Arize AI',
+                year: '2024',
+                description: 'LLM Observability - Traces, Evals, Embeddings 시각화',
+                link: 'https://docs.arize.com/phoenix'
+              },
+              {
+                title: 'LangSmith Evaluation',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'End-to-end RAG 평가 - Custom Evaluators, Dataset Management',
+                link: 'https://docs.smith.langchain.com/evaluation'
+              }
+            ]
+          },
+          {
+            title: '📖 RAG 평가 메트릭 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'ARES: Automated RAG Evaluation System',
+                authors: 'Saad-Falcon et al., Stanford',
+                year: '2024',
+                description: '자동화된 RAG 평가 - LLM-as-a-Judge, Synthetic Data Generation',
+                link: 'https://arxiv.org/abs/2311.09476'
+              },
+              {
+                title: 'CRUD-RAG: Comprehensive RAG Benchmark',
+                authors: 'Lyu et al., Alibaba',
+                year: '2024',
+                description: 'Create, Read, Update, Delete 시나리오 기반 종합 벤치마크',
+                link: 'https://arxiv.org/abs/2401.17043'
+              },
+              {
+                title: 'RGB: Retrieval Generation Benchmark',
+                authors: 'Chen et al., Microsoft',
+                year: '2024',
+                description: 'Multi-domain RAG 벤치마크 - 정확도, Hallucination, Citation',
+                link: 'https://arxiv.org/abs/2309.01431'
+              },
+              {
+                title: 'Evaluating Retrieval Quality in RAG',
+                authors: 'Lewis et al., Meta',
+                year: '2023',
+                description: 'Retrieval Precision vs Generation Quality 트레이드오프 연구',
+                link: 'https://arxiv.org/abs/2312.10997'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 모니터링 & 옵저버빌리티',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'OpenTelemetry for LLM Apps',
+                authors: 'OpenTelemetry',
+                year: '2024',
+                description: 'RAG 트레이싱 - Spans, Metrics, Logs 표준화',
+                link: 'https://opentelemetry.io/docs/instrumentation/python/libraries/openai/'
+              },
+              {
+                title: 'Langfuse: LLM Engineering Platform',
+                authors: 'Langfuse',
+                year: '2024',
+                description: 'RAG 모니터링 - Traces, Scores, Datasets, Prompt Management',
+                link: 'https://langfuse.com/docs'
+              },
+              {
+                title: 'Weights & Biases for LLMs',
+                authors: 'Weights & Biases',
+                year: '2024',
+                description: 'RAG 실험 추적 - Prompts, Model Versions, A/B Testing',
+                link: 'https://docs.wandb.ai/guides/prompts'
+              },
+              {
+                title: 'Helicone: LLM Observability',
+                authors: 'Helicone',
+                year: '2024',
+                description: 'OpenAI API 모니터링 - Cost, Latency, Error Tracking',
+                link: 'https://docs.helicone.ai/'
+              },
+              {
+                title: 'Datadog LLM Observability',
+                authors: 'Datadog',
+                year: '2024',
+                description: 'Enterprise RAG 모니터링 - APM, Logs, Traces 통합',
+                link: 'https://docs.datadoghq.com/llm_observability/'
+              }
+            ]
+          }
+        ]}
+      />
 
       {/* Navigation */}
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">

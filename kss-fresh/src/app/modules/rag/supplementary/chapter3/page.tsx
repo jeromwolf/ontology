@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, DollarSign } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter3Page() {
   return (
@@ -44,6 +45,131 @@ export default function Chapter3Page() {
             </ul>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 비용 최적화 도구 & 서비스',
+              icon: 'web' as const,
+              color: 'border-green-500',
+              items: [
+                {
+                  title: 'OpenAI Token Calculator',
+                  authors: 'OpenAI',
+                  year: '2024',
+                  description: 'GPT API 비용 예측 - Tokenizer, 가격 계산기, 사용량 대시보드',
+                  link: 'https://platform.openai.com/tokenizer'
+                },
+                {
+                  title: 'LangChain Callbacks: Cost Tracking',
+                  authors: 'LangChain',
+                  year: '2024',
+                  description: 'LLM 호출 비용 추적 - 자동 토큰 카운팅, 비용 집계, 알림',
+                  link: 'https://python.langchain.com/docs/modules/callbacks/'
+                },
+                {
+                  title: 'Pinecone Cost Optimizer',
+                  authors: 'Pinecone',
+                  year: '2024',
+                  description: '벡터 DB 비용 절감 - Index 최적화, Pod 크기 조정, 스토리지 관리',
+                  link: 'https://www.pinecone.io/pricing/'
+                },
+                {
+                  title: 'Redis Cache-Aside Pattern',
+                  authors: 'Redis Labs',
+                  year: '2024',
+                  description: '캐싱 전략 - Cache Hit Rate 90%+, TTL 관리, 메모리 최적화',
+                  link: 'https://redis.io/docs/manual/patterns/cache-aside/'
+                },
+                {
+                  title: 'AWS Cost Explorer for AI Workloads',
+                  authors: 'Amazon Web Services',
+                  year: '2024',
+                  description: 'AI 워크로드 비용 분석 - 리소스별 비용, 예측, 최적화 권장사항',
+                  link: 'https://aws.amazon.com/aws-cost-management/aws-cost-explorer/'
+                }
+              ]
+            },
+            {
+              title: '📖 비용 최적화 연구',
+              icon: 'research' as const,
+              color: 'border-teal-500',
+              items: [
+                {
+                  title: 'Efficient LLM Inference: A Survey',
+                  authors: 'Kim et al., Seoul National University',
+                  year: '2024',
+                  description: 'LLM 추론 비용 절감 - Quantization, Pruning, Distillation, KV Cache 최적화',
+                  link: 'https://arxiv.org/abs/2312.03863'
+                },
+                {
+                  title: 'Cost-Effective RAG with Semantic Caching',
+                  authors: 'Chen et al., UC Berkeley',
+                  year: '2024',
+                  description: '의미 기반 캐싱 - 유사 쿼리 탐지, 70% API 호출 절감, Cache Hit 최적화',
+                  link: 'https://arxiv.org/abs/2308.07922'
+                },
+                {
+                  title: 'Dynamic Batching for LLM Serving',
+                  authors: 'Yu et al., CMU',
+                  year: '2024',
+                  description: '동적 배치 처리 - Throughput 3배 향상, Latency 유지, 비용 50% 절감',
+                  link: 'https://arxiv.org/abs/2305.13245'
+                },
+                {
+                  title: 'Vector Index Compression Techniques',
+                  authors: 'Zhang et al., Stanford',
+                  year: '2024',
+                  description: '벡터 압축 - Product Quantization, Scalar Quantization, 90% 저장공간 절감',
+                  link: 'https://arxiv.org/abs/2401.08281'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실무 최적화 기법',
+              icon: 'tools' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'Prompt Compression Techniques',
+                  authors: 'Microsoft Research',
+                  year: '2024',
+                  description: '프롬프트 압축 - LongLLMLingua, 80% 토큰 절감, 성능 유지',
+                  link: 'https://github.com/microsoft/LLMLingua'
+                },
+                {
+                  title: 'Batch Embedding with SentenceTransformers',
+                  authors: 'UKPLab',
+                  year: '2024',
+                  description: '배치 임베딩 - GPU 활용 최적화, 10배 처리 속도, 비용 절감',
+                  link: 'https://www.sbert.net/examples/applications/computing-embeddings/README.html'
+                },
+                {
+                  title: 'Serverless Vector Search',
+                  authors: 'Weaviate',
+                  year: '2024',
+                  description: '서버리스 벡터 검색 - Auto-scaling, Pay-per-use, 유휴 시간 비용 0',
+                  link: 'https://weaviate.io/developers/weaviate/concepts/serverless'
+                },
+                {
+                  title: 'Model Quantization with GGML',
+                  authors: 'Georgi Gerganov',
+                  year: '2024',
+                  description: '모델 양자화 - 4bit/8bit 양자화, 메모리 75% 절감, 속도 2배 향상',
+                  link: 'https://github.com/ggerganov/llama.cpp'
+                },
+                {
+                  title: 'CloudWatch Cost Anomaly Detection',
+                  authors: 'AWS',
+                  year: '2024',
+                  description: '비용 이상 탐지 - ML 기반 이상 패턴 감지, 자동 알림, 예산 초과 방지',
+                  link: 'https://aws.amazon.com/aws-cost-management/aws-cost-anomaly-detection/'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
 
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">

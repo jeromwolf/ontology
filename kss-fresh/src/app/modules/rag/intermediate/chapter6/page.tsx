@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Server } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import References from '@/components/common/References'
 
 // 동적 임포트로 섹션 컴포넌트들 로드 (성능 최적화)
 const Section1MonitoringSystem = dynamic(() => import('./components/Section1MonitoringSystem'), { ssr: false })
@@ -47,6 +48,131 @@ export default function Chapter6Page() {
         <Section5APIDeployment />
         <Section6MonitoringDashboards />
       </div>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 프로덕션 RAG 배포 & 운영',
+            icon: 'web' as const,
+            color: 'border-teal-500',
+            items: [
+              {
+                title: 'Docker & Kubernetes for ML',
+                authors: 'Kubernetes',
+                year: '2025',
+                description: 'RAG 컨테이너화 & 오케스트레이션 - K8s 스케일링',
+                link: 'https://kubernetes.io/docs/tutorials/stateless-application/'
+              },
+              {
+                title: 'AWS SageMaker Deployment',
+                authors: 'AWS',
+                year: '2025',
+                description: 'LLM 엔드포인트 배포 - 오토스케일링, A/B 테스트',
+                link: 'https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html'
+              },
+              {
+                title: 'LangSmith Production Monitoring',
+                authors: 'LangChain',
+                year: '2025',
+                description: 'RAG 체인 추적 - 성능, 비용, 품질 모니터링',
+                link: 'https://docs.smith.langchain.com/deployment'
+              },
+              {
+                title: 'MLOps for LLMs',
+                authors: 'Google Cloud',
+                year: '2025',
+                description: 'Vertex AI로 RAG 배포 - CI/CD 파이프라인',
+                link: 'https://cloud.google.com/vertex-ai/docs/pipelines/introduction'
+              },
+              {
+                title: 'FastAPI Production Guide',
+                authors: 'FastAPI',
+                year: '2025',
+                description: 'RAG API 서버 - 로드밸런싱, 캐싱, CORS',
+                link: 'https://fastapi.tiangolo.com/deployment/'
+              }
+            ]
+          },
+          {
+            title: '📖 보안, 모니터링 & A/B 테스트',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'OWASP Top 10 for LLM Applications',
+                authors: 'OWASP Foundation',
+                year: '2024',
+                description: 'LLM 보안 위협 - 프롬프트 인젝션, 데이터 유출 방어',
+                link: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/'
+              },
+              {
+                title: 'Guardrails AI',
+                authors: 'Guardrails',
+                year: '2024',
+                description: 'LLM 출력 검증 - PII 마스킹, 독성 필터링',
+                link: 'https://docs.guardrailsai.com/'
+              },
+              {
+                title: 'A/B Testing for ML Systems',
+                authors: 'Netflix',
+                year: '2023',
+                description: '대규모 실험 설계 - 통계적 유의성, 다변량 테스트',
+                link: 'https://netflixtechblog.com/its-all-a-bout-testing-the-netflix-experimentation-platform-4e1ca458c15'
+              },
+              {
+                title: 'Observability for ML',
+                authors: 'Arize AI',
+                year: '2024',
+                description: 'RAG 드리프트 감지 - 데이터/모델/개념 드리프트',
+                link: 'https://docs.arize.com/arize/'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 스케일링 & 성능 최적화',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Nginx for RAG APIs',
+                authors: 'NGINX',
+                year: '2025',
+                description: '리버스 프록시 - 로드밸런싱, 속도 제한, SSL',
+                link: 'https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/'
+              },
+              {
+                title: 'Redis for LLM Caching',
+                authors: 'Redis Labs',
+                year: '2025',
+                description: 'LLM 응답 캐싱 - 비용 80% 절감 사례',
+                link: 'https://redis.io/docs/manual/patterns/distributed-locks/'
+              },
+              {
+                title: 'Grafana + Prometheus',
+                authors: 'Grafana Labs',
+                year: '2025',
+                description: 'RAG 메트릭 대시보드 - 실시간 알람, 시각화',
+                link: 'https://grafana.com/docs/grafana/latest/getting-started/get-started-grafana-prometheus/'
+              },
+              {
+                title: 'Sentry Error Tracking',
+                authors: 'Sentry',
+                year: '2025',
+                description: 'RAG 에러 모니터링 - 스택 트레이스, 사용자 영향',
+                link: 'https://docs.sentry.io/'
+              },
+              {
+                title: 'Load Testing with Locust',
+                authors: 'Locust',
+                year: '2024',
+                description: 'RAG API 부하 테스트 - TPS, 응답시간 벤치마크',
+                link: 'https://docs.locust.io/en/stable/'
+              }
+            ]
+          }
+        ]}
+      />
 
       {/* Navigation */}
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">

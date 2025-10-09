@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Server, Network, Database, Shield, Activity, Zap, Globe, HardDrive } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter3Page() {
   return (
@@ -1279,6 +1280,131 @@ alerting_rules:
           </div>
         </section>
       </div>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 분산 벡터 데이터베이스',
+            icon: 'web' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Weaviate Distributed Architecture',
+                authors: 'Weaviate',
+                year: '2025',
+                description: '분산 벡터 DB - 수평 스케일링, Multi-tenancy, Replication',
+                link: 'https://weaviate.io/developers/weaviate/concepts/cluster'
+              },
+              {
+                title: 'Milvus Clustering & Sharding',
+                authors: 'Zilliz',
+                year: '2025',
+                description: 'Kubernetes 기반 클러스터 - 10억+ 벡터, 샤딩 전략',
+                link: 'https://milvus.io/docs/scaleout.md'
+              },
+              {
+                title: 'Qdrant Distributed Mode',
+                authors: 'Qdrant',
+                year: '2024',
+                description: 'Rust 기반 분산 벡터 검색 - Raft 컨센서스, 자동 샤드 밸런싱',
+                link: 'https://qdrant.tech/documentation/guides/distributed_deployment/'
+              },
+              {
+                title: 'Pinecone Serverless',
+                authors: 'Pinecone',
+                year: '2024',
+                description: '완전 관리형 분산 벡터 DB - 자동 스케일링, 99.99% SLA',
+                link: 'https://docs.pinecone.io/docs/architecture'
+              },
+              {
+                title: 'Elasticsearch Vector Search at Scale',
+                authors: 'Elastic',
+                year: '2025',
+                description: '분산 검색 엔진 - HNSW 인덱싱, Cross-cluster 검색',
+                link: 'https://www.elastic.co/guide/en/elasticsearch/reference/current/knn-search.html'
+              }
+            ]
+          },
+          {
+            title: '📖 대규모 시스템 설계 & 사례',
+            icon: 'research' as const,
+            color: 'border-cyan-500',
+            items: [
+              {
+                title: 'Uber Michelangelo: ML Platform',
+                authors: 'Uber Engineering',
+                year: '2023',
+                description: '분산 ML 추론 시스템 - Feature Store, Model Serving, 40억 QPS',
+                link: 'https://www.uber.com/blog/michelangelo-machine-learning-platform/'
+              },
+              {
+                title: 'Netflix Recommendation Infrastructure',
+                authors: 'Netflix Tech Blog',
+                year: '2024',
+                description: '실시간 개인화 추천 - Cassandra, Kafka, 수억 사용자',
+                link: 'https://netflixtechblog.com/system-architectures-for-personalization-and-recommendation-e081aa94b5d8'
+              },
+              {
+                title: 'Airbnb Search Ranking & Personalization',
+                authors: 'Airbnb Engineering',
+                year: '2023',
+                description: '분산 검색 시스템 - Embedding 기반 검색, Real-time 업데이트',
+                link: 'https://medium.com/airbnb-engineering/machine-learning-powered-search-ranking-of-airbnb-experiences-110b4b1a0789'
+              },
+              {
+                title: 'Designing Data-Intensive Applications',
+                authors: 'Martin Kleppmann',
+                year: '2017',
+                description: '분산 시스템 바이블 - Replication, Partitioning, Consistency',
+                link: 'https://dataintensive.net/'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 분산 시스템 인프라 도구',
+            icon: 'tools' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Kubernetes for ML',
+                authors: 'CNCF',
+                year: '2025',
+                description: 'Container 오케스트레이션 - Auto-scaling, Load Balancing, Service Mesh',
+                link: 'https://kubernetes.io/docs/concepts/workloads/'
+              },
+              {
+                title: 'Apache Kafka: Event Streaming',
+                authors: 'Confluent',
+                year: '2025',
+                description: '분산 메시지 큐 - Partitioning, Replication, Exactly-once Delivery',
+                link: 'https://kafka.apache.org/documentation/'
+              },
+              {
+                title: 'Consul: Service Discovery',
+                authors: 'HashiCorp',
+                year: '2024',
+                description: 'Service Mesh - Health Checking, Load Balancing, Multi-datacenter',
+                link: 'https://developer.hashicorp.com/consul/docs'
+              },
+              {
+                title: 'Prometheus + Grafana',
+                authors: 'CNCF / Grafana Labs',
+                year: '2025',
+                description: '분산 모니터링 - 시계열 메트릭, 알람, 대시보드',
+                link: 'https://prometheus.io/docs/introduction/overview/'
+              },
+              {
+                title: 'Chaos Mesh: Chaos Engineering',
+                authors: 'PingCAP',
+                year: '2024',
+                description: 'Kubernetes 장애 주입 - Pod Failure, Network 지연, IO 스트레스',
+                link: 'https://chaos-mesh.org/docs/'
+              }
+            ]
+          }
+        ]}
+      />
 
       {/* Navigation */}
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">

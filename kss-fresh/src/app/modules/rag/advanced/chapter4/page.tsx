@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Trophy, BarChart3, Zap, Brain, Sparkles, Target } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter4Page() {
   return (
@@ -1479,6 +1480,131 @@ for strategy in strategies:
           </div>
         </section>
       </div>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 Cross-Encoder & Reranking 모델',
+            icon: 'web' as const,
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Sentence-Transformers Reranking',
+                authors: 'UKPLab',
+                year: '2024',
+                description: 'Cross-Encoder 공식 라이브러리 - ms-marco-MiniLM, mxbai-rerank',
+                link: 'https://www.sbert.net/docs/pretrained_cross-encoders.html'
+              },
+              {
+                title: 'Cohere Rerank API',
+                authors: 'Cohere',
+                year: '2025',
+                description: 'State-of-the-art 재순위화 - 다국어 지원, 실시간 API',
+                link: 'https://docs.cohere.com/docs/rerank'
+              },
+              {
+                title: 'Jina Reranker Models',
+                authors: 'Jina AI',
+                year: '2024',
+                description: '경량 재순위화 모델 - jina-reranker-v1-base-en',
+                link: 'https://jina.ai/reranker'
+              },
+              {
+                title: 'RankGPT: LLM-based Reranking',
+                authors: 'Microsoft Research',
+                year: '2023',
+                description: 'GPT를 활용한 재순위화 - Zero-shot Relevance 판단',
+                link: 'https://github.com/sunnweiwei/RankGPT'
+              },
+              {
+                title: 'BGE Reranker by BAAI',
+                authors: 'Beijing Academy of AI',
+                year: '2024',
+                description: '고성능 중국어/영어 재순위화 - bge-reranker-large',
+                link: 'https://huggingface.co/BAAI/bge-reranker-large'
+              }
+            ]
+          },
+          {
+            title: '📖 Learning-to-Rank 연구',
+            icon: 'research' as const,
+            color: 'border-red-500',
+            items: [
+              {
+                title: 'Sentence-BERT: Cross-Encoders for Semantic Search',
+                authors: 'Reimers & Gurevych',
+                year: '2019',
+                description: 'Cross-Encoder 기본 논문 - BERT 기반 문장 쌍 분류',
+                link: 'https://arxiv.org/abs/1908.10084'
+              },
+              {
+                title: 'ColBERT: Efficient and Effective Passage Search',
+                authors: 'Khattab & Zaharia, Stanford',
+                year: '2020',
+                description: 'Late Interaction - Bi-Encoder + Cross-Encoder 장점 결합',
+                link: 'https://arxiv.org/abs/2004.12832'
+              },
+              {
+                title: 'RankNet to LambdaRank to LambdaMART',
+                authors: 'Burges et al., Microsoft Research',
+                year: '2010',
+                description: 'Learning-to-Rank 알고리즘 발전사 - Pairwise to Listwise',
+                link: 'https://www.microsoft.com/en-us/research/publication/from-ranknet-to-lambdarank-to-lambdamart-an-overview/'
+              },
+              {
+                title: 'MonoT5 & DuoT5: T5-based Reranking',
+                authors: 'Nogueira et al., University of Waterloo',
+                year: '2020',
+                description: 'T5로 재순위화 - Text-to-Text Relevance 판단',
+                link: 'https://arxiv.org/abs/2003.06713'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실무 재순위화 도구',
+            icon: 'tools' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Haystack Ranker Component',
+                authors: 'deepset',
+                year: '2024',
+                description: 'RAG 파이프라인 재순위화 - SentenceTransformers 통합',
+                link: 'https://docs.haystack.deepset.ai/docs/ranker'
+              },
+              {
+                title: 'LlamaIndex Reranking Postprocessor',
+                authors: 'LlamaIndex',
+                year: '2024',
+                description: 'Query Engine 재순위화 - Cohere, SentenceTransformers 지원',
+                link: 'https://docs.llamaindex.ai/en/stable/examples/node_postprocessor/CohereRerank.html'
+              },
+              {
+                title: 'Vespa Ranking Framework',
+                authors: 'Vespa.ai',
+                year: '2024',
+                description: '대규모 재순위화 엔진 - ONNX 모델, LightGBM, XGBoost 지원',
+                link: 'https://docs.vespa.ai/en/ranking.html'
+              },
+              {
+                title: 'FlashRank: Fast Reranking',
+                authors: 'PrithivirajDamodaran',
+                year: '2024',
+                description: '초경량 재순위화 - CPU에서 빠른 추론, 40MB 모델',
+                link: 'https://github.com/PrithivirajDamodaran/FlashRank'
+              },
+              {
+                title: 'Rank-BM25 Python Library',
+                authors: 'dorianbrown',
+                year: '2024',
+                description: 'BM25 재순위화 - 경량 키워드 기반 재점수화',
+                link: 'https://github.com/dorianbrown/rank_bm25'
+              }
+            ]
+          }
+        ]}
+      />
 
       {/* Navigation */}
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">

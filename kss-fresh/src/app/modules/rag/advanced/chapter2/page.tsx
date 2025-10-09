@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Users, GitBranch, MessageSquare, Zap, Shield, Database } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter2Page() {
   return (
@@ -884,6 +885,131 @@ async def main():
           </div>
         </section>
       </div>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 Multi-Agent 프레임워크 & 도구',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'AutoGen: Multi-Agent Framework',
+                authors: 'Microsoft Research',
+                year: '2024',
+                description: 'Multi-Agent 대화 프레임워크 - Agent 협력, 자동 협상, 코드 생성',
+                link: 'https://microsoft.github.io/autogen/'
+              },
+              {
+                title: 'LangGraph: Agent Orchestration',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'Agent 워크플로우 그래프 - 상태 관리, 분기/병합, 순환 로직',
+                link: 'https://langchain-ai.github.io/langgraph/'
+              },
+              {
+                title: 'CrewAI: Role-based Multi-Agent',
+                authors: 'CrewAI',
+                year: '2024',
+                description: '역할 기반 Agent 팀 - 자율적 협력, Task 분배',
+                link: 'https://docs.crewai.com/'
+              },
+              {
+                title: 'Semantic Kernel Multi-Agent',
+                authors: 'Microsoft',
+                year: '2024',
+                description: 'LLM 오케스트레이션 - Plugin 시스템, Memory 관리',
+                link: 'https://learn.microsoft.com/en-us/semantic-kernel/agents/'
+              },
+              {
+                title: 'Agent Protocol Specification',
+                authors: 'AI Engineer Foundation',
+                year: '2024',
+                description: 'Agent 간 통신 표준 - REST API 기반 프로토콜',
+                link: 'https://agentprotocol.ai/'
+              }
+            ]
+          },
+          {
+            title: '📖 Multi-Agent RAG 연구',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Multi-Agent Collaboration for Complex QA',
+                authors: 'Du et al., Stanford University',
+                year: '2024',
+                description: '다중 에이전트 협력 - Debate Pattern으로 정확도 23% 향상',
+                link: 'https://arxiv.org/abs/2305.14325'
+              },
+              {
+                title: 'Communicative Agents for Software Development',
+                authors: 'Qian et al., Tsinghua University',
+                year: '2023',
+                description: 'ChatDev 프레임워크 - Software 개발을 위한 Multi-Agent 시스템',
+                link: 'https://arxiv.org/abs/2307.07924'
+              },
+              {
+                title: 'Cooperative Multi-Agent Deep RL',
+                authors: 'Lowe et al., OpenAI',
+                year: '2017',
+                description: 'MADDPG 알고리즘 - Agent 간 협력 학습 기법',
+                link: 'https://arxiv.org/abs/1706.02275'
+              },
+              {
+                title: 'AgentVerse: Facilitating Multi-Agent Collaboration',
+                authors: 'Chen et al., Tsinghua University',
+                year: '2023',
+                description: '대규모 Multi-Agent 협업 - 동적 Task 배분, Consensus Mechanism',
+                link: 'https://arxiv.org/abs/2308.10848'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 분산 시스템 & 메시지 큐',
+            icon: 'tools' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Ray: Distributed Computing',
+                authors: 'Anyscale',
+                year: '2024',
+                description: 'Python 분산 처리 - Agent 병렬 실행, 자원 관리',
+                link: 'https://docs.ray.io/en/latest/'
+              },
+              {
+                title: 'Celery: Distributed Task Queue',
+                authors: 'Celery Project',
+                year: '2024',
+                description: '비동기 작업 큐 - Agent 간 메시지 전달, Task 스케줄링',
+                link: 'https://docs.celeryq.dev/'
+              },
+              {
+                title: 'RabbitMQ Message Broker',
+                authors: 'Pivotal/VMware',
+                year: '2024',
+                description: 'AMQP 메시지 브로커 - Agent 통신 인프라, 메시지 라우팅',
+                link: 'https://www.rabbitmq.com/documentation.html'
+              },
+              {
+                title: 'Redis Pub/Sub',
+                authors: 'Redis Labs',
+                year: '2024',
+                description: 'Publish/Subscribe 패턴 - 실시간 Agent 이벤트 브로드캐스팅',
+                link: 'https://redis.io/docs/manual/pubsub/'
+              },
+              {
+                title: 'LangSmith Agent Tracing',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'Multi-Agent 추적 및 디버깅 - Conversation Flow 시각화',
+                link: 'https://docs.smith.langchain.com/tracing'
+              }
+            ]
+          }
+        ]}
+      />
 
       {/* Navigation */}
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">

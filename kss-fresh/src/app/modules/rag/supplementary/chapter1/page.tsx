@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, AlertCircle, Code, FileText, TrendingUp } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter1Page() {
   return (
@@ -766,6 +767,131 @@ if __name__ == "__main__":
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 RAGAS & 평가 프레임워크',
+              icon: 'web' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'RAGAS Official Documentation',
+                  authors: 'Explodinggradients',
+                  year: '2024',
+                  description: 'RAG 평가 프레임워크 - Context Relevancy, Answer Faithfulness, Answer Relevancy 공식 문서',
+                  link: 'https://docs.ragas.io/'
+                },
+                {
+                  title: 'TruLens: LLM Evaluation & Observability',
+                  authors: 'TruEra',
+                  year: '2024',
+                  description: 'LLM 애플리케이션 평가 - Groundedness, Answer Relevance, Context Relevance 측정',
+                  link: 'https://www.trulens.org/'
+                },
+                {
+                  title: 'LangSmith Evaluation',
+                  authors: 'LangChain',
+                  year: '2024',
+                  description: 'LangChain 공식 평가 도구 - 자동화된 테스트, 비교 분석, Production 모니터링',
+                  link: 'https://docs.smith.langchain.com/evaluation'
+                },
+                {
+                  title: 'DeepEval: Unit Testing for LLMs',
+                  authors: 'Confident AI',
+                  year: '2024',
+                  description: 'LLM 단위 테스트 프레임워크 - 14개 평가 메트릭, Pytest 통합, CI/CD 지원',
+                  link: 'https://docs.confident-ai.com/'
+                },
+                {
+                  title: 'Evidently AI: ML Monitoring',
+                  authors: 'Evidently AI',
+                  year: '2024',
+                  description: 'ML 시스템 모니터링 - 데이터 드리프트, 성능 저하 감지, 대시보드 생성',
+                  link: 'https://www.evidentlyai.com/'
+                }
+              ]
+            },
+            {
+              title: '📖 RAG 평가 연구 논문',
+              icon: 'research' as const,
+              color: 'border-pink-500',
+              items: [
+                {
+                  title: 'ARES: An Automated Evaluation Framework for RAG',
+                  authors: 'Saad-Falcon et al., Stanford',
+                  year: '2024',
+                  description: '자동화된 RAG 평가 - Synthetic 데이터 생성, LLM-as-judge, 인간 평가 대체',
+                  link: 'https://arxiv.org/abs/2311.09476'
+                },
+                {
+                  title: 'Benchmarking Large Language Models in RAG',
+                  authors: 'Chen et al., Tsinghua University',
+                  year: '2024',
+                  description: 'RGB 벤치마크 - 4개 도메인, 다양한 RAG 시나리오, 종합 평가 프레임워크',
+                  link: 'https://arxiv.org/abs/2309.01431'
+                },
+                {
+                  title: 'RAGAS: Automated Evaluation of RAG',
+                  authors: 'Es et al., Explodinggradients',
+                  year: '2023',
+                  description: 'RAGAS 논문 - Reference-free 평가, LLM 기반 메트릭, 자동화된 품질 측정',
+                  link: 'https://arxiv.org/abs/2309.15217'
+                },
+                {
+                  title: 'Evaluating RAG: A Survey',
+                  authors: 'Liu et al., Microsoft Research',
+                  year: '2024',
+                  description: 'RAG 평가 서베이 - 기존 메트릭 분류, 한계점 분석, 미래 방향 제시',
+                  link: 'https://arxiv.org/abs/2405.17009'
+                }
+              ]
+            },
+            {
+              title: '🛠️ Production 모니터링 도구',
+              icon: 'tools' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'Weights & Biases: ML Experiment Tracking',
+                  authors: 'Weights & Biases',
+                  year: '2024',
+                  description: 'ML 실험 추적 - 메트릭 시각화, 하이퍼파라미터 최적화, 팀 협업',
+                  link: 'https://wandb.ai/'
+                },
+                {
+                  title: 'MLflow: Open Source ML Platform',
+                  authors: 'Databricks',
+                  year: '2024',
+                  description: 'ML 라이프사이클 관리 - 실험 추적, 모델 레지스트리, 배포 자동화',
+                  link: 'https://mlflow.org/'
+                },
+                {
+                  title: 'Streamlit: Data App Framework',
+                  authors: 'Snowflake',
+                  year: '2024',
+                  description: 'Python 대시보드 - 실시간 모니터링 UI, 빠른 프로토타이핑, 인터랙티브 차트',
+                  link: 'https://streamlit.io/'
+                },
+                {
+                  title: 'Grafana + Prometheus: Metrics Monitoring',
+                  authors: 'Grafana Labs',
+                  year: '2024',
+                  description: '시계열 메트릭 모니터링 - 알림 설정, 실시간 대시보드, 다중 데이터소스 지원',
+                  link: 'https://grafana.com/'
+                },
+                {
+                  title: 'Arize AI: ML Observability Platform',
+                  authors: 'Arize AI',
+                  year: '2024',
+                  description: 'ML 관측성 플랫폼 - 성능 모니터링, 드리프트 감지, 근본 원인 분석',
+                  link: 'https://arize.com/'
+                }
+              ]
+            }
+          ]}
+        />
 
         {/* Navigation */}
         <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

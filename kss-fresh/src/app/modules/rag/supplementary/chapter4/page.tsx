@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Server, Shield, RefreshCw, AlertTriangle, CheckCircle2, Activity } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter4Page() {
   return (
@@ -1290,6 +1291,131 @@ uptime_strategy = {
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 고가용성 & 복구 프레임워크',
+              icon: 'web' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'AWS Well-Architected Framework: Reliability',
+                  authors: 'Amazon Web Services',
+                  year: '2024',
+                  description: '고가용성 아키텍처 설계 - Multi-AZ, Auto Scaling, Disaster Recovery',
+                  link: 'https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html'
+                },
+                {
+                  title: 'Google SRE Handbook: Eliminating Toil',
+                  authors: 'Google',
+                  year: '2024',
+                  description: 'SRE 원칙 - Error Budget, Incident Management, Postmortem Culture',
+                  link: 'https://sre.google/sre-book/table-of-contents/'
+                },
+                {
+                  title: 'Netflix Chaos Engineering',
+                  authors: 'Netflix',
+                  year: '2024',
+                  description: 'Chaos Monkey - 프로덕션 장애 시뮬레이션, 복원력 테스트',
+                  link: 'https://netflix.github.io/chaosmonkey/'
+                },
+                {
+                  title: 'Kubernetes High Availability',
+                  authors: 'CNCF',
+                  year: '2024',
+                  description: 'K8s HA 아키텍처 - Control Plane HA, Pod Disruption Budget, StatefulSet',
+                  link: 'https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/'
+                },
+                {
+                  title: 'Consul Service Mesh',
+                  authors: 'HashiCorp',
+                  year: '2024',
+                  description: '서비스 디스커버리 - Health Checking, Load Balancing, Failover',
+                  link: 'https://www.consul.io/'
+                }
+              ]
+            },
+            {
+              title: '📖 복원력 & 재해복구 연구',
+              icon: 'research' as const,
+              color: 'border-red-500',
+              items: [
+                {
+                  title: 'Patterns for Resilient Architecture',
+                  authors: 'Nygard, Release It!',
+                  year: '2024',
+                  description: '복원력 패턴 - Circuit Breaker, Bulkhead, Timeout, Retry, Fallback',
+                  link: 'https://www.amazon.com/Release-Design-Deploy-Production-Ready-Software/dp/1680502395'
+                },
+                {
+                  title: 'The Mathematics of Reliability',
+                  authors: 'Barlow & Proschan',
+                  year: '2024',
+                  description: '신뢰성 수학 - MTBF, MTTF, MTTR, Availability Calculation',
+                  link: 'https://doi.org/10.1137/1.9781611971194'
+                },
+                {
+                  title: 'Chaos Engineering: System Resiliency in Practice',
+                  authors: 'Rosenthal et al., O\'Reilly',
+                  year: '2024',
+                  description: '카오스 엔지니어링 - Failure Injection, Blast Radius, Steady State',
+                  link: 'https://www.oreilly.com/library/view/chaos-engineering/9781492043850/'
+                },
+                {
+                  title: 'Designing Data-Intensive Applications',
+                  authors: 'Kleppmann, O\'Reilly',
+                  year: '2024',
+                  description: '분산 시스템 복원력 - Replication, Partitioning, Transactions',
+                  link: 'https://dataintensive.net/'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 모니터링 & 복구 도구',
+              icon: 'tools' as const,
+              color: 'border-green-500',
+              items: [
+                {
+                  title: 'Prometheus + Grafana: Monitoring Stack',
+                  authors: 'CNCF',
+                  year: '2024',
+                  description: '메트릭 수집 & 시각화 - Alerting, Service Discovery, Time Series DB',
+                  link: 'https://prometheus.io/'
+                },
+                {
+                  title: 'PagerDuty: Incident Management',
+                  authors: 'PagerDuty',
+                  year: '2024',
+                  description: '인시던트 관리 - On-Call Scheduling, Escalation, Postmortem',
+                  link: 'https://www.pagerduty.com/'
+                },
+                {
+                  title: 'Datadog: Full-Stack Observability',
+                  authors: 'Datadog',
+                  year: '2024',
+                  description: '통합 모니터링 - APM, Logs, Metrics, Synthetic Monitoring',
+                  link: 'https://www.datadoghq.com/'
+                },
+                {
+                  title: 'Velero: Kubernetes Backup & Restore',
+                  authors: 'VMware',
+                  year: '2024',
+                  description: 'K8s 백업 - Disaster Recovery, Cluster Migration, Volume Snapshot',
+                  link: 'https://velero.io/'
+                },
+                {
+                  title: 'Gremlin: Chaos Engineering Platform',
+                  authors: 'Gremlin',
+                  year: '2024',
+                  description: '카오스 실험 플랫폼 - Controlled Failure Injection, Blast Radius Limiting',
+                  link: 'https://www.gremlin.com/'
+                }
+              ]
+            }
+          ]}
+        />
 
         {/* Navigation */}
         <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

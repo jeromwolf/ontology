@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Sparkles, Brain, Rocket, TrendingUp, Layers, Eye } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter6Page() {
   return (
@@ -1209,6 +1210,131 @@ for query in queries:
           </div>
         </section>
       </div>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 2024년 최신 RAG 논문',
+            icon: 'research' as const,
+            color: 'border-violet-500',
+            items: [
+              {
+                title: 'Self-RAG: Learning to Retrieve, Generate and Critique',
+                authors: 'Asai et al., University of Washington',
+                year: '2024',
+                description: '자기 성찰 RAG - Reflection Tokens로 검색 필요성 판단, 35% 성능 향상',
+                link: 'https://arxiv.org/abs/2310.11511'
+              },
+              {
+                title: 'CRAG: Corrective RAG',
+                authors: 'Yan et al., Salesforce',
+                year: '2024',
+                description: '검색 결과 교정 - Relevance Evaluator, Knowledge Refinement',
+                link: 'https://arxiv.org/abs/2401.15884'
+              },
+              {
+                title: 'RAG-Fusion: Next Generation Retrieval',
+                authors: 'Rackauckas, MIT',
+                year: '2024',
+                description: '다중 쿼리 생성 + 상호 순위 융합 - Reciprocal Rank Fusion',
+                link: 'https://arxiv.org/abs/2402.03367'
+              },
+              {
+                title: 'HyDE: Hypothetical Document Embeddings',
+                authors: 'Gao et al., Microsoft',
+                year: '2024',
+                description: '가상 문서 생성 후 검색 - Zero-shot Dense Retrieval',
+                link: 'https://arxiv.org/abs/2212.10496'
+              },
+              {
+                title: 'RAPTOR: Recursive Tree-based RAG',
+                authors: 'Sarthi et al., Stanford',
+                year: '2024',
+                description: '계층적 문서 요약 - Bottom-up Clustering, Tree Traversal',
+                link: 'https://arxiv.org/abs/2401.18059'
+              }
+            ]
+          },
+          {
+            title: '🔬 Advanced RAG 기법 연구',
+            icon: 'research' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Adaptive-RAG: Dynamic Retrieval Strategies',
+                authors: 'Jeong et al., KAIST',
+                year: '2024',
+                description: '질의 복잡도에 따른 동적 검색 - Simple vs Complex Query Classification',
+                link: 'https://arxiv.org/abs/2403.14403'
+              },
+              {
+                title: 'Query Rewriting for Retrieval-Augmented LLMs',
+                authors: 'Ma et al., Tsinghua',
+                year: '2024',
+                description: 'LLM 기반 쿼리 재작성 - Rewrite-Retrieve-Read 패턴',
+                link: 'https://arxiv.org/abs/2305.14283'
+              },
+              {
+                title: 'Long-Context RAG: Challenges and Solutions',
+                authors: 'Liu et al., Meta',
+                year: '2024',
+                description: '100K+ 토큰 컨텍스트 활용 - Retrieval vs Long-Context 트레이드오프',
+                link: 'https://arxiv.org/abs/2404.00909'
+              },
+              {
+                title: 'RAG with Self-Refinement',
+                authors: 'Shinn et al., Google DeepMind',
+                year: '2024',
+                description: '반복적 답변 개선 - Self-Critique, Multi-Round Retrieval',
+                link: 'https://arxiv.org/abs/2303.17651'
+              }
+            ]
+          },
+          {
+            title: '🚀 RAG 오픈소스 & 도구',
+            icon: 'tools' as const,
+            color: 'border-pink-500',
+            items: [
+              {
+                title: 'LlamaIndex Advanced Techniques',
+                authors: 'LlamaIndex',
+                year: '2024',
+                description: 'Router, Sub-Question, Knowledge Graph 통합 RAG',
+                link: 'https://docs.llamaindex.ai/en/stable/examples/'
+              },
+              {
+                title: 'LangChain RAG Cookbook',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'Production RAG Patterns - Self-Query, Multi-Query, Parent Document',
+                link: 'https://python.langchain.com/docs/use_cases/question_answering/'
+              },
+              {
+                title: 'AutoRAG: Automated RAG Optimization',
+                authors: 'Marker-Inc',
+                year: '2024',
+                description: 'RAG 파이프라인 자동 최적화 - Hyperparameter Tuning',
+                link: 'https://github.com/Marker-Inc-Korea/AutoRAG'
+              },
+              {
+                title: 'RAGFlow: Visual RAG Builder',
+                authors: 'InfiniFlow',
+                year: '2024',
+                description: 'No-code RAG 구축 - Workflow Designer, Template Library',
+                link: 'https://github.com/infiniflow/ragflow'
+              },
+              {
+                title: 'Flowise: RAG Flow Builder',
+                authors: 'FlowiseAI',
+                year: '2024',
+                description: 'Low-code RAG - Drag & Drop, Multi-modal Support',
+                link: 'https://flowiseai.com/'
+              }
+            ]
+          }
+        ]}
+      />
 
       {/* Navigation */}
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">

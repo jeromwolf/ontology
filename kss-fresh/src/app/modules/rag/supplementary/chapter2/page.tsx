@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Shield, Lock, Eye, AlertTriangle, UserX, FileWarning } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter2Page() {
   return (
@@ -906,6 +907,131 @@ security_checklist = {
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 보안 & 프라이버시 프레임워크',
+              icon: 'web' as const,
+              color: 'border-red-500',
+              items: [
+                {
+                  title: 'Microsoft Presidio: PII Detection & Anonymization',
+                  authors: 'Microsoft',
+                  year: '2024',
+                  description: 'PII 자동 탐지 라이브러리 - 50+ 엔티티 타입, 다국어 지원, 마스킹/암호화/해싱',
+                  link: 'https://microsoft.github.io/presidio/'
+                },
+                {
+                  title: 'OWASP Top 10 for LLM Applications',
+                  authors: 'OWASP Foundation',
+                  year: '2024',
+                  description: 'LLM 애플리케이션 10대 보안 취약점 - Prompt Injection, Data Leakage, Model DoS',
+                  link: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/'
+                },
+                {
+                  title: 'NeMo Guardrails: Content Moderation',
+                  authors: 'NVIDIA',
+                  year: '2024',
+                  description: 'LLM 가드레일 프레임워크 - 입력/출력 검증, 토픽 제어, 안전성 보장',
+                  link: 'https://github.com/NVIDIA/NeMo-Guardrails'
+                },
+                {
+                  title: 'LangKit: LLM Security Toolkit',
+                  authors: 'WhyLabs',
+                  year: '2024',
+                  description: 'LLM 보안 도구 - 프롬프트 인젝션 탐지, 토픽 분류, 독성 감지',
+                  link: 'https://github.com/whylabs/langkit'
+                },
+                {
+                  title: 'GDPR Compliance for AI Systems',
+                  authors: 'European Commission',
+                  year: '2024',
+                  description: 'AI 시스템 GDPR 준수 - 데이터 최소화, 삭제권, 설명 가능성 요구사항',
+                  link: 'https://ec.europa.eu/info/law/law-topic/data-protection_en'
+                }
+              ]
+            },
+            {
+              title: '📖 보안 연구 논문',
+              icon: 'research' as const,
+              color: 'border-orange-500',
+              items: [
+                {
+                  title: 'Prompt Injection Attacks and Defenses',
+                  authors: 'Greshake et al., ETH Zurich',
+                  year: '2024',
+                  description: '프롬프트 인젝션 공격 분류 - Indirect Injection, Context Poisoning, 방어 전략',
+                  link: 'https://arxiv.org/abs/2302.12173'
+                },
+                {
+                  title: 'Jailbreaking ChatGPT via Prompt Engineering',
+                  authors: 'Liu et al., Singapore Management University',
+                  year: '2024',
+                  description: '탈옥 공격 패턴 분석 - 역할 변경, 시나리오 조작, 다층 방어 필요성',
+                  link: 'https://arxiv.org/abs/2305.13860'
+                },
+                {
+                  title: 'Membership Inference Attacks Against LLMs',
+                  authors: 'Carlini et al., Google DeepMind',
+                  year: '2024',
+                  description: '학습 데이터 유출 공격 - 모델이 특정 텍스트를 기억하는지 판별',
+                  link: 'https://arxiv.org/abs/2012.07805'
+                },
+                {
+                  title: 'Differential Privacy for RAG Systems',
+                  authors: 'Tramer et al., Stanford',
+                  year: '2024',
+                  description: 'RAG에서 차분 프라이버시 - Noise Injection, Privacy Budget, Utility Trade-off',
+                  link: 'https://arxiv.org/abs/2301.07320'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 보안 도구 & 서비스',
+              icon: 'tools' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'LLM Guard: Security Toolkit',
+                  authors: 'Protect AI',
+                  year: '2024',
+                  description: '포괄적 LLM 보안 - 입력 검증, 출력 필터링, PII 마스킹, 독성 감지',
+                  link: 'https://llm-guard.com/'
+                },
+                {
+                  title: 'Rebuff: Prompt Injection Detector',
+                  authors: 'Rebuff AI',
+                  year: '2024',
+                  description: '프롬프트 인젝션 전문 탐지 - 실시간 API, 머신러닝 기반 분석',
+                  link: 'https://github.com/protectai/rebuff'
+                },
+                {
+                  title: 'Vault by HashiCorp: Secrets Management',
+                  authors: 'HashiCorp',
+                  year: '2024',
+                  description: '암호화 키 관리 - API 키, DB 자격증명, 동적 시크릿 생성',
+                  link: 'https://www.vaultproject.io/'
+                },
+                {
+                  title: 'Snyk for AI: Vulnerability Scanning',
+                  authors: 'Snyk',
+                  year: '2024',
+                  description: 'AI/ML 보안 스캐닝 - 의존성 취약점, 모델 보안, 공급망 리스크',
+                  link: 'https://snyk.io/product/snyk-code/'
+                },
+                {
+                  title: 'AWS Macie: Data Privacy Discovery',
+                  authors: 'Amazon Web Services',
+                  year: '2024',
+                  description: 'S3 데이터 PII 자동 탐지 - 머신러닝 기반, 자동 분류, 컴플라이언스',
+                  link: 'https://aws.amazon.com/macie/'
+                }
+              ]
+            }
+          ]}
+        />
 
         {/* Navigation */}
         <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

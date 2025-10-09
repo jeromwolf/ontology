@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Image, Video, AudioLines, Table, Layout, Shuffle } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter5Page() {
   return (
@@ -1496,6 +1497,131 @@ audio_rag = AudioRAGSystem(whisper_model_size="small")
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 멀티모달 AI & CLIP',
+              icon: 'web' as const,
+              color: 'border-teal-500',
+              items: [
+                {
+                  title: 'OpenAI CLIP Documentation',
+                  authors: 'OpenAI',
+                  year: '2021',
+                  description: '이미지-텍스트 통합 임베딩 - 4억 쌍 학습',
+                  link: 'https://github.com/openai/CLIP'
+                },
+                {
+                  title: 'Hugging Face Transformers - Vision',
+                  authors: 'Hugging Face',
+                  year: '2025',
+                  description: 'ViT, CLIP, BLIP 등 멀티모달 모델 라이브러리',
+                  link: 'https://huggingface.co/docs/transformers/model_doc/vision-encoder-decoder'
+                },
+                {
+                  title: 'LangChain Multi-Modal RAG',
+                  authors: 'LangChain',
+                  year: '2025',
+                  description: '이미지/비디오/오디오 처리 - 통합 RAG 파이프라인',
+                  link: 'https://python.langchain.com/docs/modules/data_connection/retrievers/multi_vector'
+                },
+                {
+                  title: 'GPT-4 Vision API',
+                  authors: 'OpenAI',
+                  year: '2024',
+                  description: '이미지 이해 및 분석 - RAG 응답 생성',
+                  link: 'https://platform.openai.com/docs/guides/vision'
+                },
+                {
+                  title: 'Gemini Pro Vision',
+                  authors: 'Google DeepMind',
+                  year: '2024',
+                  description: '네이티브 멀티모달 LLM - 이미지, 비디오, 오디오 통합',
+                  link: 'https://ai.google.dev/tutorials/multimodal'
+                }
+              ]
+            },
+            {
+              title: '📖 멀티모달 학습 & 검색 연구',
+              icon: 'research' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'CLIP: Learning Transferable Visual Models',
+                  authors: 'Radford et al., OpenAI',
+                  year: '2021',
+                  description: 'Contrastive Learning - 제로샷 이미지 분류',
+                  link: 'https://arxiv.org/abs/2103.00020'
+                },
+                {
+                  title: 'BLIP-2: Bootstrapping Vision-Language',
+                  authors: 'Li et al., Salesforce',
+                  year: '2023',
+                  description: 'Q-Former로 효율적인 멀티모달 학습',
+                  link: 'https://arxiv.org/abs/2301.12597'
+                },
+                {
+                  title: 'Flamingo: Visual Language Model',
+                  authors: 'Alayrac et al., DeepMind',
+                  year: '2022',
+                  description: '이미지/비디오/텍스트 인터리빙 처리',
+                  link: 'https://arxiv.org/abs/2204.14198'
+                },
+                {
+                  title: 'Wav2Vec 2.0: Self-Supervised Audio',
+                  authors: 'Baevski et al., Meta',
+                  year: '2020',
+                  description: '오디오 표현 학습 - 음성 검색 기반',
+                  link: 'https://arxiv.org/abs/2006.11477'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 멀티모달 RAG 도구',
+              icon: 'tools' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'Unstructured.io',
+                  authors: 'Unstructured',
+                  year: '2025',
+                  description: 'PDF/이미지/표 추출 - RAG용 문서 전처리',
+                  link: 'https://unstructured.io/'
+                },
+                {
+                  title: 'Twelve Labs Video Understanding',
+                  authors: 'Twelve Labs',
+                  year: '2024',
+                  description: '비디오 검색 & 분석 API - 장면 기반 검색',
+                  link: 'https://docs.twelvelabs.io/'
+                },
+                {
+                  title: 'AssemblyAI Audio Intelligence',
+                  authors: 'AssemblyAI',
+                  year: '2025',
+                  description: '음성-텍스트 변환 - 감정, 화자 분리, 요약',
+                  link: 'https://www.assemblyai.com/docs'
+                },
+                {
+                  title: 'Pinecone Namespaces',
+                  authors: 'Pinecone',
+                  year: '2025',
+                  description: '멀티모달 벡터 저장 - 타입별 네임스페이스 분리',
+                  link: 'https://docs.pinecone.io/docs/namespaces'
+                },
+                {
+                  title: 'LlamaIndex ImageNode',
+                  authors: 'LlamaIndex',
+                  year: '2025',
+                  description: '이미지 노드 처리 - 텍스트와 이미지 통합 인덱싱',
+                  link: 'https://docs.llamaindex.ai/en/stable/module_guides/loading/documents_and_nodes/usage_documents.html'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
 
       {/* Navigation */}
