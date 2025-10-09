@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Scissors, Layers, RefreshCw, BarChart3 } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter3Page() {
   return (
@@ -336,6 +337,117 @@ def semantic_chunking(text, embeddings):
         </section>
       </div>
 
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 청킹 전략 심화',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'Optimal Chunk Size for RAG',
+                authors: 'Greg Kamradt',
+                year: '2024',
+                description: '512, 1024, 2048 토큰 청크 크기 실험 결과',
+                link: 'https://www.youtube.com/watch?v=8OJC21T2SL4'
+              },
+              {
+                title: 'Advanced Chunking Techniques',
+                authors: 'LangChain',
+                year: '2025',
+                description: '문장 윈도우, 계층적 청킹, 문서 요약 청킹',
+                link: 'https://python.langchain.com/docs/modules/data_connection/document_transformers/advanced'
+              },
+              {
+                title: 'Context-Aware Chunking',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Contextual Retrieval - 문맥 정보 포함 청킹',
+                link: 'https://www.anthropic.com/news/contextual-retrieval'
+              },
+              {
+                title: 'Chunk Overlap Best Practices',
+                authors: 'Pinecone',
+                year: '2024',
+                description: '오버랩 크기가 검색 품질에 미치는 영향',
+                link: 'https://www.pinecone.io/learn/chunking-strategies/#chunk-overlap'
+              }
+            ]
+          },
+          {
+            title: '📖 청킹 연구 논문',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Dense Passage Retrieval for Open-Domain Question Answering',
+                authors: 'Karpukhin, V., et al.',
+                year: '2020',
+                description: 'DPR - 효과적인 문서 분할 전략 (Meta AI)',
+                link: 'https://arxiv.org/abs/2004.04906'
+              },
+              {
+                title: 'Long Document Segmentation for Retrieval',
+                authors: 'Dai, Z., et al.',
+                year: '2022',
+                description: '긴 문서의 최적 분할 방법 연구',
+                link: 'https://arxiv.org/abs/2204.07186'
+              },
+              {
+                title: 'Sentence-BERT for Semantic Search',
+                authors: 'Reimers, N., Gurevych, I.',
+                year: '2019',
+                description: '문장 단위 임베딩 및 청킹 기초',
+                link: 'https://arxiv.org/abs/1908.10084'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 청킹 최적화 도구',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Sentence Window Node Parser',
+                authors: 'LlamaIndex',
+                year: '2025',
+                description: '문장 주변 컨텍스트 윈도우 포함',
+                link: 'https://docs.llamaindex.ai/en/stable/examples/node_parsers/sentence_window.html'
+              },
+              {
+                title: 'Hierarchical Node Parser',
+                authors: 'LlamaIndex',
+                year: '2025',
+                description: '계층적 문서 구조 유지 청킹',
+                link: 'https://docs.llamaindex.ai/en/stable/examples/node_parsers/hierarchical.html'
+              },
+              {
+                title: 'Code-Aware Text Splitter',
+                authors: 'LangChain',
+                year: '2024',
+                description: '프로그래밍 언어별 구문 인식 분할',
+                link: 'https://python.langchain.com/docs/modules/data_connection/document_transformers/code_splitter'
+              },
+              {
+                title: 'Tiktoken - OpenAI Tokenizer',
+                authors: 'OpenAI',
+                year: '2024',
+                description: '정확한 토큰 수 기반 청킹',
+                link: 'https://github.com/openai/tiktoken'
+              },
+              {
+                title: 'Chunking Benchmark Tool',
+                authors: 'Unstructured',
+                year: '2024',
+                description: '다양한 청킹 전략 성능 비교 도구',
+                link: 'https://github.com/Unstructured-IO/unstructured'
+              }
+            ]
+          }
+        ]}
+      />
+
       {/* Navigation */}
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center">
@@ -346,7 +458,7 @@ def semantic_chunking(text, embeddings):
             <ArrowLeft size={16} />
             이전: 문서 처리 기초
           </Link>
-          
+
           <Link
             href="/modules/rag/beginner/chapter4"
             className="inline-flex items-center gap-2 bg-emerald-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-600 transition-colors"

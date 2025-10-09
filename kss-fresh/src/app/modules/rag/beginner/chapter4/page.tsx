@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, Rocket, Code2, Package, CheckCircle2 } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter4Page() {
   return (
@@ -525,6 +526,124 @@ if __name__ == "__main__":
         </section>
       </div>
 
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 RAG 구축 튜토리얼',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'LangChain RAG From Scratch',
+                authors: 'LangChain',
+                year: '2025',
+                description: '15분만에 첫 RAG 시스템 구축 - 완전 실습',
+                link: 'https://python.langchain.com/docs/tutorials/rag'
+              },
+              {
+                title: 'LlamaIndex Starter Tutorial',
+                authors: 'LlamaIndex',
+                year: '2025',
+                description: '5분 퀵스타트 - 가장 간단한 RAG 예제',
+                link: 'https://docs.llamaindex.ai/en/stable/getting_started/starter_example.html'
+              },
+              {
+                title: 'OpenAI RAG Cookbook',
+                authors: 'OpenAI',
+                year: '2024',
+                description: 'GPT-4 + 임베딩을 활용한 RAG 레시피',
+                link: 'https://cookbook.openai.com/examples/question_answering_using_embeddings'
+              },
+              {
+                title: 'Build a RAG App Tutorial',
+                authors: 'Streamlit',
+                year: '2024',
+                description: 'Web UI가 있는 RAG 앱 만들기',
+                link: 'https://docs.streamlit.io/knowledge-base/tutorials/build-conversational-apps'
+              }
+            ]
+          },
+          {
+            title: '📖 RAG 프로젝트 예제',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'ChatPDF Clone with LangChain',
+                authors: 'Greg Kamradt',
+                year: '2024',
+                description: 'PDF 문서 Q&A 시스템 완전 구현',
+                link: 'https://github.com/FullStackRetrieval-com/RetrievalTutorials'
+              },
+              {
+                title: 'Private GPT',
+                authors: 'imartinez',
+                year: '2024',
+                description: '100% 프라이빗 문서 Q&A (로컬 실행)',
+                link: 'https://github.com/imartinez/privateGPT'
+              },
+              {
+                title: 'Quivr - Your Second Brain',
+                authors: 'Quivr',
+                year: '2024',
+                description: '오픈소스 RAG 플랫폼 (40K+ stars)',
+                link: 'https://github.com/QuivrHQ/quivr'
+              },
+              {
+                title: 'Danswer Enterprise Search',
+                authors: 'Danswer',
+                year: '2024',
+                description: '기업용 통합 검색 RAG 시스템',
+                link: 'https://github.com/danswer-ai/danswer'
+              }
+            ]
+          },
+          {
+            title: '🛠️ RAG 스타터 템플릿',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'LangChain RAG Template',
+                authors: 'LangChain',
+                year: '2025',
+                description: '프로덕션 준비된 RAG 보일러플레이트',
+                link: 'https://github.com/langchain-ai/langchain/tree/master/templates/rag-conversation'
+              },
+              {
+                title: 'LlamaIndex Chat Engine',
+                authors: 'LlamaIndex',
+                year: '2025',
+                description: '대화형 RAG 엔진 템플릿',
+                link: 'https://docs.llamaindex.ai/en/stable/examples/chat_engine/chat_engine_react.html'
+              },
+              {
+                title: 'Vercel AI SDK RAG Example',
+                authors: 'Vercel',
+                year: '2024',
+                description: 'Next.js + RAG 풀스택 템플릿',
+                link: 'https://github.com/vercel/ai/tree/main/examples/next-langchain'
+              },
+              {
+                title: 'FastAPI + RAG Starter',
+                authors: 'tiangolo',
+                year: '2024',
+                description: 'RESTful API 서버 템플릿',
+                link: 'https://github.com/tiangolo/full-stack-fastapi-template'
+              },
+              {
+                title: 'RAG Evaluation Template',
+                authors: 'LangChain',
+                year: '2025',
+                description: 'RAG 평가 및 최적화 워크플로우',
+                link: 'https://python.langchain.com/docs/guides/evaluation'
+              }
+            ]
+          }
+        ]}
+      />
+
       {/* Navigation */}
       <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center">
@@ -535,7 +654,7 @@ if __name__ == "__main__":
             <ArrowLeft size={16} />
             이전: 청킹 전략
           </Link>
-          
+
           <Link
             href="/modules/rag/beginner"
             className="inline-flex items-center gap-2 bg-emerald-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-600 transition-colors"

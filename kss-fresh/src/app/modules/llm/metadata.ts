@@ -167,25 +167,25 @@ export const llmModule: Module = {
   
   simulators: [
     {
-      id: 'tokenizer',
+      id: 'tokenizer-playground',
       name: '토크나이저 시뮬레이터',
       description: '다양한 토크나이저(GPT, Claude, Gemini)의 텍스트 분할 과정 비교',
       component: 'TokenizerSimulator'
     },
     {
-      id: 'attention',
+      id: 'attention-visualizer',
       name: 'Attention 메커니즘 시각화',
       description: 'Self-Attention과 Multi-Head Attention의 실시간 동작 과정',
       component: 'AttentionVisualizer'
     },
     {
-      id: 'transformer',
+      id: 'transformer-architecture',
       name: 'Transformer 아키텍처 3D',
       description: '인코더-디코더 구조를 3D로 탐험하며 데이터 흐름 추적',
       component: 'TransformerArchitecture3D'
     },
     {
-      id: 'training',
+      id: 'training-lab',
       name: '모델 학습 시뮬레이터',
       description: '사전훈련부터 파인튜닝까지 전체 학습 과정을 단계별로 체험',
       component: 'TrainingSimulator'

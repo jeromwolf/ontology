@@ -11,6 +11,8 @@ const Chapter5Applications1 = dynamic(() => import('./chapters/Chapter5Applicati
 const Chapter5Applications2 = dynamic(() => import('./chapters/Chapter5Applications2'), { ssr: false })
 const Chapter5Applications3 = dynamic(() => import('./chapters/Chapter5Applications3'), { ssr: false })
 const Chapter6 = dynamic(() => import('./chapters/Chapter6'), { ssr: false })
+const Chapter7 = dynamic(() => import('./chapters/Chapter7'), { ssr: false })
+const Chapter8 = dynamic(() => import('./chapters/Chapter8'), { ssr: false })
 
 interface ChapterContentProps {
   chapterId: string
@@ -35,6 +37,10 @@ export default function ChapterContent({ chapterId }: ChapterContentProps) {
         return <Chapter5Applications3 />
       case '06-advanced':
         return <Chapter6 />
+      case '07-huggingface':
+        return <Chapter7 />
+      case '08-ai-services':
+        return <Chapter8 />
       default:
         return <div>Content not found</div>
     }

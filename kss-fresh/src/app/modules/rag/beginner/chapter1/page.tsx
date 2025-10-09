@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, BookOpen, AlertTriangle, Code, Database } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter1Page() {
   return (
@@ -186,7 +187,7 @@ export default function Chapter1Page() {
         {/* Section 4: Summary */}
         <section className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-2xl p-8 text-white">
           <h2 className="text-2xl font-bold mb-6">핵심 요약</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white/10 rounded-xl p-4">
               <h3 className="font-bold mb-3">🚫 LLM의 한계</h3>
@@ -196,7 +197,7 @@ export default function Chapter1Page() {
                 <li>• 내부 정보 접근 불가</li>
               </ul>
             </div>
-            
+
             <div className="bg-white/10 rounded-xl p-4">
               <h3 className="font-bold mb-3">✅ RAG의 해결책</h3>
               <ul className="text-sm space-y-1 text-emerald-100">
@@ -205,7 +206,7 @@ export default function Chapter1Page() {
                 <li>• 신뢰할 수 있는 답변</li>
               </ul>
             </div>
-            
+
             <div className="bg-white/10 rounded-xl p-4">
               <h3 className="font-bold mb-3">🎯 다음 단계</h3>
               <ul className="text-sm space-y-1 text-emerald-100">
@@ -216,6 +217,124 @@ export default function Chapter1Page() {
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 공식 문서 & 튜토리얼',
+              icon: 'web' as const,
+              color: 'border-emerald-500',
+              items: [
+                {
+                  title: 'LangChain RAG Tutorial',
+                  authors: 'LangChain',
+                  year: '2025',
+                  description: 'RAG 구현 완전 가이드 - 문서 로딩부터 답변 생성까지',
+                  link: 'https://python.langchain.com/docs/tutorials/rag'
+                },
+                {
+                  title: 'OpenAI RAG Guide',
+                  authors: 'OpenAI',
+                  year: '2024',
+                  description: 'GPT-4를 활용한 프로덕션 RAG 시스템 구축',
+                  link: 'https://platform.openai.com/docs/guides/retrieval-augmented-generation'
+                },
+                {
+                  title: 'Anthropic Prompt Engineering',
+                  authors: 'Anthropic',
+                  year: '2025',
+                  description: 'Claude를 활용한 환각 방지 프롬프트 기법',
+                  link: 'https://docs.anthropic.com/claude/docs/prompt-engineering'
+                },
+                {
+                  title: 'Vector Database Comparison',
+                  authors: 'Awesome AI',
+                  year: '2024',
+                  description: 'Pinecone, Weaviate, Qdrant, Chroma 비교 분석',
+                  link: 'https://github.com/facebookresearch/faiss/wiki'
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 논문',
+              icon: 'research' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks',
+                  authors: 'Lewis, P., Perez, E., et al.',
+                  year: '2020',
+                  description: 'RAG의 원조 논문 - Meta AI Research',
+                  link: 'https://arxiv.org/abs/2005.11401'
+                },
+                {
+                  title: 'Lost in the Middle: How Language Models Use Long Contexts',
+                  authors: 'Liu, N., Lin, K., et al.',
+                  year: '2023',
+                  description: 'LLM 컨텍스트 길이의 한계 연구 - Stanford',
+                  link: 'https://arxiv.org/abs/2307.03172'
+                },
+                {
+                  title: 'Self-RAG: Learning to Retrieve, Generate and Critique',
+                  authors: 'Asai, A., Wu, Z., et al.',
+                  year: '2023',
+                  description: '자체 검증 메커니즘을 갖춘 차세대 RAG',
+                  link: 'https://arxiv.org/abs/2310.11511'
+                },
+                {
+                  title: 'Active Retrieval Augmented Generation',
+                  authors: 'Jiang, Z., Xu, F., et al.',
+                  year: '2023',
+                  description: '동적 검색 전략을 통한 RAG 효율성 향상',
+                  link: 'https://arxiv.org/abs/2305.06983'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 리소스',
+              icon: 'tools' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'LlamaIndex RAG Tutorial',
+                  authors: 'LlamaIndex',
+                  year: '2025',
+                  description: '5분만에 RAG 시스템 구축하기',
+                  link: 'https://docs.llamaindex.ai/en/stable/getting_started/starter_example.html'
+                },
+                {
+                  title: 'Pinecone RAG Handbook',
+                  authors: 'Pinecone',
+                  year: '2024',
+                  description: '벡터 검색 기반 RAG 완전 정복',
+                  link: 'https://www.pinecone.io/learn/retrieval-augmented-generation/'
+                },
+                {
+                  title: 'Weaviate RAG Examples',
+                  authors: 'Weaviate',
+                  year: '2024',
+                  description: '실전 코드 예제 모음 (Python, JavaScript)',
+                  link: 'https://weaviate.io/developers/weaviate/tutorials'
+                },
+                {
+                  title: 'Hugging Face RAG Tutorial',
+                  authors: 'Hugging Face',
+                  year: '2024',
+                  description: 'Transformers 라이브러리로 RAG 구현',
+                  link: 'https://huggingface.co/docs/transformers/model_doc/rag'
+                },
+                {
+                  title: 'LangChain RAG Cookbook',
+                  authors: 'LangChain Community',
+                  year: '2025',
+                  description: '80+ RAG 패턴과 레시피 모음',
+                  link: 'https://github.com/langchain-ai/langchain/tree/master/cookbook'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
 
       {/* Navigation */}

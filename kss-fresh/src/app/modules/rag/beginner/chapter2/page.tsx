@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, FileText, Scissors, Database, Code2 } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter2Page() {
   return (
@@ -384,6 +385,124 @@ for i, chunk in enumerate(chunks[:3]):
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 문서 처리 라이브러리',
+              icon: 'web' as const,
+              color: 'border-emerald-500',
+              items: [
+                {
+                  title: 'LangChain Document Loaders',
+                  authors: 'LangChain',
+                  year: '2025',
+                  description: '80+ 문서 타입 지원 (PDF, Word, HTML, Markdown 등)',
+                  link: 'https://python.langchain.com/docs/modules/data_connection/document_loaders/'
+                },
+                {
+                  title: 'Unstructured.io',
+                  authors: 'Unstructured',
+                  year: '2024',
+                  description: '비정형 문서를 구조화된 데이터로 변환',
+                  link: 'https://unstructured.io/'
+                },
+                {
+                  title: 'PyPDF & PyMuPDF',
+                  authors: 'Open Source Community',
+                  year: '2024',
+                  description: 'PDF 텍스트 추출 및 파싱 라이브러리',
+                  link: 'https://github.com/pymupdf/PyMuPDF'
+                },
+                {
+                  title: 'LlamaIndex SimpleDirectoryReader',
+                  authors: 'LlamaIndex',
+                  year: '2025',
+                  description: '디렉토리 단위 문서 자동 로딩',
+                  link: 'https://docs.llamaindex.ai/en/stable/module_guides/loading/simpledirectoryreader.html'
+                }
+              ]
+            },
+            {
+              title: '📖 청킹 전략 가이드',
+              icon: 'research' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'Chunking Strategies for LLM Applications',
+                  authors: 'Pinecone',
+                  year: '2024',
+                  description: '다양한 청킹 전략 비교 분석',
+                  link: 'https://www.pinecone.io/learn/chunking-strategies/'
+                },
+                {
+                  title: 'Advanced RAG: Chunking Methods',
+                  authors: 'LlamaIndex',
+                  year: '2024',
+                  description: '계층적 청킹, 문장 윈도우, 의미적 청킹',
+                  link: 'https://docs.llamaindex.ai/en/stable/optimizing/production_rag.html'
+                },
+                {
+                  title: 'Text Splitters Deep Dive',
+                  authors: 'LangChain',
+                  year: '2025',
+                  description: '5가지 텍스트 분할 알고리즘 완전 가이드',
+                  link: 'https://python.langchain.com/docs/modules/data_connection/document_transformers/'
+                },
+                {
+                  title: 'Semantic Chunking with Embeddings',
+                  authors: 'Weaviate',
+                  year: '2024',
+                  description: '임베딩 기반 의미적 경계 탐지',
+                  link: 'https://weaviate.io/blog/semantic-chunking'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 청킹 도구 & 실습',
+              icon: 'tools' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'RecursiveCharacterTextSplitter',
+                  authors: 'LangChain',
+                  year: '2025',
+                  description: '재귀적 문자 기반 분할 (가장 많이 사용)',
+                  link: 'https://api.python.langchain.com/en/latest/text_splitter/langchain.text_splitter.RecursiveCharacterTextSplitter.html'
+                },
+                {
+                  title: 'LlamaIndex Node Parsers',
+                  authors: 'LlamaIndex',
+                  year: '2025',
+                  description: '문장, 단락, 계층적 파서 모음',
+                  link: 'https://docs.llamaindex.ai/en/stable/module_guides/loading/node_parsers/'
+                },
+                {
+                  title: 'Chunking Visualizer',
+                  authors: 'Greg Kamradt',
+                  year: '2024',
+                  description: '다양한 청킹 전략 시각화 도구',
+                  link: 'https://github.com/FullStackRetrieval-com/RetrievalTutorials'
+                },
+                {
+                  title: 'Markdown Text Splitter',
+                  authors: 'LangChain',
+                  year: '2024',
+                  description: 'Markdown 구조 인식 분할',
+                  link: 'https://python.langchain.com/docs/modules/data_connection/document_transformers/markdown'
+                },
+                {
+                  title: 'Semantic Chunker (Experimental)',
+                  authors: 'LangChain Community',
+                  year: '2024',
+                  description: '임베딩 유사도 기반 동적 청킹',
+                  link: 'https://python.langchain.com/docs/modules/data_connection/document_transformers/semantic-chunker'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
 
       {/* Navigation */}
