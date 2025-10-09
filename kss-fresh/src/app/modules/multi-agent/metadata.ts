@@ -20,7 +20,7 @@ export const multiAgentMetadata = {
   icon: 'Users',
   color: 'orange',
   level: 'advanced',
-  duration: '8시간',
+  duration: '11시간',
   chapters: [
     {
       id: 'intro-multi-agent',
@@ -98,6 +98,32 @@ export const multiAgentMetadata = {
         '워크플로우 엔진',
         '모니터링과 관측성',
         '성능 최적화와 스케일링'
+      ]
+    },
+    {
+      id: 'langgraph-systems',
+      number: 7,
+      title: 'LangGraph 멀티에이전트',
+      duration: '1시간 30분',
+      description: 'LangGraph를 활용한 상태 기반 멀티에이전트 시스템 구축',
+      topics: [
+        'LangGraph 상태 그래프 설계',
+        'Conditional Edges와 동적 라우팅',
+        'Human-in-the-Loop 패턴',
+        'Persistence & Memory 관리'
+      ]
+    },
+    {
+      id: 'swarm-patterns',
+      number: 8,
+      title: 'Swarm 경량 프레임워크',
+      duration: '1시간',
+      description: 'OpenAI Swarm을 통한 Handoff 기반 에이전트 협업',
+      topics: [
+        'Swarm 핵심 개념과 철학',
+        'Handoff 패턴 구현',
+        'Context Variables 관리',
+        'Routines와 Instructions 설계'
       ]
     }
   ],

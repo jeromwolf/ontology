@@ -10,6 +10,8 @@ const Chapter3 = dynamic(() => import('./chapters/Chapter3'), { ssr: false });
 const Chapter4 = dynamic(() => import('./chapters/Chapter4'), { ssr: false });
 const Chapter5 = dynamic(() => import('./chapters/Chapter5'), { ssr: false });
 const Chapter6 = dynamic(() => import('./chapters/Chapter6'), { ssr: false });
+const Chapter7 = dynamic(() => import('./chapters/Chapter7'), { ssr: false });
+const Chapter8 = dynamic(() => import('./chapters/Chapter8'), { ssr: false });
 
 interface ChapterContentProps {
   chapterId: string;
@@ -30,6 +32,10 @@ export default function ChapterContent({ chapterId }: ChapterContentProps) {
         return <Chapter5 />;
       case 'orchestration-patterns':
         return <Chapter6 />;
+      case 'langgraph-systems':
+        return <Chapter7 />;
+      case 'swarm-patterns':
+        return <Chapter8 />;
       default:
         return (
           <div className="text-center py-12">
