@@ -153,6 +153,16 @@ export const multiAgentMetadata = {
       name: 'Consensus Simulator',
       description: '분산 합의 알고리즘 시각화 도구',
       path: '/modules/multi-agent/tools/consensus-simulator'
+    },
+    {
+      name: 'LangGraph Workflow Builder',
+      description: 'LangGraph 워크플로우 시각적 설계 및 테스트',
+      path: '/modules/multi-agent/tools/langgraph-workflow'
+    },
+    {
+      name: 'Swarm Handoff Visualizer',
+      description: 'Swarm Handoff 패턴 실시간 시각화',
+      path: '/modules/multi-agent/tools/swarm-handoff'
     }
   ]
 };

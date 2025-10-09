@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 const Section1 = dynamic(() => import('./sections/Section1'), { ssr: false });
 const Section2 = dynamic(() => import('./sections/Section2'), { ssr: false });
 const Section3 = dynamic(() => import('./sections/Section3'), { ssr: false });
+const Section4 = dynamic(() => import('./sections/Section4'), { ssr: false });
 
 export default function Chapter3() {
   return (
@@ -14,6 +15,7 @@ export default function Chapter3() {
       <Section1 />
       <Section2 />
       <Section3 />
+      <Section4 />
     </div>
   );
 }
