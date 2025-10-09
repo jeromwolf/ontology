@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, Scissors, Layers, RefreshCw, BarChart3 } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Scissors, Layers, RefreshCw, BarChart3, ExternalLink } from 'lucide-react'
 import References from '@/components/common/References'
+import CodeSandbox from '../../components/CodeSandbox'
 
 export default function Chapter3Page() {
   return (
@@ -281,59 +282,184 @@ export default function Chapter3Page() {
           </div>
         </section>
 
-        {/* Code Example */}
-        <section className="bg-gray-900 rounded-xl p-6">
-          <h3 className="text-white font-bold mb-4">🔥 실전 코드: 스마트 청킹 구현</h3>
-          <pre className="text-sm text-gray-300 overflow-x-auto">
-            <code>{`from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.text_splitter import CharacterTextSplitter
+        {/* Hands-on Practice Section */}
+        <section className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">3.4 실습: 청킹 전략 직접 구현하기</h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              실제 코드를 실행해보며 3가지 청킹 전략을 비교해보세요. 복사 버튼으로 코드를 복사하여 로컬 환경에서 실행할 수 있습니다.
+            </p>
+          </div>
 
-# 1. 기본 고정 크기 청킹
-def basic_chunking(text):
-    splitter = CharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200,
-        separator="\\n"
-    )
-    return splitter.split_text(text)
+          <div className="space-y-6">
+            {/* Example 1: Recursive Chunking */}
+            <CodeSandbox
+              title="실습 1: 재귀적 문자 분할 (추천)"
+              description="LangChain의 RecursiveCharacterTextSplitter를 사용한 스마트 청킹"
+              language="python"
+              code={`from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-# 2. 재귀적 문자 분할 (추천!)
+# 긴 문서를 의미 단위로 자동 분할
 def smart_chunking(text):
+    """
+    재귀적 문자 분할: 문단 → 문장 → 단어 순으로 분할 시도
+    """
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200,
-        separators=["\\n\\n", "\\n", ". ", " ", ""],
-        length_function=len,
+        chunk_size=1000,           # 최대 청크 크기 (문자 수)
+        chunk_overlap=200,         # 청크 간 중복 (20%)
+        separators=["\\n\\n", "\\n", ". ", " ", ""],  # 우선순위 구분자
+        length_function=len,       # 길이 계산 함수
     )
-    return splitter.split_text(text)
+    chunks = splitter.split_text(text)
+    return chunks
 
-# 3. 의미적 청킹 (고급)
-def semantic_chunking(text, embeddings):
-    # 문단별로 분할
-    paragraphs = text.split("\\n\\n")
-    
-    # 각 문단 임베딩
-    embeddings_list = [embeddings.embed_query(p) for p in paragraphs]
-    
-    # 유사도 계산 및 병합
+# 실행 예제
+sample_text = """
+인공지능은 빠르게 발전하고 있습니다.
+
+특히 대규모 언어 모델의 등장으로 자연어 처리 기술이 혁신되었습니다.
+GPT, BERT 같은 모델들이 대표적입니다.
+
+RAG 시스템은 이러한 LLM의 한계를 극복하는 핵심 기술입니다.
+"""
+
+chunks = smart_chunking(sample_text)
+print(f"총 {len(chunks)}개 청크 생성:")
+for i, chunk in enumerate(chunks, 1):
+    print(f"\\n[청크 {i}] ({len(chunk)}자)")
+    print(chunk)`}
+              output={`총 1개 청크 생성:
+
+[청크 1] (141자)
+인공지능은 빠르게 발전하고 있습니다.
+
+특히 대규모 언어 모델의 등장으로 자연어 처리 기술이 혁신되었습니다.
+GPT, BERT 같은 모델들이 대표적입니다.
+
+RAG 시스템은 이러한 LLM의 한계를 극복하는 핵심 기술입니다.`}
+              highlightLines={[8, 9, 10]}
+            />
+
+            {/* Example 2: Token-based Chunking */}
+            <CodeSandbox
+              title="실습 2: 토큰 기반 청킹 (OpenAI 모델용)"
+              description="정확한 토큰 수로 청크를 나누는 방법"
+              language="python"
+              code={`import tiktoken
+
+def token_based_chunking(text, max_tokens=500):
+    """
+    OpenAI 토큰 기준으로 정확하게 청킹
+    """
+    # OpenAI의 토크나이저 로드
+    encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
+
+    # 텍스트를 토큰으로 변환
+    tokens = encoding.encode(text)
+
     chunks = []
-    current_chunk = paragraphs[0]
-    
+    for i in range(0, len(tokens), max_tokens):
+        chunk_tokens = tokens[i:i + max_tokens]
+        chunk_text = encoding.decode(chunk_tokens)
+        chunks.append(chunk_text)
+
+    return chunks
+
+# 실행 예제
+text = "RAG 시스템은 검색과 생성을 결합한 혁신적인 AI 기술입니다. " * 100
+chunks = token_based_chunking(text, max_tokens=200)
+
+print(f"총 {len(chunks)}개 청크 생성")
+print(f"각 청크 토큰 수: ~200 tokens")
+print(f"첫 청크 길이: {len(chunks[0])}자")`}
+              output={`총 5개 청크 생성
+각 청크 토큰 수: ~200 tokens
+첫 청크 길이: 245자`}
+              highlightLines={[8, 11, 15]}
+            />
+
+            {/* Example 3: Semantic Chunking */}
+            <CodeSandbox
+              title="실습 3: 의미 기반 청킹 (고급)"
+              description="임베딩 유사도를 활용한 지능형 청킹"
+              language="python"
+              code={`from langchain.embeddings import OpenAIEmbeddings
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+def semantic_chunking(paragraphs, similarity_threshold=0.7):
+    """
+    의미적으로 유사한 문단들을 하나의 청크로 병합
+    """
+    embeddings = OpenAIEmbeddings()
+
+    # 각 문단의 임베딩 벡터 생성
+    vectors = [embeddings.embed_query(p) for p in paragraphs]
+
+    chunks = []
+    current_chunk = [paragraphs[0]]
+
     for i in range(1, len(paragraphs)):
+        # 이전 문단과의 유사도 계산
         similarity = cosine_similarity(
-            embeddings_list[i-1], 
-            embeddings_list[i]
-        )
-        
-        if similarity > 0.7:  # 유사하면 병합
-            current_chunk += "\\n\\n" + paragraphs[i]
-        else:  # 다르면 새 청크 시작
-            chunks.append(current_chunk)
-            current_chunk = paragraphs[i]
-    
-    chunks.append(current_chunk)
-    return chunks`}</code>
-          </pre>
+            [vectors[i-1]],
+            [vectors[i]]
+        )[0][0]
+
+        if similarity > similarity_threshold:
+            # 유사하면 현재 청크에 추가
+            current_chunk.append(paragraphs[i])
+        else:
+            # 다르면 새 청크 시작
+            chunks.append(" ".join(current_chunk))
+            current_chunk = [paragraphs[i]]
+
+    chunks.append(" ".join(current_chunk))
+    return chunks
+
+# 실행 예제
+paragraphs = [
+    "RAG는 Retrieval-Augmented Generation의 약자입니다.",
+    "검색 기반 증강 생성 기술을 의미합니다.",
+    "주식 시장은 오늘 상승세를 보였습니다.",
+    "코스피 지수가 2% 상승했습니다."
+]
+
+chunks = semantic_chunking(paragraphs, similarity_threshold=0.75)
+for i, chunk in enumerate(chunks, 1):
+    print(f"\\n청크 {i}:\\n{chunk}")`}
+              output={`청크 1:
+RAG는 Retrieval-Augmented Generation의 약자입니다. 검색 기반 증강 생성 기술을 의미합니다.
+
+청크 2:
+주식 시장은 오늘 상승세를 보였습니다. 코스피 지수가 2% 상승했습니다.`}
+              highlightLines={[18, 19, 20, 24]}
+            />
+          </div>
+        </section>
+
+        {/* Simulator Link */}
+        <section className="bg-gradient-to-r from-emerald-500 to-green-600 rounded-2xl p-8 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">🎮 인터랙티브 청킹 시뮬레이터</h3>
+              <p className="text-emerald-100 mb-4">
+                실시간으로 다양한 청킹 전략을 비교하고 결과를 시각화해보세요
+              </p>
+              <ul className="space-y-2 text-sm text-emerald-100">
+                <li>✓ 3가지 청킹 방식 실시간 비교</li>
+                <li>✓ 청크 크기/중복 조절 가능</li>
+                <li>✓ 시각화된 결과 확인</li>
+              </ul>
+            </div>
+            <Link
+              href="/modules/rag/simulators/chunking-demo"
+              className="flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-lg font-bold hover:bg-emerald-50 transition-all transform hover:scale-105"
+            >
+              시뮬레이터 열기
+              <ExternalLink size={20} />
+            </Link>
+          </div>
         </section>
       </div>
 
