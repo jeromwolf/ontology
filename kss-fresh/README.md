@@ -1222,7 +1222,7 @@ public/images/
 #### 완성된 모듈 (20개)
 - `/modules/llm` - LLM 학습 (8개 챕터, Indigo 테마)
 - `/modules/ontology` - 온톨로지 학습 (16개 챕터, Blue 테마)
-- `/modules/rag` - RAG 시스템 학습 (6개 챕터, Emerald 테마)
+- `/modules/rag` - RAG 시스템 학습 (20개 챕터 + 273개 전문 레퍼런스, 4단계 학습 경로, Emerald 테마)
 - `/modules/stock-analysis` - 주식투자분석 (23개 챕터, 11개 시뮬레이터, Green 테마)
 - `/modules/system-design` - System Design (8개 챕터, Purple-Indigo 테마)
 - `/modules/agent-mcp` - AI Agent & MCP (6개 챕터, Purple 테마)
