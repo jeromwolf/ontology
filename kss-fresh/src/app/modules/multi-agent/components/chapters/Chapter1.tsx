@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Users, Network, GitBranch, Layers } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter1() {
   return (
@@ -113,6 +114,109 @@ export default function Chapter1() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Multi-Agent Systems Foundations',
+            icon: 'book',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'An Introduction to MultiAgent Systems',
+                authors: 'Michael Wooldridge',
+                year: '2009',
+                description: 'Multi-agent systems 분야의 고전적 교과서',
+                link: 'https://www.cs.ox.ac.uk/people/michael.wooldridge/pubs/imas/IMAS2e.html'
+              },
+              {
+                title: 'Multi-Agent Systems: Algorithmic, Game-Theoretic, and Logical Foundations',
+                authors: 'Yoav Shoham, Kevin Leyton-Brown',
+                year: '2008',
+                description: 'MAS의 이론적 기반을 다루는 포괄적 교과서',
+                link: 'http://www.masfoundations.org/'
+              },
+              {
+                title: 'Foundation for Intelligent Physical Agents (FIPA)',
+                description: 'Agent 표준 및 프로토콜 정의 조직',
+                link: 'http://www.fipa.org/'
+              }
+            ]
+          },
+          {
+            title: 'Architecture Patterns Research',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Centralized vs Decentralized Multi-Agent Systems',
+                authors: 'Rached Zantout, Bilal Ghanem',
+                year: '2021',
+                description: '중앙집중형 vs 분산형 multi-agent 시스템 비교 연구',
+                link: 'https://ieeexplore.ieee.org/document/9458923'
+              },
+              {
+                title: 'Hierarchical Multi-Agent Reinforcement Learning',
+                authors: 'Hongliang Guo, Yujing Hu, Qingyu Guo, et al.',
+                year: '2022',
+                description: '계층적 multi-agent 강화학습 서베이',
+                link: 'https://arxiv.org/abs/2209.01287'
+              },
+              {
+                title: 'Emergent Coordination through Competition',
+                authors: 'Dylan Banarse, Raphael Marinier, et al.',
+                year: '2019',
+                description: 'DeepMind의 multi-agent 협력 연구',
+                link: 'https://arxiv.org/abs/1902.07151'
+              }
+            ]
+          },
+          {
+            title: 'Practical Implementation',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'PettingZoo: Multi-Agent RL Environment',
+                description: '표준화된 multi-agent 강화학습 환경',
+                link: 'https://pettingzoo.farama.org/'
+              },
+              {
+                title: 'MADDPG: Multi-Agent Deep Deterministic Policy Gradient',
+                description: 'OpenAI의 multi-agent 학습 알고리즘',
+                link: 'https://github.com/openai/maddpg'
+              },
+              {
+                title: 'SMAC: StarCraft Multi-Agent Challenge',
+                description: 'DeepMind의 multi-agent 벤치마크',
+                link: 'https://github.com/oxwhirl/smac'
+              }
+            ]
+          },
+          {
+            title: 'Industry Applications',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Multi-Agent Systems in Logistics',
+                description: 'DHL과 Amazon의 스마트 물류 사례',
+                link: 'https://www.dhl.com/global-en/home/insights-and-innovation/thought-leadership/trend-reports/multi-agent-systems.html'
+              },
+              {
+                title: 'Swarm Robotics Applications',
+                description: 'Distributed robot coordination 실전 사례',
+                link: 'https://www.nature.com/articles/s41586-021-03482-8'
+              },
+              {
+                title: 'Multi-Agent Traffic Control Systems',
+                description: '스마트 교통 제어를 위한 agent 시스템',
+                link: 'https://journals.sagepub.com/doi/10.1177/03611981211006725'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

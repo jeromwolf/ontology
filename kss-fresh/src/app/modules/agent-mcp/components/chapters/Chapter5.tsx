@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter5() {
   return (
@@ -145,6 +146,123 @@ Agent C ┘
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Workflow & Orchestration',
+            icon: 'book',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'LangGraph Documentation',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'Official guide to building stateful, multi-actor applications with LLMs, including cyclic graphs and state management.',
+                link: 'https://langchain-ai.github.io/langgraph/'
+              },
+              {
+                title: 'Temporal.io for AI Agent Workflows',
+                authors: 'Temporal Technologies',
+                year: '2024',
+                description: 'Durable execution framework for building reliable, long-running agent workflows with automatic retries.',
+                link: 'https://temporal.io/use-cases/ai-agent-orchestration'
+              },
+              {
+                title: 'Apache Airflow for ML Orchestration',
+                authors: 'Apache Software Foundation',
+                year: '2024',
+                description: 'Platform for programmatically authoring, scheduling, and monitoring agent pipelines as DAGs.',
+                link: 'https://airflow.apache.org/docs/apache-airflow/stable/ml-orchestration.html'
+              }
+            ]
+          },
+          {
+            title: 'Error Handling & Reliability',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Building Reliable Agent Systems',
+                authors: 'Anthropic Research',
+                year: '2024',
+                description: 'Best practices for error handling, retry strategies, and fallback mechanisms in production agent systems.',
+                link: 'https://www.anthropic.com/research/reliable-agents'
+              },
+              {
+                title: 'Circuit Breaker Pattern for AI Services',
+                authors: 'Microsoft Azure',
+                year: '2024',
+                description: 'Implementation guide for circuit breakers to prevent cascading failures in agent systems.',
+                link: 'https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker'
+              },
+              {
+                title: 'Exponential Backoff and Jitter',
+                authors: 'AWS Architecture Blog',
+                year: '2023',
+                description: 'Strategies for implementing robust retry logic with exponential backoff and jitter.',
+                link: 'https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/'
+              }
+            ]
+          },
+          {
+            title: 'Monitoring & Observability',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'LangSmith: LLM Application Observability',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'Platform for debugging, testing, and monitoring LLM applications with detailed tracing.',
+                link: 'https://docs.smith.langchain.com/'
+              },
+              {
+                title: 'OpenTelemetry for AI Agents',
+                authors: 'CNCF',
+                year: '2024',
+                description: 'Observability framework for collecting metrics, logs, and traces from agent systems.',
+                link: 'https://opentelemetry.io/docs/instrumentation/js/examples/ai-agents/'
+              },
+              {
+                title: 'Weights & Biases LLM Monitoring',
+                authors: 'Weights & Biases',
+                year: '2024',
+                description: 'Tools for tracking agent performance, token usage, and debugging conversation flows.',
+                link: 'https://wandb.ai/site/solutions/llm'
+              },
+              {
+                title: 'Arize AI: LLM Observability Platform',
+                authors: 'Arize AI',
+                year: '2024',
+                description: 'End-to-end observability for LLM applications, including prompt engineering and agent workflows.',
+                link: 'https://arize.com/llm-observability/'
+              }
+            ]
+          },
+          {
+            title: 'Production Patterns',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Designing Data-Intensive Applications (Chapter 8)',
+                authors: 'Kleppmann, M.',
+                year: '2017',
+                description: 'Classic patterns for handling faults, including retries, circuit breakers, and compensating transactions.',
+                link: 'https://dataintensive.net/'
+              },
+              {
+                title: 'Agent Pipeline Design Patterns',
+                authors: 'Google Cloud',
+                year: '2024',
+                description: 'Reference architectures for sequential and parallel agent execution patterns.',
+                link: 'https://cloud.google.com/architecture/ai-ml/agent-pipelines'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

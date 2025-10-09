@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { MessageSquare, Brain, Users, Zap } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter4() {
   return (
@@ -134,6 +135,120 @@ user_proxy.initiate_chat(
           </pre>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'AutoGen Official Resources',
+            icon: 'book',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'AutoGen: Official Documentation',
+                description: 'Microsoft AutoGen 공식 문서',
+                link: 'https://microsoft.github.io/autogen/'
+              },
+              {
+                title: 'AutoGen GitHub Repository',
+                description: 'Microsoft AutoGen 오픈소스 프로젝트',
+                link: 'https://github.com/microsoft/autogen'
+              },
+              {
+                title: 'AutoGen Studio: Low-Code Interface',
+                description: 'No-code/Low-code AutoGen 개발 환경',
+                link: 'https://microsoft.github.io/autogen/docs/autogen-studio/getting-started'
+              },
+              {
+                title: 'AutoGen: API Reference',
+                description: '전체 API 레퍼런스 문서',
+                link: 'https://microsoft.github.io/autogen/docs/reference/agentchat/conversable_agent'
+              }
+            ]
+          },
+          {
+            title: 'AutoGen Research & Papers',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'AutoGen: Enabling Next-Gen LLM Applications',
+                authors: 'Qingyun Wu, Gagan Bansal, Jieyu Zhang, et al.',
+                year: '2023',
+                description: 'AutoGen 프레임워크 소개 논문',
+                link: 'https://arxiv.org/abs/2308.08155'
+              },
+              {
+                title: 'An Empirical Study on Challenging Math Problem Solving with GPT-4',
+                authors: 'Yiran Wu, Feiran Jia, Shaokun Zhang, et al.',
+                year: '2023',
+                description: 'AutoGen을 활용한 수학 문제 해결 연구',
+                link: 'https://arxiv.org/abs/2306.01337'
+              },
+              {
+                title: 'Large Language Model Guided Tree-of-Thought',
+                authors: 'Jieyi Long',
+                year: '2023',
+                description: 'LLM 기반 Tree-of-Thought reasoning',
+                link: 'https://arxiv.org/abs/2305.08291'
+              }
+            ]
+          },
+          {
+            title: 'Tutorials & Implementation Guides',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Building Agentic RAG with LlamaIndex',
+                description: 'AutoGen과 LlamaIndex를 활용한 RAG 구축',
+                link: 'https://microsoft.github.io/autogen/blog/2023/11/13/OAI-assistants'
+              },
+              {
+                title: 'AutoGen Tutorial: Multi-Agent Conversation',
+                description: '대화형 multi-agent 시스템 구축 가이드',
+                link: 'https://microsoft.github.io/autogen/docs/tutorial/introduction'
+              },
+              {
+                title: 'Code Execution in AutoGen',
+                description: '안전한 코드 실행 환경 설정',
+                link: 'https://microsoft.github.io/autogen/docs/tutorial/code-executors'
+              },
+              {
+                title: 'Human-in-the-Loop with AutoGen',
+                description: '인간 개입 워크플로우 구현',
+                link: 'https://microsoft.github.io/autogen/docs/tutorial/human-in-the-loop'
+              }
+            ]
+          },
+          {
+            title: 'Community & Real-World Applications',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'AutoGen Discord Community',
+                description: '활발한 개발자 커뮤니티 및 지원',
+                link: 'https://discord.gg/pAbnFJrkgZ'
+              },
+              {
+                title: 'Awesome AutoGen: Curated Resources',
+                description: 'AutoGen 관련 리소스 모음',
+                link: 'https://github.com/thinkloop/awesome-autogen'
+              },
+              {
+                title: 'AutoGen Examples Gallery',
+                description: '실전 예제 코드 컬렉션',
+                link: 'https://microsoft.github.io/autogen/docs/Examples'
+              },
+              {
+                title: 'Building Production AutoGen Applications',
+                description: '프로덕션 환경 배포 가이드',
+                link: 'https://microsoft.github.io/autogen/blog/2024/01/25/AutoGenBench'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

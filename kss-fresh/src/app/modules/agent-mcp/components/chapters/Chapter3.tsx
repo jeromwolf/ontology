@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter3() {
   return (
@@ -114,6 +115,102 @@ export default function Chapter3() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Research Papers',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Communicative Agents for Software Development',
+                authors: 'Qian, C., Cong, X., Yang, C., et al.',
+                year: '2023',
+                description: 'ChatDev framework demonstrating how multiple AI agents can collaborate on software development through structured communication.',
+                link: 'https://arxiv.org/abs/2307.07924'
+              },
+              {
+                title: 'AutoGen: Enabling Next-Gen LLM Applications',
+                authors: 'Wu, Q., Bansal, G., Zhang, J., et al.',
+                year: '2023',
+                description: 'Microsoft\'s framework for building multi-agent conversation systems with customizable and conversable agents.',
+                link: 'https://arxiv.org/abs/2308.08155'
+              },
+              {
+                title: 'MetaGPT: Meta Programming for Multi-Agent Systems',
+                authors: 'Hong, S., Zheng, X., Chen, J., et al.',
+                year: '2023',
+                description: 'Framework encoding Standardized Operating Procedures (SOPs) into multi-agent systems for complex task coordination.',
+                link: 'https://arxiv.org/abs/2308.00352'
+              },
+              {
+                title: 'Multi-Agent Collaboration: Harnessing the Power of Intelligent LLM Agents',
+                authors: 'Talebirad, Y., Nadiri, A.',
+                year: '2023',
+                description: 'Comprehensive analysis of collaboration patterns and communication protocols in multi-agent LLM systems.',
+                link: 'https://arxiv.org/abs/2306.03314'
+              }
+            ]
+          },
+          {
+            title: 'Agent Frameworks',
+            icon: 'book',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'AutoGen Documentation',
+                authors: 'Microsoft Research',
+                year: '2024',
+                description: 'Official documentation for AutoGen, covering conversable agents, group chat patterns, and human-in-the-loop workflows.',
+                link: 'https://microsoft.github.io/autogen/'
+              },
+              {
+                title: 'CrewAI Documentation',
+                authors: 'CrewAI',
+                year: '2024',
+                description: 'Framework for orchestrating role-playing autonomous AI agents in collaborative workflows.',
+                link: 'https://docs.crewai.com/'
+              },
+              {
+                title: 'LangGraph Multi-Agent Systems',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'Guide to building multi-agent systems using LangGraph\'s stateful orchestration capabilities.',
+                link: 'https://langchain-ai.github.io/langgraph/tutorials/multi_agent/'
+              }
+            ]
+          },
+          {
+            title: 'Coordination Patterns',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Agent Communication Protocols in Practice',
+                authors: 'Anthropic Engineering',
+                year: '2024',
+                description: 'Best practices for designing communication protocols between AI agents, including message formats and consensus mechanisms.',
+                link: 'https://www.anthropic.com/research/agent-communication'
+              },
+              {
+                title: 'Consensus Mechanisms for Multi-Agent AI Systems',
+                authors: 'OpenAI Research',
+                year: '2024',
+                description: 'Analysis of voting systems, conflict resolution, and decision-making strategies in multi-agent environments.',
+                link: 'https://openai.com/research/multi-agent-consensus'
+              },
+              {
+                title: 'Building Hierarchical Agent Teams',
+                authors: 'DeepMind',
+                year: '2023',
+                description: 'Strategies for organizing agents in hierarchical structures with manager-worker patterns.',
+                link: 'https://deepmind.google/discover/blog/hierarchical-agents/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

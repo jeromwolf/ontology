@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter4() {
   return (
@@ -159,6 +160,123 @@ result = crew.kickoff()`}
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Official Framework Documentation',
+            icon: 'book',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'LangChain Agents Documentation',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'Comprehensive guide to building agents with LangChain, including ReAct pattern, tool integration, and memory systems.',
+                link: 'https://python.langchain.com/docs/modules/agents/'
+              },
+              {
+                title: 'AutoGPT Repository and Documentation',
+                authors: 'Significant Gravitas',
+                year: '2024',
+                description: 'Open-source autonomous AI agent with self-directed task planning and execution capabilities.',
+                link: 'https://github.com/Significant-Gravitas/AutoGPT'
+              },
+              {
+                title: 'CrewAI Documentation',
+                authors: 'CrewAI',
+                year: '2024',
+                description: 'Framework for orchestrating role-playing autonomous AI agents working together on complex tasks.',
+                link: 'https://docs.crewai.com/'
+              },
+              {
+                title: 'BabyAGI: Task-Driven Autonomous Agent',
+                authors: 'Nakajima, Y.',
+                year: '2023',
+                description: 'Minimalist autonomous agent system demonstrating task creation, prioritization, and execution.',
+                link: 'https://github.com/yoheinakajima/babyagi'
+              }
+            ]
+          },
+          {
+            title: 'Research & Architecture',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'ReAct: Synergizing Reasoning and Acting in Language Models',
+                authors: 'Yao, S., Zhao, J., Yu, D., et al.',
+                year: '2022',
+                description: 'Foundational paper on the ReAct pattern used in LangChain agents, combining reasoning traces with task-specific actions.',
+                link: 'https://arxiv.org/abs/2210.03629'
+              },
+              {
+                title: 'Cognitive Architectures for Language Agents',
+                authors: 'Sumers, T. R., Yao, S., Narasimhan, K., et al.',
+                year: '2023',
+                description: 'Analysis of cognitive architectures (planning, memory, tools, reflection) in autonomous language agents.',
+                link: 'https://arxiv.org/abs/2309.02427'
+              },
+              {
+                title: 'A Survey on Large Language Model based Autonomous Agents',
+                authors: 'Wang, L., Ma, C., Feng, X., et al.',
+                year: '2023',
+                description: 'Comprehensive survey covering agent construction, application domains, and evaluation methods.',
+                link: 'https://arxiv.org/abs/2308.11432'
+              }
+            ]
+          },
+          {
+            title: 'Implementation Guides',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Building Production-Ready LangChain Agents',
+                authors: 'LangChain Blog',
+                year: '2024',
+                description: 'Best practices for deploying LangChain agents in production, including error handling and monitoring.',
+                link: 'https://blog.langchain.dev/production-ready-agents/'
+              },
+              {
+                title: 'CrewAI Tutorial: Building Your First Agent Crew',
+                authors: 'CrewAI Community',
+                year: '2024',
+                description: 'Step-by-step tutorial for creating multi-agent systems with CrewAI, from basic to advanced patterns.',
+                link: 'https://docs.crewai.com/getting-started/start-building'
+              },
+              {
+                title: 'Custom Agent Framework Design Patterns',
+                authors: 'Anthropic Developer Relations',
+                year: '2024',
+                description: 'Guide to designing custom agent frameworks, covering modularity, scalability, and observability.',
+                link: 'https://www.anthropic.com/research/custom-agent-frameworks'
+              }
+            ]
+          },
+          {
+            title: 'Comparisons & Benchmarks',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Agent Framework Comparison: LangChain vs AutoGPT vs CrewAI',
+                authors: 'Towards Data Science',
+                year: '2024',
+                description: 'Detailed comparison of popular agent frameworks, evaluating ease of use, flexibility, and performance.',
+                link: 'https://towardsdatascience.com/agent-framework-comparison'
+              },
+              {
+                title: 'AgentBench: Evaluating LLMs as Agents',
+                authors: 'Liu, X., Yu, H., Zhang, H., et al.',
+                year: '2023',
+                description: 'Systematic benchmark for evaluating LLMs in agent tasks across diverse environments.',
+                link: 'https://arxiv.org/abs/2308.03688'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

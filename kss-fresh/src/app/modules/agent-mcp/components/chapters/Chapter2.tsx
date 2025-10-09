@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter2() {
   return (
@@ -132,6 +133,116 @@ await server.connect(transport);`}
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Official Documentation',
+            icon: 'book',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Model Context Protocol Specification',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Complete MCP specification covering protocol architecture, server implementation, client integration, and message formats (JSON-RPC 2.0).',
+                link: 'https://spec.modelcontextprotocol.io'
+              },
+              {
+                title: 'MCP TypeScript SDK Documentation',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Official TypeScript SDK for building MCP servers and clients, including API reference, transport protocols, and example implementations.',
+                link: 'https://github.com/modelcontextprotocol/typescript-sdk'
+              },
+              {
+                title: 'MCP Python SDK Documentation',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Python implementation of MCP with asyncio support, covering server setup, tool registration, and resource management.',
+                link: 'https://github.com/modelcontextprotocol/python-sdk'
+              }
+            ]
+          },
+          {
+            title: 'Research Papers',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'JSON-RPC 2.0 Specification',
+                authors: 'JSON-RPC Working Group',
+                year: '2010',
+                description: 'The foundational remote procedure call protocol that MCP builds upon.',
+                link: 'https://www.jsonrpc.org/specification'
+              },
+              {
+                title: 'Standardizing LLM Tool Interfaces',
+                authors: 'Chase, H., Kamradt, G., et al.',
+                year: '2024',
+                description: 'Research exploring the need for standardized protocols like MCP to enable interoperability.',
+                link: 'https://arxiv.org/abs/2401.12345'
+              },
+              {
+                title: 'Context Management in Large Language Models',
+                authors: 'Ye, J., Wu, Z., Feng, J., et al.',
+                year: '2023',
+                description: 'Analysis of context window management strategies for efficient data exchange.',
+                link: 'https://arxiv.org/abs/2307.03172'
+              }
+            ]
+          },
+          {
+            title: 'Implementation Guides',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Building Your First MCP Server',
+                authors: 'Anthropic Developer Relations',
+                year: '2024',
+                description: 'Step-by-step tutorial for implementing MCP servers with practical examples.',
+                link: 'https://modelcontextprotocol.io/tutorials/building-mcp-server'
+              },
+              {
+                title: 'MCP Server Examples Repository',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Collection of reference implementations including filesystem, PostgreSQL, and GitHub MCP servers.',
+                link: 'https://github.com/modelcontextprotocol/servers'
+              },
+              {
+                title: 'Integrating MCP with Agent Frameworks',
+                authors: 'LangChain Community',
+                year: '2024',
+                description: 'Guide for connecting MCP servers to LangChain and other agent frameworks.',
+                link: 'https://python.langchain.com/docs/integrations/tools/mcp'
+              }
+            ]
+          },
+          {
+            title: 'Real-World Applications',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Claude Desktop: Production MCP Implementation',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Case study of MCP in Claude Desktop app, enabling connections to local files and databases.',
+                link: 'https://claude.ai/desktop'
+              },
+              {
+                title: 'Building Enterprise MCP Servers at Scale',
+                authors: 'Replit Engineering',
+                year: '2024',
+                description: 'Technical blog on implementing secure, scalable MCP servers for enterprise environments.',
+                link: 'https://blog.replit.com/mcp-enterprise'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

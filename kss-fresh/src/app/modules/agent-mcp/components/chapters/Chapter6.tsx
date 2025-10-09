@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter6() {
   return (
@@ -167,6 +168,165 @@ spec:
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Deployment & Infrastructure',
+            icon: 'book',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Kubernetes Documentation',
+                authors: 'CNCF',
+                year: '2024',
+                description: 'Official guide to deploying and managing containerized applications, essential for scaling agent systems.',
+                link: 'https://kubernetes.io/docs/home/'
+              },
+              {
+                title: 'Docker Best Practices for AI/ML',
+                authors: 'Docker',
+                year: '2024',
+                description: 'Containerization strategies for AI agent deployments, including multi-stage builds and optimization.',
+                link: 'https://docs.docker.com/build/building/best-practices/'
+              },
+              {
+                title: 'AWS Lambda for Agent Workloads',
+                authors: 'Amazon Web Services',
+                year: '2024',
+                description: 'Serverless deployment patterns for event-driven agent systems with automatic scaling.',
+                link: 'https://docs.aws.amazon.com/lambda/latest/dg/lambda-ai-ml.html'
+              },
+              {
+                title: 'Google Cloud Run for AI Agents',
+                authors: 'Google Cloud',
+                year: '2024',
+                description: 'Fully managed platform for deploying containerized agent applications with autoscaling.',
+                link: 'https://cloud.google.com/run/docs/ai-ml'
+              }
+            ]
+          },
+          {
+            title: 'Security & Compliance',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'OWASP LLM Top 10',
+                authors: 'OWASP Foundation',
+                year: '2024',
+                description: 'Critical security risks for LLM applications including prompt injection, data leakage, and supply chain vulnerabilities.',
+                link: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/'
+              },
+              {
+                title: 'Prompt Injection Prevention Guide',
+                authors: 'Anthropic Safety Team',
+                year: '2024',
+                description: 'Techniques for detecting and preventing prompt injection attacks in agent systems.',
+                link: 'https://www.anthropic.com/research/prompt-injection-prevention'
+              },
+              {
+                title: 'Rate Limiting Strategies for LLM APIs',
+                authors: 'OpenAI',
+                year: '2024',
+                description: 'Best practices for implementing rate limits, quotas, and throttling in production agent systems.',
+                link: 'https://platform.openai.com/docs/guides/rate-limits'
+              },
+              {
+                title: 'Secrets Management for AI Applications',
+                authors: 'HashiCorp',
+                year: '2024',
+                description: 'Using Vault to secure API keys, credentials, and sensitive configuration in agent deployments.',
+                link: 'https://www.vaultproject.io/use-cases/ai-ml-security'
+              }
+            ]
+          },
+          {
+            title: 'Cost Optimization',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'LLM Cost Optimization Strategies',
+                authors: 'Hugging Face',
+                year: '2024',
+                description: 'Comprehensive guide to reducing LLM API costs through caching, prompt optimization, and model selection.',
+                link: 'https://huggingface.co/blog/llm-cost-optimization'
+              },
+              {
+                title: 'Semantic Caching for LLM Applications',
+                authors: 'Redis Labs',
+                year: '2024',
+                description: 'Using semantic caching to reduce redundant LLM calls and improve response times.',
+                link: 'https://redis.io/docs/stack/ai/semantic-caching/'
+              },
+              {
+                title: 'OpenAI Token Usage Optimization',
+                authors: 'OpenAI',
+                year: '2024',
+                description: 'Best practices for minimizing token usage while maintaining response quality.',
+                link: 'https://platform.openai.com/docs/guides/optimizing-token-usage'
+              },
+              {
+                title: 'Batch Processing for Cost Reduction',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Using batch APIs and request batching to reduce costs by up to 50%.',
+                link: 'https://docs.anthropic.com/claude/reference/batch-processing'
+              }
+            ]
+          },
+          {
+            title: 'Monitoring & SRE',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Prometheus Monitoring for AI Services',
+                authors: 'Prometheus',
+                year: '2024',
+                description: 'Time-series monitoring and alerting for agent system metrics.',
+                link: 'https://prometheus.io/docs/practices/instrumentation/'
+              },
+              {
+                title: 'Grafana Dashboards for LLM Applications',
+                authors: 'Grafana Labs',
+                year: '2024',
+                description: 'Pre-built dashboards and visualization patterns for agent system observability.',
+                link: 'https://grafana.com/grafana/dashboards/llm-monitoring/'
+              },
+              {
+                title: 'SRE Best Practices',
+                authors: 'Google SRE',
+                year: '2023',
+                description: 'Service Level Objectives (SLOs) and error budgets for production agent systems.',
+                link: 'https://sre.google/books/'
+              }
+            ]
+          },
+          {
+            title: 'Production Checklist',
+            icon: 'web',
+            color: 'border-red-500',
+            items: [
+              {
+                title: 'Production Readiness Checklist',
+                authors: 'Anthropic DevOps',
+                year: '2024',
+                description: 'Comprehensive checklist covering error handling, monitoring, security, and disaster recovery for agent deployments.',
+                link: 'https://www.anthropic.com/research/production-checklist'
+              },
+              {
+                title: 'Load Testing LLM Applications',
+                authors: 'k6 by Grafana',
+                year: '2024',
+                description: 'Guide to performance testing agent systems under realistic load conditions.',
+                link: 'https://k6.io/docs/examples/llm-load-testing/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

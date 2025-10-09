@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { MessageSquare } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter2() {
   return (
@@ -112,6 +113,122 @@ export default function Chapter2() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Communication Protocols & Standards',
+            icon: 'book',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'FIPA ACL: Agent Communication Language',
+                description: 'FIPA의 표준 agent 통신 언어 규격',
+                link: 'http://www.fipa.org/repository/aclspecs.html'
+              },
+              {
+                title: 'KQML: Knowledge Query and Manipulation Language',
+                description: 'Agent 간 지식 교환을 위한 프로토콜',
+                link: 'http://www.cs.umbc.edu/kqml/'
+              },
+              {
+                title: 'gRPC: High Performance RPC Framework',
+                description: 'Google의 고성능 RPC 프레임워크',
+                link: 'https://grpc.io/'
+              },
+              {
+                title: 'MQTT: Message Queuing Telemetry Transport',
+                description: 'IoT를 위한 경량 메시지 프로토콜',
+                link: 'https://mqtt.org/'
+              }
+            ]
+          },
+          {
+            title: 'A2A Communication Research',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Emergent Communication in Multi-Agent Reinforcement Learning',
+                authors: 'Jakob Foerster, Ioannis Alexandros Assael, et al.',
+                year: '2016',
+                description: 'Multi-agent 학습에서 자발적 통신 언어 출현',
+                link: 'https://arxiv.org/abs/1605.06676'
+              },
+              {
+                title: 'Learning to Communicate with Deep Multi-Agent RL',
+                authors: 'Jakob Foerster, Yannis M. Assael, et al.',
+                year: '2016',
+                description: 'Deep RL을 통한 agent 간 통신 학습',
+                link: 'https://arxiv.org/abs/1605.06676'
+              },
+              {
+                title: 'CommNet: Learning Multiagent Communication with Backpropagation',
+                authors: 'Sainbayar Sukhbaatar, Arthur Szlam, Rob Fergus',
+                year: '2016',
+                description: 'End-to-end 통신 학습 아키텍처',
+                link: 'https://arxiv.org/abs/1605.07736'
+              },
+              {
+                title: 'TarMAC: Targeted Multi-Agent Communication',
+                authors: 'Abhishek Das, Théophile Gervet, et al.',
+                year: '2019',
+                description: 'Attention 기반 선택적 통신 메커니즘',
+                link: 'https://arxiv.org/abs/1810.11187'
+              }
+            ]
+          },
+          {
+            title: 'Message Queue Systems',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Apache Kafka',
+                description: '분산 이벤트 스트리밍 플랫폼',
+                link: 'https://kafka.apache.org/'
+              },
+              {
+                title: 'RabbitMQ',
+                description: 'AMQP 기반 메시지 브로커',
+                link: 'https://www.rabbitmq.com/'
+              },
+              {
+                title: 'Redis Pub/Sub',
+                description: 'Redis 기반 Pub/Sub 메시징',
+                link: 'https://redis.io/docs/manual/pubsub/'
+              },
+              {
+                title: 'NATS.io',
+                description: '고성능 클라우드 네이티브 메시징',
+                link: 'https://nats.io/'
+              }
+            ]
+          },
+          {
+            title: 'Security & Reliability',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Securing Agent Communication with TLS',
+                description: 'Agent 통신 보안 베스트 프랙티스',
+                link: 'https://www.cloudflare.com/learning/ssl/what-is-ssl/'
+              },
+              {
+                title: 'Message Authentication Codes (MAC)',
+                description: '메시지 인증 및 무결성 보장',
+                link: 'https://csrc.nist.gov/glossary/term/message_authentication_code'
+              },
+              {
+                title: 'Exactly-Once Semantics in Distributed Systems',
+                description: '메시지 전달 보장 메커니즘',
+                link: 'https://kafka.apache.org/documentation/#semantics'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

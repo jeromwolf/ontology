@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter5() {
   return (
@@ -111,6 +112,127 @@ export default function Chapter5() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Consensus Algorithms Foundations',
+            icon: 'book',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Consensus in Distributed Systems',
+                authors: 'Leslie Lamport',
+                year: '1998',
+                description: '분산 시스템 합의 알고리즘의 이론적 기초',
+                link: 'https://lamport.azurewebsites.net/pubs/pubs.html#consensus'
+              },
+              {
+                title: 'The Byzantine Generals Problem',
+                authors: 'Leslie Lamport, Robert Shostak, Marshall Pease',
+                year: '1982',
+                description: 'Byzantine Fault Tolerance의 고전적 문제 정의',
+                link: 'https://lamport.azurewebsites.net/pubs/byz.pdf'
+              },
+              {
+                title: 'Paxos Made Simple',
+                authors: 'Leslie Lamport',
+                year: '2001',
+                description: 'Paxos 알고리즘의 단순화된 설명',
+                link: 'https://lamport.azurewebsites.net/pubs/paxos-simple.pdf'
+              }
+            ]
+          },
+          {
+            title: 'Modern Consensus Protocols',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Practical Byzantine Fault Tolerance (PBFT)',
+                authors: 'Miguel Castro, Barbara Liskov',
+                year: '1999',
+                description: '실용적 Byzantine Fault Tolerance 알고리즘',
+                link: 'http://pmg.csail.mit.edu/papers/osdi99.pdf'
+              },
+              {
+                title: 'In Search of an Understandable Consensus Algorithm (Raft)',
+                authors: 'Diego Ongaro, John Ousterhout',
+                year: '2014',
+                description: '이해하기 쉬운 합의 알고리즘 Raft',
+                link: 'https://raft.github.io/raft.pdf'
+              },
+              {
+                title: 'HotStuff: BFT Consensus in the Lens of Blockchain',
+                authors: 'Maofan Yin, Dahlia Malkhi, et al.',
+                year: '2019',
+                description: '블록체인을 위한 3-chain BFT 합의',
+                link: 'https://arxiv.org/abs/1803.05069'
+              },
+              {
+                title: 'Tendermint: Consensus without Mining',
+                authors: 'Jae Kwon',
+                year: '2014',
+                description: 'PoS 기반 Byzantine Fault Tolerant 합의',
+                link: 'https://tendermint.com/static/docs/tendermint.pdf'
+              }
+            ]
+          },
+          {
+            title: 'Auction Theory & Mechanism Design',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Auction Theory',
+                authors: 'Vijay Krishna',
+                year: '2009',
+                description: '경매 이론의 포괄적 교과서',
+                link: 'https://www.wiley.com/en-us/Auction+Theory%2C+2nd+Edition-p-9780123745071'
+              },
+              {
+                title: 'Mechanism Design and Approximation',
+                authors: 'Jason Hartline',
+                year: '2013',
+                description: '메커니즘 디자인과 근사 알고리즘',
+                link: 'http://jasonhartline.com/MDnA/'
+              },
+              {
+                title: 'Vickrey Auction & Second-Price Sealed Bid',
+                description: 'Vickrey 경매의 이론과 실제',
+                link: 'https://en.wikipedia.org/wiki/Vickrey_auction'
+              }
+            ]
+          },
+          {
+            title: 'Implementation & Applications',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Raft Consensus Algorithm: Official Site',
+                description: 'Raft 합의 알고리즘 공식 사이트 및 구현',
+                link: 'https://raft.github.io/'
+              },
+              {
+                title: 'etcd: Distributed Key-Value Store with Raft',
+                description: 'Raft를 사용하는 분산 KV 스토어',
+                link: 'https://etcd.io/'
+              },
+              {
+                title: 'Consensus in Cloud Resource Allocation',
+                description: '클라우드 자원 할당을 위한 합의 메커니즘',
+                link: 'https://ieeexplore.ieee.org/document/8967348'
+              },
+              {
+                title: 'Blockchain Consensus Mechanisms',
+                description: '블록체인 합의 알고리즘 비교 분석',
+                link: 'https://ethereum.org/en/developers/docs/consensus-mechanisms/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Activity, Settings } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter6() {
   return (
@@ -124,6 +125,127 @@ export default function Chapter6() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Orchestration Platforms & Tools',
+            icon: 'book',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Kubernetes: Container Orchestration',
+                description: 'Production-grade container orchestration platform',
+                link: 'https://kubernetes.io/'
+              },
+              {
+                title: 'Apache Mesos: Distributed Systems Kernel',
+                description: '대규모 클러스터 자원 관리 플랫폼',
+                link: 'https://mesos.apache.org/'
+              },
+              {
+                title: 'Docker Swarm: Native Clustering',
+                description: 'Docker 네이티브 오케스트레이션',
+                link: 'https://docs.docker.com/engine/swarm/'
+              },
+              {
+                title: 'Nomad: Workload Orchestrator',
+                description: 'HashiCorp의 워크로드 오케스트레이터',
+                link: 'https://www.nomadproject.io/'
+              }
+            ]
+          },
+          {
+            title: 'Scalability Research',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Large-Scale Distributed Systems: Architecture and Implementation',
+                authors: 'Google',
+                year: '2021',
+                description: 'Google의 대규모 분산 시스템 아키텍처',
+                link: 'https://research.google/pubs/pub51877/'
+              },
+              {
+                title: 'Borg, Omega, and Kubernetes',
+                authors: 'Brendan Burns, Brian Grant, et al.',
+                year: '2016',
+                description: 'Google의 컨테이너 오케스트레이션 진화',
+                link: 'https://research.google/pubs/pub44843/'
+              },
+              {
+                title: 'Scaling Distributed Machine Learning with the Parameter Server',
+                authors: 'Mu Li, David G. Andersen, et al.',
+                year: '2014',
+                description: '분산 ML 확장을 위한 파라미터 서버',
+                link: 'https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-li_mu.pdf'
+              },
+              {
+                title: 'Ray: A Distributed Framework for Emerging AI Applications',
+                authors: 'Philipp Moritz, Robert Nishihara, et al.',
+                year: '2018',
+                description: 'AI 애플리케이션을 위한 분산 프레임워크',
+                link: 'https://arxiv.org/abs/1712.05889'
+              }
+            ]
+          },
+          {
+            title: 'Monitoring & Observability',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Prometheus: Monitoring System',
+                description: 'CNCF 표준 모니터링 및 알람 시스템',
+                link: 'https://prometheus.io/'
+              },
+              {
+                title: 'Grafana: Observability Platform',
+                description: '통합 가시성 및 대시보드 플랫폼',
+                link: 'https://grafana.com/'
+              },
+              {
+                title: 'OpenTelemetry: Observability Framework',
+                description: '분산 추적 및 메트릭 수집 표준',
+                link: 'https://opentelemetry.io/'
+              },
+              {
+                title: 'Jaeger: Distributed Tracing',
+                description: 'CNCF 분산 추적 시스템',
+                link: 'https://www.jaegertracing.io/'
+              }
+            ]
+          },
+          {
+            title: 'Enterprise Use Cases',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Trading Systems at Scale: Financial Services',
+                description: '대규모 금융 거래 시스템 아키텍처',
+                link: 'https://www.nasdaq.com/articles/how-nasdaq-uses-kubernetes-and-the-cloud'
+              },
+              {
+                title: 'Agent Orchestration for Robotics Fleets',
+                description: '로봇 플릿 관리를 위한 agent 오케스트레이션',
+                link: 'https://www.inceptivemind.com/fleet-management-multi-robot-systems/23456/'
+              },
+              {
+                title: 'Smart Grid Agent Systems',
+                description: '스마트 그리드를 위한 multi-agent 오케스트레이션',
+                link: 'https://ieeexplore.ieee.org/document/8387595'
+              },
+              {
+                title: 'Uber: Microservices at Scale',
+                description: 'Uber의 마이크로서비스 오케스트레이션 사례',
+                link: 'https://www.uber.com/blog/microservice-architecture/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

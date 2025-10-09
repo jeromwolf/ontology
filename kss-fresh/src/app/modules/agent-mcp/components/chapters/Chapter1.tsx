@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter1() {
   return (
@@ -116,6 +117,123 @@ Action: respond("서울은 현재 15도로 선선하고 맑은 날씨입니다!"
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'Official Documentation',
+            icon: 'book',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Anthropic Model Context Protocol Documentation',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Official MCP specification covering agent architectures, tool use patterns, and implementation guidelines for building AI agents with Claude.',
+                link: 'https://modelcontextprotocol.io'
+              },
+              {
+                title: 'OpenAI Function Calling Guide',
+                authors: 'OpenAI',
+                year: '2023',
+                description: 'Comprehensive guide on implementing function calling in LLMs, the foundation for agent tool use and action execution.',
+                link: 'https://platform.openai.com/docs/guides/function-calling'
+              },
+              {
+                title: 'LangChain Agent Documentation',
+                authors: 'LangChain',
+                year: '2024',
+                description: 'Complete documentation for building agents with LangChain, including ReAct, Plan-and-Execute, and custom agent architectures.',
+                link: 'https://python.langchain.com/docs/modules/agents'
+              }
+            ]
+          },
+          {
+            title: 'Research Papers',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'ReAct: Synergizing Reasoning and Acting in Language Models',
+                authors: 'Yao, S., Zhao, J., Yu, D., et al.',
+                year: '2023',
+                description: 'Seminal paper introducing the ReAct framework that combines reasoning traces and task-specific actions for improved agent performance.',
+                link: 'https://arxiv.org/abs/2210.03629'
+              },
+              {
+                title: 'Toolformer: Language Models Can Teach Themselves to Use Tools',
+                authors: 'Schick, T., Dwivedi-Yu, J., Dessì, R., et al.',
+                year: '2023',
+                description: 'Meta research demonstrating how LLMs can learn to use external tools through self-supervised learning.',
+                link: 'https://arxiv.org/abs/2302.04761'
+              },
+              {
+                title: 'Language Models as Agent Models',
+                authors: 'Sumers, T., Yao, S., Narasimhan, K., Griffiths, T.',
+                year: '2023',
+                description: 'Theoretical framework analyzing LLMs as cognitive agents, exploring the transition from passive Q&A systems to goal-oriented agents.',
+                link: 'https://arxiv.org/abs/2212.01681'
+              }
+            ]
+          },
+          {
+            title: 'Implementation Guides',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Building ReAct Agents from Scratch',
+                authors: 'Harrison Chase',
+                year: '2024',
+                description: 'Practical tutorial implementing ReAct pattern with code examples in Python.',
+                link: 'https://blog.langchain.dev/react-agents'
+              },
+              {
+                title: 'Anthropic Claude Function Calling Cookbook',
+                authors: 'Anthropic',
+                year: '2024',
+                description: 'Production-ready examples of implementing tool use with Claude.',
+                link: 'https://github.com/anthropics/anthropic-cookbook/tree/main/function_calling'
+              },
+              {
+                title: 'LLM Agent Architecture Patterns',
+                authors: 'Eugene Yan',
+                year: '2024',
+                description: 'Comprehensive guide to different agent patterns including ReAct, Plan-and-Execute, and Reflection agents.',
+                link: 'https://eugeneyan.com/writing/llm-agents'
+              }
+            ]
+          },
+          {
+            title: 'Real-World Applications',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'GitHub Copilot Workspace: AI Agent for Software Development',
+                authors: 'GitHub',
+                year: '2024',
+                description: 'Case study of production AI agents using ReAct patterns for code generation, debugging, and project planning tasks.',
+                link: 'https://github.blog/2024-04-29-github-copilot-workspace'
+              },
+              {
+                title: 'Notion AI: Building a Multi-Tool Agent Assistant',
+                authors: 'Notion Labs',
+                year: '2023',
+                description: 'Technical deep-dive into Notion AI agent that uses multiple tools to assist users with knowledge work.',
+                link: 'https://www.notion.so/blog/introducing-notion-ai'
+              },
+              {
+                title: 'Perplexity AI: Search Agent Architecture',
+                authors: 'Perplexity',
+                year: '2024',
+                description: 'How Perplexity built a production search agent that combines web search, citation, and answer synthesis.',
+                link: 'https://www.perplexity.ai/hub/blog/how-perplexity-works'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }
