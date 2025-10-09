@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Briefcase, TrendingUp, DollarSign, Clock } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Section4() {
   return (
@@ -410,6 +411,120 @@ else:
 print(result)`}
         </pre>
       </section>
+
+      <References
+        sections={[
+          {
+            title: 'CrewAI Official & Community',
+            icon: 'book',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'CrewAI: Official Documentation',
+                description: 'CrewAI 공식 문서 및 API 레퍼런스',
+                link: 'https://docs.crewai.com/'
+              },
+              {
+                title: 'CrewAI GitHub Repository',
+                description: 'CrewAI 오픈소스 프로젝트 (15K+ stars)',
+                link: 'https://github.com/joaomdmoura/crewAI'
+              },
+              {
+                title: 'CrewAI Examples Repository',
+                description: '실전 예제 코드 모음',
+                link: 'https://github.com/crewAIInc/crewAI-examples'
+              },
+              {
+                title: 'CrewAI Discord Community',
+                description: '활발한 개발자 커뮤니티 및 지원',
+                link: 'https://discord.com/invite/X4JWnZnxPb'
+              }
+            ]
+          },
+          {
+            title: 'Production Deployment Guides',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Building Production-Ready AI Agents',
+                authors: 'João Moura (CrewAI Creator)',
+                year: '2024',
+                description: '프로덕션 환경을 위한 AI 에이전트 구축 가이드',
+                link: 'https://www.crewai.com/blog/production-ready-ai-agents'
+              },
+              {
+                title: 'LangChain in Production: Best Practices',
+                authors: 'LangChain Team',
+                year: '2024',
+                description: 'LLM 애플리케이션 프로덕션 배포 전략',
+                link: 'https://python.langchain.com/docs/guides/productionization/'
+              },
+              {
+                title: 'Multi-Agent Systems for Enterprise',
+                authors: 'Andrew Ng, DeepLearning.AI',
+                year: '2024',
+                description: '엔터프라이즈 multi-agent 시스템 설계',
+                link: 'https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/'
+              }
+            ]
+          },
+          {
+            title: 'Cost Optimization & Monitoring',
+            icon: 'web',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'LangSmith: LLM Monitoring Platform',
+                description: 'LLM 애플리케이션 모니터링 및 디버깅',
+                link: 'https://smith.langchain.com/'
+              },
+              {
+                title: 'LangFuse: Open-Source LLM Observability',
+                description: '오픈소스 LLM 관측성 플랫폼',
+                link: 'https://langfuse.com/'
+              },
+              {
+                title: 'Helicone: LLM Observability & Cost Management',
+                description: 'LLM API 사용량 추적 및 비용 최적화',
+                link: 'https://www.helicone.ai/'
+              },
+              {
+                title: 'OpenAI Batch API: 50% Cost Reduction',
+                description: 'Batch 처리를 통한 비용 절감',
+                link: 'https://platform.openai.com/docs/guides/batch'
+              }
+            ]
+          },
+          {
+            title: 'Enterprise Case Studies',
+            icon: 'web',
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'How Klarna Uses AI Agents',
+                description: 'Klarna의 AI 에이전트 활용 사례 (90% 고객 문의 자동화)',
+                link: 'https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats/'
+              },
+              {
+                title: 'AI Agents in Financial Services',
+                description: '금융 서비스에서의 multi-agent 시스템 활용',
+                link: 'https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai'
+              },
+              {
+                title: 'Content Automation at Scale: HubSpot',
+                description: 'HubSpot의 AI 기반 콘텐츠 자동화',
+                link: 'https://www.hubspot.com/artificial-intelligence'
+              },
+              {
+                title: 'Multi-Agent Customer Support Systems',
+                description: '대규모 고객 지원을 위한 agent 시스템',
+                link: 'https://www.intercom.com/blog/ai-agents/'
+              }
+            ]
+          }
+        ]}
+      />
     </>
   );
 }

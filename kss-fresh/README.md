@@ -19,15 +19,16 @@ KSS(Knowledge Space Simulator)는 추상적인 기술 개념을 시각적으로 
 
 ### 🎓 30개+ AI/기술 교육 모듈
 
-#### 핵심 모듈 (30개+)
+#### 핵심 모듈 (27개)
 - **🤖 LLM (Large Language Model)**: 8개 챕터 + 6개 시뮬레이터
 - **📚 온톨로지**: 16개 챕터 + 4개 전문 시뮬레이터 (RDF Editor, 3D 지식그래프, SPARQL Playground, 추론엔진)
 - **🔗 RAG 시스템**: **20개 챕터 (4단계 학습 경로) + 273개 전문 레퍼런스** + 6개 시뮬레이터 (GraphRAG 포함)
 - **💎 주식투자분석**: **23개 챕터 + 11개 핵심 시뮬레이터** + **실시간 데이터 API 준비**
 - **🏗️ System Design**: 8개 챕터 + 6개 인터랙티브 시뮬레이터
+- **🐍 Python Programming**: **10개 챕터 + 8개 시뮬레이터** (기초부터 실전까지) ⭐ **NEW!**
 - **🚗 자율주행 & 미래 모빌리티**: 8개 챕터 (SAE 레벨, 센서 융합, V2X, UAM)
 - **🔷 Neo4j Knowledge Graph**: 8개 챕터 + 5개 시뮬레이터
-- **🤝 Multi-Agent 시스템**: 6개 챕터 + 4개 시뮬레이터
+- **🤝 Multi-Agent 시스템**: 6개 챕터 + 4개 시뮬레이터 (A2A, Consensus, CrewAI)
 - **🤖 Agent-MCP**: AI 에이전트 개발, Model Context Protocol
 - **🏭 Physical AI**: 로보틱스, 디지털 트윈, 스마트 팩토리, 뉴턴역학
 - **⚛️ 양자컴퓨팅**: 큐비트, 양자 알고리즘, 실습
@@ -39,16 +40,13 @@ KSS(Knowledge Space Simulator)는 추상적인 기술 개념을 시각적으로 
 - **🗣️ 영어회화 마스터**: AI 대화 파트너, 발음 교정, 상황별 연습
 - **📐 선형대수**: AI를 위한 수학, 벡터, 행렬, SVD
 - **👁️ Computer Vision**: 8개 챕터 + 5개 시뮬레이터 (YOLO, 3D 비전, 얼굴 인식)
-- **🌹 AI Ethics**: AI 윤리, 편향 방지, 책임감 있는 AI (개발중)
-- **🔒 Cyber Security**: 사이버 보안, 암호화, 해킹 방어 (개발중)
-- **☁️ Cloud Computing**: 클라우드 아키텍처, AWS/GCP/Azure (개발중)
-- **🗃️ Data Engineering**: 데이터 파이프라인, ETL, 빅데이터 (개발중)
-- **✨ Creative AI**: 생성형 AI, DALL-E, Midjourney (개발중)
-- **⚙️ DevOps & CI/CD**: 지속적 통합/배포, 컨테이너, K8s (개발중)
-- **⚡ HPC**: 고성능 컴퓨팅, 병렬처리, GPU 프로그래밍 (개발중)
-- **🧠 Multimodal AI**: 멀티모달 학습, 비전-언어 모델 (개발중)
-- **📐 Math Optimization**: 최적화 이론, 선형계획법 (개발중)
-- **🏗️ AI Infrastructure & MLOps**: ML 파이프라인, 모델 배포 (개발중)
+- **💎 반도체**: 40시간 전문 과정 (설계, 제조, 패키징)
+- **📊 확률과 통계**: AI를 위한 통계학 기초
+- **🧠 Deep Learning**: 신경망부터 GAN까지
+- **🛡️ AI Security**: AI 시스템 보안과 방어
+- **🌹 AI Ethics**: AI 윤리, 편향 방지 (개발중)
+- **🔒 Cyber Security**: 사이버 보안, 암호화 (개발중)
+- **☁️ Cloud Computing**: AWS/GCP/Azure (개발중)
 
 ### 🛠️ 전문 System Tools (6개)
 - **🎨 AI Image Generator**: DALL-E 3 + Unsplash 통합 이미지 생성/검색 플랫폼
@@ -60,7 +58,7 @@ KSS(Knowledge Space Simulator)는 추상적인 기술 개념을 시각적으로 
 - **📊 Content Manager**: 모듈 콘텐츠 관리 시스템 (Admin 전용)
 
 ### 🎯 핵심 특징
-- **155+ 인터랙티브 시뮬레이터**: 실시간 체험형 학습
+- **173+ 인터랙티브 시뮬레이터**: 실시간 체험형 학습 (Python 8개 포함 ⭐)
 - **500+ 시간 전문 커리큘럼**: 체계적인 학습 경로 (주식투자분석 240시간 포함)
 - **실무 중심 콘텐츠**: Tesla, Google, OpenAI 등 실제 기술 분석
 - **💼 B2B 엔터프라이즈 금융 데이터**: KRX + Alpha Vantage 실시간 시장 데이터
