@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { References } from '@/components/common/References';
+import References from '@/components/common/References';
 
 // Chapter 6: 서버리스 아키텍처
 export default function Chapter6() {

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { References } from '@/components/common/References';
+import References from '@/components/common/References';
 
 // Chapter 8: 클라우드 보안
 export default function Chapter8() {

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { References } from '@/components/common/References';
+import References from '@/components/common/References';
 
 // Chapter 5: 클라우드 아키텍처 패턴
 export default function Chapter5() {

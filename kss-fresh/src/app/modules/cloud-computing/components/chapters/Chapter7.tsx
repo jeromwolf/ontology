@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { References } from '@/components/common/References';
+import References from '@/components/common/References';
 
 // Chapter 7: 컨테이너와 오케스트레이션
 export default function Chapter7() {
