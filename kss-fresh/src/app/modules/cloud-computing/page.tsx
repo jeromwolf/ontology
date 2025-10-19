@@ -59,8 +59,16 @@ export default function CloudComputingPage() {
               {/* Simulators Link */}
               <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
                 <h3 className="text-sm font-bold mb-3 text-gray-900 dark:text-white">시뮬레이터</h3>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  {moduleMetadata.simulators.length}개 시뮬레이터 준비중
+                <div className="space-y-2">
+                  {moduleMetadata.simulators.map((simulator) => (
+                    <Link
+                      key={simulator.id}
+                      href={`/modules/cloud-computing/simulators/${simulator.id}`}
+                      className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                    >
+                      {simulator.title}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
