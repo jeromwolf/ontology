@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Shield, AlertTriangle, CheckCircle, XCircle, Lock, Key, Eye } from 'lucide-react';
+import SimulatorNav from './SimulatorNav';
 
 interface SecurityCheck {
   id: string;
@@ -160,6 +161,8 @@ export default function CloudSecurityLab() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-7xl mx-auto">
+        <SimulatorNav />
+
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
           <div className="flex items-center justify-between">

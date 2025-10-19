@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Code, Play, CheckCircle, XCircle, FileCode, Download } from 'lucide-react';
+import SimulatorNav from './SimulatorNav';
 
 interface TerraformResource {
   type: string;
@@ -232,6 +233,8 @@ Resources:
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-7xl mx-auto">
+        <SimulatorNav />
+
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
           <div className="flex items-center justify-between mb-4">

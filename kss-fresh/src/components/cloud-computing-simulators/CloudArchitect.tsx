@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Server, Database, Network, Shield, Zap, Globe, HardDrive, Cpu } from 'lucide-react';
+import Link from 'next/link';
+import { Server, Database, Network, Shield, Zap, Globe, HardDrive, Cpu, ArrowLeft, Home, Maximize2 } from 'lucide-react';
 
 interface Component {
   id: string;
@@ -206,6 +207,24 @@ export default function CloudArchitect() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-7xl mx-auto">
+        {/* Navigation */}
+        <div className="mb-4 flex items-center gap-4">
+          <Link
+            href="/modules/cloud-computing"
+            className="flex items-center gap-2 px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>모듈로 돌아가기</span>
+          </Link>
+          <Link
+            href="/"
+            className="flex items-center gap-2 px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+          >
+            <Home className="w-4 h-4" />
+            <span>홈</span>
+          </Link>
+        </div>
+
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
           <div className="flex items-center justify-between mb-4">

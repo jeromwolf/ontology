@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Cloud, Server, Database, ArrowRight, CheckCircle, AlertTriangle, Info } from 'lucide-react';
+import SimulatorNav from './SimulatorNav';
 
 interface MigrationPhase {
   id: string;
@@ -209,6 +210,8 @@ export default function CloudMigration() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-7xl mx-auto">
+        <SimulatorNav />
+
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
           <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">

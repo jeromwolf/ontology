@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Cloud, DollarSign, Gauge, Globe } from 'lucide-react';
+import SimulatorNav from './SimulatorNav';
 
 interface CloudProvider {
   id: string;
@@ -117,6 +118,8 @@ export default function MultiCloudManager() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-7xl mx-auto">
+        <SimulatorNav />
+
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
