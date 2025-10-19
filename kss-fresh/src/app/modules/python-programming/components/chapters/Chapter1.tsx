@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Chapter1() {
   return (
-    <div className="space-y-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 pb-24 space-y-16">
       {/* Introduction */}
       <section>
         <div className="flex items-center gap-3 mb-6">
@@ -15,8 +15,8 @@ export default function Chapter1() {
           </h2>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 mb-6">
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-8 mb-8">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
             Python은 간결하고 읽기 쉬운 문법으로 프로그래밍 입문자에게 가장 적합한 언어입니다.
             이 챕터에서는 Python의 기본 문법과 개발 환경 설정부터 시작하여,
             프로그래밍의 기초를 탄탄히 다질 수 있습니다.
@@ -31,8 +31,8 @@ export default function Chapter1() {
           학습 목표
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-blue-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-blue-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               1. Python 설치와 개발 환경 설정하기
             </h4>
@@ -41,7 +41,7 @@ export default function Chapter1() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-indigo-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-indigo-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               2. 기본 문법과 데이터 타입 이해하기
             </h4>
@@ -50,7 +50,7 @@ export default function Chapter1() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-purple-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-purple-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               3. 변수와 연산자 완전 정복하기
             </h4>
@@ -59,7 +59,7 @@ export default function Chapter1() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-pink-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-pink-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               4. Python REPL 활용하여 실습하기
             </h4>
@@ -71,14 +71,14 @@ export default function Chapter1() {
       </section>
 
       {/* Section 1: Python 설치 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Terminal className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           1. Python 설치와 환경 설정
         </h3>
 
-        <div className="space-y-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="space-y-8">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-10 border border-gray-200 dark:border-gray-700">
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               Python 다운로드
             </h4>
@@ -126,13 +126,13 @@ export default function Chapter1() {
       </section>
 
       {/* Section 2: 기본 문법 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Code2 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           2. 기본 문법과 데이터 타입
         </h3>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               Hello, World! - 첫 번째 프로그램
@@ -220,12 +220,12 @@ print("Hello, World!")
       </section>
 
       {/* Section 3: 변수와 연산자 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           3. 변수와 연산자
         </h3>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               변수 선언과 할당
@@ -305,7 +305,7 @@ not (부정):   not x   → False`}
       </section>
 
       {/* Section 4: Python REPL */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Play className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           4. Python REPL 실습
@@ -361,7 +361,7 @@ Hello, REPL!
       </section>
 
       {/* Practice Exercises */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           연습 문제
         </h3>
@@ -415,7 +415,7 @@ print(f"{a} / {b} = {a / b}")`}
       </section>
 
       {/* Summary */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           요약
         </h3>

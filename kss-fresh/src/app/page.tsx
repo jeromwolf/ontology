@@ -235,10 +235,8 @@ export default function KSSLandingPage() {
               <span className="text-xl font-semibold text-gray-900">KSS</span>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '플랫폼' : 'Platform'}</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '모듈' : 'Modules'}</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '문서' : 'Documentation'}</a>
-              <a href="#" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '기업' : 'Enterprise'}</a>
+              <Link href="/#modules" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '모듈' : 'Modules'}</Link>
+              <Link href="/papers" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '논문' : 'Papers'}</Link>
             </nav>
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
@@ -1404,7 +1402,9 @@ export default function KSSLandingPage() {
       </section>
 
       {/* Learning Modules */}
-      <ModuleCatalog />
+      <section id="modules">
+        <ModuleCatalog />
+      </section>
 
       {/* System Tools */}
       <section className="py-20 px-6">

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import References from '@/components/common/References';
 import { Network, Sparkles } from 'lucide-react';
 
 // Chapter 6: Advanced RAG
@@ -343,6 +344,187 @@ class GraphRAG:
           </div>
         </div>
       </section>
+
+      {/* 학습 요약 */}
+      <section className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 mt-8">
+        <h2 className="text-xl font-bold mb-4 text-purple-800 dark:text-purple-200">📚 핵심 정리</h2>
+        <ul className="space-y-2">
+          <li className="flex items-start gap-2">
+            <span className="text-purple-600 dark:text-purple-400 mt-0.5">✓</span>
+            <span className="text-gray-700 dark:text-gray-300">Multi-hop Reasoning을 통한 복잡한 질문 해결</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-purple-600 dark:text-purple-400 mt-0.5">✓</span>
+            <span className="text-gray-700 dark:text-gray-300">Reranking 전략으로 검색 정확도 향상</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-purple-600 dark:text-purple-400 mt-0.5">✓</span>
+            <span className="text-gray-700 dark:text-gray-300">RAGAS 프레임워크를 활용한 RAG 시스템 평가</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-purple-600 dark:text-purple-400 mt-0.5">✓</span>
+            <span className="text-gray-700 dark:text-gray-300">GraphRAG: 지식 그래프 기반 차세대 RAG</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-purple-600 dark:text-purple-400 mt-0.5">✓</span>
+            <span className="text-gray-700 dark:text-gray-300">실시간 업데이트 아키텍처 설계</span>
+          </li>
+        </ul>
+      </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 고급 RAG 논문 (Advanced RAG Papers)',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'From Local to Global: GraphRAG for Query-Focused Summarization',
+                authors: 'Microsoft Research',
+                year: '2024',
+                description: 'Microsoft의 혁신적인 지식 그래프 기반 RAG - 전역/지역 쿼리 지원',
+                link: 'https://arxiv.org/abs/2404.16130'
+              },
+              {
+                title: 'Self-RAG: Learning to Retrieve, Generate, and Critique',
+                authors: 'Akari Asai, Zeqiu Wu, Yizhong Wang, Avirup Sil, Hannaneh Hajishirzi',
+                year: '2023',
+                description: '자기 성찰 메커니즘으로 RAG 품질 향상 (검색 → 생성 → 비판 순환)',
+                link: 'https://arxiv.org/abs/2310.11511'
+              },
+              {
+                title: 'RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval',
+                authors: 'Parth Sarthi, Salman Abdullah, Aditi Tuli, Shubh Khanna, Anna Goldie, Christopher D. Manning',
+                year: '2024',
+                description: '계층적 트리 구조로 문서 요약 및 검색 정확도 향상',
+                link: 'https://arxiv.org/abs/2401.18059'
+              },
+              {
+                title: 'HyDE: Hypothetical Document Embeddings',
+                authors: 'Luyu Gao, Xueguang Ma, Jimmy Lin, Jamie Callan',
+                year: '2022',
+                description: '가상 답변을 생성하여 검색 성능 향상하는 혁신적 기법',
+                link: 'https://arxiv.org/abs/2212.10496'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 고급 RAG 도구 & 프레임워크 (Advanced Tools)',
+            icon: 'tools',
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Microsoft GraphRAG',
+                description: 'Microsoft 공식 GraphRAG 구현 - Neo4j 통합, 커뮤니티 감지',
+                link: 'https://github.com/microsoft/graphrag'
+              },
+              {
+                title: 'RAGAS: RAG Assessment',
+                description: 'RAG 시스템 평가 프레임워크 - Context Relevancy, Faithfulness, Answer Correctness',
+                link: 'https://github.com/explodinggradients/ragas'
+              },
+              {
+                title: 'Cohere Rerank API',
+                description: '전문 Reranking 모델 - 검색 결과 재정렬로 정확도 30% 향상',
+                link: 'https://cohere.com/rerank'
+              },
+              {
+                title: 'LlamaIndex Multi-Hop Query Engine',
+                description: 'Multi-hop reasoning 자동화 엔진',
+                link: 'https://docs.llamaindex.ai/en/stable/examples/query_engine/multi_doc_auto_retrieval/'
+              },
+              {
+                title: 'LangGraph',
+                description: 'Multi-agent RAG 워크플로우 구축 프레임워크',
+                link: 'https://github.com/langchain-ai/langgraph'
+              }
+            ]
+          },
+          {
+            title: '📖 평가 & 벤치마크 (Evaluation & Benchmarks)',
+            icon: 'book',
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'BEIR: Benchmarking Information Retrieval',
+                description: '18개 데이터셋에서 RAG 검색 성능 평가',
+                link: 'https://github.com/beir-cellar/beir'
+              },
+              {
+                title: 'KILT: Knowledge Intensive Language Tasks',
+                description: 'Meta AI의 지식 집약적 태스크 벤치마크',
+                link: 'https://github.com/facebookresearch/KILT'
+              },
+              {
+                title: 'RGB: Retrieval-Generation Benchmark',
+                description: 'RAG 시스템 종합 평가 벤치마크',
+                link: 'https://arxiv.org/abs/2309.01431'
+              },
+              {
+                title: 'TruLens: RAG Triad Evaluation',
+                description: 'Context Relevance, Groundedness, Answer Relevance 3대 지표 측정',
+                link: 'https://www.trulens.org/'
+              }
+            ]
+          },
+          {
+            title: '⚡ GraphRAG & 지식 그래프 (Knowledge Graphs)',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Neo4j for RAG',
+                description: 'Neo4j 그래프 DB를 활용한 RAG 구현 가이드',
+                link: 'https://neo4j.com/labs/genai-ecosystem/llm-graph-builder/'
+              },
+              {
+                title: 'LangChain Neo4j Integration',
+                description: 'LangChain + Neo4j GraphRAG 통합 튜토리얼',
+                link: 'https://python.langchain.com/docs/integrations/graphs/neo4j_cypher'
+              },
+              {
+                title: 'Knowledge Graph Construction with LLMs',
+                description: 'LLM을 활용한 자동 지식 그래프 구축',
+                link: 'https://arxiv.org/abs/2305.13168'
+              },
+              {
+                title: 'Leiden Algorithm for Community Detection',
+                description: 'GraphRAG에서 사용하는 커뮤니티 감지 알고리즘',
+                link: 'https://www.nature.com/articles/s41598-019-41695-z'
+              }
+            ]
+          },
+          {
+            title: '🚀 최신 연구 & 트렌드 (Latest Research)',
+            icon: 'paper',
+            color: 'border-pink-500',
+            items: [
+              {
+                title: 'Adaptive RAG: Learning to Adapt Retrieval-Augmented Generation',
+                authors: 'Jeong et al.',
+                year: '2024',
+                description: '쿼리에 따라 RAG 전략을 동적으로 조정',
+                link: 'https://arxiv.org/abs/2403.14403'
+              },
+              {
+                title: 'CRAG: Comprehensive RAG Benchmark',
+                authors: 'Yang et al.',
+                year: '2024',
+                description: '4,400개 질문으로 RAG 시스템 종합 평가',
+                link: 'https://arxiv.org/abs/2406.04744'
+              },
+              {
+                title: 'Long-Context RAG: Extending RAG to 1M+ Tokens',
+                authors: 'Various',
+                year: '2024',
+                description: '초장문 컨텍스트 처리를 위한 RAG 최적화',
+                link: 'https://arxiv.org/abs/2404.07143'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

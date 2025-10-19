@@ -594,21 +594,102 @@ model ChapterVersion {
   id          String   @id @default(cuid())
   moduleId    String
   chapterId   String
-  version     String   // semantic version like "1.2.3" 
+  version     String   // semantic version like "1.2.3"
   contentHash String   // hash of content for change detection
   changelog   String?  // description of changes
-  
+
   // Metadata
   wordCount   Int?
   readingTime Int?     // estimated reading time in minutes
   simulatorCount Int   @default(0)
-  
+
   createdAt   DateTime @default(now())
   publishedAt DateTime?
   deprecatedAt DateTime?
-  
+
   @@unique([moduleId, chapterId, version])
   @@index([moduleId])
   @@index([chapterId])
+  @@index([createdAt])
+}
+
+// ============================================
+// ArXiv Monitor System Models
+// ============================================
+
+enum PaperStatus {
+  CRAWLED
+  SUMMARIZED
+  MDX_GENERATED
+  PUBLISHED
+  FAILED
+}
+
+// ArXiv Papers - Automated paper collection and processing
+model ArXiv_Paper {
+  id            String   @id @default(cuid())
+  arxivId       String   @unique // ArXiv paper ID (e.g. 2305.12345)
+  title         String
+  authors       String[] // Array of author names
+  abstract      String   @db.Text
+  categories    String[] // ArXiv categories (cs.AI, cs.LG, etc)
+  publishedDate DateTime
+  pdfUrl        String
+
+  // AI-generated summaries (3 levels)
+  summaryShort  String?  @db.Text // 2-3 sentences
+  summaryMedium String?  @db.Text // 1 paragraph
+  summaryLong   String?  @db.Text // 2-3 paragraphs
+
+  // Content metadata
+  keywords      String[] // Extracted keywords
+  relatedModules String[] // Related KSS modules
+
+  // Processing status
+  status        PaperStatus @default(CRAWLED)
+  summarizedAt  DateTime?
+  mdxGeneratedAt DateTime?
+  publishedAt   DateTime?
+  errorMessage  String?  @db.Text
+
+  // Timestamps
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  processingLogs ArXiv_ProcessingLog[]
+
+  @@index([arxivId])
+  @@index([categories])
+  @@index([status])
+  @@index([publishedDate])
+  @@index([createdAt])
+}
+
+// ArXiv Processing Log - Track pipeline execution
+model ArXiv_ProcessingLog {
+  id          String   @id @default(cuid())
+  paperId     String
+  paper       ArXiv_Paper @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  // Processing stage (crawler, summarizer, generator, notifier)
+  stage       String
+
+  // Result (success, error, skipped)
+  status      String
+
+  // Details
+  message     String?  @db.Text
+  errorStack  String?  @db.Text
+  metadata    Json?    // Additional processing data
+
+  // Execution time
+  duration    Int?     // milliseconds
+
+  createdAt   DateTime @default(now())
+
+  @@index([paperId])
+  @@index([stage])
+  @@index([status])
   @@index([createdAt])
 }

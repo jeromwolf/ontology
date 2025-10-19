@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Chapter2() {
   return (
-    <div className="space-y-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 pb-24 space-y-16">
       {/* Introduction */}
       <section>
         <div className="flex items-center gap-3 mb-6">
@@ -15,8 +15,8 @@ export default function Chapter2() {
           </h2>
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 mb-6">
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-8 mb-8">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
             Python의 컬렉션(리스트, 튜플, 딕셔너리, 집합)은 여러 데이터를 효율적으로 관리하는 강력한 도구입니다.
             각 컬렉션의 특징과 사용법을 익혀 데이터 처리의 달인이 되어보세요.
             실전에서 가장 많이 사용되는 필수 자료구조를 완벽하게 마스터할 수 있습니다.
@@ -31,8 +31,8 @@ export default function Chapter2() {
           학습 목표
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-blue-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-blue-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               1. 리스트, 튜플, 집합 완전 정복하기
             </h4>
@@ -41,7 +41,7 @@ export default function Chapter2() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-indigo-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-indigo-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               2. 딕셔너리로 데이터 관리하기
             </h4>
@@ -50,7 +50,7 @@ export default function Chapter2() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-purple-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-purple-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               3. 타입 변환의 원리와 실전 활용
             </h4>
@@ -59,7 +59,7 @@ export default function Chapter2() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-pink-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-pink-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               4. 컬렉션 연산과 메서드 마스터하기
             </h4>
@@ -71,7 +71,7 @@ export default function Chapter2() {
       </section>
 
       {/* Section 1: 리스트 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Box className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           1. 리스트 (List) - 동적 배열
@@ -179,7 +179,7 @@ popped = fruits.pop()    # 마지막 요소 제거 및 반환`}
       </section>
 
       {/* Section 2: 튜플과 집합 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Layers className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           2. 튜플(Tuple)과 집합(Set)
@@ -261,7 +261,7 @@ unique_numbers = list(set(numbers))  # [1, 2, 3, 4, 5]`}
       </section>
 
       {/* Section 3: 딕셔너리 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Database className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           3. 딕셔너리(Dictionary) - Key-Value 저장소
@@ -354,13 +354,13 @@ print(students["student1"]["name"])  # "Kelly"`}
       </section>
 
       {/* Section 4: 타입 변환과 실전 활용 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Grid className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           4. 타입 변환과 실전 활용
         </h3>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               컬렉션 간 타입 변환
@@ -459,7 +459,7 @@ print(flat)  # [1, 2, 3, 4, 5, 6]`}
       </section>
 
       {/* Practice Exercises */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           연습 문제
         </h3>
@@ -523,7 +523,7 @@ list2 = [4, 5, 6, 7, 8, 9]
       </section>
 
       {/* Summary */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           요약
         </h3>

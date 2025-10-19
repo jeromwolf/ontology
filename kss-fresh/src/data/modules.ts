@@ -296,8 +296,8 @@ export const moduleCategories: ModuleCategory[] = [
         id: 'cloud-computing',
         title: 'Cloud Computing',
         description: 'AWS, GCP, Azure 클라우드 아키텍처와 서비스 실습',
-        duration: '20시간',
-        status: '개발중',
+        duration: '30시간',
+        status: '학습 가능',
         icon: '☁️',
         gradient: 'from-sky-500 to-blue-600',
         href: '/modules/cloud-computing'

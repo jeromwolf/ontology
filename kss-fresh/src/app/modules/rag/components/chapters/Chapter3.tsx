@@ -1,6 +1,7 @@
 'use client';
 
 import EmbeddingVisualizer from '../EmbeddingVisualizer';
+import References from '@/components/common/References';
 import { Brain, Zap, Database, TrendingUp } from 'lucide-react';
 
 // Chapter 3: Embeddings and Vector Search
@@ -299,6 +300,127 @@ print(f"유사도 (AI-날씨): {cosine_similarity(emb1, emb3):.3f}")
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 핵심 임베딩 논문 (Foundational Papers)',
+            icon: 'paper',
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks',
+                authors: 'Nils Reimers, Iryna Gurevych',
+                year: '2019',
+                description: '문장 임베딩의 혁명 - BERT를 시맨틱 검색에 최적화',
+                link: 'https://arxiv.org/abs/1908.10084'
+              },
+              {
+                title: 'Text Embeddings by Weakly-Supervised Contrastive Pre-training',
+                authors: 'OpenAI Research',
+                year: '2022',
+                description: 'OpenAI text-embedding 모델의 기반이 된 연구',
+                link: 'https://arxiv.org/abs/2201.10005'
+              },
+              {
+                title: 'MTEB: Massive Text Embedding Benchmark',
+                authors: 'Niklas Muennighoff et al.',
+                year: '2023',
+                description: '56개 데이터셋에서 임베딩 모델 성능 비교 벤치마크',
+                link: 'https://arxiv.org/abs/2210.07316'
+              },
+              {
+                title: 'BGE M3-Embedding: Multi-Lingual, Multi-Functionality, Multi-Granularity',
+                authors: 'BAAI',
+                year: '2024',
+                description: '100개 언어 지원하는 차세대 임베딩 모델',
+                link: 'https://arxiv.org/abs/2402.03216'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 임베딩 모델 & API (Models & APIs)',
+            icon: 'tools',
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'OpenAI Embeddings API',
+                description: 'text-embedding-3-small/large - 업계 표준 임베딩 서비스',
+                link: 'https://platform.openai.com/docs/guides/embeddings'
+              },
+              {
+                title: 'Cohere Embed v3',
+                description: '100개 언어 지원, 압축 기능 제공 (무료 티어 有)',
+                link: 'https://cohere.com/embed'
+              },
+              {
+                title: 'Hugging Face Sentence Transformers',
+                description: '500+ 오픈소스 임베딩 모델 라이브러리',
+                link: 'https://www.sbert.net/'
+              },
+              {
+                title: 'Voyage AI Embeddings',
+                description: '도메인별 특화 임베딩 (법률, 의료, 금융)',
+                link: 'https://www.voyageai.com/'
+              },
+              {
+                title: 'Jina Embeddings',
+                description: '8K 토큰 긴 문맥 지원 임베딩',
+                link: 'https://jina.ai/embeddings/'
+              }
+            ]
+          },
+          {
+            title: '📖 임베딩 실전 가이드 (Practical Guides)',
+            icon: 'book',
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'OpenAI Cookbook: Embeddings Best Practices',
+                description: '임베딩 생성, 저장, 검색 모범 사례',
+                link: 'https://github.com/openai/openai-cookbook/blob/main/examples/Embedding_long_inputs.ipynb'
+              },
+              {
+                title: 'MTEB Leaderboard',
+                description: '실시간 업데이트되는 임베딩 모델 성능 순위',
+                link: 'https://huggingface.co/spaces/mteb/leaderboard'
+              },
+              {
+                title: 'Pinecone: Understanding Vector Embeddings',
+                description: '벡터 임베딩 개념부터 실전 활용까지',
+                link: 'https://www.pinecone.io/learn/vector-embeddings/'
+              },
+              {
+                title: 'LangChain: Embeddings Integration',
+                description: '20+ 임베딩 제공자 통합 가이드',
+                link: 'https://python.langchain.com/docs/integrations/text_embedding/'
+              }
+            ]
+          },
+          {
+            title: '⚡ 성능 비교 & 벤치마크 (Benchmarks)',
+            icon: 'web',
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Artificial Analysis: Embedding Model Comparison',
+                description: '속도, 비용, 품질 3가지 축으로 모델 비교',
+                link: 'https://artificialanalysis.ai/embeddings'
+              },
+              {
+                title: 'Korean Embedding Benchmark',
+                description: '한국어 특화 임베딩 모델 성능 비교',
+                link: 'https://github.com/KLUE-benchmark/KLUE'
+              },
+              {
+                title: 'Nomic Embed: Fully Reproducible Embeddings',
+                description: '완전 오픈소스 + OpenAI 수준 성능',
+                link: 'https://blog.nomic.ai/posts/nomic-embed-text-v1'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

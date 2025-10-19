@@ -834,3 +834,300 @@ src/components/charts/ProChart/
 2. WebSocket 실시간 체결가 스트리밍
 3. 추가 기술적 지표 구현 (볼린저밴드, MACD 등)
 4. 모의투자 기능 연동
+
+### Session 36 Status (2025-10-11) - 🎯 모듈별 관련 논문 통합 시스템 구현
+
+**🎯 핵심 성과 - 전문적인 학습 경험 완성!**
+
+#### **1. 문제 발견 및 해결** ✅
+**모듈 데이터 중복 문제**:
+- `/modules` 페이지와 홈페이지의 모듈 데이터 불일치 (반도체 모듈 누락)
+- 두 개의 독립적인 데이터 소스가 존재 (page.tsx 하드코딩 vs src/data/modules.ts)
+
+**해결**:
+- 단일 데이터 소스로 통합 (`src/data/modules.ts`만 사용)
+- 모듈 페이지 삭제: `/modules` → `/#modules` (홈페이지 앵커로 변경)
+- Navigation.tsx 및 홈페이지 헤더 링크 모두 `/#modules`로 업데이트
+- `/app/modules/page.tsx`를 `page.tsx.backup`으로 백업
+
+#### **2. ModuleRelatedPapers 컴포넌트 생성** ✅
+**위치**: `/src/components/papers/ModuleRelatedPapers.tsx` (270줄)
+
+**핵심 기능**:
+- **자동 필터링**: moduleId를 기반으로 관련 논문만 API에서 가져오기
+- **통계 대시보드**:
+  - 총 논문 수
+  - 요약 완료된 논문 수
+  - 카테고리 수
+  - 최신 논문 날짜
+- **상태 관리**: Loading, Error, Empty 상태 모두 처리
+- **크로스 링크**: "전체 논문 보기" 버튼으로 `/papers?module=${moduleId}` 연결
+
+**사용 방법**:
+```tsx
+import ModuleRelatedPapers from '@/components/papers/ModuleRelatedPapers'
+
+<ModuleRelatedPapers
+  moduleId="llm"     // 모듈 ID만 변경
+  maxPapers={20}     // 표시할 최대 논문 수
+  showStats={true}   // 통계 대시보드 표시 여부
+/>
+```
+
+**컴포넌트 구조**:
+```tsx
+interface ModuleRelatedPapersProps {
+  moduleId: string
+  maxPapers?: number
+  showStats?: boolean
+}
+
+// Features:
+// - Auto-fetch from /api/arxiv-monitor/papers
+// - Filter by relatedModules array
+// - Sort by publishedDate (최신순)
+// - Limit to maxPapers
+// - Display as card grid
+```
+
+#### **3. 3단계 탭 네비게이션 패턴** ✅
+**LLM 모듈에 시범 구현** (`/src/app/modules/llm/page.tsx`)
+
+**탭 구조**:
+- 📖 **학습** (챕터 목록) - 기존 기능
+- 🎮 **시뮬레이터** (인터랙티브 도구) - 기존 기능
+- 📄 **관련 논문** (ModuleRelatedPapers 적용) - **NEW!**
+
+**코드 패턴**:
+```typescript
+// 1. 타입 정의
+type TabType = 'chapters' | 'simulators' | 'papers'
+const [activeTab, setActiveTab] = useState<TabType>('chapters')
+
+// 2. 탭 설정
+const tabs = [
+  { id: 'chapters' as TabType, label: '📖 학습', icon: BookOpen, count: llmModule.chapters.length },
+  { id: 'simulators' as TabType, label: '🎮 시뮬레이터', icon: Zap, count: 5 },
+  { id: 'papers' as TabType, label: '📄 관련 논문', icon: FileText, count: null }
+]
+
+// 3. 탭 헤더 렌더링
+<div className="flex border-b border-gray-200 dark:border-gray-700">
+  {tabs.map((tab) => (
+    <button
+      key={tab.id}
+      onClick={() => setActiveTab(tab.id)}
+      className={activeTab === tab.id ? 'active-styles' : 'inactive-styles'}
+    >
+      <span>{tab.label}</span>
+      {tab.count !== null && <span className="badge">{tab.count}</span>}
+      {activeTab === tab.id && (
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600" />
+      )}
+    </button>
+  ))}
+</div>
+
+// 4. 탭 콘텐츠
+{activeTab === 'papers' && (
+  <div>
+    <ModuleRelatedPapers
+      moduleId="llm"
+      maxPapers={20}
+      showStats={true}
+    />
+  </div>
+)}
+```
+
+**UI 특징**:
+- Active 탭: 인디고 배경 + 하단 그라데이션 바
+- Badge: 챕터/시뮬레이터 개수 표시
+- Hover 효과: 부드러운 전환 애니메이션
+- 다크 모드 완벽 지원
+
+#### **4. URL 파라미터 필터링 지원** ✅
+**Papers 페이지 개선** (`/src/app/papers/page.tsx`)
+
+**기능**:
+- URL 파라미터 읽기: `/papers?module=llm`
+- 자동 필터 적용: 해당 모듈 논문만 표시
+- 필터 동기화: URL 변경 시 필터 상태 업데이트
+
+**구현 코드**:
+```typescript
+import { useSearchParams } from 'next/navigation'
+
+export default function PapersPage() {
+  const searchParams = useSearchParams()
+  const moduleParam = searchParams.get('module')
+
+  const [filter, setFilter] = useState<string>(moduleParam || 'all')
+
+  // URL 파라미터가 변경되면 필터 업데이트
+  useEffect(() => {
+    if (moduleParam && moduleParam !== filter) {
+      setFilter(moduleParam)
+    }
+  }, [moduleParam])
+
+  // 필터링 로직
+  const filteredPapers = filter === 'all'
+    ? papers
+    : papers.filter(p => p.relatedModules.includes(filter))
+}
+```
+
+**사용자 플로우**:
+1. 모듈 페이지에서 "관련 논문" 탭 클릭
+2. 큐레이션된 최신 20개 논문 확인
+3. "전체 논문 보기" 버튼 클릭
+4. `/papers?module=llm`로 이동
+5. 자동으로 LLM 필터가 적용된 전체 논문 목록 표시
+
+#### **5. 하이브리드 접근법 (전문적 UX)** ✅
+
+**글로벌 페이지** (`/papers`):
+- **목적**: 전체 논문 탐색, 새로운 발견
+- **대상**: "오늘은 뭐가 나왔을까?" 호기심 탐색
+- **특징**:
+  - 모든 모듈의 논문 통합 표시
+  - 필터링 (전체/모듈별)
+  - 통계 대시보드
+  - 최신순 정렬
+
+**모듈 내 섹션** (각 모듈 page.tsx의 "관련 논문" 탭):
+- **목적**: 현재 학습 주제 심화
+- **대상**: "LLM을 공부 중인데 최신 연구는?"
+- **장점**:
+  - **맥락 유지**: 모듈에서 벗어나지 않고 학습 흐름 유지
+  - **큐레이션**: AI가 자동 매칭한 관련 논문만 표시
+  - **학습 집중**: 불필요한 논문에 산만해지지 않음
+  - **원클릭 접근**: 페이지 이동 없이 탭 전환만으로 확인
+
+**업계 표준 사례**:
+- **Coursera**: "Related Articles" 섹션 제공
+- **Udacity**: "Further Reading" 통합
+- **edX**: "Supplementary Resources" 탭
+
+#### **6. 오류 해결** ✅
+
+**Error: Flask icon not found**
+```
+Attempted import error: 'Flask' is not exported from lucide-react
+```
+
+**원인**:
+- Lucide React에서 Flask 아이콘이 배럴 최적화에서 누락됨
+
+**해결**:
+```typescript
+// Before
+import { ..., Flask, ... } from 'lucide-react'
+const tabs = [
+  { id: 'simulators', label: '🎮 시뮬레이터', icon: Flask, count: 5 }
+]
+
+// After
+import { ..., Zap, ... } from 'lucide-react'
+const tabs = [
+  { id: 'simulators', label: '🎮 시뮬레이터', icon: Zap, count: 5 }
+]
+```
+
+#### **7. 파일 변경 사항** ✅
+
+**신규 생성**:
+- `/src/components/papers/ModuleRelatedPapers.tsx` (270줄)
+
+**수정 완료**:
+- `/src/app/modules/llm/page.tsx` (+40줄)
+  - Tab navigation 추가
+  - Papers 탭 콘텐츠 통합
+  - Icon import 수정
+- `/src/app/papers/page.tsx` (+15줄)
+  - useSearchParams 추가
+  - URL 파라미터 필터 로직
+- `/src/components/Navigation.tsx` (이전 작업에서 완료)
+  - `/modules` → `/#modules` 변경
+- `/src/app/page.tsx` (이전 작업에서 완료)
+  - `id="modules"` 앵커 추가
+  - 헤더 링크 `/#modules` 변경
+
+**백업**:
+- `/app/modules/page.tsx.backup` (구 modules 페이지)
+
+#### **🎯 다음 적용 모듈** (31개 남음)
+
+**우선순위 높은 모듈** (논문이 많을 것으로 예상):
+1. **RAG** - 최신 RAG 연구 활발
+2. **Computer Vision** - 이미지 처리 논문 많음
+3. **Multi-Agent** - 에이전트 협업 연구 활발
+4. **LLM** - ✅ 이미 완료 (시범 케이스)
+5. **Deep Learning** - 딥러닝 기초 논문
+6. **Agent MCP** - MCP 프로토콜 연구
+
+**적용 방법** (모듈당 20-30분 소요):
+```typescript
+// 1. Import 추가
+import ModuleRelatedPapers from '@/components/papers/ModuleRelatedPapers'
+
+// 2. 탭 state 추가 (이미 있으면 papers 추가)
+type TabType = 'chapters' | 'simulators' | 'papers'
+const [activeTab, setActiveTab] = useState<TabType>('chapters')
+
+const tabs = [
+  // ... 기존 탭들
+  { id: 'papers' as TabType, label: '📄 관련 논문', icon: FileText, count: null }
+]
+
+// 3. 탭 콘텐츠에 컴포넌트 삽입
+{activeTab === 'papers' && (
+  <div>
+    <ModuleRelatedPapers
+      moduleId="rag"  // 모듈 ID만 변경
+      maxPapers={20}
+      showStats={true}
+    />
+  </div>
+)}
+```
+
+#### **📊 기대 효과**
+
+**사용자 경험 향상**:
+- ✅ 학습 맥락 유지 (페이지 이동 불필요)
+- ✅ 큐레이션된 콘텐츠 (관련 논문만 표시)
+- ✅ 빠른 접근성 (탭 전환만으로 확인)
+- ✅ 학습 효율성 (주제 집중도 향상)
+
+**플랫폼 전문성**:
+- ✅ 업계 표준 UX 패턴 적용
+- ✅ 통합 학습 경험 제공
+- ✅ 최신 연구 동향 반영
+- ✅ 글로벌 교육 플랫폼 수준 달성
+
+**확장성**:
+- ✅ 재사용 가능한 컴포넌트
+- ✅ 일관된 구조 (모든 모듈 동일 패턴)
+- ✅ 유지보수 용이 (중앙화된 로직)
+
+#### **💡 핵심 교훈**
+
+1. **하이브리드 접근의 중요성**:
+   - 글로벌 페이지 (탐색) + 모듈 내 섹션 (집중) 둘 다 필요
+   - 사용자 맥락에 따라 다른 인터페이스 제공
+
+2. **컴포넌트 재사용성**:
+   - 한 번 잘 만들면 32개 모듈에 즉시 적용 가능
+   - Props 기반 설계로 유연성 확보
+
+3. **데이터 일관성**:
+   - 단일 데이터 소스 원칙 (Single Source of Truth)
+   - 중복 데이터는 항상 불일치 유발
+
+4. **전문적 UX**:
+   - 업계 표준 패턴 분석 및 적용
+   - 사용자 플로우 중심 설계
+
+**🎯 KSS 플랫폼이 이제 진정한 "통합 학습 경험"을 제공합니다!**

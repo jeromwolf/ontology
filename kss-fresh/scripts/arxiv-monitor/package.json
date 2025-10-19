@@ -1,0 +1,46 @@
+{
+  "name": "kss-arxiv-monitor",
+  "version": "1.0.0",
+  "description": "ArXiv Monitor System - Automated paper collection and summarization for KSS platform",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "tsx src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "crawler": "tsx src/crawler/index.ts",
+    "summarizer": "tsx src/summarizer/index.ts",
+    "generator": "tsx src/generator/index.ts",
+    "notifier": "tsx src/notifier/index.ts",
+    "reset-db": "tsx reset-db.ts",
+    "studio": "cd ../.. && npx prisma studio --port 5556"
+  },
+  "keywords": [
+    "arxiv",
+    "ai",
+    "research",
+    "paper",
+    "summarization",
+    "automation"
+  ],
+  "author": "KSS Team",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^6.13.0",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "fast-xml-parser": "^4.5.0",
+    "openai": "^4.70.3",
+    "simple-git": "^3.27.0",
+    "winston": "^3.17.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.10",
+    "prisma": "^6.13.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}

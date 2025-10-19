@@ -5,18 +5,18 @@ import Link from 'next/link';
 
 export default function Chapter6() {
   return (
-    <div className="space-y-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 pb-24 space-y-16">
       {/* Introduction */}
       <section>
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3 mb-8">
           <Shield className="w-6 h-6 text-red-600 dark:text-red-400" />
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
             예외 처리
           </h2>
         </div>
 
-        <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-xl p-6 mb-6">
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+        <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-xl p-8 mb-8">
+          <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
             예외 처리는 프로그램이 예상치 못한 상황에 대응하여 안정적으로 동작하도록 만드는 핵심 기술입니다.
             사용자 입력 오류, 파일 없음, 네트워크 장애 등 다양한 예외 상황을 우아하게 처리하는 방법을 학습합니다.
             프로덕션 레벨 코드에서 반드시 필요한 기술입니다.
@@ -31,8 +31,8 @@ export default function Chapter6() {
           학습 목표
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-red-500">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-red-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               1. try-except로 안전한 코드 작성
             </h4>
@@ -41,7 +41,7 @@ export default function Chapter6() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-orange-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-orange-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               2. 커스텀 예외 클래스 만들기
             </h4>
@@ -50,7 +50,7 @@ export default function Chapter6() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-yellow-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-yellow-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               3. finally와 else 절 완벽 활용
             </h4>
@@ -59,7 +59,7 @@ export default function Chapter6() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-5 border-l-4 border-pink-500">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 border-l-4 border-pink-500">
             <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
               4. 에러 로깅과 디버깅 전략
             </h4>
@@ -71,13 +71,13 @@ export default function Chapter6() {
       </section>
 
       {/* Section 1: try-except 기초 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-400" />
           1. try-except로 안전한 코드 작성
         </h3>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               예외 처리의 필요성
@@ -193,13 +193,13 @@ except (ValueError, TypeError, ZeroDivisionError) as e:
       </section>
 
       {/* Section 2: finally와 else */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Code2 className="w-6 h-6 text-red-600 dark:text-red-400" />
           2. finally와 else 절 완벽 활용
         </h3>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               finally: 항상 실행되는 코드
@@ -279,12 +279,12 @@ finally:
       </section>
 
       {/* Section 3: 커스텀 예외 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           3. 커스텀 예외 클래스 만들기
         </h3>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               도메인 특화 예외 설계
@@ -359,13 +359,13 @@ class NetworkError(MyAppError):
       </section>
 
       {/* Section 4: 로깅과 디버깅 */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
           <Bug className="w-6 h-6 text-red-600 dark:text-red-400" />
           4. 에러 로깅과 디버깅 전략
         </h3>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           <div>
             <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               logging 모듈 활용
@@ -435,7 +435,7 @@ def get_config(key, default=None):
       </section>
 
       {/* Simulator Link */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-5">
           <div className="flex items-start gap-3">
             <FileWarning className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0" />
@@ -460,7 +460,7 @@ def get_config(key, default=None):
       </section>
 
       {/* Practice Exercises */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           연습 문제
         </h3>
@@ -499,7 +499,7 @@ def get_config(key, default=None):
       </section>
 
       {/* Summary */}
-      <section className="border-t border-gray-200 dark:border-gray-700 pt-8">
+      <section className="border-t border-gray-200 dark:border-gray-700 pt-12 mt-8">
         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           요약
         </h3>

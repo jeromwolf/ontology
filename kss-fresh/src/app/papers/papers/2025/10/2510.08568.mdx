@@ -1,0 +1,88 @@
+---
+title: "NovaFlow: Zero-Shot Manipulation via Actionable Flow from Generated Videos"
+arxivId: "2510.08568v1"
+authors: ["Hongyu Li", "Lingfeng Sun", "Yafei Hu", "Duy Ta", "Jennifer Barry", "George Konidaris", "Jiahui Fu"]
+publishedDate: "2025-10-09"
+categories: ["cs.RO", "cs.AI", "cs.CV"]
+keywords: ["NovaFlow", "제로샷 학습", "자율 조작", "비디오 생성 모델", "객체 플로우"]
+relatedModules: ["computer-vision", "deep-learning", "autonomous-mobility"]
+pdfUrl: "http://arxiv.org/pdf/2510.08568v1"
+---
+
+# NovaFlow: Zero-Shot Manipulation via Actionable Flow from Generated Videos
+
+
+## 📋 논문 개요
+
+<div className="paper-overview">
+  <div className="overview-item">
+    <strong>ArXiv ID:</strong> <a href="http://arxiv.org/pdf/2510.08568v1" target="_blank" rel="noopener">2510.08568v1</a>
+  </div>
+  <div className="overview-item">
+    <strong>발행일:</strong> 2025. 10. 10.
+  </div>
+  <div className="overview-item">
+    <strong>카테고리:</strong> cs.RO, cs.AI, cs.CV
+  </div>
+</div>
+
+### 📌 한 줄 요약
+NovaFlow는 로봇이 시연 없이 새로운 조작 작업을 실행할 수 있게 하는 프레임워크입니다.
+
+
+## 👥 저자
+
+1. Hongyu Li
+2. Lingfeng Sun
+3. Yafei Hu
+4. Duy Ta
+5. Jennifer Barry
+6. George Konidaris
+7. Jiahui Fu
+
+
+## 📄 초록 (Abstract)
+
+Enabling robots to execute novel manipulation tasks zero-shot is a central goal in robotics. Most existing methods assume in-distribution tasks or rely on fine-tuning with embodiment-matched data, limiting transfer across platforms. We present NovaFlow, an autonomous manipulation framework that converts a task description into an actionable plan for a target robot without any demonstrations. Given a task description, NovaFlow synthesizes a video using a video generation model and distills it into 3D actionable object flow using off-the-shelf perception modules. From the object flow, it computes relative poses for rigid objects and realizes them as robot actions via grasp proposals and trajectory optimization. For deformable objects, this flow serves as a tracking objective for model-based planning with a particle-based dynamics model. By decoupling task understanding from low-level control, NovaFlow naturally transfers across embodiments. We validate on rigid, articulated, and deformable object manipulation tasks using a table-top Franka arm and a Spot quadrupedal mobile robot, and achieve effective zero-shot execution without demonstrations or embodiment-specific training. Project website: https://novaflow.lhy.xyz/.
+
+
+## 🔍 요약
+
+### 📝 상세 요약
+NovaFlow는 로봇이 미리 보여주는 시연 없이도 새로운 조작 작업을 수행할 수 있도록 하는 것을 목표로 하는 연구입니다. 현재 대부분의 방법들은 배포 내 태스크를 가정하거나 신체에 맞는 데이터로 미세 조정에 의존하는데, 이는 플랫폼 간 전송을 제한합니다. NovaFlow는 이 문제를 해결하기 위해 작업 설명에서 시작하여 비디오 생성 모델을 사용해 비디오를 합성하고, 이 비디오에서 3D 작용 가능 객체 플로우를 추출하는 새로운 접근 방식을 소개합니다. 이 객체 플로우는 강체에 대해 상대 포즈를 계산하고, 이를 로봇 동작으로 실현하기 위해 그립 제안과 궤적 최적화를 사용하며, 변형 가능한 객체에 대해서는 입자 기반 동적 모델을 사용한 모델 기반 계획에서 추적 목표로 사용됩니다. 이 프레임워크는 테이블탑 프랑카 팔과 스팟 사중보행 로봇을 사용한 실험을 통해 검증되었으며, 강성, 관절, 변형 가능한 객체를 조작하는 작업에서 효과적인 제로샷 실행을 달성함으로써, 다양한 신체 구조를 가진 로봇에 자연스럽게 전송될 수 있는 능력을 입증했습니다. 이 연구는 로봇 조작 분야에서의 큰 진전을 나타내며, 실제 세계에서의 광범위한 응용 가능성을 열어줍니다.
+
+### 💡 핵심 내용
+NovaFlow는 기존의 조작 작업 실행 방법과 달리, 새로운 조작 작업을 로봇이 제로샷으로 실행할 수 있도록 하는 자율 조작 프레임워크를 제시합니다. 작업 설명을 기반으로 비디오 생성 모델을 사용하여 비디오를 합성하고, 이를 3D 작용 가능 객체 플로우로 추출하여 상대 포즈 계산과 그립 제안, 궤적 최적화를 통해 로봇 동작을 실현합니다. 이 프레임워크는 테이블탑 프랑카 팔과 스팟 사중보행 로봇을 사용한 강성, 관절, 변형 가능한 객체 조작 작업에서 효과적인 제로샷 실행을 달성합니다.
+
+
+## 🔑 키워드
+
+- **NovaFlow**
+- **제로샷 학습**
+- **자율 조작**
+- **비디오 생성 모델**
+- **객체 플로우**
+
+
+## 🔗 관련 모듈
+
+이 논문과 관련된 KSS 학습 모듈:
+
+- [Computer Vision](/modules/computer-vision)
+- [Deep Learning](/modules/deep-learning)
+- [Autonomous Mobility](/modules/autonomous-mobility)
+
+
+---
+
+## 📚 참고 자료
+
+- **ArXiv 원문**: [2510.08568v1](http://arxiv.org/pdf/2510.08568v1)
+- **ArXiv 페이지**: [https://arxiv.org/abs/2510.08568v1](https://arxiv.org/abs/2510.08568v1)
+
+---
+
+<div className="paper-footer">
+  <p>이 요약은 KSS ArXiv Monitor에 의해 자동 생성되었습니다.</p>
+  <p>생성일: 2025. 10. 10.</p>
+</div>

@@ -1,0 +1,89 @@
+---
+title: "BLAZER: Bootstrapping LLM-based Manipulation Agents with Zero-Shot Data Generation"
+arxivId: "2510.08572v1"
+authors: ["Rocktim Jyoti Das", "Harsh Singh", "Diana Turmakhan", "Muhammad Abdullah Sohail", "Mingfei Han", "Preslav Nakov", "Fabio Pizzati", "Ivan Laptev"]
+publishedDate: "2025-10-09"
+categories: ["cs.RO", "cs.AI", "cs.LG"]
+keywords: ["로봇 조작 정책", "제로샷 데이터 생성", "대규모 언어 모델(Large Language Models)", "시뮬레이션", "스킬 전송"]
+relatedModules: ["llm", "reinforcement-learning", "autonomous-mobility"]
+pdfUrl: "http://arxiv.org/pdf/2510.08572v1"
+---
+
+# BLAZER: Bootstrapping LLM-based Manipulation Agents with Zero-Shot Data Generation
+
+
+## 📋 논문 개요
+
+<div className="paper-overview">
+  <div className="overview-item">
+    <strong>ArXiv ID:</strong> <a href="http://arxiv.org/pdf/2510.08572v1" target="_blank" rel="noopener">2510.08572v1</a>
+  </div>
+  <div className="overview-item">
+    <strong>발행일:</strong> 2025. 10. 10.
+  </div>
+  <div className="overview-item">
+    <strong>카테고리:</strong> cs.RO, cs.AI, cs.LG
+  </div>
+</div>
+
+### 📌 한 줄 요약
+BLAZER는 시뮬레이션에서 자동 생성된 데이터를 통해 로봇 조작 정책을 학습하는 프레임워크이다.
+
+
+## 👥 저자
+
+1. Rocktim Jyoti Das
+2. Harsh Singh
+3. Diana Turmakhan
+4. Muhammad Abdullah Sohail
+5. Mingfei Han
+6. Preslav Nakov
+7. Fabio Pizzati
+8. Ivan Laptev
+
+
+## 📄 초록 (Abstract)
+
+Scaling data and models has played a pivotal role in the remarkable progress of computer vision and language. Inspired by these domains, recent efforts in robotics have similarly focused on scaling both data and model size to develop more generalizable and robust policies. However, unlike vision and language, robotics lacks access to internet-scale demonstrations across diverse robotic tasks and environments. As a result, the scale of existing datasets typically suffers from the need for manual data collection and curation. To address this problem, here we propose BLAZER, a framework that learns manipulation policies from automatically generated training data. We build on the zero-shot capabilities of LLM planners and automatically generate demonstrations for diverse manipulation tasks in simulation. Successful examples are then used to finetune an LLM and to improve its planning capabilities without human supervision. Notably, while BLAZER training requires access to the simulator's state, we demonstrate direct transfer of acquired skills to sensor-based manipulation. Through extensive experiments, we show BLAZER to significantly improve zero-shot manipulation in both simulated and real environments. Moreover, BLAZER improves on tasks outside of its training pool and enables downscaling of LLM models. Our code and data will be made publicly available on the project page.
+
+
+## 🔍 요약
+
+### 📝 상세 요약
+컴퓨터 비전과 언어의 발전에서 데이터와 모델의 확장이 중요한 역할을 한 것에 영감을 받아, 최근 로봇공학 연구는 더 일반화되고 견고한 정책을 개발하기 위해 데이터와 모델 크기의 확장에 초점을 맞추고 있다. 그러나 로봇공학은 다양한 작업과 환경에서 인터넷 규모의 시연에 접근할 수 없어, 기존 데이터셋의 규모가 수작업을 통한 데이터 수집 및 큐레이션의 필요성으로 인해 제한된다. BLAZER 프레임워크는 이 문제를 해결하기 위해 제안되었으며, LLM의 제로샷 능력을 활용하여 시뮬레이션에서 다양한 조작 작업에 대한 데모를 자동으로 생성하고, 성공적인 예시를 사용하여 LLM을 미세 조정하여 인간 감독 없이 계획 능력을 향상시킨다. BLAZER 훈련은 시뮬레이터의 상태에 접근을 필요로 하지만, 획득한 기술을 센서 기반 조작으로 직접 전송할 수 있음을 보여준다. 광범위한 실험을 통해, BLAZER는 시뮬레이션 및 실제 환경에서 제로샷 조작을 크게 향상시키며, 훈련 풀 외부의 작업에서도 성능을 개선하고, LLM 모델의 축소를 가능하게 하는 등의 결과를 도출했다. 이 연구의 코드와 데이터는 프로젝트 페이지에서 공개될 예정이다.
+
+### 💡 핵심 내용
+로봇공학 분야는 대규모 데이터와 모델의 확장을 통한 일반화 및 견고한 정책 개발에 주력하고 있지만, 다양한 작업과 환경에서의 인터넷 규모 시연에 접근하는 데는 한계가 있다. BLAZER는 LLM(대규모 언어 모델)의 제로샷 능력을 기반으로 하여 다양한 조작 작업에 대한 시뮬레이션 내 자동 생성 데모를 통해 조작 정책을 학습한다. 이를 통해, BLAZER는 실제 및 시뮬레이션 환경에서의 제로샷 조작을 크게 향상시키고, 훈련 풀 외부의 작업에서도 성능을 개선한다.
+
+
+## 🔑 키워드
+
+- **로봇 조작 정책**
+- **제로샷 데이터 생성**
+- **대규모 언어 모델(Large Language Models)**
+- **시뮬레이션**
+- **스킬 전송**
+
+
+## 🔗 관련 모듈
+
+이 논문과 관련된 KSS 학습 모듈:
+
+- [Llm](/modules/llm)
+- [Reinforcement Learning](/modules/reinforcement-learning)
+- [Autonomous Mobility](/modules/autonomous-mobility)
+
+
+---
+
+## 📚 참고 자료
+
+- **ArXiv 원문**: [2510.08572v1](http://arxiv.org/pdf/2510.08572v1)
+- **ArXiv 페이지**: [https://arxiv.org/abs/2510.08572v1](https://arxiv.org/abs/2510.08572v1)
+
+---
+
+<div className="paper-footer">
+  <p>이 요약은 KSS ArXiv Monitor에 의해 자동 생성되었습니다.</p>
+  <p>생성일: 2025. 10. 10.</p>
+</div>

@@ -1,0 +1,88 @@
+---
+title: "ArenaBencher: Automatic Benchmark Evolution via Multi-Model Competitive Evaluation"
+arxivId: "2510.08569v1"
+authors: ["Qin Liu", "Jacob Dineen", "Yuxi Huang", "Sheng Zhang", "Hoifung Poon", "Ben Zhou", "Muhao Chen"]
+publishedDate: "2025-10-09"
+categories: ["cs.CL", "cs.AI", "cs.LG"]
+keywords: ["ArenaBencher", "벤치마크 진화", "데이터 유출", "대규모 언어 모델", "모델 평가"]
+relatedModules: ["llm", "natural-language-processing", "multi-agent"]
+pdfUrl: "http://arxiv.org/pdf/2510.08569v1"
+---
+
+# ArenaBencher: Automatic Benchmark Evolution via Multi-Model Competitive Evaluation
+
+
+## 📋 논문 개요
+
+<div className="paper-overview">
+  <div className="overview-item">
+    <strong>ArXiv ID:</strong> <a href="http://arxiv.org/pdf/2510.08569v1" target="_blank" rel="noopener">2510.08569v1</a>
+  </div>
+  <div className="overview-item">
+    <strong>발행일:</strong> 2025. 10. 10.
+  </div>
+  <div className="overview-item">
+    <strong>카테고리:</strong> cs.CL, cs.AI, cs.LG
+  </div>
+</div>
+
+### 📌 한 줄 요약
+ArenaBencher는 데이터 유출 문제를 해결하기 위해 벤치마크를 지속적으로 진화시키는 프레임워크입니다.
+
+
+## 👥 저자
+
+1. Qin Liu
+2. Jacob Dineen
+3. Yuxi Huang
+4. Sheng Zhang
+5. Hoifung Poon
+6. Ben Zhou
+7. Muhao Chen
+
+
+## 📄 초록 (Abstract)
+
+Benchmarks are central to measuring the capabilities of large language models and guiding model development, yet widespread data leakage from pretraining corpora undermines their validity. Models can match memorized content rather than demonstrate true generalization, which inflates scores, distorts cross-model comparisons, and misrepresents progress. We introduce ArenaBencher, a model-agnostic framework for automatic benchmark evolution that updates test cases while preserving comparability. Given an existing benchmark and a diverse pool of models to be evaluated, ArenaBencher infers the core ability of each test case, generates candidate question-answer pairs that preserve the original objective, verifies correctness and intent with an LLM as a judge, and aggregates feedback from multiple models to select candidates that expose shared weaknesses. The process runs iteratively with in-context demonstrations that steer generation toward more challenging and diagnostic cases. We apply ArenaBencher to math problem solving, commonsense reasoning, and safety domains and show that it produces verified, diverse, and fair updates that uncover new failure modes, increase difficulty while preserving test objective alignment, and improve model separability. The framework provides a scalable path to continuously evolve benchmarks in step with the rapid progress of foundation models.
+
+
+## 🔍 요약
+
+### 📝 상세 요약
+대규모 언어 모델을 평가하고 발전시키는 데 있어 벤치마크의 중요성은 높지만, 사전 학습 데이터에서의 광범위한 데이터 유출은 그 유효성을 약화시킵니다. 이러한 문제로 모델들은 진정한 일반화 능력을 보여주기보다는 기억된 내용과 일치하는 경향이 있어, 평가 점수가 부풀려지고 모델 간 비교가 왜곡되며 진전이 잘못 표현됩니다. ArenaBencher는 이 문제를 해결하기 위해 제안된 모델 비종속적 프레임워크로, 테스트 케이스를 업데이트하면서 비교 가능성을 유지합니다. 이 프레임워크는 기존 벤치마크와 평가될 다양한 모델 풀을 기반으로 각 테스트 케이스의 핵심 능력을 추론하고, 원래 목표를 보존하는 후보 질문-답변 쌍을 생성한 후 LLM을 판독기로 사용하여 정확성과 의도를 검증하고, 여러 모델로부터의 피드백을 종합하여 공통된 약점을 드러내는 후보를 선택합니다. 이 과정은 더 도전적이고 진단적인 케이스를 향해 생성을 유도하기 위해 인컨텍스트 데모를 사용하여 반복적으로 실행됩니다. ArenaBencher를 수학 문제 해결, 상식 추론, 안전 도메인에 적용한 결과, 이 프레임워크는 새로운 실패 모드를 드러내고, 테스트 목표 정렬을 보존하면서 난이도를 증가시키며, 모델 분리능력을 개선하는 검증된, 다양하고 공정한 벤치마크 업데이트를 생성합니다. 이는 기초 모델의 빠른 발전과 동행하여 벤치마크를 지속적으로 진화시키는 확장 가능한 경로를 제공합니다.
+
+### 💡 핵심 내용
+ArenaBencher는 대규모 언어 모델의 성능 측정과 개발을 안내하는 데 중요한 벤치마크의 데이터 유출 문제를 해결하기 위해 소개되었습니다. 이 프레임워크는 다양한 모델을 평가하면서 기존 테스트 케이스의 핵심 능력을 유지하면서 새로운 질문-답변 쌍을 생성하고, 여러 모델의 피드백을 통해 공통된 약점을 드러내는 후보를 선택합니다. 실험 결과, ArenaBencher는 새로운 실패 모드를 밝히고, 난이도를 증가시키며, 모델 분리능력을 개선하는 검증된, 다양하고 공정한 벤치마크 업데이트를 생산합니다.
+
+
+## 🔑 키워드
+
+- **ArenaBencher**
+- **벤치마크 진화**
+- **데이터 유출**
+- **대규모 언어 모델**
+- **모델 평가**
+
+
+## 🔗 관련 모듈
+
+이 논문과 관련된 KSS 학습 모듈:
+
+- [Llm](/modules/llm)
+- [Natural Language Processing](/modules/natural-language-processing)
+- [Multi Agent](/modules/multi-agent)
+
+
+---
+
+## 📚 참고 자료
+
+- **ArXiv 원문**: [2510.08569v1](http://arxiv.org/pdf/2510.08569v1)
+- **ArXiv 페이지**: [https://arxiv.org/abs/2510.08569v1](https://arxiv.org/abs/2510.08569v1)
+
+---
+
+<div className="paper-footer">
+  <p>이 요약은 KSS ArXiv Monitor에 의해 자동 생성되었습니다.</p>
+  <p>생성일: 2025. 10. 10.</p>
+</div>

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Brain, TrendingUp, Home, Network, BookOpen, Wrench } from 'lucide-react';
+import { BookOpen, FileText } from 'lucide-react';
 import KSSLogo from './icons/KSSLogo';
 import UserMenu from './auth/UserMenu';
 
@@ -10,10 +10,8 @@ export default function Navigation() {
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/', label: 'Home', icon: Home },
-    { href: '/modules', label: '모든 모듈', icon: BookOpen },
-    { href: '/learning-path', label: '학습 경로', icon: TrendingUp },
-    { href: '/tools', label: '실전 도구', icon: Wrench },
+    { href: '/#modules', label: '모듈', icon: BookOpen },
+    { href: '/papers', label: '논문', icon: FileText },
   ];
 
   return (
