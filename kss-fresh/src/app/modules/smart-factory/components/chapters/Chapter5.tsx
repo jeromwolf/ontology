@@ -1,10 +1,11 @@
 'use client';
 
-import { 
+import {
   Wifi, Cloud, Server
 } from 'lucide-react';
 import CodeEditor from '../CodeEditor';
 import Link from 'next/link';
+import References from '@/components/common/References';
 
 export default function Chapter5() {
   return (
@@ -460,6 +461,124 @@ void reconnect() {
           </div>
         </div>
       </div>
+
+      {/* References Section */}
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 표준',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'MQTT Version 5.0 Official Specification',
+                authors: 'OASIS',
+                year: '2019',
+                link: 'https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html',
+                description: 'MQTT 공식 표준 문서 및 QoS 레벨 상세 설명'
+              },
+              {
+                title: 'OPC Unified Architecture Specification',
+                authors: 'OPC Foundation',
+                year: '2023',
+                link: 'https://opcfoundation.org/about/opc-technologies/opc-ua/',
+                description: '산업 자동화를 위한 통신 표준'
+              },
+              {
+                title: 'Modbus Protocol Specification',
+                authors: 'Modbus Organization',
+                year: '2012',
+                link: 'https://modbus.org/specs.php',
+                description: 'Modbus RTU/TCP 프로토콜 레퍼런스'
+              },
+              {
+                title: 'EtherCAT Technology Group',
+                authors: 'EtherCAT',
+                link: 'https://www.ethercat.org/',
+                description: '실시간 이더넷 통신 프로토콜 자료'
+              },
+              {
+                title: 'IEEE 802.1 Time-Sensitive Networking (TSN)',
+                authors: 'IEEE',
+                year: '2021',
+                link: 'https://1.ieee802.org/tsn/',
+                description: '결정론적 네트워크 표준'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 연구',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Fog Computing and Its Role in the Internet of Things',
+                authors: 'Bonomi, F., Milito, R., Zhu, J., & Addepalli, S.',
+                year: '2012',
+                link: 'https://dl.acm.org/doi/10.1145/2342509.2342513',
+                description: 'Fog Computing 개념 최초 제안 논문'
+              },
+              {
+                title: 'Edge Intelligence: The Confluence of Edge Computing and Artificial Intelligence',
+                authors: 'Zhou, Z., et al.',
+                year: '2019',
+                link: 'https://ieeexplore.ieee.org/document/8763885',
+                description: 'IEEE Internet of Things Journal - Edge AI 연구'
+              },
+              {
+                title: '5G for Industrial IoT: Design and Performance Evaluation',
+                authors: 'Mahmood, A., et al.',
+                year: '2020',
+                link: 'https://ieeexplore.ieee.org/document/9090794',
+                description: '산업용 IoT를 위한 5G URLLC 성능 분석'
+              },
+              {
+                title: 'LoRaWAN for Industrial Applications: Performance Analysis',
+                authors: 'Sanchez-Iborra, R., & Cano, M.',
+                year: '2016',
+                description: 'LoRa 기반 산업 IoT 통신 분석'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 리소스',
+            icon: 'book' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'AWS IoT Core Documentation',
+                authors: 'Amazon Web Services',
+                link: 'https://docs.aws.amazon.com/iot/',
+                description: '클라우드 기반 IoT 플랫폼 가이드'
+              },
+              {
+                title: 'Azure IoT Hub Developer Guide',
+                authors: 'Microsoft',
+                link: 'https://docs.microsoft.com/azure/iot-hub/',
+                description: 'Azure IoT 솔루션 구축 가이드'
+              },
+              {
+                title: 'ESP32/Arduino IoT Development',
+                authors: 'Espressif Systems',
+                link: 'https://docs.espressif.com/projects/esp-idf/',
+                description: 'ESP32 기반 IoT 센서 개발 문서'
+              },
+              {
+                title: 'Node-RED for Industrial IoT',
+                authors: 'OpenJS Foundation',
+                link: 'https://nodered.org/',
+                description: '비주얼 IoT 플로우 프로그래밍 도구'
+              },
+              {
+                title: 'Mosquitto MQTT Broker',
+                authors: 'Eclipse Foundation',
+                link: 'https://mosquitto.org/',
+                description: '오픈소스 MQTT 브로커 및 클라이언트'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

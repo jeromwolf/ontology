@@ -1,5 +1,7 @@
 'use client'
 
+import References from '@/components/common/References';
+
 export default function Chapter4() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -560,6 +562,101 @@ Rp ∝ √(E/M)
           </ul>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 표준',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'SEMI Equipment Standards',
+                link: 'https://www.semi.org/en/products-services/standards',
+                description: 'SEMI 반도체 장비 및 공정 국제 표준 (E-series, F-series)'
+              },
+              {
+                title: 'Applied Materials - Process Technology',
+                link: 'https://www.appliedmaterials.com/semiconductor/semiconductor-fabrication',
+                description: 'Applied Materials 증착/에칭 장비 기술 문서 (1위 업체)'
+              },
+              {
+                title: 'Lam Research - Etch and Deposition Systems',
+                link: 'https://www.lamresearch.com/',
+                description: 'Lam Research 에칭/증착 시스템 공식 백서'
+              },
+              {
+                title: 'Tokyo Electron (TEL) - Semiconductor Production Equipment',
+                link: 'https://www.tel.com/products/',
+                description: 'Tokyo Electron 반도체 생산 장비 기술 자료'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재 & 논문',
+            icon: 'book' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Semiconductor Manufacturing Technology',
+                authors: 'Quirk, M., Serda, J.',
+                year: '2001',
+                description: 'Prentice Hall - 반도체 제조 공정 표준 교재'
+              },
+              {
+                title: 'Silicon VLSI Technology: Fundamentals, Practice, and Modeling',
+                authors: 'Plummer, J. D., Deal, M. D., Griffin, P. B.',
+                year: '2000',
+                description: 'Prentice Hall - Stanford 대학 VLSI 제조 교재'
+              },
+              {
+                title: 'Chemical Mechanical Polishing: Theory and Practice',
+                authors: 'Oliver, M. R.',
+                year: '2004',
+                description: 'Elsevier - CMP 공정 완전 가이드'
+              },
+              {
+                title: 'Atomic Layer Deposition: Principles, Characteristics, and Nanotechnology',
+                authors: 'George, S. M.',
+                year: '2010',
+                description: 'Chemical Reviews - ALD 기술 리뷰 논문 (고인용 논문)'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 장비',
+            icon: 'web' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Synopsys Sentaurus TCAD - Process Simulation',
+                link: 'https://www.synopsys.com/silicon/tcad.html',
+                description: 'Synopsys 반도체 공정 시뮬레이션 툴 (TCAD)'
+              },
+              {
+                title: 'Silvaco Athena - Process Simulator',
+                link: 'https://silvaco.com/tcad/athena/',
+                description: 'Silvaco 증착/에칭/확산 공정 시뮬레이터'
+              },
+              {
+                title: 'KLA-Tencor - Process Control & Metrology',
+                link: 'https://www.kla.com/products/process-control',
+                description: 'KLA 공정 제어 및 계측 시스템 (업계 1위)'
+              },
+              {
+                title: 'ASML - Wafer Processing Integration',
+                link: 'https://www.asml.com/',
+                description: 'ASML 웨이퍼 처리 및 리소그래피 통합 솔루션'
+              },
+              {
+                title: 'Virtual Wafer Fab - Online Simulator',
+                link: 'https://www.virtualwafer.com/',
+                description: '온라인 반도체 공정 시뮬레이터 (교육용 무료)'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

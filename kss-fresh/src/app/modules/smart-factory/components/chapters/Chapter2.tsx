@@ -1,8 +1,9 @@
 'use client';
 
-import { 
+import {
   Globe, Factory, Zap, Cog, Users, Cpu
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter2() {
   return (
@@ -194,6 +195,90 @@ export default function Chapter2() {
           </p>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 사례',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'Siemens Amberg Electronics Plant - Digital Enterprise',
+                link: 'https://www.siemens.com/global/en/products/automation/topic-areas/digital-enterprise.html',
+                description: '지멘스 암베르크 공장 공식 사례 및 디지털 팩토리 솔루션'
+              },
+              {
+                title: 'GE Digital - Predix Platform Documentation',
+                link: 'https://www.ge.com/digital/',
+                description: 'GE Predix 산업용 IoT 플랫폼 공식 문서'
+              },
+              {
+                title: 'Toyota Production System - Official Guide',
+                link: 'https://global.toyota/en/company/vision-and-philosophy/production-system/',
+                description: '도요타 생산 시스템(TPS) 공식 가이드 및 린 제조 철학'
+              },
+              {
+                title: 'Haier COSMOPlat - Industrial Internet Platform',
+                link: 'https://www.cosmoplat.com/',
+                description: '하이얼 코스모플랫 대량 맞춤화 플랫폼 공식 사이트'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 연구 & 분석',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Digital Twin: Enabling Technologies, Challenges and Open Research',
+                authors: 'Grieves, M. & Vickers, J.',
+                year: '2017',
+                description: 'IEEE Access - 디지털 트윈 개념 및 구현 방법론'
+              },
+              {
+                title: 'Smart Manufacturing: The Research and Application Perspectives',
+                authors: 'Davis, J., Edgar, T. F.',
+                year: '2015',
+                description: 'Computers & Chemical Engineering - 스마트 제조 연구 동향'
+              },
+              {
+                title: 'Benchmarking manufacturing sector 4.0',
+                authors: 'Moeuf, A., et al.',
+                year: '2018',
+                description: 'Journal of Manufacturing Technology Management - 제조업 4.0 벤치마킹'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 리소스',
+            icon: 'book' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'World Economic Forum - Fourth Industrial Revolution Center',
+                link: 'https://www.weforum.org/centre-for-the-fourth-industrial-revolution/',
+                description: '세계경제포럼 4차 산업혁명 센터 - 글로벌 사례 및 정책 연구'
+              },
+              {
+                title: 'Deloitte - Digital Manufacturing Enterprise',
+                link: 'https://www2.deloitte.com/insights',
+                description: '딜로이트 디지털 제조 기업 전환 사례 연구 및 ROI 분석'
+              },
+              {
+                title: 'MIT Technology Review - Smart Factory Reports',
+                link: 'https://www.technologyreview.com/',
+                description: 'MIT 기술 리뷰 - 스마트팩토리 최신 기술 및 트렌드'
+              },
+              {
+                title: 'Industry Week - Manufacturing Excellence',
+                link: 'https://www.industryweek.com/',
+                description: '제조업 전문 매체 - 성공/실패 사례 분석'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

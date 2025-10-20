@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { BookOpen, FlaskConical, Lightbulb, Target } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter1() {
   return (
@@ -291,6 +292,102 @@ export default function Chapter1() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 핵심 논문 & 아키텍처',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Attention Is All You Need (2017)',
+                url: 'https://arxiv.org/abs/1706.03762',
+                description: 'Transformer 아키텍처의 원조 논문 - Vaswani et al., Google Brain'
+              },
+              {
+                title: 'BERT: Pre-training of Deep Bidirectional Transformers (2018)',
+                url: 'https://arxiv.org/abs/1810.04805',
+                description: '양방향 인코더 모델의 혁신 - Devlin et al., Google AI'
+              },
+              {
+                title: 'Language Models are Few-Shot Learners (GPT-3, 2020)',
+                url: 'https://arxiv.org/abs/2005.14165',
+                description: '175B 파라미터 모델, Few-shot 학습의 가능성 증명 - Brown et al., OpenAI'
+              },
+              {
+                title: 'Training language models to follow instructions (InstructGPT, 2022)',
+                url: 'https://arxiv.org/abs/2203.02155',
+                description: 'RLHF를 통한 instruction-following 능력 향상 - Ouyang et al., OpenAI'
+              },
+              {
+                title: 'LLaMA: Open and Efficient Foundation Language Models (2023)',
+                url: 'https://arxiv.org/abs/2302.13971',
+                description: '오픈소스 LLM의 시작 - Touvron et al., Meta AI'
+              }
+            ]
+          },
+          {
+            title: '🔬 최신 연구 & 벤치마크',
+            icon: 'research' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'GPT-4 Technical Report (2023)',
+                url: 'https://arxiv.org/abs/2303.08774',
+                description: '멀티모달 LLM, 인간 수준 성능 달성 - OpenAI'
+              },
+              {
+                title: 'Claude 3 Model Card',
+                url: 'https://www.anthropic.com/claude',
+                description: 'Constitutional AI 기반 안전한 LLM - Anthropic'
+              },
+              {
+                title: 'Gemini 1.5: Unlocking multimodal understanding across millions of tokens',
+                url: 'https://arxiv.org/abs/2403.05530',
+                description: '200만 토큰 컨텍스트 윈도우 - Google DeepMind'
+              },
+              {
+                title: 'MMLU Benchmark',
+                url: 'https://github.com/hendrycks/test',
+                description: '57개 분야 다중 과제 평가 벤치마크 - Hendrycks et al.'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 라이브러리',
+            icon: 'tools' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Hugging Face Transformers',
+                url: 'https://huggingface.co/docs/transformers',
+                description: '모든 주요 LLM을 다루는 통합 라이브러리 (180k+ GitHub stars)'
+              },
+              {
+                title: 'OpenAI API Documentation',
+                url: 'https://platform.openai.com/docs',
+                description: 'GPT-4, GPT-3.5, Embeddings API 공식 문서'
+              },
+              {
+                title: 'The Illustrated Transformer',
+                url: 'https://jalammar.github.io/illustrated-transformer/',
+                description: 'Transformer 아키텍처 시각화 - Jay Alammar'
+              },
+              {
+                title: 'Stanford CS324: Large Language Models',
+                url: 'https://stanford-cs324.github.io/winter2022/',
+                description: '스탠포드 LLM 강의 - Percy Liang et al.'
+              },
+              {
+                title: 'LLM Leaderboard (Chatbot Arena)',
+                url: 'https://chat.lmsys.org/?leaderboard',
+                description: '실시간 LLM 성능 비교 - LMSYS Org'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

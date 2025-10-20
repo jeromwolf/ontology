@@ -1,11 +1,12 @@
 'use client';
 
-import { 
-  Brain, Cpu, BarChart3, Activity, Eye, Cog, Database, Wrench, 
+import {
+  Brain, Cpu, BarChart3, Activity, Eye, Cog, Database, Wrench,
   Rocket, ChevronRight, Building, TestTube, Code
 } from 'lucide-react';
 import CodeEditor from '../CodeEditor';
 import Link from 'next/link';
+import References from '@/components/common/References';
 
 export default function Chapter6() {
   return (
@@ -540,6 +541,114 @@ print(f"예상 잔여 수명: {rul_hours}시간")`}
           </div>
         </div>
       </div>
+
+      {/* References Section */}
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 튜토리얼',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'TensorFlow for Manufacturing AI',
+                authors: 'Google',
+                link: 'https://www.tensorflow.org/tfx',
+                description: 'TensorFlow Extended (TFX) 프로덕션 ML 파이프라인'
+              },
+              {
+                title: 'PyTorch Industrial AI Toolkit',
+                authors: 'Meta AI',
+                link: 'https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html',
+                description: 'PyTorch 기반 산업 비전 시스템 구축'
+              },
+              {
+                title: 'MLflow - MLOps Platform',
+                authors: 'Databricks',
+                link: 'https://mlflow.org/docs/latest/index.html',
+                description: 'ML 모델 생명주기 관리 플랫폼'
+              },
+              {
+                title: 'Kubeflow Machine Learning Toolkit',
+                authors: 'Google Cloud',
+                link: 'https://www.kubeflow.org/',
+                description: 'Kubernetes 기반 ML 워크플로우'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Deep Learning for Predictive Maintenance in Manufacturing',
+                authors: 'Lei, Y., et al.',
+                year: '2020',
+                link: 'https://ieeexplore.ieee.org/document/8999415',
+                description: 'IEEE Transactions on Industrial Informatics'
+              },
+              {
+                title: 'LSTM-based Remaining Useful Life Prediction',
+                authors: 'Zheng, S., et al.',
+                year: '2017',
+                link: 'https://www.sciencedirect.com/science/article/pii/S0736584517302016',
+                description: 'Robotics and Computer-Integrated Manufacturing'
+              },
+              {
+                title: 'Quality Prediction using Deep Neural Networks',
+                authors: 'Lee, J., et al.',
+                year: '2019',
+                link: 'https://www.mdpi.com/2076-3417/9/16/3389',
+                description: 'Applied Sciences - 품질 예측 딥러닝 모델'
+              },
+              {
+                title: 'Reinforcement Learning for Job Shop Scheduling',
+                authors: 'Zhang, C., et al.',
+                year: '2020',
+                description: 'Manufacturing Systems 최적화를 위한 강화학습'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 리소스',
+            icon: 'book' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'NASA PHM Data Repository',
+                authors: 'NASA Ames',
+                link: 'https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/',
+                description: '베어링, 터빈 고장 예측 벤치마크 데이터셋'
+              },
+              {
+                title: 'Case Western Reserve Bearing Dataset',
+                authors: 'CWRU',
+                link: 'https://engineering.case.edu/bearingdatacenter',
+                description: '진동 데이터 기반 베어링 결함 분석'
+              },
+              {
+                title: 'Kaggle Manufacturing Quality Datasets',
+                authors: 'Kaggle',
+                link: 'https://www.kaggle.com/datasets?search=manufacturing+quality',
+                description: '제조업 품질 예측 공개 데이터셋'
+              },
+              {
+                title: 'GE Predix Industrial IoT Platform',
+                authors: 'General Electric',
+                link: 'https://www.ge.com/digital/iiot-platform',
+                description: '산업 AI/IoT 통합 플랫폼'
+              },
+              {
+                title: 'AWS SageMaker for Manufacturing',
+                authors: 'Amazon Web Services',
+                link: 'https://aws.amazon.com/sagemaker/',
+                description: '클라우드 기반 ML 모델 훈련 및 배포'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

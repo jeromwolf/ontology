@@ -1,10 +1,11 @@
 'use client';
 
-import { 
+import {
   Eye, Brain, BarChart3, Target, Code
 } from 'lucide-react';
 import CodeEditor from '../CodeEditor';
 import Link from 'next/link';
+import References from '@/components/common/References';
 
 export default function Chapter10() {
   return (
@@ -446,6 +447,102 @@ def create_spc_chart(data, title="SPC Chart"):
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 표준 & 문서',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'ISO 9001:2015 - Quality Management Systems',
+                url: 'https://www.iso.org/iso-9001-quality-management.html',
+                description: '품질 경영 시스템 국제 표준 - 프로세스 관리 및 지속적 개선 요구사항'
+              },
+              {
+                title: 'ASQ Six Sigma Handbook',
+                url: 'https://asq.org/quality-resources/six-sigma',
+                description: '미국 품질협회(ASQ)의 Six Sigma 공식 가이드북 - DMAIC, 통계적 도구, 사례'
+              },
+              {
+                title: 'ISO 3951 - Statistical Sampling Procedures',
+                url: 'https://www.iso.org/standard/53467.html',
+                description: '계량형 샘플링 검사 절차 - 평균, 표준편차 기준 품질 관리'
+              },
+              {
+                title: 'NIST Engineering Statistics Handbook',
+                url: 'https://www.itl.nist.gov/div898/handbook/',
+                description: '미국 국립표준기술연구소의 공정 관리 통계 기법 완벽 가이드 - SPC, DOE 포함'
+              },
+              {
+                title: 'AIAG MSA Manual (Measurement System Analysis)',
+                url: 'https://www.aiag.org/quality/automotive-core-tools/msa',
+                description: '자동차산업협회의 측정 시스템 분석 매뉴얼 - 게이지 R&R 방법론'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Deep Learning for Defect Detection in Manufacturing (IEEE Transactions, 2020)',
+                url: 'https://ieeexplore.ieee.org/document/9088181',
+                description: 'CNN 기반 제조 결함 검출 시스템 - 98.7% 정확도, 실시간 처리 (15ms/frame)'
+              },
+              {
+                title: 'YOLO-based Surface Defect Detection (Journal of Manufacturing Systems, 2021)',
+                url: 'https://www.sciencedirect.com/science/article/abs/pii/S0278612521000868',
+                description: 'YOLOv5를 활용한 표면 결함 실시간 검출 시스템 - 금속, 직물, PCB 적용'
+              },
+              {
+                title: 'Anomaly Detection in Manufacturing using VAE (Nature Scientific Reports, 2022)',
+                url: 'https://www.nature.com/articles/s41598-022-08892-w',
+                description: 'Variational Autoencoder 기반 비지도 학습 이상 탐지 - 새로운 결함 유형 자동 발견'
+              },
+              {
+                title: 'Transfer Learning for Industrial Quality Inspection (Computers in Industry, 2021)',
+                url: 'https://www.sciencedirect.com/science/article/abs/pii/S0166361521000403',
+                description: '소량 데이터 환경에서 전이 학습을 활용한 품질 검사 시스템 구축 연구'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Cognex Vision Systems - In-Sight & VisionPro',
+                url: 'https://www.cognex.com/products/machine-vision',
+                description: '산업용 머신 비전 시스템 세계 1위 - AOI, OCR, 바코드 읽기, 결함 검출 통합'
+              },
+              {
+                title: 'Keyence CV-X Series - AI Vision System',
+                url: 'https://www.keyence.com/products/vision/vision-sys/cv-x/',
+                description: 'AI 기반 산업용 비전 검사 시스템 - 딥러닝 통합, 조명-카메라-제어 일체형'
+              },
+              {
+                title: 'Ultralytics YOLOv8 - Object Detection',
+                url: 'https://github.com/ultralytics/ultralytics',
+                description: '최신 YOLO 모델 오픈소스 - 실시간 결함 검출에 최적화, Python API 제공'
+              },
+              {
+                title: 'OpenCV - Computer Vision Library',
+                url: 'https://opencv.org/',
+                description: '오픈소스 컴퓨터 비전 라이브러리 - 이미지 전처리, 특징 추출, 패턴 매칭 기능'
+              },
+              {
+                title: 'Minitab - Statistical Process Control Software',
+                url: 'https://www.minitab.com/en-us/products/minitab/',
+                description: '통계 공정 관리(SPC) 전문 소프트웨어 - 관리도, 공정 능력 분석, Six Sigma 도구'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

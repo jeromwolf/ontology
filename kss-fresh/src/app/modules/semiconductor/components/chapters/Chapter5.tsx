@@ -553,9 +553,41 @@ UCIe 표준 (2022)
       <References
         sections={[
           {
-            title: '원본 논문 (Original Papers)',
-            icon: 'paper',
+            title: '📚 공식 문서 & 제조 기술',
+            icon: 'web' as const,
             color: 'border-blue-500',
+            items: [
+              {
+                title: 'Applied Materials Process Technology',
+                url: 'https://www.appliedmaterials.com/us/en/semiconductor.html',
+                description: 'CVD, PVD, Etch 등 반도체 제조 장비 기술 백서 및 프로세스 가이드'
+              },
+              {
+                title: 'Lam Research Etch & Deposition Solutions',
+                url: 'https://www.lamresearch.com/products/',
+                description: '플라즈마 에칭, 박막 증착 공정 상세 기술 문서'
+              },
+              {
+                title: 'Tokyo Electron (TEL) Deposition Technology',
+                url: 'https://www.tel.com/product/spe/',
+                description: 'ALD, CVD, 스퍼터링 등 최첨단 증착 기술 솔루션'
+              },
+              {
+                title: 'ASML EUV Lithography Technology',
+                url: 'https://www.asml.com/en/technology/euv-lithography',
+                description: 'EUV 노광 기술 및 High-NA EUV 로드맵'
+              },
+              {
+                title: 'SEMI International Standards',
+                url: 'https://www.semi.org/en/products-services/standards',
+                description: '반도체 제조 장비 및 재료 국제 표준 (SEMI Standards)'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
             items: [
               {
                 title: 'FinFET: A Self-Aligned Double-Gate MOSFET Scalable to 20 nm',
@@ -602,9 +634,9 @@ UCIe 표준 (2022)
             ]
           },
           {
-            title: '산업 표준 및 백서 (Industry Standards & Whitepapers)',
-            icon: 'book',
-            color: 'border-indigo-500',
+            title: '🛠️ 실전 도구 & 장비',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
             items: [
               {
                 title: 'UCIe (Universal Chiplet Interconnect Express) Specification',
@@ -644,9 +676,9 @@ UCIe 표준 (2022)
             ]
           },
           {
-            title: '기술 컨퍼런스 자료 (Technical Conference Papers)',
-            icon: 'paper',
-            color: 'border-purple-500',
+            title: '📖 학회 & 컨퍼런스',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
             items: [
               {
                 title: 'IEDM (International Electron Devices Meeting)',
@@ -671,9 +703,9 @@ UCIe 표준 (2022)
             ]
           },
           {
-            title: '산업 자료 (Industry Resources)',
-            icon: 'web',
-            color: 'border-green-500',
+            title: '🌐 산업 리소스',
+            icon: 'web' as const,
+            color: 'border-blue-500',
             items: [
               {
                 title: 'IEEE Electron Device Society',

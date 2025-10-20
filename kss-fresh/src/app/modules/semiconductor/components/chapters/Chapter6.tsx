@@ -1,5 +1,7 @@
 'use client'
 
+import References from '@/components/common/References';
+
 export default function Chapter6() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -582,6 +584,102 @@ HBM 장점:
           </ul>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 제품 백서',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'NVIDIA GPU Architecture Documentation',
+                url: 'https://docs.nvidia.com/cuda/hopper-architecture/index.html',
+                description: 'Hopper H100, Blackwell B200 GPU 아키텍처 상세 문서'
+              },
+              {
+                title: 'Google Cloud TPU System Architecture',
+                url: 'https://cloud.google.com/tpu/docs/system-architecture-tpu-vm',
+                description: 'TPU v4/v5 아키텍처, Systolic Array, ICI 네트워크 기술'
+              },
+              {
+                title: 'Apple Neural Engine Technical Overview',
+                url: 'https://machinelearning.apple.com/research/neural-engine',
+                description: 'A17 Pro NPU 아키텍처 및 온디바이스 AI 기술'
+              },
+              {
+                title: 'SK hynix HBM3e Product Specification',
+                url: 'https://www.skhynix.com/products/hbm/',
+                description: 'HBM3e 1.15TB/s 메모리 스펙 및 AI 가속기 적용 사례'
+              },
+              {
+                title: 'Qualcomm AI Engine Direct SDK',
+                url: 'https://developer.qualcomm.com/software/qualcomm-neural-processing-sdk',
+                description: 'Hexagon NPU 프로그래밍 가이드 및 최적화 기법'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'In-Datacenter Performance Analysis of a Tensor Processing Unit',
+                url: 'https://arxiv.org/abs/1704.04760',
+                description: 'Google TPU v1 아키텍처 및 성능 분석 논문 (ISCA 2017)'
+              },
+              {
+                title: 'Eyeriss: An Energy-Efficient Reconfigurable Accelerator for Deep Convolutional Neural Networks',
+                url: 'https://ieeexplore.ieee.org/document/7738524',
+                description: 'MIT Eyeriss NPU - Row Stationary Dataflow 설계 (ISSCC 2016)'
+              },
+              {
+                title: 'NVIDIA A100 Tensor Core GPU Architecture',
+                url: 'https://images.nvidia.com/aem-dam/en-zz/Solutions/data-center/nvidia-ampere-architecture-whitepaper.pdf',
+                description: 'Ampere 아키텍처 백서 - Tensor Core, MIG 기술 상세'
+              },
+              {
+                title: 'HBM3: The Next Generation High Bandwidth Memory',
+                url: 'https://ieeexplore.ieee.org/document/9444087',
+                description: 'JEDEC HBM3 표준 및 AI 워크로드 최적화 (VLSI 2021)'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 프레임워크',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'NVIDIA CUDA Toolkit & cuDNN',
+                url: 'https://developer.nvidia.com/cuda-toolkit',
+                description: 'GPU 프로그래밍 툴킷 - Tensor Core 최적화 라이브러리'
+              },
+              {
+                title: 'TensorFlow XLA Compiler',
+                url: 'https://www.tensorflow.org/xla',
+                description: 'TPU/GPU 최적화 컴파일러 - Accelerated Linear Algebra'
+              },
+              {
+                title: 'Intel OpenVINO Toolkit',
+                url: 'https://docs.openvino.ai/',
+                description: 'NPU/GPU 통합 추론 엔진 - 모델 최적화 및 배포'
+              },
+              {
+                title: 'AMD ROCm Platform',
+                url: 'https://rocm.docs.amd.com/',
+                description: 'AMD GPU HIP 프로그래밍 - MI300 시리즈 지원'
+              },
+              {
+                title: 'MLPerf Benchmark Suite',
+                url: 'https://mlcommons.org/benchmarks/',
+                description: 'AI 칩 성능 벤치마크 - 학습/추론 표준 평가'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

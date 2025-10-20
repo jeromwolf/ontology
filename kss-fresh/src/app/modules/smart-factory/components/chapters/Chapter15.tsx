@@ -1,8 +1,9 @@
 'use client';
 
-import { 
+import {
   Users, Heart, BookOpen, Award, TrendingUp
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter15() {
   return (
@@ -305,6 +306,102 @@ export default function Chapter15() {
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 변화관리 프레임워크 & 모델',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'Kotter\'s 8-Step Change Model',
+                url: 'https://www.kotterinc.com/methodology/8-steps/',
+                description: 'John Kotter의 8단계 변화관리 모델 - 위기감 조성부터 문화 정착까지 체계적 접근법.'
+              },
+              {
+                title: 'Prosci ADKAR Model',
+                url: 'https://www.prosci.com/methodology/adkar',
+                description: 'Prosci의 ADKAR 모델 - Awareness, Desire, Knowledge, Ability, Reinforcement 5단계 개인 변화 관리.'
+              },
+              {
+                title: 'McKinsey - Leading Digital Transformation',
+                url: 'https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-organization-blog/leading-a-digital-transformation',
+                description: 'McKinsey의 디지털 전환 리더십 가이드 - 조직 변화 관리 전략과 성공 요인.'
+              },
+              {
+                title: 'Lewin\'s Change Management Model',
+                url: 'https://www.mindtools.com/pages/article/newPPM_94.htm',
+                description: 'Kurt Lewin의 Unfreeze-Change-Refreeze 모델 - 고전적 변화관리 3단계 이론.'
+              },
+              {
+                title: 'WEF - Upskilling for Industry 4.0',
+                url: 'https://www.weforum.org/reports/upskilling-for-shared-prosperity',
+                description: 'World Economic Forum - 산업 4.0 시대를 위한 업스킬링 및 리스킬링 전략 보고서.'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Resistance to Digital Transformation in Manufacturing',
+                url: 'https://www.sciencedirect.com/science/article/pii/S0166361519304445',
+                description: 'ScienceDirect - 제조업 디지털 전환에 대한 저항 요인 분석과 극복 전략 연구.'
+              },
+              {
+                title: 'Generational Differences in Digital Learning',
+                url: 'https://www.emerald.com/insight/content/doi/10.1108/JWL-02-2020-0033/full/html',
+                description: 'Emerald Journal - 세대별 디지털 학습 선호도와 효과적 교육 방법론 연구.'
+              },
+              {
+                title: 'Culture Change in Smart Manufacturing',
+                url: 'https://ieeexplore.ieee.org/document/9184522',
+                description: 'IEEE - 스마트 제조 환경에서의 조직 문화 변화 관리 사례 연구.'
+              },
+              {
+                title: 'Digital Competency Framework for Manufacturing',
+                url: 'https://www.sciencedirect.com/science/article/pii/S0166361520301883',
+                description: 'ScienceDirect - 제조업 종사자를 위한 디지털 역량 프레임워크 개발 연구.'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 프로그램',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: '한국산업인력공단 - 스마트팩토리 교육',
+                url: 'https://www.hrdkorea.or.kr/',
+                description: '한국산업인력공단 스마트팩토리 교육 프로그램 - 정부 지원 직업훈련 과정.'
+              },
+              {
+                title: '산업통상자원부 - 스마트공장 확산 사업',
+                url: 'https://www.smart-factory.kr/',
+                description: '스마트공장추진단 - 중소기업 스마트팩토리 구축 지원 및 교육 프로그램.'
+              },
+              {
+                title: 'LinkedIn Learning - Digital Transformation',
+                url: 'https://www.linkedin.com/learning/topics/digital-transformation',
+                description: 'LinkedIn Learning - 디지털 전환 관련 온라인 강좌 및 학습 경로.'
+              },
+              {
+                title: 'Coursera - Industry 4.0 & Smart Factory',
+                url: 'https://www.coursera.org/courses?query=industry%204.0',
+                description: 'Coursera - 산업 4.0 및 스마트팩토리 관련 MOOC 강의 플랫폼.'
+              },
+              {
+                title: 'Udemy - Change Management Courses',
+                url: 'https://www.udemy.com/topic/change-management/',
+                description: 'Udemy - 변화관리 실무 교육 과정 - ADKAR, Kotter 모델 등 실습 중심.'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

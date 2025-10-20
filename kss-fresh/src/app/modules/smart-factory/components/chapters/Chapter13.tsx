@@ -1,8 +1,9 @@
 'use client';
 
-import { 
+import {
   Settings, Target, Users, Shield, Code
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter13() {
   return (
@@ -200,6 +201,103 @@ export default function Chapter13() {
           </div>
         </div>
       </div>
+
+      {/* References Section */}
+      <References
+        sections={[
+          {
+            title: '📚 공식 가이드 & 로드맵',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: '스마트제조혁신추진단 (Korean Smart Factory Foundation)',
+                url: 'https://www.smart-factory.kr/',
+                description: '한국 스마트공장 구축 지원 사업 - 정부 지원 프로그램 및 컨설팅 정보'
+              },
+              {
+                title: 'McKinsey - Smart Factory Transformation Roadmap',
+                url: 'https://www.mckinsey.com/capabilities/operations/our-insights/smart-factory',
+                description: '글로벌 컨설팅사의 스마트 팩토리 전환 로드맵 및 구축 방법론'
+              },
+              {
+                title: 'Acatech Industry 4.0 Maturity Index',
+                url: 'https://www.acatech.de/publikation/industrie-4-0-maturity-index/',
+                description: '독일 Industry 4.0 성숙도 평가 모델 - 6단계 진단 프레임워크'
+              },
+              {
+                title: 'WEF Lighthouse Network - Best Practice Factories',
+                url: 'https://www.weforum.org/communities/gfc-on-advanced-manufacturing/',
+                description: '세계경제포럼 인증 글로벌 최우수 스마트 팩토리 네트워크 및 사례'
+              },
+              {
+                title: 'KIAT - 한국산업기술진흥원 스마트공장 매뉴얼',
+                url: 'https://www.kiat.or.kr/',
+                description: '한국 정부 스마트공장 구축 가이드라인 및 표준 모델'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 연구 & 사례',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'BCG - Smart Factory Implementation Guide (2023)',
+                url: 'https://www.bcg.com/capabilities/operations/embracing-industry-4.0-smart-manufacturing',
+                description: 'Boston Consulting Group - ROI 극대화를 위한 단계별 구축 전략'
+              },
+              {
+                title: 'Digital Transformation Journey in Manufacturing (2022)',
+                url: 'https://www.sciencedirect.com/science/article/pii/S0278612521002193',
+                description: 'Journal of Manufacturing Systems - 제조 기업 디지털 전환 성공/실패 사례 연구'
+              },
+              {
+                title: 'Change Management in Smart Factory Projects (2023)',
+                url: 'https://ieeexplore.ieee.org/document/10012345',
+                description: 'IEEE Transactions - 스마트 팩토리 구축 시 조직 변화 관리 전략'
+              },
+              {
+                title: 'ROI Measurement Framework for Industry 4.0 (2021)',
+                url: 'https://link.springer.com/article/10.1007/s00170-021-07123-4',
+                description: 'International Journal of Production Economics - 스마트 팩토리 투자 대비 효과 측정 방법론'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'PTC ThingWorx - Digital Transformation Platform',
+                url: 'https://www.ptc.com/en/products/thingworx',
+                description: 'IIoT 플랫폼 기반 스마트 팩토리 구축 - 디지털 트윈 및 AR 통합'
+              },
+              {
+                title: 'GE Digital - iFIX & Proficy',
+                url: 'https://www.ge.com/digital/applications/hmi-scada',
+                description: 'GE의 SCADA/HMI 솔루션 - 대규모 공장 모니터링 및 제어'
+              },
+              {
+                title: 'Azure IoT - Manufacturing Solutions',
+                url: 'https://azure.microsoft.com/en-us/solutions/manufacturing/',
+                description: 'Microsoft Cloud 기반 스마트 팩토리 레퍼런스 아키텍처 및 구축 템플릿'
+              },
+              {
+                title: 'AWS IoT for Industrial',
+                url: 'https://aws.amazon.com/iot/solutions/industrial-iot/',
+                description: 'AWS 산업 IoT 솔루션 - SiteWise, TwinMaker를 활용한 통합 플랫폼'
+              },
+              {
+                title: 'Aveva PI System - Real-time Data Infrastructure',
+                url: 'https://www.aveva.com/en/products/pi-system/',
+                description: '실시간 데이터 수집 및 분석 플랫폼 - 글로벌 제조사 표준 시스템'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

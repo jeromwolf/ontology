@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { FlaskConical } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import References from '@/components/common/References';
 
 // Dynamic import for TokenizerDemo
 const TokenizerDemo = dynamic(() => import('../TokenizerDemo'), {
@@ -184,6 +185,102 @@ export default function Chapter3() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 핵심 논문 & Fine-tuning 기법',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'LoRA: Low-Rank Adaptation of Large Language Models (2021)',
+                url: 'https://arxiv.org/abs/2106.09685',
+                description: '저비용 파인튜닝의 혁신 - Hu et al., Microsoft'
+              },
+              {
+                title: 'QLoRA: Efficient Finetuning of Quantized LLMs (2023)',
+                url: 'https://arxiv.org/abs/2305.14314',
+                description: '4비트 양자화로 메모리 75% 절감 - Dettmers et al., University of Washington'
+              },
+              {
+                title: 'Parameter-Efficient Transfer Learning for NLP (2019)',
+                url: 'https://arxiv.org/abs/1902.00751',
+                description: 'Adapter 레이어 기법 - Houlsby et al., Google Research'
+              },
+              {
+                title: 'Prefix-Tuning: Optimizing Continuous Prompts (2021)',
+                url: 'https://arxiv.org/abs/2101.00190',
+                description: '연속적 프롬프트 최적화 - Li & Liang, Stanford'
+              },
+              {
+                title: 'The Power of Scale for Parameter-Efficient Prompt Tuning (2021)',
+                url: 'https://arxiv.org/abs/2104.08691',
+                description: 'Soft Prompt Tuning - Lester et al., Google Research'
+              }
+            ]
+          },
+          {
+            title: '🔬 RLHF & Alignment 연구',
+            icon: 'research' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Training language models to follow instructions with human feedback (2022)',
+                url: 'https://arxiv.org/abs/2203.02155',
+                description: 'InstructGPT - RLHF의 표준 - Ouyang et al., OpenAI'
+              },
+              {
+                title: 'Direct Preference Optimization (DPO, 2023)',
+                url: 'https://arxiv.org/abs/2305.18290',
+                description: 'RL 없이 선호도 학습 - Rafailov et al., Stanford'
+              },
+              {
+                title: 'Constitutional AI: Harmlessness from AI Feedback (2022)',
+                url: 'https://arxiv.org/abs/2212.08073',
+                description: 'RLAIF 기반 안전성 향상 - Bai et al., Anthropic'
+              },
+              {
+                title: 'Scaling Laws for Reward Model Overoptimization (2022)',
+                url: 'https://arxiv.org/abs/2210.10760',
+                description: 'RLHF의 한계와 해결책 - Gao et al., OpenAI'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 프레임워크',
+            icon: 'tools' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Hugging Face PEFT Library',
+                url: 'https://github.com/huggingface/peft',
+                description: 'LoRA, QLoRA, Adapter 등 통합 라이브러리 (15k+ stars)'
+              },
+              {
+                title: 'DeepSpeed',
+                url: 'https://www.deepspeed.ai/',
+                description: 'Microsoft의 대규모 모델 학습 프레임워크 - ZeRO 최적화'
+              },
+              {
+                title: 'TRL (Transformer Reinforcement Learning)',
+                url: 'https://github.com/huggingface/trl',
+                description: 'RLHF, DPO 구현 라이브러리 - Hugging Face'
+              },
+              {
+                title: 'Axolotl: Fine-tuning Framework',
+                url: 'https://github.com/OpenAccess-AI-Collective/axolotl',
+                description: '다양한 PEFT 기법 원클릭 적용 (7k+ stars)'
+              },
+              {
+                title: 'Unsloth: 2x Faster Fine-tuning',
+                url: 'https://github.com/unslothai/unsloth',
+                description: 'LoRA/QLoRA 학습 속도 2배 향상 (11k+ stars)'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

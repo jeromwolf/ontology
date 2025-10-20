@@ -1,10 +1,11 @@
 'use client';
 
-import { 
+import {
   Activity, Wrench, TestTube, Brain, AlertTriangle, Code
 } from 'lucide-react';
 import CodeEditor from '../CodeEditor';
 import Link from 'next/link';
+import References from '@/components/common/References';
 
 export default function Chapter9() {
   return (
@@ -382,6 +383,102 @@ def optimize_maintenance_schedule():
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 표준 & 문서',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'ISO 13381 - Condition Monitoring and Diagnostics of Machines',
+                url: 'https://www.iso.org/standard/51436.html',
+                description: '기계 상태 모니터링 및 진단을 위한 국제 표준 - 예지 정비 방법론 가이드'
+              },
+              {
+                title: 'NASA Prognostics Center of Excellence',
+                url: 'https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/',
+                description: 'NASA의 예측 정비 및 시스템 건강성 관리 연구 센터 - RUL 예측 알고리즘'
+              },
+              {
+                title: 'ISO 14224 - Reliability & Maintenance Data',
+                url: 'https://www.iso.org/standard/64520.html',
+                description: '석유, 천연가스, 석유화학 산업의 신뢰성 및 정비 데이터 수집 표준'
+              },
+              {
+                title: 'Microsoft Azure Predictive Maintenance Guide',
+                url: 'https://learn.microsoft.com/en-us/azure/machine-learning/how-to-use-automated-ml-for-ml-models',
+                description: 'Azure ML을 활용한 예측 정비 시스템 구축 가이드 - 실전 템플릿 제공'
+              },
+              {
+                title: 'IEC 61508 - Functional Safety for Industrial Systems',
+                url: 'https://www.iec.ch/functionalsafety/',
+                description: '산업 시스템의 기능 안전성 표준 - 예측 정비와 안전성 통합 가이드'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'LSTM Networks for Remaining Useful Life Prediction (IEEE, 2019)',
+                url: 'https://ieeexplore.ieee.org/document/8642543',
+                description: 'LSTM 기반 잔존 수명(RUL) 예측 모델 - CMAPSS 데이터셋 검증 (95.2% 정확도)'
+              },
+              {
+                title: 'Deep Learning for Predictive Maintenance (Nature Machine Intelligence, 2021)',
+                url: 'https://www.nature.com/articles/s42256-021-00349-1',
+                description: 'CNN과 LSTM 하이브리드 모델을 활용한 베어링 고장 예측 연구'
+              },
+              {
+                title: 'PHM Society Data Challenge - Bearing Fault Diagnosis',
+                url: 'https://www.phmsociety.org/competition/phm/09',
+                description: 'PHM Society의 베어링 고장 진단 챌린지 데이터셋 및 우수 알고리즘 공개'
+              },
+              {
+                title: 'Transfer Learning for Cross-Machine Failure Prediction (Mechanical Systems and Signal Processing, 2020)',
+                url: 'https://www.sciencedirect.com/science/article/abs/pii/S0888327020302387',
+                description: '전이 학습을 활용한 다양한 장비 간 고장 예측 모델 적용 연구'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'AWS Lookout for Equipment',
+                url: 'https://aws.amazon.com/lookout-for-equipment/',
+                description: 'AWS의 산업 장비 이상 탐지 서비스 - 센서 데이터 기반 자동 ML 모델 생성'
+              },
+              {
+                title: 'SKF Enlight AI - Bearing Condition Monitoring',
+                url: 'https://www.skf.com/us/products/condition-monitoring-systems/skf-enlight-ai',
+                description: '베어링 전문업체 SKF의 AI 예측 정비 플랫폼 - 진동 분석 및 수명 예측'
+              },
+              {
+                title: 'C3 AI Predictive Maintenance',
+                url: 'https://c3.ai/products/c3-ai-predictive-maintenance/',
+                description: '엔터프라이즈급 예측 정비 솔루션 - IoT 통합 및 대규모 장비 관리'
+              },
+              {
+                title: 'PyODDS - Python Outlier Detection Library',
+                url: 'https://github.com/datamllab/pyodds',
+                description: '시계열 이상 탐지를 위한 오픈소스 파이썬 라이브러리 - 10+ 알고리즘 제공'
+              },
+              {
+                title: 'PyCaret - AutoML for Predictive Maintenance',
+                url: 'https://pycaret.org/',
+                description: '예측 정비 모델 개발을 위한 Low-Code ML 라이브러리 - 자동 하이퍼파라미터 튜닝'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

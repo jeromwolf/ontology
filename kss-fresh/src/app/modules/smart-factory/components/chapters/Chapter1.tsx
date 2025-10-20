@@ -1,9 +1,10 @@
 'use client';
 
-import { 
+import {
   Factory, TrendingUp, Rocket, Globe, Brain
 } from 'lucide-react';
 import Link from 'next/link';
+import References from '@/components/common/References';
 
 export default function Chapter1() {
   return (
@@ -289,6 +290,101 @@ export default function Chapter1() {
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 표준',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'Plattform Industrie 4.0 - Reference Architecture Model',
+                link: 'https://www.plattform-i40.de/IP/Navigation/EN/Home/home.html',
+                description: '독일 Industry 4.0 공식 표준 아키텍처 및 참조 모델'
+              },
+              {
+                title: 'IEC 63339: Measurement framework for smart manufacturing',
+                link: 'https://www.iec.ch/',
+                description: 'IEC 스마트 제조 측정 프레임워크 국제 표준'
+              },
+              {
+                title: 'ISO 23247: Digital Twin Framework for Manufacturing',
+                link: 'https://www.iso.org/',
+                description: '제조업 디지털 트윈 국제 표준 프레임워크'
+              },
+              {
+                title: 'Industrial Internet Consortium (IIC) - Architecture Framework',
+                link: 'https://www.iiconsortium.org/',
+                description: 'IIoT 및 스마트팩토리 글로벌 아키텍처 가이드'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 연구',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Recommendations for implementing the strategic initiative INDUSTRIE 4.0',
+                authors: 'Kagermann, H., Wahlster, W., Helbig, J.',
+                year: '2013',
+                description: 'Industry 4.0 개념을 정의한 원본 독일 정부 보고서'
+              },
+              {
+                title: 'Industry 4.0: Building the digital enterprise',
+                authors: 'PwC',
+                year: '2016',
+                description: '2,000개 기업 대상 Industry 4.0 글로벌 설문 연구'
+              },
+              {
+                title: 'Smart Manufacturing: Past Research, Present Findings, and Future Directions',
+                authors: 'Kusiak, A.',
+                year: '2018',
+                description: 'Manufacturing Engineering 학술지 - 스마트 제조 연구 동향'
+              },
+              {
+                title: 'The Fourth Industrial Revolution',
+                authors: 'Schwab, K.',
+                year: '2016',
+                description: '세계경제포럼 회장의 4차 산업혁명 개념서'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 리소스',
+            icon: 'book' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'McKinsey - Industry 4.0: How to navigate digitization',
+                link: 'https://www.mckinsey.com/capabilities/operations/our-insights',
+                description: '맥킨지 제조업 디지털 전환 실전 가이드 및 사례 연구'
+              },
+              {
+                title: 'Deloitte - Industry 4.0 and manufacturing ecosystems',
+                link: 'https://www2.deloitte.com/insights',
+                description: '딜로이트 제조업 생태계 전환 전략 보고서'
+              },
+              {
+                title: 'Gartner Hype Cycle for Smart Manufacturing',
+                link: 'https://www.gartner.com/',
+                description: '스마트 제조 기술 성숙도 및 도입 로드맵 (매년 업데이트)'
+              },
+              {
+                title: '중소벤처기업부 - 스마트공장 지원사업',
+                link: 'https://www.smart-factory.kr/',
+                description: '한국 스마트공장 지원 정책 및 성공 사례 (국문)'
+              },
+              {
+                title: 'Boston Consulting Group - Embracing Industry 4.0',
+                link: 'https://www.bcg.com/',
+                description: 'BCG 제조업 혁신 전략 및 ROI 분석 도구'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

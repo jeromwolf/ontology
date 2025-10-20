@@ -1,5 +1,7 @@
 'use client'
 
+import References from '@/components/common/References';
+
 export default function Chapter8() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -750,6 +752,107 @@ Akida (BrainChip, 2021)
           </ul>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 최신 연구',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'IBM Quantum Computing Roadmap',
+                url: 'https://www.ibm.com/quantum/roadmap',
+                description: 'IBM 433-qubit Osprey, 1000+ qubit Condor 로드맵 (2023-2025)'
+              },
+              {
+                title: 'Google Quantum AI Research',
+                url: 'https://quantumai.google/',
+                description: 'Sycamore 양자 우위 달성, Willow 칩 개발 현황'
+              },
+              {
+                title: 'Intel Loihi 2 Neuromorphic System',
+                url: 'https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html',
+                description: 'Intel 4 공정 뉴로모픽 칩 - 1M 뉴런, 비동기 스파이킹'
+              },
+              {
+                title: 'IMEC 2nm Technology Roadmap',
+                url: 'https://www.imec-int.com/en/articles/imec-2nm-roadmap',
+                description: 'GAA, CFET, 백사이드 전력 배선 기술 로드맵 (2024-2028)'
+              },
+              {
+                title: 'Nature Electronics: Future Semiconductor Materials',
+                url: 'https://www.nature.com/natelectron/',
+                description: '2D 소재, CNT, 그래핀 반도체 최신 연구 (2024-2025)'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 브레이크스루',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Quantum Supremacy Using a Programmable Superconducting Processor',
+                url: 'https://www.nature.com/articles/s41586-019-1666-5',
+                description: 'Google Sycamore 양자 우위 달성 논문 (Nature 2019)'
+              },
+              {
+                title: 'A Million Spiking-Neuron Integrated Circuit with Scalable Communication Network',
+                url: 'https://www.science.org/doi/10.1126/science.1254642',
+                description: 'IBM TrueNorth 뉴로모픽 칩 아키텍처 (Science 2014)'
+              },
+              {
+                title: 'Deep Learning with Coherent Nanophotonic Circuits',
+                url: 'https://www.nature.com/articles/nphoton.2017.93',
+                description: 'MIT 광학 뉴럴 네트워크 (ONN) 구현 (Nature Photonics 2017)'
+              },
+              {
+                title: 'Carbon Nanotube Computer Built at Stanford',
+                url: 'https://www.nature.com/articles/nature12502',
+                description: 'Stanford 14,000 CNFET RISC-V 칩 제작 성공 (Nature 2013)'
+              },
+              {
+                title: 'Roadmap on Emerging Hardware and Technology for Machine Learning',
+                url: 'https://iopscience.iop.org/article/10.1088/1361-6528/ac69f8',
+                description: 'AI 하드웨어 미래 기술 로드맵 - 뉴로모픽, 광자, 양자 (Nanotechnology 2022)'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 플랫폼 & 도구',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'IBM Qiskit Quantum Development Kit',
+                url: 'https://qiskit.org/',
+                description: '양자 컴퓨팅 프로그래밍 프레임워크 - Python SDK, 시뮬레이터'
+              },
+              {
+                title: 'Intel Lava Neuromorphic Framework',
+                url: 'https://github.com/lava-nc/lava',
+                description: 'Loihi 2 뉴로모픽 칩 프로그래밍 - 스파이킹 뉴럴 네트워크'
+              },
+              {
+                title: 'Lightmatter Envise Photonic AI Platform',
+                url: 'https://lightmatter.co/products/envise/',
+                description: '광학 AI 가속기 - 실리콘 포토닉스 기반 추론 엔진'
+              },
+              {
+                title: 'PennyLane Quantum Machine Learning',
+                url: 'https://pennylane.ai/',
+                description: '양자 기계학습 라이브러리 - TensorFlow/PyTorch 통합'
+              },
+              {
+                title: 'Cirq: Google Quantum Programming Framework',
+                url: 'https://quantumai.google/cirq',
+                description: 'Google Sycamore용 양자 회로 설계 및 시뮬레이션'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

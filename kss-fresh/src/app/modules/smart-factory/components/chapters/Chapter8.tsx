@@ -1,10 +1,11 @@
 'use client';
 
-import { 
+import {
   Monitor, Building, Cog, Cpu, TestTube, AlertTriangle, TrendingUp, Settings, Code
 } from 'lucide-react';
 import CodeEditor from '../CodeEditor';
 import Link from 'next/link';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -465,6 +466,102 @@ public class SensorData
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 표준 & 문서',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'ISO 23247 - Digital Twin Framework for Manufacturing',
+                url: 'https://www.iso.org/standard/75066.html',
+                description: '제조업을 위한 디지털 트윈 국제 표준 프레임워크 - 정의, 아키텍처, 구현 가이드라인 제공'
+              },
+              {
+                title: 'Siemens Digital Twin Whitepaper',
+                url: 'https://www.siemens.com/global/en/products/automation/topic-areas/digital-twin.html',
+                description: '산업 자동화 선도기업의 디지털 트윈 구축 방법론 및 실제 적용 사례'
+              },
+              {
+                title: 'Unity Industry Solutions',
+                url: 'https://unity.com/solutions/industry',
+                description: 'Unity 3D 기반 제조업 디지털 트윈 구축을 위한 공식 가이드 및 템플릿'
+              },
+              {
+                title: 'Digital Twin Consortium',
+                url: 'https://www.digitaltwinconsortium.org/',
+                description: '글로벌 디지털 트윈 표준화 기구 - 백서, 유스케이스, 베스트 프랙티스 제공'
+              },
+              {
+                title: 'AWS IoT TwinMaker Documentation',
+                url: 'https://docs.aws.amazon.com/iot-twinmaker/',
+                description: 'AWS 클라우드 기반 디지털 트윈 구축 서비스 공식 문서 및 튜토리얼'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'GE Digital Twin: Predix Platform Architecture (2018)',
+                url: 'https://www.ge.com/digital/applications/digital-twin',
+                description: 'GE의 산업용 IoT 플랫폼 Predix 기반 디지털 트윈 아키텍처 연구'
+              },
+              {
+                title: 'Digital Twin-driven Smart Manufacturing (IEEE Access, 2020)',
+                url: 'https://ieeexplore.ieee.org/document/9184790',
+                description: '디지털 트윈 기반 스마트 제조 프로세스 최적화 연구 - 실시간 시뮬레이션 검증'
+              },
+              {
+                title: 'Physics-based Digital Twin for Predictive Maintenance (Nature, 2021)',
+                url: 'https://www.nature.com/articles/s41598-021-89933-1',
+                description: '물리 기반 디지털 트윈을 활용한 예측 정비 시스템 - NASA 공동 연구'
+              },
+              {
+                title: '3DEXPERIENCE Platform - Dassault Systèmes Research',
+                url: 'https://www.3ds.com/3dexperience',
+                description: 'PLM 통합 디지털 트윈 플랫폼 연구 - CATIA, SIMULIA 연계 기술'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'ANSYS Twin Builder',
+                url: 'https://www.ansys.com/products/digital-twin/ansys-twin-builder',
+                description: '멀티피직스 시뮬레이션 기반 디지털 트윈 구축 도구 - ROM 생성 및 실시간 연동'
+              },
+              {
+                title: 'Unity Reflect & PiXYZ',
+                url: 'https://unity.com/products/unity-reflect',
+                description: 'CAD 데이터를 Unity 3D 환경으로 변환하는 실시간 시각화 솔루션'
+              },
+              {
+                title: 'Azure Digital Twins',
+                url: 'https://azure.microsoft.com/en-us/products/digital-twins/',
+                description: 'Microsoft 클라우드 기반 디지털 트윈 플랫폼 - DTDL 모델링 언어 지원'
+              },
+              {
+                title: 'Eclipse Ditto - Open Source Digital Twin',
+                url: 'https://www.eclipse.org/ditto/',
+                description: 'IoT 디바이스를 위한 오픈소스 디지털 트윈 프레임워크 - 실시간 상태 동기화'
+              },
+              {
+                title: 'Matterport for Digital Twin Visualization',
+                url: 'https://matterport.com/industries/manufacturing',
+                description: '3D 스캔 기반 공장 디지털 트윈 시각화 플랫폼 - VR/AR 지원'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

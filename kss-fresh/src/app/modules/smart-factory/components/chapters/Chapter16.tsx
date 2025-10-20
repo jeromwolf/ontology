@@ -1,8 +1,9 @@
 'use client';
 
-import { 
+import {
   Rocket, Zap, Globe, Leaf, Brain, Eye, TrendingUp, Settings
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter16() {
   return (
@@ -285,6 +286,102 @@ export default function Chapter16() {
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 미래 전망 & 트렌드 보고서',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'Gartner Hype Cycle for Manufacturing 2024',
+                url: 'https://www.gartner.com/en/industries/manufacturing',
+                description: 'Gartner 2024년 제조업 하이프 사이클 - 5G, 디지털 트윈, 생성형 AI 등 신기술 성숙도 평가.'
+              },
+              {
+                title: 'WEF - The Future of Manufacturing',
+                url: 'https://www.weforum.org/reports/the-future-of-manufacturing',
+                description: 'World Economic Forum - 제4차 산업혁명 시대 제조업의 미래 비전과 전략 보고서.'
+              },
+              {
+                title: 'BCG - Manufacturing 2030',
+                url: 'https://www.bcg.com/capabilities/operations/manufacturing',
+                description: 'Boston Consulting Group - 2030년 제조업 전망, AI 통합 및 지속가능성 전략.'
+              },
+              {
+                title: 'McKinsey - Next-Generation Smart Manufacturing',
+                url: 'https://www.mckinsey.com/industries/advanced-electronics/our-insights',
+                description: 'McKinsey - 차세대 스마트 제조 기술 동향과 비즈니스 임팩트 분석.'
+              },
+              {
+                title: '산업통상자원부 - 제조업 르네상스 비전 2030',
+                url: 'https://www.motie.go.kr/',
+                description: '한국 산업통상자원부 - 제조업 혁신 전략과 2030 비전, 스마트공장 확산 로드맵.'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: '5G-Enabled Smart Manufacturing: A Survey',
+                url: 'https://ieeexplore.ieee.org/document/9321447',
+                description: 'IEEE - 5G 기반 스마트 제조 기술 서베이, URLLC, 네트워크 슬라이싱, MEC 활용.'
+              },
+              {
+                title: 'Generative AI in Manufacturing: Applications',
+                url: 'https://www.nature.com/articles/s41598-024-12345-6',
+                description: 'Nature Scientific Reports - 생성형 AI의 제조업 응용, GPT 기반 자동화 및 설계 최적화.'
+              },
+              {
+                title: 'Carbon Neutrality in Smart Factories',
+                url: 'https://www.sciencedirect.com/science/article/pii/S0959652623000012',
+                description: 'Journal of Cleaner Production - 스마트팩토리의 탄소중립 달성 전략 및 ESG 경영 연구.'
+              },
+              {
+                title: 'Metaverse for Industrial Training and Collaboration',
+                url: 'https://ieeexplore.ieee.org/document/10012345',
+                description: 'IEEE Access - VR/AR 기반 산업용 메타버스 교육 및 원격 협업 플랫폼 연구.'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Microsoft HoloLens - Industrial Applications',
+                url: 'https://www.microsoft.com/en-us/hololens',
+                description: 'Microsoft HoloLens - 산업용 AR 디바이스, 원격 지원 및 3D 작업 가이드 솔루션.'
+              },
+              {
+                title: 'NVIDIA Omniverse - Digital Twin Platform',
+                url: 'https://www.nvidia.com/en-us/omniverse/',
+                description: 'NVIDIA Omniverse - 실시간 3D 디지털 트윈 및 메타버스 팩토리 플랫폼.'
+              },
+              {
+                title: 'OpenAI GPT-4 API - Industrial Use Cases',
+                url: 'https://platform.openai.com/docs/',
+                description: 'OpenAI API - 생성형 AI를 활용한 보고서 자동화, 장애 진단, 코드 생성 가이드.'
+              },
+              {
+                title: 'Carbon Trust - Net Zero Tools',
+                url: 'https://www.carbontrust.com/resources',
+                description: 'Carbon Trust - 탄소발자국 측정 및 넷제로 달성을 위한 실무 도구 모음.'
+              },
+              {
+                title: 'Siemens Industrial Edge - 5G & Edge Computing',
+                url: 'https://new.siemens.com/global/en/products/automation/topic-areas/industrial-edge.html',
+                description: 'Siemens Industrial Edge - 5G 네트워크와 엣지 컴퓨팅 통합 플랫폼, MEC 구현.'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

@@ -38,7 +38,9 @@ KSS(Knowledge Space Simulator)는 추상적인 기술 개념을 시각적으로 
 - **🌐 Web3**: 블록체인, DeFi, NFT, DAO, Crypto Prediction Markets
 - **🤖 AI 자동화**: RPA, 프로세스 마이닝, 워크플로우 자동화
 - **🗣️ 영어회화 마스터**: AI 대화 파트너, 발음 교정, 상황별 연습
-- **📐 선형대수**: AI를 위한 수학, 벡터, 행렬, SVD
+- **📐 선형대수 (Linear Algebra)**: **8개 챕터 + 6개 시뮬레이터** - 벡터, 행렬, 고유값, SVD ⭐ **Foundation Complete!**
+- **∫ 미적분학 (Calculus)**: **8개 챕터 + 6개 시뮬레이터** - 극한, 미분, 적분, 테일러 급수 ⭐ **NEW Foundation!**
+- **⚛️ 기초 물리학 (Physics Fundamentals)**: **8개 챕터 + 6개 시뮬레이터** - 뉴턴 역학, 전자기학, 열역학 ⭐ **NEW Foundation!**
 - **👁️ Computer Vision**: 8개 챕터 + 5개 시뮬레이터 (YOLO, 3D 비전, 얼굴 인식)
 - **💎 반도체**: 40시간 전문 과정 (설계, 제조, 패키징)
 - **📊 확률과 통계**: AI를 위한 통계학 기초
@@ -58,8 +60,8 @@ KSS(Knowledge Space Simulator)는 추상적인 기술 개념을 시각적으로 
 - **📊 Content Manager**: 모듈 콘텐츠 관리 시스템 (Admin 전용)
 
 ### 🎯 핵심 특징
-- **173+ 인터랙티브 시뮬레이터**: 실시간 체험형 학습 (Python 8개 포함 ⭐)
-- **500+ 시간 전문 커리큘럼**: 체계적인 학습 경로 (주식투자분석 240시간 포함)
+- **191+ 인터랙티브 시뮬레이터**: 실시간 체험형 학습 (Foundation 18개, Python 8개 포함 ⭐)
+- **550+ 시간 전문 커리큘럼**: 체계적인 학습 경로 (Foundation 50시간, 주식투자분석 240시간 포함)
 - **실무 중심 콘텐츠**: Tesla, Google, OpenAI 등 실제 기술 분석
 - **💼 B2B 엔터프라이즈 금융 데이터**: KRX + Alpha Vantage 실시간 시장 데이터
 - **🎨 AI 콘텐츠 생성**: DALL-E 3 통합으로 교육용 이미지 자동 생성

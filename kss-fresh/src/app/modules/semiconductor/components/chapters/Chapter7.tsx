@@ -1,5 +1,7 @@
 'use client'
 
+import References from '@/components/common/References';
+
 export default function Chapter7() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -710,6 +712,102 @@ PLC (Penta-Level Cell):
           </ul>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 표준',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'JEDEC DDR5 SDRAM Standard (JESD79-5)',
+                url: 'https://www.jedec.org/standards-documents/docs/jesd79-5',
+                description: 'DDR5 메모리 공식 표준 규격 - 6400+ MT/s, On-die ECC'
+              },
+              {
+                title: 'Samsung V-NAND Technology',
+                url: 'https://semiconductor.samsung.com/consumer-storage/support/tools/',
+                description: 'Samsung 3D V-NAND 기술 백서 - 232단 적층 기술'
+              },
+              {
+                title: 'Micron 3D NAND Technology Brief',
+                url: 'https://www.micron.com/products/nand-flash',
+                description: 'Micron 232단 3D NAND 아키텍처 및 QLC/PLC 기술'
+              },
+              {
+                title: 'SK hynix DDR5 Product Specification',
+                url: 'https://www.skhynix.com/products/dram/ddr5/',
+                description: 'DDR5 메모리 제품 스펙 - PMIC, On-die ECC 상세'
+              },
+              {
+                title: 'ONFI (Open NAND Flash Interface) Standard',
+                url: 'https://www.onfi.org/',
+                description: 'NAND Flash 인터페이스 표준 - NVMe, PCIe 통합'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'DRAM Scaling Challenges and Future Directions',
+                url: 'https://ieeexplore.ieee.org/document/8993467',
+                description: 'DRAM 스케일링 한계 및 차세대 커패시터 기술 (IEDM 2019)'
+              },
+              {
+                title: 'Vertical NAND Flash Memory Technologies',
+                url: 'https://ieeexplore.ieee.org/document/8993513',
+                description: '3D NAND 적층 기술 - String Stacking, PUC 구조 (IEDM 2019)'
+              },
+              {
+                title: 'SRAM Bitcell Design Challenges in Sub-3nm Technologies',
+                url: 'https://ieeexplore.ieee.org/document/9731622',
+                description: '3nm 이하 SRAM 설계 과제 - FinFET to GAA (VLSI 2022)'
+              },
+              {
+                title: 'Emerging Non-Volatile Memory Technologies',
+                url: 'https://ieeexplore.ieee.org/document/8993629',
+                description: 'MRAM, RRAM, PCM 차세대 메모리 기술 비교 (IEDM 2019)'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 제조사',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Samsung Memory Solutions',
+                url: 'https://semiconductor.samsung.com/dram/',
+                description: 'DDR5, LPDDR5X, HBM3e 메모리 솔루션 및 기술 문서'
+              },
+              {
+                title: 'SK hynix Memory Technology',
+                url: 'https://www.skhynix.com/',
+                description: 'HBM3e 1.15TB/s, DDR5 8000+ MT/s 제품 라인업'
+              },
+              {
+                title: 'Micron DRAM & NAND Products',
+                url: 'https://www.micron.com/products',
+                description: 'Crucial 브랜드 DRAM/SSD - 기술 스펙 및 성능 가이드'
+              },
+              {
+                title: 'Western Digital NAND Solutions',
+                url: 'https://www.westerndigital.com/products',
+                description: 'BiCS (3D NAND) 기술 - 112단+ TLC/QLC SSD'
+              },
+              {
+                title: 'SNIA (Storage Networking Industry Association)',
+                url: 'https://www.snia.org/',
+                description: 'SSD 표준, NVMe 스펙, 메모리 기술 백서'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

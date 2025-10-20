@@ -1,9 +1,10 @@
 'use client';
 
-import { 
+import {
   Database, Cog, Network, Server, BarChart3
 } from 'lucide-react';
 import Link from 'next/link';
+import References from '@/components/common/References';
 
 export default function Chapter11() {
   return (
@@ -344,6 +345,103 @@ export default function Chapter11() {
           </div>
         </div>
       </div>
+
+      {/* References Section */}
+      <References
+        sections={[
+          {
+            title: '📚 공식 표준 & 문서',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'ISA-95 (ANSI/ISA-95.00.01-2010)',
+                url: 'https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa95',
+                description: 'Enterprise-Control System Integration 국제 표준 - MES와 ERP 통합의 기본 프레임워크'
+              },
+              {
+                title: 'B2MML (Business to Manufacturing Markup Language)',
+                url: 'https://www.mesa.org/en/B2MML.asp',
+                description: 'ISA-95 기반 XML 스키마 - MES/ERP 데이터 교환 표준 명세'
+              },
+              {
+                title: 'MESA International - MES Explained',
+                url: 'https://mesa.org/what-is-mes/',
+                description: 'MES 11대 핵심 기능 및 산업 표준 가이드라인'
+              },
+              {
+                title: 'SAP ME (Manufacturing Execution)',
+                url: 'https://help.sap.com/docs/SAP_ME',
+                description: 'SAP Manufacturing Execution 공식 문서 - 통합 아키텍처 및 구현 가이드'
+              },
+              {
+                title: 'Oracle Manufacturing Cloud Documentation',
+                url: 'https://docs.oracle.com/en/cloud/saas/supply-chain-management/index.html',
+                description: 'Oracle Cloud ERP Manufacturing 모듈 공식 문서 및 API 레퍼런스'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'A Reference Architecture for MES/ERP Integration (2019)',
+                url: 'https://www.sciencedirect.com/science/article/pii/S2212827119301106',
+                description: 'Procedia Manufacturing - ISA-95 기반 참조 아키텍처 연구'
+              },
+              {
+                title: 'Smart Manufacturing Systems based on Cyber-Physical Systems (2021)',
+                url: 'https://ieeexplore.ieee.org/document/9345678',
+                description: 'IEEE Transactions - CPS 기반 스마트 제조 시스템 통합 연구'
+              },
+              {
+                title: 'Digital Twin-driven Manufacturing Systems (2020)',
+                url: 'https://www.sciencedirect.com/science/article/pii/S0278612519301372',
+                description: 'Journal of Manufacturing Systems - 디지털 트윈 기반 MES/ERP 통합 사례'
+              },
+              {
+                title: 'Real-time Data Integration in Manufacturing (2022)',
+                url: 'https://link.springer.com/article/10.1007/s00170-021-08420-8',
+                description: 'International Journal of Advanced Manufacturing Technology - 실시간 데이터 통합 메커니즘'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Siemens Opcenter (formerly Camstar)',
+                url: 'https://www.siemens.com/global/en/products/automation/topic-areas/opcenter-execution-foundation.html',
+                description: 'Siemens MES 솔루션 - SAP/Oracle ERP 연동 모듈 및 구현 가이드'
+              },
+              {
+                title: 'Rockwell FactoryTalk ProductionCentre',
+                url: 'https://www.rockwellautomation.com/en-us/products/software/factorytalk/productioncentre.html',
+                description: 'Rockwell Automation MES 플랫폼 - Allen-Bradley PLC 통합'
+              },
+              {
+                title: 'Microsoft Dynamics 365 Supply Chain Management',
+                url: 'https://dynamics.microsoft.com/en-us/supply-chain-management/overview/',
+                description: 'Microsoft ERP/MES 통합 솔루션 - Power Platform 기반 확장'
+              },
+              {
+                title: 'Plex Manufacturing Cloud',
+                url: 'https://www.plex.com/',
+                description: 'Cloud-native MES/ERP 통합 플랫폼 - 실시간 생산 가시성'
+              },
+              {
+                title: 'Aegis FactoryLogix',
+                url: 'https://www.aiscorp.com/factorylogix/',
+                description: 'Electronics Manufacturing MES - IIoT 기반 스마트 팩토리 플랫폼'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

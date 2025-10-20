@@ -1,5 +1,7 @@
 'use client'
 
+import References from '@/components/common/References';
+
 export default function Chapter3() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -524,6 +526,95 @@ R = 0.25 × 13.5 / 0.55 ≈ 6nm`}</code></pre>
           </ul>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 표준',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'ASML - EUV Technology Leadership',
+                link: 'https://www.asml.com/en/products/euv-lithography-systems',
+                description: 'ASML EUV 리소그래피 시스템 공식 문서 (세계 유일 공급업체)'
+              },
+              {
+                title: 'SPIE - Advanced Lithography Conference',
+                link: 'https://spie.org/conferences-and-exhibitions/advanced-lithography',
+                description: 'SPIE 국제 리소그래피 컨퍼런스 논문집 (연례 행사)'
+              },
+              {
+                title: 'SEMI P37 - Specifications for Photomasks',
+                link: 'https://www.semi.org/',
+                description: 'SEMI 포토마스크 규격 및 품질 표준'
+              },
+              {
+                title: 'ITRS Lithography Roadmap',
+                link: 'https://www.irds.ieee.org/',
+                description: 'ITRS 리소그래피 기술 로드맵 (EUV, High-NA EUV)'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 교재',
+            icon: 'book' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Microlithography: Science and Technology (2nd Edition)',
+                authors: 'Mack, C. A.',
+                year: '2007',
+                description: 'CRC Press - 포토리소그래피 표준 교재'
+              },
+              {
+                title: 'EUV Lithography: Enabling Moore\'s Law',
+                authors: 'Bakshi, V.',
+                year: '2018',
+                description: 'SPIE Press - EUV 리소그래피 완전 가이드'
+              },
+              {
+                title: 'OPC and Multi-Patterning: Critical Issues and Solutions',
+                authors: 'Wong, A. K. K.',
+                year: '2012',
+                description: 'SPIE - OPC 및 다중 패터닝 기술 백서'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 리소스',
+            icon: 'web' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Mentor Calibre - OPC and Mask Synthesis',
+                link: 'https://eda.sw.siemens.com/en-US/ic/calibre-design/',
+                description: 'Siemens EDA OPC 및 마스크 합성 툴 (업계 표준)'
+              },
+              {
+                title: 'Synopsys Proteus - Mask Data Preparation',
+                link: 'https://www.synopsys.com/silicon/mask-synthesis.html',
+                description: 'Synopsys 마스크 데이터 준비 및 검증 툴'
+              },
+              {
+                title: 'KLA - Mask Inspection Systems',
+                link: 'https://www.kla.com/products/mask-inspection',
+                description: 'KLA 마스크 검사 시스템 및 결함 분석 솔루션'
+              },
+              {
+                title: 'Prolith - Lithography Simulator',
+                link: 'https://www.kla.com/products/computational-lithography',
+                description: 'KLA 리소그래피 시뮬레이션 소프트웨어'
+              },
+              {
+                title: 'Nikon/Canon - DUV Scanner Documentation',
+                link: 'https://www.nikonusa.com/',
+                description: 'Nikon/Canon DUV 노광 장비 공식 문서'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

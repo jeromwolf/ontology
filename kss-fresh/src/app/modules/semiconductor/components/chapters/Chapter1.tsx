@@ -1,5 +1,7 @@
 'use client'
 
+import References from '@/components/common/References';
+
 export default function Chapter1() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -419,6 +421,96 @@ Vth: 문턱전압 (0.3~0.7V)
           </ul>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 표준',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'ITRS - International Technology Roadmap for Semiconductors',
+                link: 'https://www.irds.ieee.org/',
+                description: 'IEEE IRDS 반도체 기술 로드맵 (ITRS 후속) - 산업 표준'
+              },
+              {
+                title: 'SEMI Standards - Semiconductor Equipment and Materials',
+                link: 'https://www.semi.org/en/products-services/standards',
+                description: 'SEMI 국제 반도체 장비 및 재료 표준'
+              },
+              {
+                title: 'SIA - Semiconductor Industry Association Reports',
+                link: 'https://www.semiconductors.org/',
+                description: '미국 반도체 산업협회 공식 보고서 및 통계'
+              },
+              {
+                title: 'JESD - JEDEC Solid State Technology Standards',
+                link: 'https://www.jedec.org/',
+                description: 'JEDEC 반도체 소자 표준 및 규격'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재 & 논문',
+            icon: 'book' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Physics of Semiconductor Devices (3rd Edition)',
+                authors: 'Sze, S. M., Ng, K. K.',
+                year: '2006',
+                description: 'Wiley - 반도체 물리 바이블, 전세계 대학 표준 교재'
+              },
+              {
+                title: 'Semiconductor Device Fundamentals',
+                authors: 'Pierret, R. F.',
+                year: '1996',
+                description: 'Addison-Wesley - 반도체 소자 기초 이론 교재'
+              },
+              {
+                title: 'Modern Semiconductor Devices for Integrated Circuits',
+                authors: 'Hu, C.',
+                year: '2010',
+                description: 'Prentice Hall - UC Berkeley 교수 집필, 실무 중심'
+              },
+              {
+                title: 'PN Junction Diode Characteristics',
+                authors: 'Shockley, W.',
+                year: '1949',
+                description: 'Bell Labs - Shockley 다이오드 방정식 원본 논문 (노벨상)'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 시뮬레이터',
+            icon: 'web' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'MIT Semiconductor Device Simulations',
+                link: 'https://nanohub.org/',
+                description: 'NanoHUB - MIT/Purdue 온라인 반도체 소자 시뮬레이터'
+              },
+              {
+                title: 'Silvaco TCAD - Device Simulation Software',
+                link: 'https://silvaco.com/',
+                description: 'Silvaco TCAD 반도체 소자 시뮬레이션 툴 (학생용 무료)'
+              },
+              {
+                title: 'SPICE Circuit Simulator',
+                link: 'https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html',
+                description: 'LTspice - Analog Devices 무료 회로 시뮬레이터'
+              },
+              {
+                title: 'PhET Interactive Simulations - Semiconductors',
+                link: 'https://phet.colorado.edu/',
+                description: '콜로라도대 PhET - 반도체 물리 인터랙티브 시뮬레이션'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

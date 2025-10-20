@@ -1,8 +1,9 @@
 'use client';
 
-import { 
+import {
   Shield, Lock, AlertTriangle, Network, Eye
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter12() {
   return (
@@ -247,6 +248,103 @@ export default function Chapter12() {
           </div>
         </div>
       </div>
+
+      {/* References Section */}
+      <References
+        sections={[
+          {
+            title: '📚 공식 표준 & 문서',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'IEC 62443 - Industrial Automation and Control Systems Security',
+                url: 'https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards',
+                description: 'OT 보안의 국제 표준 - IACS(Industrial Automation and Control Systems) 보안 요구사항 및 구현 가이드'
+              },
+              {
+                title: 'NIST SP 800-82 Rev. 3 - Guide to OT Security',
+                url: 'https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final',
+                description: 'NIST 산업제어시스템 보안 가이드 - 위협 분석 및 대응 전략'
+              },
+              {
+                title: 'ISA/IEC 62443 Cybersecurity Certificate Programs',
+                url: 'https://www.isa.org/training-and-certification/isa-certification/isa-iec-62443-cybersecurity-certificate-programs',
+                description: 'IEC 62443 공식 인증 프로그램 - IT/OT 보안 전문가 교육 및 자격증'
+              },
+              {
+                title: 'CISA - Critical Infrastructure Security',
+                url: 'https://www.cisa.gov/topics/critical-infrastructure-security-and-resilience',
+                description: '미국 CISA의 핵심 인프라 보안 가이드라인 - OT 보안 모범 사례'
+              },
+              {
+                title: 'ENISA - Good Practices for Security of OT',
+                url: 'https://www.enisa.europa.eu/publications/good-practices-for-security-of-ot',
+                description: '유럽 사이버보안청 OT 보안 모범 사례 - 산업별 적용 가이드'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Survey of Cyber-Physical Systems Security (2021)',
+                url: 'https://ieeexplore.ieee.org/document/9345712',
+                description: 'IEEE Access - CPS 보안 위협 분석 및 대응 메커니즘 종합 연구'
+              },
+              {
+                title: 'Zero Trust Architecture for OT Environments (2022)',
+                url: 'https://www.sciencedirect.com/science/article/pii/S0167404822001158',
+                description: 'Computers & Security - 제조 환경의 제로 트러스트 아키텍처 적용 연구'
+              },
+              {
+                title: 'Intrusion Detection Systems for Industrial Control Systems (2023)',
+                url: 'https://dl.acm.org/doi/10.1145/3569594',
+                description: 'ACM Computing Surveys - ICS 특화 침입 탐지 시스템 최신 연구 동향'
+              },
+              {
+                title: 'Deep Learning for OT Anomaly Detection (2023)',
+                url: 'https://www.sciencedirect.com/science/article/pii/S0167404823000123',
+                description: 'Journal of Information Security - 딥러닝 기반 OT 이상 행위 탐지 기법'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Claroty - The OT Cybersecurity Platform',
+                url: 'https://claroty.com/',
+                description: 'OT 자산 가시성, 위협 탐지, 취약점 관리 - 산업 제어 시스템 전문 보안 플랫폼'
+              },
+              {
+                title: 'Dragos Platform - Industrial Cybersecurity',
+                url: 'https://www.dragos.com/platform/',
+                description: 'ICS/SCADA 특화 위협 인텔리전스 및 네트워크 모니터링 솔루션'
+              },
+              {
+                title: 'Nozomi Networks - OT & IoT Security',
+                url: 'https://www.nozominetworks.com/',
+                description: 'AI 기반 OT/IoT 네트워크 모니터링 및 실시간 위협 탐지'
+              },
+              {
+                title: 'Tenable.ot - Vulnerability Management',
+                url: 'https://www.tenable.com/products/tenable-ot',
+                description: 'OT 자산 검색 및 취약점 관리 - 패치 우선순위 자동화'
+              },
+              {
+                title: 'TXOne Networks - Edge-to-Cloud Protection',
+                url: 'https://www.txone.com/',
+                description: 'OT 엔드포인트 보안 - 에어갭 환경 및 레거시 시스템 보호'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

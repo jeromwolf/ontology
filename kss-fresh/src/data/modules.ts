@@ -83,6 +83,26 @@ export const moduleCategories: ModuleCategory[] = [
         icon: '🤝',
         gradient: 'from-emerald-600 to-teal-600',
         href: '/modules/agent-mcp'
+      },
+      {
+        id: 'multimodal-ai',
+        title: 'Multimodal AI',
+        description: 'Vision-Language 모델과 멀티모달 AI 시스템',
+        duration: '24시간',
+        status: '학습 가능',
+        icon: '🎨',
+        gradient: 'from-violet-600 to-purple-700',
+        href: '/modules/multimodal-ai'
+      },
+      {
+        id: 'creative-ai',
+        title: 'Creative AI',
+        description: 'Midjourney, DALL-E, Stable Diffusion 실전 활용',
+        duration: '24시간',
+        status: '학습 가능',
+        icon: '✨',
+        gradient: 'from-purple-500 to-pink-600',
+        href: '/modules/creative-ai'
       }
     ]
   },
@@ -111,6 +131,16 @@ export const moduleCategories: ModuleCategory[] = [
         icon: '⚙️',
         gradient: 'from-green-600 to-emerald-700',
         href: '/modules/ai-automation'
+      },
+      {
+        id: 'devops-cicd',
+        title: 'DevOps & CI/CD',
+        description: 'Docker, Kubernetes, GitOps로 구축하는 현대적 개발 운영',
+        duration: '16시간',
+        status: '학습 가능',
+        icon: '🔄',
+        gradient: 'from-gray-500 to-slate-600',
+        href: '/modules/devops-cicd'
       }
     ]
   },
@@ -169,6 +199,16 @@ export const moduleCategories: ModuleCategory[] = [
         icon: '🤖',
         gradient: 'from-slate-600 to-gray-700',
         href: '/modules/physical-ai'
+      },
+      {
+        id: 'robotics-manipulation',
+        title: 'Robotics & Manipulation',
+        description: '산업용 로봇부터 협동 로봇까지 - 로봇 매니퓰레이션의 모든 것',
+        duration: '30시간',
+        status: '학습 가능',
+        icon: '🦾',
+        gradient: 'from-orange-600 to-red-600',
+        href: '/modules/robotics-manipulation'
       }
     ]
   },
@@ -178,6 +218,26 @@ export const moduleCategories: ModuleCategory[] = [
     description: 'Data science, statistics, and financial analysis',
     icon: '📊',
     modules: [
+      {
+        id: 'data-science',
+        title: 'Data Science',
+        description: '데이터에서 가치를 창출하는 과학적 접근법 - 통계부터 딥러닝까지',
+        duration: '40시간',
+        status: '학습 가능',
+        icon: '📊',
+        gradient: 'from-emerald-600 to-green-700',
+        href: '/modules/data-science'
+      },
+      {
+        id: 'data-engineering',
+        title: 'Data Engineering',
+        description: '현대적인 데이터 엔지니어링 - EDA부터 실시간 처리까지 완벽 마스터',
+        duration: '48시간',
+        status: '학습 가능',
+        icon: '🗃️',
+        gradient: 'from-indigo-600 to-blue-700',
+        href: '/modules/data-engineering'
+      },
       {
         id: 'stock-analysis',
         title: '주식투자분석 시뮬레이터',
@@ -197,16 +257,6 @@ export const moduleCategories: ModuleCategory[] = [
         icon: '📊',
         gradient: 'from-indigo-600 to-purple-700',
         href: '/modules/probability-statistics'
-      },
-      {
-        id: 'linear-algebra',
-        title: 'Linear Algebra',
-        description: '머신러닝의 핵심 수학인 선형대수학 집중 과정',
-        duration: '15시간',
-        status: '학습 가능',
-        icon: '📐',
-        gradient: 'from-purple-600 to-pink-700',
-        href: '/linear-algebra'
       }
     ]
   },
@@ -269,7 +319,7 @@ export const moduleCategories: ModuleCategory[] = [
         title: 'Cyber Security',
         description: '해킹 시뮬레이션과 제로트러스트 보안 모델 실습',
         duration: '24시간',
-        status: '개발중',
+        status: '학습 가능',
         icon: '🔒',
         gradient: 'from-red-600 to-orange-700',
         href: '/modules/cyber-security'
@@ -301,6 +351,26 @@ export const moduleCategories: ModuleCategory[] = [
         icon: '☁️',
         gradient: 'from-sky-500 to-blue-600',
         href: '/modules/cloud-computing'
+      },
+      {
+        id: 'ai-infrastructure',
+        title: 'AI Infrastructure & MLOps',
+        description: '대규모 AI 인프라와 ML 파이프라인 구축',
+        duration: '36시간',
+        status: '학습 가능',
+        icon: '🏗️',
+        gradient: 'from-slate-700 to-gray-800',
+        href: '/modules/ai-infrastructure'
+      },
+      {
+        id: 'hpc-computing',
+        title: 'High-Performance Computing',
+        description: 'CUDA 프로그래밍과 분산 컴퓨팅 최적화',
+        duration: '30시간',
+        status: '학습 가능',
+        icon: '⚡',
+        gradient: 'from-yellow-500 to-orange-600',
+        href: '/modules/hpc-computing'
       }
     ]
   },
@@ -328,7 +398,7 @@ export const moduleCategories: ModuleCategory[] = [
         status: '학습 가능',
         icon: '🏥',
         gradient: 'from-pink-500 to-red-500',
-        href: '/medical-ai'
+        href: '/modules/medical-ai'
       }
     ]
   },
@@ -353,10 +423,50 @@ export const moduleCategories: ModuleCategory[] = [
         title: 'AI Ethics & Governance',
         description: '책임감 있는 AI 개발과 윤리적 거버넌스 체계',
         duration: '16시간',
-        status: '개발중',
+        status: '학습 가능',
         icon: '🌹',
         gradient: 'from-rose-500 to-pink-600',
         href: '/modules/ai-ethics'
+      },
+      {
+        id: 'optimization-theory',
+        title: 'Mathematical Optimization',
+        description: 'AI 최적화 이론과 메타휴리스틱 알고리즘',
+        duration: '30시간',
+        status: '학습 가능',
+        icon: '📐',
+        gradient: 'from-emerald-600 to-teal-700',
+        href: '/modules/optimization-theory'
+      },
+      {
+        id: 'linear-algebra',
+        title: 'Linear Algebra',
+        description: '벡터, 행렬, 선형변환의 기초부터 고급 응용까지',
+        duration: '16시간',
+        status: '학습 가능',
+        icon: '📐',
+        gradient: 'from-blue-500 to-indigo-600',
+        href: '/modules/linear-algebra'
+      },
+      {
+        id: 'calculus',
+        title: 'Calculus',
+        description: '극한, 미분, 적분의 기초부터 다변수 미적분까지',
+        duration: '18시간',
+        status: '학습 가능',
+        icon: '∫',
+        gradient: 'from-green-500 to-teal-600',
+        href: '/modules/calculus'
+      },
+      {
+        id: 'physics-fundamentals',
+        title: 'Physics Fundamentals',
+        description: '뉴턴 역학, 전자기학, 열역학의 기본 원리',
+        duration: '20시간',
+        status: '학습 가능',
+        icon: '⚛️',
+        gradient: 'from-purple-500 to-pink-600',
+        href: '/modules/physics-fundamentals'
       }
     ]
   }

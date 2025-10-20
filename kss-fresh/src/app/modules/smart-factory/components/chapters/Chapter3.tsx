@@ -1,8 +1,9 @@
 'use client';
 
-import { 
+import {
   MapPin, Eye, BarChart3, Bot, Monitor, Smartphone, Clock, TestTube, HardDrive, AlertTriangle, Code
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter3() {
   return (
@@ -278,6 +279,95 @@ export default function Chapter3() {
           </ul>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 프레임워크',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'CMMI - Capability Maturity Model Integration',
+                link: 'https://cmmiinstitute.com/',
+                description: 'CMMI Institute 공식 - 프로세스 성숙도 모델 및 평가 기준'
+              },
+              {
+                title: 'ISA-95 - Enterprise-Control System Integration',
+                link: 'https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa95',
+                description: 'ISA-95 국제 표준 - MES/ERP 통합 아키텍처'
+              },
+              {
+                title: 'NIST Smart Manufacturing Systems Architecture',
+                link: 'https://www.nist.gov/programs-projects/smart-manufacturing',
+                description: '미국 NIST 스마트 제조 시스템 아키텍처 가이드'
+              },
+              {
+                title: 'MES International - MES Best Practices',
+                link: 'https://mesa.org/',
+                description: 'MESA 국제 협회 - MES 구현 모범 사례 및 가이드라인'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 연구',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'A maturity model for assessing Industry 4.0 readiness and maturity',
+                authors: 'Schumacher, A., Erol, S., Sihn, W.',
+                year: '2016',
+                description: 'Procedia CIRP - Industry 4.0 성숙도 모델 및 평가 방법론'
+              },
+              {
+                title: 'Quick wins and long-term competitive advantage in Industry 4.0',
+                authors: 'Müller, J. M., Kiel, D., Voigt, K. I.',
+                year: '2018',
+                description: 'Journal of Business Research - Quick Win 전략 및 실증 연구'
+              },
+              {
+                title: 'Digital Transformation Initiative: Manufacturing Industry',
+                authors: 'World Economic Forum',
+                year: '2018',
+                description: 'WEF 제조업 디지털 전환 로드맵 및 투자 우선순위'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 리소스',
+            icon: 'book' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Acatech - Industry 4.0 Maturity Index',
+                link: 'https://en.acatech.de/',
+                description: '독일 Acatech Industry 4.0 성숙도 측정 도구'
+              },
+              {
+                title: 'PwC - Industry 4.0 Readiness Assessment',
+                link: 'https://www.pwc.com/',
+                description: 'PwC Industry 4.0 준비도 자가 진단 도구 및 벤치마킹'
+              },
+              {
+                title: 'Gartner - Digital Transformation Roadmap Tool',
+                link: 'https://www.gartner.com/',
+                description: '가트너 디지털 전환 로드맵 작성 도구 (유료)'
+              },
+              {
+                title: 'MIT - Smart Factory Assessment Framework',
+                link: 'https://sma.mit.edu/',
+                description: 'MIT 스마트팩토리 평가 프레임워크 및 사례 연구'
+              },
+              {
+                title: '한국생산성본부 - 스마트팩토리 수준 진단',
+                link: 'https://www.kpc.or.kr/',
+                description: '한국 스마트공장 수준 진단 도구 (국문)'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

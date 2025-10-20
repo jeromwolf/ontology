@@ -1,9 +1,10 @@
 'use client';
 
-import { 
+import {
   Network, Database, Cloud, Server, Shield, Layers,
   Cpu, HardDrive, Lock, Monitor, Workflow, GitBranch
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter14() {
   return (
@@ -213,6 +214,102 @@ export default function Chapter14() {
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 표준 & 참조 아키텍처',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'RAMI 4.0 - Reference Architecture Model Industrie 4.0',
+                url: 'https://www.plattform-i40.de/IP/Redaktion/EN/Downloads/Publikation/rami40-an-introduction.html',
+                description: '독일 산업 4.0의 공식 참조 아키텍처 모델. 5계층 구조와 3차원 모델링 제공.'
+              },
+              {
+                title: 'IIC IIRA - Industrial Internet Reference Architecture',
+                url: 'https://www.iiconsortium.org/iira/',
+                description: 'Industrial Internet Consortium의 산업 인터넷 표준 아키텍처. 4대 관점(비즈니스, 사용, 기능, 구현) 제공.'
+              },
+              {
+                title: 'AWS Well-Architected Framework - Manufacturing',
+                url: 'https://aws.amazon.com/architecture/well-architected/',
+                description: 'AWS의 제조업 특화 아키텍처 설계 원칙. 보안, 신뢰성, 성능 효율성, 비용 최적화 가이드.'
+              },
+              {
+                title: 'Azure IoT Reference Architecture',
+                url: 'https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/iot',
+                description: 'Microsoft Azure의 IoT 참조 아키텍처. 엣지-클라우드 하이브리드 패턴 상세 설명.'
+              },
+              {
+                title: 'ISA-95 Enterprise-Control System Integration',
+                url: 'https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa95',
+                description: 'ISA-95 표준 - 기업 시스템과 제어 시스템 통합 국제 표준. 5계층 모델의 기반.'
+              }
+            ]
+          },
+          {
+            title: '🔬 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Microservices Architecture for Smart Manufacturing',
+                url: 'https://ieeexplore.ieee.org/document/8950165',
+                description: 'IEEE - 스마트 제조를 위한 마이크로서비스 아키텍처 설계 패턴과 구현 사례.'
+              },
+              {
+                title: 'Edge-Cloud Collaborative Computing in Industrial IoT',
+                url: 'https://ieeexplore.ieee.org/document/9264028',
+                description: 'IEEE IoT Journal - 산업 IoT에서 엣지-클라우드 협업 컴퓨팅 아키텍처 연구.'
+              },
+              {
+                title: 'Data Lake vs Data Warehouse for Smart Factory',
+                url: 'https://www.sciencedirect.com/science/article/pii/S0360835220306142',
+                description: 'ScienceDirect - 스마트팩토리 환경에서 데이터 레이크와 웨어하우스 비교 연구.'
+              },
+              {
+                title: '5G Network Slicing for Industrial Applications',
+                url: 'https://ieeexplore.ieee.org/document/9321447',
+                description: 'IEEE Communications - 산업 응용을 위한 5G 네트워크 슬라이싱 아키텍처 설계.'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Kubernetes for Industrial IoT',
+                url: 'https://kubernetes.io/docs/concepts/architecture/',
+                description: 'Kubernetes 공식 문서 - 컨테이너 오케스트레이션과 마이크로서비스 배포 가이드.'
+              },
+              {
+                title: 'Apache Kafka for Real-Time Streaming',
+                url: 'https://kafka.apache.org/documentation/',
+                description: 'Apache Kafka - 실시간 데이터 스트리밍 플랫폼. 제조 현장 메시지 큐 구현.'
+              },
+              {
+                title: 'TimescaleDB - Time-Series Database',
+                url: 'https://docs.timescale.com/',
+                description: 'TimescaleDB 공식 가이드 - IoT 시계열 데이터 저장 및 고속 쿼리 최적화.'
+              },
+              {
+                title: 'Grafana - Monitoring & Observability',
+                url: 'https://grafana.com/docs/',
+                description: 'Grafana 문서 - 실시간 모니터링 대시보드 구축. Prometheus, InfluxDB 연동.'
+              },
+              {
+                title: 'Istio Service Mesh',
+                url: 'https://istio.io/latest/docs/',
+                description: 'Istio - 마이크로서비스 간 통신 관리, 트래픽 라우팅, 보안 정책 적용.'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

@@ -1,9 +1,10 @@
 'use client';
 
-import { 
+import {
   Bot, Cog, Users, Shield, Network, Eye, Activity, MapPin, Brain, Building, TestTube, Code
 } from 'lucide-react';
 import Link from 'next/link';
+import References from '@/components/common/References';
 
 export default function Chapter7() {
   return (
@@ -575,6 +576,116 @@ if __name__ == '__main__':
           </div>
         </div>
       </div>
+
+      {/* References Section */}
+      <References
+        sections={[
+          {
+            title: '📚 공식 표준 & 문서',
+            icon: 'web' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'ISO 10218-1:2011 - Robots and robotic devices - Safety requirements',
+                authors: 'ISO',
+                year: '2011',
+                link: 'https://www.iso.org/standard/51330.html',
+                description: '산업용 로봇 안전 표준'
+              },
+              {
+                title: 'ISO/TS 15066:2016 - Collaborative robots',
+                authors: 'ISO',
+                year: '2016',
+                link: 'https://www.iso.org/standard/62996.html',
+                description: '협동 로봇 안전 기술 사양'
+              },
+              {
+                title: 'ROS (Robot Operating System) Documentation',
+                authors: 'Open Robotics',
+                link: 'https://docs.ros.org/',
+                description: '로봇 소프트웨어 프레임워크 공식 문서'
+              },
+              {
+                title: 'Universal Robots UR+ Developer Platform',
+                authors: 'Universal Robots',
+                link: 'https://www.universal-robots.com/plus/',
+                description: '협동 로봇 애플리케이션 개발 가이드'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 연구',
+            icon: 'paper' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Safe Human-Robot Collaboration in Industrial Applications',
+                authors: 'Haddadin, S., et al.',
+                year: '2018',
+                link: 'https://ieeexplore.ieee.org/document/8283224',
+                description: 'IEEE Robotics & Automation Magazine'
+              },
+              {
+                title: 'SLAM Algorithms for Mobile Robots: A Survey',
+                authors: 'Taketomi, T., et al.',
+                year: '2017',
+                link: 'https://www.mdpi.com/1424-8220/17/6/1322',
+                description: 'Sensors - AMR SLAM 기술 서베이'
+              },
+              {
+                title: 'Motion Planning for Industrial Robots: A Review',
+                authors: 'Chen, H., et al.',
+                year: '2020',
+                description: 'Robotics and CIM - 경로 계획 알고리즘'
+              },
+              {
+                title: 'Vision-Guided Robotic Bin Picking Systems',
+                authors: 'Kleeberger, K., et al.',
+                year: '2019',
+                link: 'https://www.sciencedirect.com/science/article/pii/S0736584519300705',
+                description: '3D 비전 기반 로봇 피킹'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 벤더',
+            icon: 'book' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'ABB RobotStudio',
+                authors: 'ABB',
+                link: 'https://new.abb.com/products/robotics/robotstudio',
+                description: '산업용 로봇 시뮬레이션 소프트웨어'
+              },
+              {
+                title: 'KUKA.Sim Pro',
+                authors: 'KUKA',
+                link: 'https://www.kuka.com/kuka-sim',
+                description: '로봇 프로그래밍 및 시뮬레이션 도구'
+              },
+              {
+                title: 'MoveIt Motion Planning Framework',
+                authors: 'PickNik Robotics',
+                link: 'https://moveit.ros.org/',
+                description: 'ROS 기반 모션 플래닝 라이브러리'
+              },
+              {
+                title: 'Gazebo Robot Simulator',
+                authors: 'Open Robotics',
+                link: 'https://gazebosim.org/',
+                description: '오픈소스 로봇 시뮬레이터'
+              },
+              {
+                title: 'Cognex Vision Systems for Robotics',
+                authors: 'Cognex',
+                link: 'https://www.cognex.com/products/machine-vision/vision-systems',
+                description: '산업용 머신 비전 시스템'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

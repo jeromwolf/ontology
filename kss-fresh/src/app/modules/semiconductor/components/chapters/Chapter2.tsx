@@ -1,5 +1,7 @@
 'use client'
 
+import References from '@/components/common/References';
+
 export default function Chapter2() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -539,6 +541,95 @@ t_su = 0.3ns
           </ul>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 표준',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'IEEE Standards for Digital Logic',
+                link: 'https://standards.ieee.org/',
+                description: 'IEEE 디지털 로직 설계 표준 및 VHDL/Verilog 규격'
+              },
+              {
+                title: 'ITRS Power Consumption Roadmap',
+                link: 'https://www.irds.ieee.org/',
+                description: 'ITRS 반도체 전력 소비 로드맵 및 저전력 설계 가이드'
+              },
+              {
+                title: 'Synopsys Design Compiler Documentation',
+                link: 'https://www.synopsys.com/implementation-and-signoff/rtl-synthesis-test.html',
+                description: 'Synopsys RTL 합성 및 타이밍 분석 공식 문서'
+              },
+              {
+                title: 'ARM Power Management Architecture',
+                link: 'https://developer.arm.com/documentation/',
+                description: 'ARM 프로세서 전력 관리 아키텍처 공식 가이드'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재 & 논문',
+            icon: 'book' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Digital Integrated Circuits: A Design Perspective (2nd Edition)',
+                authors: 'Rabaey, J. M., Chandrakasan, A., Nikolić, B.',
+                year: '2003',
+                description: 'Prentice Hall - CMOS 회로 설계 표준 교재, UC Berkeley'
+              },
+              {
+                title: 'CMOS VLSI Design: A Circuits and Systems Perspective',
+                authors: 'Weste, N. H. E., Harris, D.',
+                year: '2010',
+                description: 'Addison-Wesley - VLSI 설계 실무 바이블'
+              },
+              {
+                title: 'Low Power Digital CMOS Design',
+                authors: 'Chandrakasan, A. P., Brodersen, R. W.',
+                year: '1995',
+                description: 'Kluwer - 저전력 CMOS 설계 기법 원론 (MIT)'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & EDA 툴',
+            icon: 'web' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Cadence Virtuoso - Analog/Digital IC Design',
+                link: 'https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design/virtuoso-studio.html',
+                description: 'Cadence 아날로그/디지털 IC 설계 툴 (업계 표준)'
+              },
+              {
+                title: 'Synopsys PrimeTime - Static Timing Analysis',
+                link: 'https://www.synopsys.com/implementation-and-signoff/signoff/primetime.html',
+                description: 'Synopsys 정적 타이밍 분석 툴 (STA)'
+              },
+              {
+                title: 'Mentor Graphics Questa - Logic Simulation',
+                link: 'https://eda.sw.siemens.com/en-US/ic/questa/',
+                description: 'Siemens EDA 로직 시뮬레이션 및 검증 툴'
+              },
+              {
+                title: 'Apache PowerArtist - Power Analysis',
+                link: 'https://www.ansys.com/',
+                description: 'Ansys 전력 분석 및 최적화 툴'
+              },
+              {
+                title: 'Digital - Open Source Logic Simulator',
+                link: 'https://github.com/hneemann/Digital',
+                description: '오픈소스 디지털 회로 시뮬레이터 (교육용 무료)'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }
