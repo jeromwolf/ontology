@@ -30,7 +30,7 @@ KSS(Knowledge Space Simulator)는 추상적인 기술 개념을 시각적으로 
 - **🔷 Neo4j Knowledge Graph**: 8개 챕터 + 5개 시뮬레이터
 - **🤝 Multi-Agent 시스템**: 6개 챕터 + 4개 시뮬레이터 (A2A, Consensus, CrewAI)
 - **🤖 Agent-MCP**: AI 에이전트 개발, Model Context Protocol
-- **🏭 Physical AI**: 로보틱스, 디지털 트윈, 스마트 팩토리, 뉴턴역학
+- **🏭 Physical AI**: **9개 심화 챕터 (4,435줄 전문 콘텐츠)** - NVIDIA COSMOS, Edge AI, 자율주행, 휴머노이드 ⭐ **대폭 강화!**
 - **⚛️ 양자컴퓨팅**: 큐비트, 양자 알고리즘, 실습
 - **🏥 의료 AI**: 진단, 신약 개발, 정밀 의료
 - **🧬 생물정보학**: 유전체 분석, 단백질 구조 예측
