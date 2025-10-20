@@ -1,6 +1,6 @@
 'use client'
 
-import { use } from 'react'
+import { useParams } from 'next/navigation'
 import dynamic from 'next/dynamic'
 
 // 동적 임포트로 시뮬레이터 컴포넌트 로드
@@ -12,14 +12,9 @@ const GeneticAlgorithm = dynamic(() => import('@/components/optimization-theory-
 const GradientExplorer = dynamic(() => import('@/components/optimization-theory-simulators/GradientExplorer'), { ssr: false })
 const ConvexSolver = dynamic(() => import('@/components/optimization-theory-simulators/ConvexSolver'), { ssr: false })
 
-interface PageProps {
-  params: Promise<{
-    simulatorId: string
-  }>
-}
-
-export default function SimulatorPage({ params }: PageProps) {
-  const { simulatorId } = use(params)
+export default function SimulatorPage() {
+  const params = useParams()
+  const simulatorId = params.simulatorId as string
 
   const getSimulatorComponent = () => {
     switch (simulatorId) {
