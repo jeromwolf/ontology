@@ -1,7 +1,10 @@
 'use client'
 
 import { useParams } from 'next/navigation'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { ChevronLeft } from 'lucide-react'
+import { moduleMetadata } from '../../metadata'
 
 // 동적 임포트로 시뮬레이터 컴포넌트 로드
 const OptimizationVisualizer = dynamic(() => import('@/components/optimization-theory-simulators/OptimizationVisualizer'), { ssr: false })
@@ -15,6 +18,9 @@ const ConvexSolver = dynamic(() => import('@/components/optimization-theory-simu
 export default function SimulatorPage() {
   const params = useParams()
   const simulatorId = params.simulatorId as string
+
+  // 현재 시뮬레이터 정보 찾기
+  const currentSimulator = moduleMetadata.simulators.find(sim => sim.id === simulatorId)
 
   const getSimulatorComponent = () => {
     switch (simulatorId) {
@@ -47,8 +53,44 @@ export default function SimulatorPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-      {getSimulatorComponent()}
+    <div className="max-w-7xl mx-auto">
+      {/* Breadcrumb & Back Button */}
+      <div className="mb-6">
+        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-4">
+          <Link
+            href="/modules/optimization-theory"
+            className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+          >
+            Optimization Theory
+          </Link>
+          <span>/</span>
+          <span>시뮬레이터</span>
+        </div>
+
+        {currentSimulator && (
+          <div className="mb-4">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              {currentSimulator.title}
+            </h1>
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              {currentSimulator.description}
+            </p>
+          </div>
+        )}
+
+        <Link
+          href="/modules/optimization-theory"
+          className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-500 transition-colors text-sm font-medium"
+        >
+          <ChevronLeft size={16} />
+          모듈 홈으로 돌아가기
+        </Link>
+      </div>
+
+      {/* Simulator Component */}
+      <div className="mt-8">
+        {getSimulatorComponent()}
+      </div>
     </div>
   )
 }
