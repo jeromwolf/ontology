@@ -4,12 +4,21 @@ import { use } from 'react'
 import dynamic from 'next/dynamic'
 
 // 동적 임포트로 시뮬레이터 컴포넌트 로드
+// New simulators (matching metadata.ts)
+const InfraArchitect = dynamic(() => import('@/components/ai-infrastructure-simulators/InfraArchitect'), { ssr: false })
+const DistributedTrainer = dynamic(() => import('@/components/ai-infrastructure-simulators/DistributedTrainer'), { ssr: false })
+const MLOpsPipeline = dynamic(() => import('@/components/ai-infrastructure-simulators/MLOpsPipeline'), { ssr: false })
+const ModelMonitor = dynamic(() => import('@/components/ai-infrastructure-simulators/ModelMonitor'), { ssr: false })
+const ServingOptimizer = dynamic(() => import('@/components/ai-infrastructure-simulators/ServingOptimizer'), { ssr: false })
+const ExperimentTracker = dynamic(() => import('@/components/ai-infrastructure-simulators/ExperimentTracker'), { ssr: false })
+const FeatureStore = dynamic(() => import('@/components/ai-infrastructure-simulators/FeatureStore'), { ssr: false })
+
+// Legacy simulators (kept for compatibility)
 const GPUClusterMonitor = dynamic(() => import('@/components/ai-infrastructure-simulators/GPUClusterMonitor'), { ssr: false })
 const DistributedTrainingVisualizer = dynamic(() => import('@/components/ai-infrastructure-simulators/DistributedTrainingVisualizer'), { ssr: false })
 const ModelServingSimulator = dynamic(() => import('@/components/ai-infrastructure-simulators/ModelServingSimulator'), { ssr: false })
 const FeatureStoreExplorer = dynamic(() => import('@/components/ai-infrastructure-simulators/FeatureStoreExplorer'), { ssr: false })
 const MLPipelineBuilder = dynamic(() => import('@/components/ai-infrastructure-simulators/MLPipelineBuilder'), { ssr: false })
-const ExperimentTracker = dynamic(() => import('@/components/ai-infrastructure-simulators/ExperimentTracker'), { ssr: false })
 const DataDriftDetector = dynamic(() => import('@/components/ai-infrastructure-simulators/DataDriftDetector'), { ssr: false })
 const ResourceOptimizer = dynamic(() => import('@/components/ai-infrastructure-simulators/ResourceOptimizer'), { ssr: false })
 const CICDPipelineVisualizer = dynamic(() => import('@/components/ai-infrastructure-simulators/CICDPipelineVisualizer'), { ssr: false })
@@ -26,6 +35,29 @@ export default function SimulatorPage({ params }: PageProps) {
 
   const getSimulatorComponent = () => {
     switch (simulatorId) {
+      // New simulators (matching metadata.ts)
+      case 'infra-architect':
+        return <InfraArchitect />
+      case 'distributed-trainer':
+        return <DistributedTrainer />
+      case 'mlops-pipeline':
+        return <MLOpsPipeline />
+      case 'model-monitor':
+        return <ModelMonitor />
+      case 'serving-optimizer':
+        return <ServingOptimizer />
+      case 'experiment-tracker':
+        return <ExperimentTracker />
+      case 'feature-store-sim':
+        return <FeatureStore />
+      case 'gpu-scheduler':
+        return <GPUClusterMonitor />
+      case 'drift-detector':
+        return <DataDriftDetector />
+      case 'cost-analyzer':
+        return <ResourceOptimizer />
+
+      // Legacy simulators (kept for compatibility)
       case 'gpu-cluster-monitor':
         return <GPUClusterMonitor />
       case 'distributed-training-visualizer':
@@ -36,8 +68,6 @@ export default function SimulatorPage({ params }: PageProps) {
         return <FeatureStoreExplorer />
       case 'ml-pipeline-builder':
         return <MLPipelineBuilder />
-      case 'experiment-tracker':
-        return <ExperimentTracker />
       case 'data-drift-detector':
         return <DataDriftDetector />
       case 'resource-optimizer':
