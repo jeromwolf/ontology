@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useRef, useEffect } from 'react'
-import { Play, Download, Trash2, Plus, Code, Zap, HelpCircle, X } from 'lucide-react'
+import { Play, Download, Trash2, Plus, Code, Zap, HelpCircle, X, Maximize, Minimize, Save, Upload, Undo, Redo } from 'lucide-react'
 
 interface ChainComponent {
   id: string
@@ -15,6 +15,11 @@ interface Connection {
   id: string
   from: string
   to: string
+}
+
+interface HistoryState {
+  components: ChainComponent[]
+  connections: Connection[]
 }
 
 const COMPONENT_TEMPLATES = {
@@ -67,6 +72,12 @@ export default function ChainBuilder() {
   const [testOutput, setTestOutput] = useState('')
   const [executing, setExecuting] = useState(false)
   const [showHelp, setShowHelp] = useState(false)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  // Undo/Redo history
+  const [history, setHistory] = useState<HistoryState[]>([])
+  const [historyIndex, setHistoryIndex] = useState(-1)
+
   const canvasRef = useRef<HTMLDivElement>(null)
 
   const addComponent = (type: keyof typeof COMPONENT_TEMPLATES) => {
@@ -91,6 +102,109 @@ export default function ChainBuilder() {
     setConnections(connections.filter(c => c.id !== connId))
     setSelectedConnection(null)
   }
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen()
+      setIsFullscreen(true)
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen()
+        setIsFullscreen(false)
+      }
+    }
+  }
+
+  // Listen for fullscreen changes (ESC key)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement)
+    }
+    document.addEventListener('fullscreenchange', handleFullscreenChange)
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange)
+  }, [])
+
+  // Save current state to history
+  const saveToHistory = () => {
+    const newState: HistoryState = {
+      components: JSON.parse(JSON.stringify(components)),
+      connections: JSON.parse(JSON.stringify(connections))
+    }
+
+    // Remove any future history if we're not at the end
+    const newHistory = history.slice(0, historyIndex + 1)
+    newHistory.push(newState)
+
+    // Limit history to 50 states
+    if (newHistory.length > 50) {
+      newHistory.shift()
+    } else {
+      setHistoryIndex(historyIndex + 1)
+    }
+
+    setHistory(newHistory)
+  }
+
+  // Undo function
+  const undo = () => {
+    if (historyIndex > 0) {
+      const newIndex = historyIndex - 1
+      setHistoryIndex(newIndex)
+      const state = history[newIndex]
+      setComponents(JSON.parse(JSON.stringify(state.components)))
+      setConnections(JSON.parse(JSON.stringify(state.connections)))
+    }
+  }
+
+  // Redo function
+  const redo = () => {
+    if (historyIndex < history.length - 1) {
+      const newIndex = historyIndex + 1
+      setHistoryIndex(newIndex)
+      const state = history[newIndex]
+      setComponents(JSON.parse(JSON.stringify(state.components)))
+      setConnections(JSON.parse(JSON.stringify(state.connections)))
+    }
+  }
+
+  // Keyboard shortcuts for Undo/Redo
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault()
+        undo()
+      } else if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
+        e.preventDefault()
+        redo()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [historyIndex, history])
+
+  // Save to history whenever components or connections change
+  useEffect(() => {
+    // Skip initial render and when restoring from history
+    if (components.length === 0 && connections.length === 0 && history.length === 0) {
+      // Save initial empty state
+      saveToHistory()
+      return
+    }
+
+    // Don't save if we're currently at this exact state (prevents duplicate saves)
+    if (historyIndex >= 0 && historyIndex < history.length) {
+      const currentState = history[historyIndex]
+      if (
+        JSON.stringify(currentState.components) === JSON.stringify(components) &&
+        JSON.stringify(currentState.connections) === JSON.stringify(connections)
+      ) {
+        return
+      }
+    }
+
+    saveToHistory()
+  }, [components, connections])
 
   const handleOutputPortClick = (compId: string, e: React.MouseEvent) => {
     e.stopPropagation()
@@ -271,32 +385,102 @@ export default function ChainBuilder() {
     }
   }
 
+  // Save workflow to localStorage
+  const saveWorkflow = () => {
+    const workflow = {
+      components,
+      connections,
+      timestamp: new Date().toISOString(),
+      version: '1.0'
+    }
+    localStorage.setItem('langchain-workflow', JSON.stringify(workflow))
+    alert('✅ Workflow saved!')
+  }
+
+  // Load workflow from localStorage
+  const loadWorkflow = () => {
+    const saved = localStorage.getItem('langchain-workflow')
+    if (!saved) {
+      alert('❌ No saved workflow found')
+      return
+    }
+
+    try {
+      const workflow = JSON.parse(saved)
+      setComponents(workflow.components)
+      setConnections(workflow.connections)
+      alert(`✅ Workflow loaded! (saved ${new Date(workflow.timestamp).toLocaleString()})`)
+    } catch (error) {
+      alert('❌ Failed to load workflow')
+      console.error(error)
+    }
+  }
+
+  // Auto-save every 30 seconds
+  useEffect(() => {
+    if (components.length === 0 && connections.length === 0) return
+
+    const autoSaveInterval = setInterval(() => {
+      const workflow = {
+        components,
+        connections,
+        timestamp: new Date().toISOString(),
+        version: '1.0'
+      }
+      localStorage.setItem('langchain-workflow-autosave', JSON.stringify(workflow))
+      console.log('🔄 Auto-saved workflow')
+    }, 30000) // 30 seconds
+
+    return () => clearInterval(autoSaveInterval)
+  }, [components, connections])
+
   const selectedComp = components.find(c => c.id === selectedComponent)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-              ⛓️ Chain Builder Pro
-            </h1>
-            <p className="text-gray-300 text-lg">
-              Professional visual builder for LangChain pipelines
-            </p>
+      <div className={`container mx-auto ${isFullscreen ? 'px-2 py-2' : 'px-4 py-8'}`}>
+        {/* Header - Hidden in fullscreen */}
+        {!isFullscreen && (
+          <div className="mb-8 flex items-start justify-between">
+            <div>
+              <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+                ⛓️ Chain Builder Pro
+              </h1>
+              <p className="text-gray-300 text-lg">
+                Professional visual builder for LangChain pipelines
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowHelp(!showHelp)}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center gap-2"
+              >
+                <HelpCircle className="w-5 h-5" />
+                Help
+              </button>
+              <button
+                onClick={toggleFullscreen}
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg flex items-center gap-2"
+                title={isFullscreen ? "Exit Fullscreen (ESC)" : "Enter Fullscreen"}
+              >
+                {isFullscreen ? (
+                  <>
+                    <Minimize className="w-5 h-5" />
+                    Exit
+                  </>
+                ) : (
+                  <>
+                    <Maximize className="w-5 h-5" />
+                    Fullscreen
+                  </>
+                )}
+              </button>
+            </div>
           </div>
-          <button
-            onClick={() => setShowHelp(!showHelp)}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center gap-2"
-          >
-            <HelpCircle className="w-5 h-5" />
-            Help
-          </button>
-        </div>
+        )}
 
         {/* Help Panel */}
-        {showHelp && (
+        {showHelp && !isFullscreen && (
           <div className="mb-6 bg-blue-900/30 border border-blue-600 rounded-xl p-6">
             <div className="flex items-start justify-between mb-4">
               <h3 className="text-xl font-bold text-blue-400">How to Use</h3>
@@ -325,9 +509,29 @@ export default function ChainBuilder() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Fullscreen Floating Toolbar */}
+        {isFullscreen && (
+          <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-gray-800/95 backdrop-blur border border-gray-700 rounded-lg p-2 shadow-2xl">
+            <button
+              onClick={() => setShowHelp(!showHelp)}
+              className="px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded flex items-center gap-2 text-sm"
+            >
+              <HelpCircle className="w-4 h-4" />
+            </button>
+            <button
+              onClick={toggleFullscreen}
+              className="px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded flex items-center gap-2 text-sm"
+              title="Exit Fullscreen (ESC)"
+            >
+              <Minimize className="w-4 h-4" />
+              Exit
+            </button>
+          </div>
+        )}
+
+        <div className={`grid grid-cols-1 ${isFullscreen ? 'lg:grid-cols-12' : 'lg:grid-cols-4'} gap-${isFullscreen ? '2' : '6'}`}>
           {/* Component Palette */}
-          <div className="lg:col-span-1 space-y-4">
+          <div className={`${isFullscreen ? 'lg:col-span-2' : 'lg:col-span-1'} space-y-4`}>
             <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <Plus className="w-5 h-5" />
@@ -478,11 +682,44 @@ export default function ChainBuilder() {
           </div>
 
           {/* Canvas */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className={`${isFullscreen ? 'lg:col-span-10' : 'lg:col-span-3'} space-y-4`}>
             <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold">🎨 Canvas</h3>
                 <div className="flex gap-2">
+                  <button
+                    onClick={saveWorkflow}
+                    disabled={components.length === 0}
+                    className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded flex items-center gap-2 transition-colors"
+                    title="Save workflow to browser"
+                  >
+                    <Save className="w-4 h-4" />
+                    Save
+                  </button>
+                  <button
+                    onClick={loadWorkflow}
+                    className="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded flex items-center gap-2 transition-colors"
+                    title="Load saved workflow"
+                  >
+                    <Upload className="w-4 h-4" />
+                    Load
+                  </button>
+                  <button
+                    onClick={undo}
+                    disabled={historyIndex <= 0}
+                    className="px-3 py-2 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded flex items-center gap-2 transition-colors"
+                    title="Undo (Ctrl+Z)"
+                  >
+                    <Undo className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={redo}
+                    disabled={historyIndex >= history.length - 1}
+                    className="px-3 py-2 bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed rounded flex items-center gap-2 transition-colors"
+                    title="Redo (Ctrl+Y)"
+                  >
+                    <Redo className="w-4 h-4" />
+                  </button>
                   <button
                     onClick={exportCode}
                     disabled={components.length === 0}
@@ -511,7 +748,7 @@ export default function ChainBuilder() {
 
               <div
                 ref={canvasRef}
-                className="relative bg-gray-900 rounded-lg border-2 border-dashed border-gray-600 h-[500px] overflow-hidden cursor-default"
+                className={`relative bg-gray-900 rounded-lg border-2 border-dashed border-gray-600 ${isFullscreen ? 'h-[85vh]' : 'h-[500px]'} overflow-hidden cursor-default`}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
