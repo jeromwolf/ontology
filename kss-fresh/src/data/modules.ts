@@ -85,6 +85,16 @@ export const moduleCategories: ModuleCategory[] = [
         href: '/modules/agent-mcp'
       },
       {
+        id: 'langchain',
+        title: 'LangChain & LangGraph',
+        description: 'LangChain으로 강력한 LLM 애플리케이션 구축하기',
+        duration: '24시간',
+        status: '학습 가능',
+        icon: '🦜',
+        gradient: 'from-amber-500 to-orange-600',
+        href: '/modules/langchain'
+      },
+      {
         id: 'multimodal-ai',
         title: 'Multimodal AI',
         description: 'Vision-Language 모델과 멀티모달 AI 시스템',

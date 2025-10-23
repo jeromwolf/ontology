@@ -6,9 +6,9 @@
 set -e
 
 # 기본 설정
-PROJECT_ID="${PROJECT_ID:-kss-platform}"
+PROJECT_ID="${PROJECT_ID:-kss-platform-jerom-2024}"
 REGION="${REGION:-asia-northeast3}"
-SERVICE_NAME="${SERVICE_NAME:-kss-platform}"
+SERVICE_NAME="${SERVICE_NAME:-kss-fresh}"
 IMAGE_NAME="gcr.io/${PROJECT_ID}/${SERVICE_NAME}"
 
 # 색상 코드

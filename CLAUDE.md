@@ -1907,4 +1907,630 @@ Route (app)
 - ✅ 배포 인프라 완성 (deploy.sh + DEPLOYMENT.md)
 - ✅ Git 커밋 & 푸시 (8edb83c)
 - ✅ Production 배포 준비 완료
+
+---
+
+### Session 40 Status (2025-10-23) - 🚀 Production 배포 실행 & 문서화
+
+**🎯 핵심 작업: kss.ai.kr Production 업데이트 배포**
+
+#### **1. 배포 프로세스 확립** ✅
+
+**문제 발견:**
+- 기존 `deploy.sh` 스크립트가 Docker 요구
+- Docker daemon이 실행되지 않은 상태
+
+**해결책:**
+- 이전 배포 방식 조사 및 발견
+- `gcloud run deploy --source` 방식 사용 (Docker 불필요)
+- 실제 프로젝트: `kss-platform-jerom-2024` 확인
+- 실제 서비스: `kss-fresh` (asia-northeast3)
+
+**배포 명령:**
+```bash
+cd "/Users/blockmeta/Library/CloudStorage/GoogleDrive-jeromwolf@gmail.com/내 드라이브/KellyGoogleSpace/ontology/kss-fresh"
+
+gcloud run deploy kss-fresh \
+  --source . \
+  --platform managed \
+  --region asia-northeast3 \
+  --allow-unauthenticated \
+  --memory 2Gi \
+  --cpu 2 \
+  --timeout 300 \
+  --max-instances 10 \
+  --min-instances 0
+```
+
+**배포 상태:**
+- Container Repository 생성 완료
+- 소스 업로드 완료
+- Cloud Build 진행 중 (Docker 이미지 빌드)
+- 예상 완료 시간: 5-10분
+
+#### **2. 배포 대상 콘텐츠** 📦
+
+**AI Infrastructure 모듈:**
+- page.tsx 완전 재작성 (209줄)
+- 6개 신규 시뮬레이터:
+  1. InfraArchitect (384줄)
+  2. DistributedTrainer (326줄)
+  3. MLOpsPipeline (224줄)
+  4. ModelMonitor (181줄)
+  5. ServingOptimizer (252줄)
+  6. FeatureStore (233줄)
+- 동적 라우팅 업데이트
+
+**배포 인프라:**
+- next.config.js (standalone 출력 추가)
+- deploy.sh (자동화 스크립트)
+- DEPLOYMENT.md (완전한 가이드)
+
+#### **3. Git 커밋 히스토리** 📝
+
+**Commit 1: 8edb83c**
+```
+feat: AI Infrastructure 모듈 완전 구현 - 6개 시뮬레이터 완성
+
+📦 AI Infrastructure 모듈 활성화:
+- page.tsx 완전 재작성 (209줄)
+- 기존 "개발중" 플레이스홀더 대체
+- Hero, Progress, 챕터 목록, 시뮬레이터 미리보기
+
+🎮 6개 전문급 시뮬레이터 신규 개발:
+1. InfraArchitect - AI 인프라 아키텍처 설계 (384줄)
+2. DistributedTrainer - 분산 학습 전략 비교 (326줄)
+3. MLOpsPipeline - MLOps 파이프라인 자동화 (224줄)
+4. ModelMonitor - 실시간 모델 모니터링 (181줄)
+5. ServingOptimizer - 모델 서빙 최적화 (252줄)
+6. FeatureStore - 피처 스토어 관리 (233줄)
+
+🔧 기술적 구현:
+- Dynamic routing 업데이트
+- Canvas API 실시간 시각화
+- TypeScript 완전 타입 안전성
+- Build 검증: 334 pages 정상 생성
+
+📊 플랫폼 현황:
+- 전체 시뮬레이터: 219+ (6개 추가)
+- 빌드 상태: ✅ Success
+
+🤖 Generated with Claude Code
+https://claude.com/claude-code
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
+
+**Commit 2: 5e50c34**
+```
+feat: Production 배포 인프라 구축 - Docker + Cloud Run 완성
+
+🐳 Docker 컨테이너화:
+- next.config.js: output: 'standalone' 추가
+- Multi-stage Dockerfile 준비
+
+🚀 자동화 배포 스크립트:
+- deploy.sh (148줄) - 원클릭 배포
+- 색상 로그 출력 (성공/경고/에러)
+- Git 상태 확인
+- Docker 빌드 & GCR 푸시
+- Cloud Run 배포 (2Gi RAM, 2 CPU)
+- 서비스 URL 자동 출력
+- 커스텀 도메인 체크
+
+📖 완전한 배포 가이드:
+- DEPLOYMENT.md (233줄)
+- Prerequisites (gcloud SDK, Docker)
+- 원클릭 배포 방법
+- 커스텀 도메인 설정 (kss.ai.kr)
+- SSL 인증서 자동 발급
+- 로그 확인 방법
+- 성능 튜닝 가이드
+- 트러블슈팅
+
+🎯 배포 설정:
+- Project: kss-platform
+- Region: asia-northeast3
+- Service: kss-platform
+- Memory: 2Gi
+- CPU: 2
+- Timeout: 300s
+- Max instances: 10
+- Min instances: 0 (비용 최적화)
+
+🤖 Generated with Claude Code
+https://claude.com/claude-code
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
+
+#### **4. 배포 전 상태** 📊
+
+**프로젝트 정보:**
+- 프로젝트 ID: `kss-platform-jerom-2024`
+- 서비스 이름: `kss-fresh`
+- 리전: `asia-northeast3` (Seoul)
+- 마지막 배포: 2025-10-04
+
+**현재 Production URL:**
+- `https://kss-fresh-827760573017.asia-northeast3.run.app`
+- 커스텀 도메인: `https://kss.ai.kr/`
+
+**배포될 변경사항:**
+- AI Infrastructure 모듈 페이지 (209줄)
+- 6개 신규 시뮬레이터 (1,600+줄)
+- 동적 라우팅 업데이트
+- next.config.js 최적화
+
+#### **5. 예상 배포 결과** 🎯
+
+**사용자 접근 경로:**
+```
+https://kss.ai.kr/
+  └─ /modules/ai-infrastructure  ← 새로 활성화
+      ├─ Hero 섹션 (모듈 소개)
+      ├─ Progress 트래커
+      ├─ 12개 챕터 목록
+      └─ 시뮬레이터 섹션
+          ├─ /simulators/infra-architect
+          ├─ /simulators/distributed-trainer
+          ├─ /simulators/mlops-pipeline
+          ├─ /simulators/model-monitor
+          ├─ /simulators/serving-optimizer
+          └─ /simulators/feature-store-sim
+```
+
+**플랫폼 업데이트:**
+- 총 모듈: 27개 (AI Infrastructure 활성화)
+- 총 챕터: 200+개
+- 총 시뮬레이터: 219+개 (6개 추가)
+- 빌드 페이지: 334 pages
+
+#### **6. 다음 세션 준비사항** 📅
+
+**배포 완료 후 확인:**
+1. ✅ 배포 성공 메시지 확인
+2. ✅ Production URL 접속 테스트
+3. ✅ AI Infrastructure 모듈 동작 확인
+4. ✅ 6개 시뮬레이터 기능 검증
+5. ✅ 성능 모니터링 (Cloud Run 메트릭)
+
+**다음 우선순위:**
+1. **남은 모듈 개발**
+   - Cloud Computing (개발중)
+   - Cyber Security (개발중)
+   - AI Ethics & Governance (개발중)
+
+2. **사용자 피드백**
+   - Beta 테스터 초대
+   - UX 개선 사항 수집
+   - 버그 리포트 추적
+
+3. **콘텐츠 강화**
+   - 챕터별 예제 코드 추가
+   - 시뮬레이터 튜토리얼
+   - 학습 가이드 작성
+
+#### **7. 중요 교훈** 💡
+
+**배포 방식 선택:**
+- ✅ `gcloud run deploy --source`: Docker 불필요, 간단
+- ❌ `docker build + docker push`: Docker daemon 필요, 복잡
+- 💡 프로젝트에 따라 적절한 방법 선택 중요
+
+**프로젝트 정보 확인:**
+- ✅ `gcloud projects list`: 실제 프로젝트 ID 확인
+- ✅ `gcloud run services list`: 기존 서비스 발견
+- 💡 문서보다 실제 환경 우선 확인
+
+**배포 자동화:**
+- ✅ deploy.sh로 반복 작업 자동화
+- ✅ DEPLOYMENT.md로 지식 문서화
+- 💡 한 번 만들면 계속 재사용 가능
+
+#### **8. 파일 변경 요약** 📁
+
+**신규 파일 (8개):**
+```
+src/app/modules/ai-infrastructure/page.tsx (209줄)
+src/components/ai-infrastructure-simulators/InfraArchitect.tsx (384줄)
+src/components/ai-infrastructure-simulators/DistributedTrainer.tsx (326줄)
+src/components/ai-infrastructure-simulators/MLOpsPipeline.tsx (224줄)
+src/components/ai-infrastructure-simulators/ModelMonitor.tsx (181줄)
+src/components/ai-infrastructure-simulators/ServingOptimizer.tsx (252줄)
+src/components/ai-infrastructure-simulators/FeatureStore.tsx (233줄)
+DEPLOYMENT.md (233줄)
+deploy.sh (148줄)
+```
+
+**수정 파일 (3개):**
+```
+src/app/modules/ai-infrastructure/simulators/[simulatorId]/page.tsx (+60줄)
+next.config.js (+1줄)
+CLAUDE.md (+242줄, Session 39)
+```
+
+**총 변경:**
+- 추가: 2,192줄
+- 수정: 303줄
+- **순증: 2,495줄**
+
+---
+
+**Session 40 요약:**
+- ✅ Production 배포 프로세스 확립
+- ✅ gcloud run deploy --source 방식 적용
+- ✅ 실제 프로젝트/서비스 정보 확인
+- ✅ Cloud Build 배포 진행 중
+- 🔄 배포 완료 대기 (5-10분 예상)
+- ✅ CLAUDE.md Session 40 문서화 완료
 - 🎯 **다음**: ./deploy.sh 실행 → kss.ai.kr 런칭!
+
+---
+
+### Session 41 Status (2025-10-24) - 🎨 LangChain Chain Builder 전문화 완성
+
+**🎯 핵심 작업: Chain Builder를 상용 노코드 플랫폼 수준으로 업그레이드**
+
+#### **1. Chain Builder 전면 재작성** ✅
+
+**문제 인식:**
+- 사용자 피드백: "화살표를 어떻게 하는지 잘 모르겠어"
+- 기존 Shift+click 방식이 직관적이지 않음
+- 상용 노코드 플랫폼(Flowise, LangFlow, n8n)과 비교 시 UX 부족
+
+**해결 방안:**
+- 포트 기반 연결 시스템 도입 (업계 표준)
+- 클릭만으로 연결 가능하도록 개선
+- 시각적 피드백 강화
+
+**완성된 파일:**
+- `src/components/langchain-simulators/ChainBuilder.tsx` (718줄)
+
+#### **2. 주요 개선 사항** 🚀
+
+**A. 포트 기반 연결 시스템** 🔌
+
+**입력 포트 (Input Port):**
+```typescript
+<div
+  className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-blue-500 rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform flex items-center justify-center text-xs font-bold z-10"
+  onClick={(e) => handleInputPortClick(comp.id, e)}
+  title="Input Port - Click to connect"
+>
+  ←
+</div>
+```
+- 위치: 왼쪽 중앙
+- 색상: 파란색 (bg-blue-500)
+- 아이콘: ← (왼쪽 화살표)
+- 호버 효과: 1.25배 확대
+
+**출력 포트 (Output Port):**
+```typescript
+<div
+  className={`absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-2 border-white cursor-pointer hover:scale-125 transition-transform flex items-center justify-center text-xs font-bold z-10 ${
+    isConnectingFrom ? 'bg-green-500 animate-pulse' : 'bg-green-600'
+  }`}
+  onClick={(e) => handleOutputPortClick(comp.id, e)}
+  title="Output Port - Click to start connection"
+>
+  →
+</div>
+```
+- 위치: 오른쪽 중앙
+- 색상: 초록색 (bg-green-500/600)
+- 아이콘: → (오른쪽 화살표)
+- 연결 모드 시: animate-pulse 효과
+
+**B. 연결 프로세스** 🔗
+
+**상태 관리:**
+```typescript
+const [connectingFrom, setConnectingFrom] = useState<string | null>(null)
+const [connectionLine, setConnectionLine] = useState<{ x: number, y: number } | null>(null)
+const [selectedConnection, setSelectedConnection] = useState<string | null>(null)
+```
+
+**연결 순서:**
+1. 출력 포트 (초록색 →) 클릭 → `connectingFrom` 상태 설정
+2. 연결 모드 표시 (초록색 배너 + 포트 pulse 애니메이션)
+3. 입력 포트 (파란색 ←) 클릭 → 연결 생성
+4. 상태 초기화
+
+**C. 시각적 피드백** ✨
+
+**1) 연결 모드 인디케이터:**
+```typescript
+{connectingFrom && (
+  <div className="mb-4 px-4 py-2 bg-green-900/30 border border-green-600 rounded-lg text-sm text-green-400">
+    🔌 Connection mode active - Click on a blue input port (←) to complete the connection
+  </div>
+)}
+```
+
+**2) 임시 연결선:**
+```typescript
+{connectingFrom && connectionLine && (
+  <line
+    x1={fromComp.x + 220} y1={fromComp.y + 45}
+    x2={connectionLine.x} y2={connectionLine.y}
+    stroke="#10b981"
+    strokeWidth="2"
+    strokeDasharray="5,5"
+    markerEnd="url(#arrowhead-temp)"
+  />
+)}
+```
+- 초록색 점선 (stroke-dasharray)
+- 마우스 움직임 따라 실시간 업데이트
+
+**3) 선택된 연결 하이라이트:**
+```typescript
+<line
+  stroke={conn.id === selectedConnection ? '#ef4444' : '#10b981'}
+  strokeWidth={conn.id === selectedConnection ? '3' : '2'}
+/>
+```
+- 선택: 빨간색 + 3px
+- 미선택: 초록색 + 2px
+
+**D. 연결 삭제 기능** 🗑️
+
+```typescript
+const deleteConnection = (connId: string) => {
+  setConnections(connections.filter(c => c.id !== connId))
+  setSelectedConnection(null)
+}
+
+// Delete 버튼
+{selectedConnection && (
+  <button
+    onClick={() => deleteConnection(selectedConnection)}
+    className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg"
+  >
+    <Trash2 className="inline w-4 h-4 mr-2" />
+    Delete Connection
+  </button>
+)}
+```
+
+**E. 도움말 패널** 📖
+
+```typescript
+{showHelp && (
+  <div className="mb-6 bg-blue-900/30 border border-blue-600 rounded-xl p-6">
+    <h3 className="text-xl font-bold text-blue-400">How to Use</h3>
+    <div className="grid md:grid-cols-2 gap-4 text-sm">
+      {/* 4개 섹션 */}
+      <div>
+        <h4>🔌 Connect Components</h4>
+        <p>Click green output port → blue input port</p>
+      </div>
+      <div>
+        <h4>🗑️ Delete Connections</h4>
+        <p>Click connection line → Delete button</p>
+      </div>
+      {/* ... */}
+    </div>
+  </div>
+)}
+```
+
+**F. 설정 패널 확장** ⚙️
+
+**추가된 LLM 옵션:**
+```typescript
+<select className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg">
+  <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+  <option value="gpt-4">GPT-4</option>
+  <option value="gpt-4-turbo">GPT-4 Turbo</option>
+  <option value="claude-3-opus">Claude 3 Opus</option>
+  <option value="claude-3-sonnet">Claude 3 Sonnet</option>
+</select>
+```
+
+#### **3. 빌드 검증** ✅
+
+```bash
+npm run build
+✓ Generating static pages (335/335)
+Route: /modules/langchain/simulators/[simulatorId]
+Size: 3.13 kB, First Load JS: 105 kB
+```
+
+**결과:**
+- ✅ 335 pages 정상 생성
+- ✅ TypeScript 컴파일 에러 없음
+- ✅ 개발 서버 http://localhost:3000 실행 중
+
+#### **4. 상용화 로드맵 분석** 📊
+
+**리서치 결과 (2025 기준):**
+
+| 플랫폼 | 주요 특징 | 장점 |
+|--------|----------|------|
+| **Flowise** | LangChain.js 기반, 100+ 통합 | AI 애플리케이션 특화, 3개 빌더 |
+| **LangFlow** | 시각적 LangChain 빌더 | RAG 성능 23% 빠름, Datastax 인수 |
+| **n8n** | 400+ 통합, 하이브리드 | 범용 워크플로우, 12K records/min |
+
+**필요한 추가 기능 (우선순위 순):**
+
+**Phase 1: 기본 기능 (1-2주)**
+1. ✅ 포트 기반 연결 시스템 (완료)
+2. ✅ 연결 삭제 기능 (완료)
+3. ✅ 도움말 패널 (완료)
+4. 🔲 Undo/Redo 기능
+5. 🔲 저장/불러오기 (LocalStorage)
+6. 🔲 전체화면 모드
+
+**Phase 2: 컴포넌트 확장 (2-3주)**
+7. 🔲 LLM 노드 (OpenAI, Claude, Gemini)
+8. 🔲 벡터 DB 노드 (Pinecone, Weaviate)
+9. 🔲 도구 노드 (Google Search, Calculator)
+10. 🔲 메모리 노드 (Buffer, Summary, Vector)
+
+**Phase 3: 실행 엔진 (3-4주)**
+11. 🔲 실시간 실행 (각 노드 상태 표시)
+12. 🔲 중간 결과 미리보기
+13. 🔲 에러 핸들링
+14. 🔲 실행 로그 타임라인
+
+**Phase 4: 고급 기능 (4-6주)**
+15. 🔲 조건부 분기 (IF/ELSE 노드)
+16. 🔲 루프 노드
+17. 🔲 병렬 실행
+18. 🔲 템플릿 라이브러리
+
+**Phase 5: 배포 & 협업 (6-8주)**
+19. 🔲 REST API 생성
+20. 🔲 Webhook 통합
+21. 🔲 팀 협업 기능
+22. 🔲 비용 계산기
+
+#### **5. 즉시 추가 가능한 기능** 🎯
+
+**A. 전체화면 모드** (30분)
+```typescript
+const [isFullscreen, setIsFullscreen] = useState(false)
+
+const toggleFullscreen = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen()
+    setIsFullscreen(true)
+  } else {
+    document.exitFullscreen()
+    setIsFullscreen(false)
+  }
+}
+
+<button onClick={toggleFullscreen}>
+  {isFullscreen ? <Minimize /> : <Maximize />}
+</button>
+```
+
+**B. Undo/Redo** (1시간)
+```typescript
+const [history, setHistory] = useState<State[]>([])
+const [historyIndex, setHistoryIndex] = useState(0)
+
+const undo = () => {
+  if (historyIndex > 0) {
+    setHistoryIndex(historyIndex - 1)
+    restoreState(history[historyIndex - 1])
+  }
+}
+```
+
+**C. 저장/불러오기** (1시간)
+```typescript
+const saveWorkflow = () => {
+  const workflow = { components, connections }
+  localStorage.setItem('chainflow', JSON.stringify(workflow))
+}
+
+const loadWorkflow = () => {
+  const saved = localStorage.getItem('chainflow')
+  if (saved) {
+    const { components, connections } = JSON.parse(saved)
+    setComponents(components)
+    setConnections(connections)
+  }
+}
+```
+
+#### **6. 다음 우선순위** 📅
+
+**사용자 요청:**
+- ✅ 전문적인 노코드 인터페이스 (완료)
+- 🎯 **전체화면 모드 추가** (다음 작업)
+
+**추천 순서:**
+1. 전체화면 모드 (30분)
+2. 저장/불러오기 (1시간)
+3. Undo/Redo (1시간)
+4. 미니맵 (2시간)
+5. 자동 정렬 (1시간)
+
+#### **7. 기술적 완성도** 🔧
+
+**React 패턴:**
+- ✅ 'use client' directive
+- ✅ useState, useRef, useEffect hooks
+- ✅ TypeScript 완전 타입 안전성
+- ✅ 이벤트 핸들러 분리 (onClick, onMouseMove)
+- ✅ SVG for connections, Canvas for visual effects
+
+**UI/UX:**
+- ✅ Amber/Orange gradient theme 일관성
+- ✅ Dark mode 완벽 지원
+- ✅ Lucide React icons
+- ✅ Hover/Focus 상태 애니메이션
+- ✅ 직관적인 포트 기반 인터페이스
+
+**성능:**
+- ✅ 컴포넌트 메모이제이션 가능
+- ✅ 이벤트 delegation
+- ✅ SVG로 고성능 렌더링
+- ✅ 필요시 useMemo/useCallback 추가 가능
+
+#### **8. 파일 변경 요약** 📁
+
+**수정된 파일 (1개):**
+```
+src/components/langchain-simulators/ChainBuilder.tsx (718줄)
+  - 기존: Shift+click 연결 방식
+  - 신규: 포트 기반 클릭 연결 방식
+  - 추가: 연결 삭제, 도움말 패널, 시각적 피드백
+  - 개선: 설정 패널 (LLM 옵션 확장)
+```
+
+**변경 통계:**
+- 전체 재작성: 718줄
+- 주요 섹션:
+  - State management: ~50줄
+  - Event handlers: ~150줄
+  - Components rendering: ~300줄
+  - Configuration panel: ~100줄
+  - Help panel: ~80줄
+  - SVG connections: ~40줄
+
+#### **9. 핵심 교훈** 💡
+
+**UX 개선의 중요성:**
+- 사용자 피드백 즉시 반영 ("화살표를 어떻게 하는지 잘 모르겠어")
+- 업계 표준 패턴 적용 (포트 기반 시스템)
+- 시각적 피드백으로 직관성 향상
+
+**상용 플랫폼 벤치마킹:**
+- Flowise, LangFlow, n8n 리서치로 필요 기능 파악
+- 100+ 컴포넌트, 실시간 실행, 배포 옵션 필요
+- Phase별 로드맵으로 체계적 개발 계획
+
+**점진적 개선:**
+- Phase 1 (기본) 완료: 포트 시스템, 연결 삭제, 도움말
+- Phase 2-5로 확장 가능한 구조 확립
+- 각 단계별 1-2주 단위 목표 설정
+
+#### **10. 다음 작업** 🎯
+
+**즉시 작업:**
+- 🎯 전체화면 모드 추가 (30분)
+- 📝 README 업데이트
+- 🚀 Git 커밋 & 푸시
+
+**후속 작업:**
+- 저장/불러오기 기능
+- Undo/Redo 기능
+- 컴포넌트 라이브러리 확장 (10-15개)
+- 실시간 실행 엔진 구축
+
+---
+
+**Session 41 요약:**
+- ✅ Chain Builder 전면 재작성 (718줄)
+- ✅ 포트 기반 연결 시스템 구현
+- ✅ 연결 삭제, 도움말, 시각적 피드백 추가
+- ✅ 빌드 검증 (335 pages)
+- ✅ 상용화 로드맵 수립 (Phase 1-5)
+- 🎯 **다음**: 전체화면 모드 → 커밋 → 푸시
