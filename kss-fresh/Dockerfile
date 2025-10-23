@@ -29,8 +29,9 @@ RUN npx prisma generate
 # Set environment variables for build
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-# Build Next.js application
+# Build Next.js application with increased memory
 RUN npm run build
 
 # Stage 3: Runner
