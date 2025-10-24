@@ -2304,7 +2304,7 @@ export default function ChainBuilder() {
 
               <div
                 ref={canvasRef}
-                className={`relative bg-gray-900 rounded-lg border-2 border-dashed border-gray-600 ${isFullscreen ? 'h-[85vh]' : 'h-[500px]'} overflow-auto cursor-default`}
+                className={`relative bg-gray-900 rounded-lg border-2 border-dashed border-gray-600 ${isFullscreen ? 'h-[85vh]' : 'h-[700px]'} overflow-auto cursor-default`}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
