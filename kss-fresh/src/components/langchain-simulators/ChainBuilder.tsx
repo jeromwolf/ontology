@@ -1760,13 +1760,13 @@ export default function ChainBuilder() {
         <div className={`grid grid-cols-1 ${isFullscreen ? 'lg:grid-cols-12' : 'lg:grid-cols-4'} gap-${isFullscreen ? '2' : '6'}`}>
           {/* Component Palette */}
           <div className={`${isFullscreen ? 'lg:col-span-2' : 'lg:col-span-1'} space-y-4`}>
-            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6">
+            <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6 max-h-[calc(100vh-200px)] flex flex-col">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <Plus className="w-5 h-5" />
                 Components
               </h3>
 
-              <div className="space-y-2">
+              <div className="space-y-2 overflow-y-auto pr-2">
                 {Object.entries(COMPONENT_TEMPLATES).map(([key, template]) => (
                   <button
                     key={key}
@@ -2304,11 +2304,12 @@ export default function ChainBuilder() {
 
               <div
                 ref={canvasRef}
-                className={`relative bg-gray-900 rounded-lg border-2 border-dashed border-gray-600 ${isFullscreen ? 'h-[85vh]' : 'h-[500px]'} overflow-hidden cursor-default`}
+                className={`relative bg-gray-900 rounded-lg border-2 border-dashed border-gray-600 ${isFullscreen ? 'h-[85vh]' : 'h-[500px]'} overflow-auto cursor-default`}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
                 onClick={handleCanvasClick}
+                style={{ minWidth: '2000px', minHeight: '1500px' }}
               >
                 {/* Connections SVG */}
                 <svg className="absolute inset-0 pointer-events-none w-full h-full">
