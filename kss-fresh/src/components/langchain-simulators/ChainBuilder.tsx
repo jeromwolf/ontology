@@ -2319,7 +2319,7 @@ export default function ChainBuilder() {
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
                 onClick={handleCanvasClick}
-                style={{ minWidth: '2000px', minHeight: '1500px' }}
+                style={{ minWidth: '4000px', minHeight: '3000px' }}
               >
                 {/* Connections SVG */}
                 <svg className="absolute inset-0 pointer-events-none w-full h-full">
