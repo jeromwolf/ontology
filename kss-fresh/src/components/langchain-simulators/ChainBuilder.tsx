@@ -5,7 +5,9 @@ import { Play, Download, Trash2, Plus, Code, Zap, HelpCircle, X, Maximize, Minim
 
 interface ChainComponent {
   id: string
-  type: 'llm' | 'prompt' | 'parser' | 'retriever' | 'transform'
+  type: 'llm' | 'prompt' | 'parser' | 'retriever' | 'transform' |
+        'vectordb' | 'memory' | 'agent' | 'tool' | 'embedding' |
+        'chat' | 'search' | 'splitter' | 'conditional' | 'output'
   label: string
   config: Record<string, any>
   position: { x: number; y: number }
@@ -57,6 +59,76 @@ const COMPONENT_TEMPLATES = {
     config: { operation: 'lowercase' },
     color: '#ec4899',
     icon: '⚡'
+  },
+  vectordb: {
+    type: 'vectordb',
+    label: 'Vector Database',
+    config: { database: 'pinecone', index: 'default', namespace: '' },
+    color: '#a855f7',
+    icon: '🗄️'
+  },
+  memory: {
+    type: 'memory',
+    label: 'Memory',
+    config: { type: 'buffer', maxTokens: 2000 },
+    color: '#06b6d4',
+    icon: '🧠'
+  },
+  agent: {
+    type: 'agent',
+    label: 'Agent',
+    config: { type: 'react', maxIterations: 5, verbose: true },
+    color: '#f97316',
+    icon: '🤖'
+  },
+  tool: {
+    type: 'tool',
+    label: 'Tool',
+    config: { name: 'calculator', description: 'Performs math calculations' },
+    color: '#84cc16',
+    icon: '🛠️'
+  },
+  embedding: {
+    type: 'embedding',
+    label: 'Embedding',
+    config: { model: 'text-embedding-ada-002', dimensions: 1536 },
+    color: '#14b8a6',
+    icon: '📊'
+  },
+  chat: {
+    type: 'chat',
+    label: 'Chat Model',
+    config: { model: 'gpt-3.5-turbo', streaming: false },
+    color: '#f59e0b',
+    icon: '💬'
+  },
+  search: {
+    type: 'search',
+    label: 'Search',
+    config: { engine: 'google', maxResults: 5 },
+    color: '#3b82f6',
+    icon: '🔎'
+  },
+  splitter: {
+    type: 'splitter',
+    label: 'Text Splitter',
+    config: { chunkSize: 1000, chunkOverlap: 200 },
+    color: '#8b5cf6',
+    icon: '✂️'
+  },
+  conditional: {
+    type: 'conditional',
+    label: 'Conditional',
+    config: { condition: 'length > 100', truePath: '', falsePath: '' },
+    color: '#ef4444',
+    icon: '🔀'
+  },
+  output: {
+    type: 'output',
+    label: 'Output',
+    config: { format: 'text', destination: 'console' },
+    color: '#10b981',
+    icon: '📤'
   }
 }
 
@@ -649,6 +721,334 @@ export default function ChainBuilder() {
                         }}
                         className="w-full accent-purple-500"
                       />
+                    </div>
+                  )}
+
+                  {selectedComp.type === 'vectordb' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Database</label>
+                        <select
+                          value={selectedComp.config.database}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, database: e.target.value } }
+                                : c
+                            ))
+                          }}
+                          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                        >
+                          <option>pinecone</option>
+                          <option>weaviate</option>
+                          <option>chroma</option>
+                          <option>qdrant</option>
+                          <option>milvus</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Index Name</label>
+                        <input
+                          type="text"
+                          value={selectedComp.config.index}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, index: e.target.value } }
+                                : c
+                            ))
+                          }}
+                          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {selectedComp.type === 'memory' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Memory Type</label>
+                        <select
+                          value={selectedComp.config.type}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, type: e.target.value } }
+                                : c
+                            ))
+                          }}
+                          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                        >
+                          <option>buffer</option>
+                          <option>summary</option>
+                          <option>vector_store</option>
+                          <option>entity</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Max Tokens: {selectedComp.config.maxTokens}</label>
+                        <input
+                          type="range"
+                          min="500"
+                          max="4000"
+                          step="100"
+                          value={selectedComp.config.maxTokens}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, maxTokens: parseInt(e.target.value) } }
+                                : c
+                            ))
+                          }}
+                          className="w-full accent-cyan-500"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {selectedComp.type === 'agent' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Agent Type</label>
+                        <select
+                          value={selectedComp.config.type}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, type: e.target.value } }
+                                : c
+                            ))
+                          }}
+                          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                        >
+                          <option>react</option>
+                          <option>zero-shot</option>
+                          <option>conversational</option>
+                          <option>openai-functions</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Max Iterations: {selectedComp.config.maxIterations}</label>
+                        <input
+                          type="range"
+                          min="1"
+                          max="10"
+                          value={selectedComp.config.maxIterations}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, maxIterations: parseInt(e.target.value) } }
+                                : c
+                            ))
+                          }}
+                          className="w-full accent-orange-500"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {selectedComp.type === 'tool' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Tool Name</label>
+                        <select
+                          value={selectedComp.config.name}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, name: e.target.value } }
+                                : c
+                            ))
+                          }}
+                          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                        >
+                          <option>calculator</option>
+                          <option>search</option>
+                          <option>wikipedia</option>
+                          <option>weather</option>
+                          <option>custom</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Description</label>
+                        <input
+                          type="text"
+                          value={selectedComp.config.description}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, description: e.target.value } }
+                                : c
+                            ))
+                          }}
+                          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {selectedComp.type === 'embedding' && (
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Model</label>
+                      <select
+                        value={selectedComp.config.model}
+                        onChange={(e) => {
+                          setComponents(components.map(c =>
+                            c.id === selectedComp.id
+                              ? { ...c, config: { ...c.config, model: e.target.value } }
+                              : c
+                          ))
+                        }}
+                        className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                      >
+                        <option>text-embedding-ada-002</option>
+                        <option>text-embedding-3-small</option>
+                        <option>text-embedding-3-large</option>
+                      </select>
+                    </div>
+                  )}
+
+                  {selectedComp.type === 'chat' && (
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Chat Model</label>
+                      <select
+                        value={selectedComp.config.model}
+                        onChange={(e) => {
+                          setComponents(components.map(c =>
+                            c.id === selectedComp.id
+                              ? { ...c, config: { ...c.config, model: e.target.value } }
+                              : c
+                          ))
+                        }}
+                        className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                      >
+                        <option>gpt-3.5-turbo</option>
+                        <option>gpt-4</option>
+                        <option>claude-3-sonnet</option>
+                        <option>gemini-pro</option>
+                      </select>
+                    </div>
+                  )}
+
+                  {selectedComp.type === 'search' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Search Engine</label>
+                        <select
+                          value={selectedComp.config.engine}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, engine: e.target.value } }
+                                : c
+                            ))
+                          }}
+                          className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                        >
+                          <option>google</option>
+                          <option>bing</option>
+                          <option>duckduckgo</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Max Results: {selectedComp.config.maxResults}</label>
+                        <input
+                          type="range"
+                          min="1"
+                          max="10"
+                          value={selectedComp.config.maxResults}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, maxResults: parseInt(e.target.value) } }
+                                : c
+                            ))
+                          }}
+                          className="w-full accent-blue-500"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {selectedComp.type === 'splitter' && (
+                    <>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Chunk Size: {selectedComp.config.chunkSize}</label>
+                        <input
+                          type="range"
+                          min="100"
+                          max="2000"
+                          step="100"
+                          value={selectedComp.config.chunkSize}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, chunkSize: parseInt(e.target.value) } }
+                                : c
+                            ))
+                          }}
+                          className="w-full accent-purple-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Chunk Overlap: {selectedComp.config.chunkOverlap}</label>
+                        <input
+                          type="range"
+                          min="0"
+                          max="500"
+                          step="50"
+                          value={selectedComp.config.chunkOverlap}
+                          onChange={(e) => {
+                            setComponents(components.map(c =>
+                              c.id === selectedComp.id
+                                ? { ...c, config: { ...c.config, chunkOverlap: parseInt(e.target.value) } }
+                                : c
+                            ))
+                          }}
+                          className="w-full accent-purple-500"
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  {selectedComp.type === 'conditional' && (
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Condition</label>
+                      <input
+                        type="text"
+                        value={selectedComp.config.condition}
+                        onChange={(e) => {
+                          setComponents(components.map(c =>
+                            c.id === selectedComp.id
+                              ? { ...c, config: { ...c.config, condition: e.target.value } }
+                              : c
+                          ))
+                        }}
+                        className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded font-mono text-sm"
+                        placeholder="e.g., length > 100"
+                      />
+                    </div>
+                  )}
+
+                  {selectedComp.type === 'output' && (
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Output Format</label>
+                      <select
+                        value={selectedComp.config.format}
+                        onChange={(e) => {
+                          setComponents(components.map(c =>
+                            c.id === selectedComp.id
+                              ? { ...c, config: { ...c.config, format: e.target.value } }
+                              : c
+                          ))
+                        }}
+                        className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded"
+                      >
+                        <option>text</option>
+                        <option>json</option>
+                        <option>markdown</option>
+                        <option>html</option>
+                      </select>
                     </div>
                   )}
 
