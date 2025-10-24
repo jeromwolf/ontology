@@ -734,6 +734,7 @@ export default function ChainBuilder() {
   const [showHelp, setShowHelp] = useState(false)
   const [showTemplates, setShowTemplates] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isPaletteCollapsed, setIsPaletteCollapsed] = useState(false)
 
   // Execution simulation state
   const [isSimulating, setIsSimulating] = useState(false)
@@ -1759,7 +1760,8 @@ export default function ChainBuilder() {
 
         <div className={`grid grid-cols-1 ${isFullscreen ? 'lg:grid-cols-12' : 'lg:grid-cols-6'} gap-${isFullscreen ? '2' : '4'}`}>
           {/* Component Palette */}
-          <div className={`${isFullscreen ? 'lg:col-span-2' : 'lg:col-span-1'} space-y-4`}>
+          {!isPaletteCollapsed && (
+            <div className={`${isFullscreen ? 'lg:col-span-2' : 'lg:col-span-1'} space-y-4`}>
             <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6 max-h-[calc(100vh-200px)] flex flex-col">
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <Plus className="w-5 h-5" />
@@ -2235,10 +2237,11 @@ export default function ChainBuilder() {
                 </div>
               </div>
             )}
-          </div>
+            </div>
+          )}
 
           {/* Canvas */}
-          <div className={`${isFullscreen ? 'lg:col-span-10' : 'lg:col-span-5'} space-y-4`}>
+          <div className={`${isPaletteCollapsed ? 'lg:col-span-6' : (isFullscreen ? 'lg:col-span-10' : 'lg:col-span-5')} space-y-4`}>
             <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold">🎨 Canvas</h3>
@@ -2259,6 +2262,13 @@ export default function ChainBuilder() {
                   >
                     <Upload className="w-4 h-4" />
                     Load
+                  </button>
+                  <button
+                    onClick={() => setIsPaletteCollapsed(!isPaletteCollapsed)}
+                    className="px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded flex items-center gap-2 transition-colors"
+                    title={isPaletteCollapsed ? "Show Component Palette" : "Hide Component Palette"}
+                  >
+                    {isPaletteCollapsed ? '▶️' : '◀️'}
                   </button>
                   <button
                     onClick={undo}
