@@ -301,6 +301,422 @@ const WORKFLOW_TEMPLATES = {
       { id: 'conn-3', from: 'chat-1', to: 'parser-1' },
       { id: 'conn-4', from: 'chat-1', to: 'output-1' }
     ]
+  },
+  summarization: {
+    name: 'Document Summarization',
+    description: 'Summarize long documents with map-reduce pattern',
+    icon: '📝',
+    components: [
+      {
+        id: 'splitter-1',
+        type: 'splitter' as const,
+        label: 'Text Splitter',
+        config: { chunkSize: 2000, chunkOverlap: 100 },
+        position: { x: 100, y: 200 }
+      },
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Map Prompt',
+        config: { template: 'Summarize this chunk concisely:\n\n{text}' },
+        position: { x: 300, y: 100 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM (Map)',
+        config: { model: 'gpt-3.5-turbo', temperature: 0.3, maxTokens: 300 },
+        position: { x: 500, y: 100 }
+      },
+      {
+        id: 'prompt-2',
+        type: 'prompt' as const,
+        label: 'Reduce Prompt',
+        config: { template: 'Combine these summaries into final summary:\n\n{summaries}' },
+        position: { x: 300, y: 300 }
+      },
+      {
+        id: 'llm-2',
+        type: 'llm' as const,
+        label: 'LLM (Reduce)',
+        config: { model: 'gpt-4', temperature: 0.5, maxTokens: 500 },
+        position: { x: 500, y: 300 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'text' },
+        position: { x: 700, y: 200 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'splitter-1', to: 'prompt-1' },
+      { id: 'conn-2', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-3', from: 'llm-1', to: 'prompt-2' },
+      { id: 'conn-4', from: 'prompt-2', to: 'llm-2' },
+      { id: 'conn-5', from: 'llm-2', to: 'output-1' }
+    ]
+  },
+  qa_with_sources: {
+    name: 'Q&A with Sources',
+    description: 'Answer questions with source citations',
+    icon: '🔍',
+    components: [
+      {
+        id: 'retriever-1',
+        type: 'retriever' as const,
+        label: 'Retriever',
+        config: { topK: 5, threshold: 0.6 },
+        position: { x: 100, y: 200 }
+      },
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Prompt',
+        config: { template: 'Answer the question and cite sources.\n\nSources: {sources}\n\nQuestion: {question}' },
+        position: { x: 300, y: 200 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-4', temperature: 0.2, maxTokens: 800 },
+        position: { x: 500, y: 200 }
+      },
+      {
+        id: 'parser-1',
+        type: 'parser' as const,
+        label: 'Citation Parser',
+        config: { format: 'structured' },
+        position: { x: 700, y: 200 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'json' },
+        position: { x: 900, y: 200 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'retriever-1', to: 'prompt-1' },
+      { id: 'conn-2', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-3', from: 'llm-1', to: 'parser-1' },
+      { id: 'conn-4', from: 'parser-1', to: 'output-1' }
+    ]
+  },
+  sql_agent: {
+    name: 'SQL Database Agent',
+    description: 'Natural language to SQL queries',
+    icon: '🗄️',
+    components: [
+      {
+        id: 'tool-1',
+        type: 'tool' as const,
+        label: 'SQL Tool',
+        config: { name: 'sql_executor', description: 'Executes SQL queries' },
+        position: { x: 100, y: 100 }
+      },
+      {
+        id: 'tool-2',
+        type: 'tool' as const,
+        label: 'Schema Tool',
+        config: { name: 'schema_reader', description: 'Reads database schema' },
+        position: { x: 100, y: 250 }
+      },
+      {
+        id: 'agent-1',
+        type: 'agent' as const,
+        label: 'SQL Agent',
+        config: { type: 'react', maxIterations: 10 },
+        position: { x: 350, y: 175 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-4', temperature: 0, maxTokens: 1000 },
+        position: { x: 600, y: 175 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'table' },
+        position: { x: 800, y: 175 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'tool-1', to: 'agent-1' },
+      { id: 'conn-2', from: 'tool-2', to: 'agent-1' },
+      { id: 'conn-3', from: 'agent-1', to: 'llm-1' },
+      { id: 'conn-4', from: 'llm-1', to: 'output-1' }
+    ]
+  },
+  code_generator: {
+    name: 'Code Generator',
+    description: 'Generate code from natural language',
+    icon: '💻',
+    components: [
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'System Prompt',
+        config: { template: 'You are an expert programmer. Generate clean, efficient code.\n\nTask: {task}\nLanguage: {language}' },
+        position: { x: 100, y: 200 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'Code LLM',
+        config: { model: 'gpt-4', temperature: 0.2, maxTokens: 2000 },
+        position: { x: 350, y: 200 }
+      },
+      {
+        id: 'parser-1',
+        type: 'parser' as const,
+        label: 'Code Parser',
+        config: { format: 'code' },
+        position: { x: 600, y: 200 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'code' },
+        position: { x: 800, y: 200 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-2', from: 'llm-1', to: 'parser-1' },
+      { id: 'conn-3', from: 'parser-1', to: 'output-1' }
+    ]
+  },
+  translation: {
+    name: 'Multi-language Translation',
+    description: 'Translate text between multiple languages',
+    icon: '🌐',
+    components: [
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Translation Prompt',
+        config: { template: 'Translate from {source_lang} to {target_lang}:\n\n{text}' },
+        position: { x: 100, y: 200 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-3.5-turbo', temperature: 0.3, maxTokens: 1000 },
+        position: { x: 350, y: 200 }
+      },
+      {
+        id: 'cache-1',
+        type: 'cache' as const,
+        label: 'Translation Cache',
+        config: { enabled: true, ttl: 3600 },
+        position: { x: 600, y: 200 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'text' },
+        position: { x: 800, y: 200 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-2', from: 'llm-1', to: 'cache-1' },
+      { id: 'conn-3', from: 'cache-1', to: 'output-1' }
+    ]
+  },
+  content_moderation: {
+    name: 'Content Moderation',
+    description: 'Filter inappropriate content with multi-stage checks',
+    icon: '🛡️',
+    components: [
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Moderation Prompt',
+        config: { template: 'Analyze this content for policy violations:\n\n{content}' },
+        position: { x: 100, y: 200 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-4', temperature: 0.1, maxTokens: 500 },
+        position: { x: 350, y: 200 }
+      },
+      {
+        id: 'conditional-1',
+        type: 'conditional' as const,
+        label: 'Safety Check',
+        config: { condition: 'is_safe', trueLabel: 'Approved', falseLabel: 'Blocked' },
+        position: { x: 600, y: 200 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'json' },
+        position: { x: 800, y: 200 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-2', from: 'llm-1', to: 'conditional-1' },
+      { id: 'conn-3', from: 'conditional-1', to: 'output-1' }
+    ]
+  },
+  sentiment_analysis: {
+    name: 'Sentiment Analysis',
+    description: 'Analyze sentiment with detailed emotions',
+    icon: '😊',
+    components: [
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Analysis Prompt',
+        config: { template: 'Analyze sentiment and emotions in this text:\n\n{text}' },
+        position: { x: 100, y: 200 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-3.5-turbo', temperature: 0.3, maxTokens: 300 },
+        position: { x: 350, y: 200 }
+      },
+      {
+        id: 'parser-1',
+        type: 'parser' as const,
+        label: 'Sentiment Parser',
+        config: { format: 'structured' },
+        position: { x: 600, y: 200 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'json' },
+        position: { x: 800, y: 200 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-2', from: 'llm-1', to: 'parser-1' },
+      { id: 'conn-3', from: 'parser-1', to: 'output-1' }
+    ]
+  },
+  recommendation: {
+    name: 'Smart Recommendation',
+    description: 'Personalized recommendations with user context',
+    icon: '⭐',
+    components: [
+      {
+        id: 'vectordb-1',
+        type: 'vectordb' as const,
+        label: 'User Profiles',
+        config: { database: 'pinecone', index: 'users', namespace: 'profiles' },
+        position: { x: 100, y: 100 }
+      },
+      {
+        id: 'retriever-1',
+        type: 'retriever' as const,
+        label: 'Similar Users',
+        config: { topK: 10, threshold: 0.75 },
+        position: { x: 100, y: 250 }
+      },
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Recommendation Prompt',
+        config: { template: 'Based on user preferences and similar users, recommend items:\n\nUser: {user}\nSimilar: {similar}' },
+        position: { x: 350, y: 175 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-4', temperature: 0.7, maxTokens: 800 },
+        position: { x: 600, y: 175 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'json' },
+        position: { x: 850, y: 175 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'vectordb-1', to: 'retriever-1' },
+      { id: 'conn-2', from: 'retriever-1', to: 'prompt-1' },
+      { id: 'conn-3', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-4', from: 'llm-1', to: 'output-1' }
+    ]
+  },
+  email_automation: {
+    name: 'Email Automation',
+    description: 'Auto-draft and categorize emails with smart routing',
+    icon: '📧',
+    components: [
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Categorize Prompt',
+        config: { template: 'Categorize this email (urgent/normal/spam):\n\n{email}' },
+        position: { x: 100, y: 150 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-3.5-turbo', temperature: 0.2, maxTokens: 100 },
+        position: { x: 350, y: 150 }
+      },
+      {
+        id: 'router-1',
+        type: 'router' as const,
+        label: 'Router',
+        config: { routes: ['urgent', 'normal', 'spam'] },
+        position: { x: 600, y: 150 }
+      },
+      {
+        id: 'prompt-2',
+        type: 'prompt' as const,
+        label: 'Draft Reply',
+        config: { template: 'Draft a professional reply to:\n\n{email}' },
+        position: { x: 100, y: 300 }
+      },
+      {
+        id: 'llm-2',
+        type: 'llm' as const,
+        label: 'Reply LLM',
+        config: { model: 'gpt-4', temperature: 0.7, maxTokens: 500 },
+        position: { x: 350, y: 300 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'json' },
+        position: { x: 850, y: 225 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-2', from: 'llm-1', to: 'router-1' },
+      { id: 'conn-3', from: 'router-1', to: 'output-1' },
+      { id: 'conn-4', from: 'prompt-2', to: 'llm-2' },
+      { id: 'conn-5', from: 'llm-2', to: 'output-1' }
+    ]
   }
 }
 
@@ -879,34 +1295,93 @@ export default function ChainBuilder() {
     }
   }
 
-  // Save workflow to localStorage
+  // Save workflow to localStorage with custom name
   const saveWorkflow = () => {
+    const name = prompt('워크플로우 이름을 입력하세요:', 'My Workflow')
+    if (!name) return
+
     const workflow = {
+      name,
       components,
       connections,
       timestamp: new Date().toISOString(),
       version: '1.0'
     }
-    localStorage.setItem('langchain-workflow', JSON.stringify(workflow))
-    alert('✅ Workflow saved!')
+
+    // Get existing workflows
+    const saved = localStorage.getItem('langchain-workflows')
+    const workflows = saved ? JSON.parse(saved) : []
+
+    // Add or update workflow
+    const existingIndex = workflows.findIndex((w: any) => w.name === name)
+    if (existingIndex >= 0) {
+      if (confirm(`"${name}" 워크플로우가 이미 존재합니다. 덮어쓰시겠습니까?`)) {
+        workflows[existingIndex] = workflow
+      } else {
+        return
+      }
+    } else {
+      workflows.push(workflow)
+    }
+
+    localStorage.setItem('langchain-workflows', JSON.stringify(workflows))
+    alert(`✅ "${name}" 저장 완료!`)
   }
 
   // Load workflow from localStorage
-  const loadWorkflow = () => {
-    const saved = localStorage.getItem('langchain-workflow')
+  const loadWorkflow = (workflowName: string) => {
+    const saved = localStorage.getItem('langchain-workflows')
     if (!saved) {
-      alert('❌ No saved workflow found')
+      alert('❌ No saved workflows found')
       return
     }
 
     try {
-      const workflow = JSON.parse(saved)
+      const workflows = JSON.parse(saved)
+      const workflow = workflows.find((w: any) => w.name === workflowName)
+
+      if (!workflow) {
+        alert('❌ Workflow not found')
+        return
+      }
+
       setComponents(workflow.components)
       setConnections(workflow.connections)
-      alert(`✅ Workflow loaded! (saved ${new Date(workflow.timestamp).toLocaleString()})`)
+      setShowTemplates(false)
+      alert(`✅ "${workflowName}" 불러오기 완료! (저장: ${new Date(workflow.timestamp).toLocaleString()})`)
     } catch (error) {
       alert('❌ Failed to load workflow')
       console.error(error)
+    }
+  }
+
+  // Delete saved workflow
+  const deleteWorkflow = (workflowName: string) => {
+    const saved = localStorage.getItem('langchain-workflows')
+    if (!saved) return
+
+    try {
+      const workflows = JSON.parse(saved)
+      const filtered = workflows.filter((w: any) => w.name !== workflowName)
+      localStorage.setItem('langchain-workflows', JSON.stringify(filtered))
+      alert(`✅ "${workflowName}" 삭제 완료!`)
+      // Trigger re-render by toggling templates
+      setShowTemplates(false)
+      setTimeout(() => setShowTemplates(true), 10)
+    } catch (error) {
+      alert('❌ Failed to delete workflow')
+      console.error(error)
+    }
+  }
+
+  // Get saved workflows
+  const getSavedWorkflows = () => {
+    const saved = localStorage.getItem('langchain-workflows')
+    if (!saved) return []
+    try {
+      return JSON.parse(saved)
+    } catch {
+      return []
     }
   }
 
@@ -1147,11 +1622,11 @@ export default function ChainBuilder() {
         {/* Template Gallery Modal */}
         {showTemplates && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8 max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8 max-w-6xl w-full max-h-[85vh] overflow-y-auto">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-3xl font-bold flex items-center gap-3">
                   <Zap className="w-8 h-8 text-purple-400" />
-                  Workflow Templates
+                  워크플로우 갤러리
                 </h2>
                 <button
                   onClick={() => setShowTemplates(false)}
@@ -1161,28 +1636,97 @@ export default function ChainBuilder() {
                 </button>
               </div>
 
-              <p className="text-gray-400 mb-8">
-                Choose a pre-built workflow template to get started quickly. Each template is fully configured and ready to use.
-              </p>
+              {/* Built-in Templates Section */}
+              <div className="mb-10">
+                <div className="flex items-center gap-2 mb-4">
+                  <h3 className="text-xl font-bold text-purple-400">⚡ 내장 템플릿</h3>
+                  <span className="text-sm text-gray-500">({Object.keys(WORKFLOW_TEMPLATES).length}개)</span>
+                </div>
+                <p className="text-gray-400 mb-6 text-sm">
+                  바로 사용 가능한 전문 워크플로우 템플릿입니다. 클릭하면 자동으로 불러옵니다.
+                </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {Object.entries(WORKFLOW_TEMPLATES).map(([key, template]) => (
-                  <button
-                    key={key}
-                    onClick={() => loadTemplate(key as keyof typeof WORKFLOW_TEMPLATES)}
-                    className="bg-gray-900/50 border border-gray-700 hover:border-purple-500 rounded-xl p-6 text-left transition-all hover:scale-105"
-                  >
-                    <div className="text-5xl mb-4">{template.icon}</div>
-                    <h3 className="text-xl font-bold mb-2">{template.name}</h3>
-                    <p className="text-gray-400 text-sm mb-4">{template.description}</p>
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                      <span>{template.components.length} components</span>
-                      <span>•</span>
-                      <span>{template.connections.length} connections</span>
-                    </div>
-                  </button>
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {Object.entries(WORKFLOW_TEMPLATES).map(([key, template]) => (
+                    <button
+                      key={key}
+                      onClick={() => loadTemplate(key as keyof typeof WORKFLOW_TEMPLATES)}
+                      className="bg-gray-900/50 border border-gray-700 hover:border-purple-500 rounded-xl p-5 text-left transition-all hover:scale-105"
+                    >
+                      <div className="text-4xl mb-3">{template.icon}</div>
+                      <h4 className="text-lg font-bold mb-2">{template.name}</h4>
+                      <p className="text-gray-400 text-xs mb-3 line-clamp-2">{template.description}</p>
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <span>{template.components.length} 컴포넌트</span>
+                        <span>•</span>
+                        <span>{template.connections.length} 연결</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
+
+              {/* Saved Workflows Section */}
+              {(() => {
+                const savedWorkflows = getSavedWorkflows()
+                return savedWorkflows.length > 0 ? (
+                  <div>
+                    <div className="flex items-center gap-2 mb-4">
+                      <h3 className="text-xl font-bold text-amber-400">💾 내 워크플로우</h3>
+                      <span className="text-sm text-gray-500">({savedWorkflows.length}개 저장됨)</span>
+                    </div>
+                    <p className="text-gray-400 mb-6 text-sm">
+                      저장한 커스텀 워크플로우입니다. 불러오기, 삭제가 가능합니다.
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {savedWorkflows.map((workflow: any) => (
+                        <div
+                          key={workflow.name}
+                          className="bg-gray-900/50 border border-gray-700 hover:border-amber-500 rounded-xl p-5 transition-all group"
+                        >
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="text-4xl">📋</div>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                if (confirm(`"${workflow.name}" 워크플로우를 삭제하시겠습니까?`)) {
+                                  deleteWorkflow(workflow.name)
+                                }
+                              }}
+                              className="opacity-0 group-hover:opacity-100 p-1 hover:bg-red-600/20 rounded transition-all"
+                              title="삭제"
+                            >
+                              <X className="w-4 h-4 text-red-400" />
+                            </button>
+                          </div>
+                          <h4 className="text-lg font-bold mb-2 truncate">{workflow.name}</h4>
+                          <p className="text-gray-400 text-xs mb-3">
+                            저장: {new Date(workflow.timestamp).toLocaleDateString('ko-KR')} {new Date(workflow.timestamp).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                          <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                            <span>{workflow.components.length} 컴포넌트</span>
+                            <span>•</span>
+                            <span>{workflow.connections.length} 연결</span>
+                          </div>
+                          <button
+                            onClick={() => loadWorkflow(workflow.name)}
+                            className="w-full px-3 py-2 bg-amber-600 hover:bg-amber-700 rounded-lg text-sm font-medium transition-colors"
+                          >
+                            불러오기
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-8 bg-gray-900/30 border border-dashed border-gray-700 rounded-xl">
+                    <p className="text-gray-500 text-sm">
+                      💡 아직 저장된 워크플로우가 없습니다. 상단의 "Save Workflow" 버튼으로 워크플로우를 저장해보세요.
+                    </p>
+                  </div>
+                )
+              })()}
             </div>
           </div>
         )}
