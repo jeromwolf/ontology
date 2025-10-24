@@ -132,6 +132,178 @@ const COMPONENT_TEMPLATES = {
   }
 }
 
+// Workflow Templates
+const WORKFLOW_TEMPLATES = {
+  rag: {
+    name: 'RAG Pipeline',
+    description: 'Complete RAG system with vector database, embeddings, and retrieval',
+    icon: '📚',
+    components: [
+      {
+        id: 'splitter-1',
+        type: 'splitter' as const,
+        label: 'Text Splitter',
+        config: { chunkSize: 1000, chunkOverlap: 200 },
+        position: { x: 100, y: 100 }
+      },
+      {
+        id: 'embedding-1',
+        type: 'embedding' as const,
+        label: 'Embedding',
+        config: { model: 'text-embedding-ada-002', dimensions: 1536 },
+        position: { x: 100, y: 250 }
+      },
+      {
+        id: 'vectordb-1',
+        type: 'vectordb' as const,
+        label: 'Vector Database',
+        config: { database: 'chroma', index: 'documents', namespace: '' },
+        position: { x: 300, y: 175 }
+      },
+      {
+        id: 'retriever-1',
+        type: 'retriever' as const,
+        label: 'Retriever',
+        config: { topK: 3, threshold: 0.7 },
+        position: { x: 500, y: 100 }
+      },
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Prompt',
+        config: { template: 'Answer based on context: {context}\n\nQuestion: {question}' },
+        position: { x: 500, y: 250 }
+      },
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-4', temperature: 0.7, maxTokens: 500 },
+        position: { x: 700, y: 175 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'text' },
+        position: { x: 900, y: 175 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'splitter-1', to: 'embedding-1' },
+      { id: 'conn-2', from: 'embedding-1', to: 'vectordb-1' },
+      { id: 'conn-3', from: 'vectordb-1', to: 'retriever-1' },
+      { id: 'conn-4', from: 'retriever-1', to: 'prompt-1' },
+      { id: 'conn-5', from: 'prompt-1', to: 'llm-1' },
+      { id: 'conn-6', from: 'llm-1', to: 'output-1' }
+    ]
+  },
+  agent: {
+    name: 'Agent + Tools',
+    description: 'Intelligent agent with calculator and search tools',
+    icon: '🤖',
+    components: [
+      {
+        id: 'llm-1',
+        type: 'llm' as const,
+        label: 'LLM',
+        config: { model: 'gpt-4', temperature: 0.7, maxTokens: 1000 },
+        position: { x: 100, y: 200 }
+      },
+      {
+        id: 'tool-1',
+        type: 'tool' as const,
+        label: 'Tool',
+        config: { name: 'calculator', description: 'Performs mathematical calculations' },
+        position: { x: 300, y: 100 }
+      },
+      {
+        id: 'tool-2',
+        type: 'tool' as const,
+        label: 'Tool',
+        config: { name: 'search', description: 'Searches the web for information' },
+        position: { x: 300, y: 200 }
+      },
+      {
+        id: 'tool-3',
+        type: 'tool' as const,
+        label: 'Tool',
+        config: { name: 'wikipedia', description: 'Queries Wikipedia for facts' },
+        position: { x: 300, y: 300 }
+      },
+      {
+        id: 'agent-1',
+        type: 'agent' as const,
+        label: 'Agent',
+        config: { type: 'react', maxIterations: 5 },
+        position: { x: 500, y: 200 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'text' },
+        position: { x: 700, y: 200 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'llm-1', to: 'agent-1' },
+      { id: 'conn-2', from: 'tool-1', to: 'agent-1' },
+      { id: 'conn-3', from: 'tool-2', to: 'agent-1' },
+      { id: 'conn-4', from: 'tool-3', to: 'agent-1' },
+      { id: 'conn-5', from: 'agent-1', to: 'output-1' }
+    ]
+  },
+  conversational: {
+    name: 'Conversational AI',
+    description: 'Chat system with memory and context awareness',
+    icon: '💬',
+    components: [
+      {
+        id: 'memory-1',
+        type: 'memory' as const,
+        label: 'Memory',
+        config: { type: 'buffer', maxTokens: 2000 },
+        position: { x: 100, y: 150 }
+      },
+      {
+        id: 'prompt-1',
+        type: 'prompt' as const,
+        label: 'Prompt',
+        config: { template: 'You are a helpful assistant. Chat history: {history}\n\nHuman: {input}\nAI:' },
+        position: { x: 100, y: 300 }
+      },
+      {
+        id: 'chat-1',
+        type: 'chat' as const,
+        label: 'Chat Model',
+        config: { model: 'gpt-3.5-turbo', temperature: 0.9, maxTokens: 500 },
+        position: { x: 350, y: 225 }
+      },
+      {
+        id: 'parser-1',
+        type: 'parser' as const,
+        label: 'Parser',
+        config: { format: 'text' },
+        position: { x: 600, y: 150 }
+      },
+      {
+        id: 'output-1',
+        type: 'output' as const,
+        label: 'Output',
+        config: { format: 'text' },
+        position: { x: 600, y: 300 }
+      }
+    ],
+    connections: [
+      { id: 'conn-1', from: 'memory-1', to: 'chat-1' },
+      { id: 'conn-2', from: 'prompt-1', to: 'chat-1' },
+      { id: 'conn-3', from: 'chat-1', to: 'parser-1' },
+      { id: 'conn-4', from: 'chat-1', to: 'output-1' }
+    ]
+  }
+}
+
 export default function ChainBuilder() {
   const [components, setComponents] = useState<ChainComponent[]>([])
   const [connections, setConnections] = useState<Connection[]>([])
@@ -144,7 +316,13 @@ export default function ChainBuilder() {
   const [testOutput, setTestOutput] = useState('')
   const [executing, setExecuting] = useState(false)
   const [showHelp, setShowHelp] = useState(false)
+  const [showTemplates, setShowTemplates] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
+
+  // Execution simulation state
+  const [isSimulating, setIsSimulating] = useState(false)
+  const [simulationLogs, setSimulationLogs] = useState<{step: number, component: string, message: string, timestamp: number}[]>([])
+  const [currentStep, setCurrentStep] = useState(0)
 
   // Undo/Redo history
   const [history, setHistory] = useState<HistoryState[]>([])
@@ -732,6 +910,130 @@ export default function ChainBuilder() {
     }
   }
 
+  // Load template workflow
+  const loadTemplate = (templateKey: keyof typeof WORKFLOW_TEMPLATES) => {
+    const template = WORKFLOW_TEMPLATES[templateKey]
+    setComponents(template.components as any[])
+    setConnections(template.connections)
+    setShowTemplates(false)
+    alert(`✅ ${template.name} template loaded!`)
+  }
+
+  // Simulate workflow execution
+  const simulateExecution = async () => {
+    if (components.length === 0) {
+      alert('⚠️ Add components to your workflow first')
+      return
+    }
+
+    setIsSimulating(true)
+    setSimulationLogs([])
+    setCurrentStep(0)
+
+    const logs: {step: number, component: string, message: string, timestamp: number}[] = []
+
+    // Build execution order based on connections
+    const executionOrder: string[] = []
+    const visited = new Set<string>()
+
+    // Find starting components (no incoming connections)
+    const startComponents = components.filter(comp =>
+      !connections.some(conn => conn.to === comp.id)
+    )
+
+    // Perform topological sort for execution order
+    const buildOrder = (compId: string) => {
+      if (visited.has(compId)) return
+      visited.add(compId)
+
+      const outgoing = connections.filter(conn => conn.from === compId)
+      outgoing.forEach(conn => buildOrder(conn.to))
+
+      executionOrder.unshift(compId)
+    }
+
+    startComponents.forEach(comp => buildOrder(comp.id))
+
+    // Add any orphaned components
+    components.forEach(comp => {
+      if (!executionOrder.includes(comp.id)) {
+        executionOrder.push(comp.id)
+      }
+    })
+
+    // Simulate execution step by step
+    for (let i = 0; i < executionOrder.length; i++) {
+      const compId = executionOrder[i]
+      const component = components.find(c => c.id === compId)
+      if (!component) continue
+
+      setCurrentStep(i + 1)
+
+      const log = {
+        step: i + 1,
+        component: component.label,
+        message: getExecutionMessage(component),
+        timestamp: Date.now()
+      }
+
+      logs.push(log)
+      setSimulationLogs([...logs])
+
+      // Wait for visual effect
+      await new Promise(resolve => setTimeout(resolve, 800))
+    }
+
+    const finalLog = {
+      step: executionOrder.length + 1,
+      component: 'System',
+      message: '✅ Workflow execution completed successfully!',
+      timestamp: Date.now()
+    }
+    logs.push(finalLog)
+    setSimulationLogs([...logs])
+
+    setTimeout(() => {
+      setIsSimulating(false)
+      setCurrentStep(0)
+    }, 2000)
+  }
+
+  // Generate execution message based on component type
+  const getExecutionMessage = (component: ChainComponent): string => {
+    switch (component.type) {
+      case 'llm':
+        return `🤖 Calling LLM (${component.config.model}) with temperature ${component.config.temperature}`
+      case 'prompt':
+        return `📝 Processing prompt template...`
+      case 'retriever':
+        return `🔍 Retrieving top ${component.config.topK} documents (threshold: ${component.config.threshold})`
+      case 'vectordb':
+        return `💾 Querying vector database (${component.config.database})...`
+      case 'embedding':
+        return `🔢 Generating embeddings using ${component.config.model}...`
+      case 'splitter':
+        return `✂️ Splitting text (chunk size: ${component.config.chunkSize})...`
+      case 'memory':
+        return `🧠 Loading conversation memory (${component.config.type})...`
+      case 'agent':
+        return `🤖 Agent reasoning (max ${component.config.maxIterations} iterations)...`
+      case 'tool':
+        return `🔧 Executing tool: ${component.config.name}`
+      case 'parser':
+        return `📊 Parsing output format (${component.config.format})...`
+      case 'chain':
+        return `⛓️ Running chain: ${component.config.type}`
+      case 'router':
+        return `🔀 Routing to appropriate chain...`
+      case 'cache':
+        return `💨 Cache ${component.config.enabled ? 'HIT' : 'MISS'} (TTL: ${component.config.ttl}s)`
+      case 'output':
+        return `📤 Formatting output as ${component.config.format}...`
+      default:
+        return `⚙️ Processing ${component.label}...`
+    }
+  }
+
   // Auto-save every 30 seconds
   useEffect(() => {
     if (components.length === 0 && connections.length === 0) return
@@ -767,6 +1069,23 @@ export default function ChainBuilder() {
               </p>
             </div>
             <div className="flex items-center gap-2">
+              <button
+                onClick={simulateExecution}
+                disabled={isSimulating || components.length === 0}
+                className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg flex items-center gap-2"
+                title="Simulate Workflow Execution"
+              >
+                <Play className="w-5 h-5" />
+                {isSimulating ? 'Running...' : 'Run Simulation'}
+              </button>
+              <button
+                onClick={() => setShowTemplates(!showTemplates)}
+                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg flex items-center gap-2"
+                title="Load Template Workflow"
+              >
+                <Zap className="w-5 h-5" />
+                Templates
+              </button>
               <button
                 onClick={() => setShowHelp(!showHelp)}
                 className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg flex items-center gap-2"
@@ -825,9 +1144,58 @@ export default function ChainBuilder() {
           </div>
         )}
 
+        {/* Template Gallery Modal */}
+        {showTemplates && (
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8 max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-3xl font-bold flex items-center gap-3">
+                  <Zap className="w-8 h-8 text-purple-400" />
+                  Workflow Templates
+                </h2>
+                <button
+                  onClick={() => setShowTemplates(false)}
+                  className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <p className="text-gray-400 mb-8">
+                Choose a pre-built workflow template to get started quickly. Each template is fully configured and ready to use.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {Object.entries(WORKFLOW_TEMPLATES).map(([key, template]) => (
+                  <button
+                    key={key}
+                    onClick={() => loadTemplate(key as keyof typeof WORKFLOW_TEMPLATES)}
+                    className="bg-gray-900/50 border border-gray-700 hover:border-purple-500 rounded-xl p-6 text-left transition-all hover:scale-105"
+                  >
+                    <div className="text-5xl mb-4">{template.icon}</div>
+                    <h3 className="text-xl font-bold mb-2">{template.name}</h3>
+                    <p className="text-gray-400 text-sm mb-4">{template.description}</p>
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <span>{template.components.length} components</span>
+                      <span>•</span>
+                      <span>{template.connections.length} connections</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Fullscreen Floating Toolbar */}
         {isFullscreen && (
           <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-gray-800/95 backdrop-blur border border-gray-700 rounded-lg p-2 shadow-2xl">
+            <button
+              onClick={() => setShowTemplates(!showTemplates)}
+              className="px-3 py-2 bg-purple-600 hover:bg-purple-700 rounded flex items-center gap-2 text-sm"
+            >
+              <Zap className="w-4 h-4" />
+            </button>
             <button
               onClick={() => setShowHelp(!showHelp)}
               className="px-3 py-2 bg-blue-600 hover:bg-blue-700 rounded flex items-center gap-2 text-sm"
@@ -1592,6 +1960,64 @@ export default function ChainBuilder() {
             </div>
           </div>
         </div>
+
+        {/* Simulation Logs Panel */}
+        {simulationLogs.length > 0 && (
+          <div className="mt-6 bg-gray-800/50 border border-gray-700 rounded-xl p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xl font-bold flex items-center gap-2">
+                <Play className="w-6 h-6 text-green-400" />
+                Execution Simulation Logs
+              </h3>
+              <button
+                onClick={() => {
+                  setSimulationLogs([])
+                  setCurrentStep(0)
+                }}
+                className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-sm"
+              >
+                Clear Logs
+              </button>
+            </div>
+
+            <div className="space-y-2 max-h-[400px] overflow-y-auto">
+              {simulationLogs.map((log, index) => (
+                <div
+                  key={index}
+                  className={`p-3 rounded-lg border ${
+                    index === currentStep - 1 && isSimulating
+                      ? 'bg-green-900/30 border-green-500 animate-pulse'
+                      : 'bg-gray-900/50 border-gray-700'
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="text-xs font-mono text-gray-500 mt-0.5">
+                      Step {log.step}
+                    </span>
+                    <div className="flex-1">
+                      <div className="font-medium text-sm text-green-400 mb-1">
+                        {log.component}
+                      </div>
+                      <div className="text-sm text-gray-300">
+                        {log.message}
+                      </div>
+                    </div>
+                    <span className="text-xs text-gray-500">
+                      {new Date(log.timestamp).toLocaleTimeString()}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {isSimulating && (
+              <div className="mt-4 flex items-center gap-2 text-sm text-green-400">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                Executing step {currentStep}...
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
