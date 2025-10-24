@@ -1757,7 +1757,7 @@ export default function ChainBuilder() {
           </div>
         )}
 
-        <div className={`grid grid-cols-1 ${isFullscreen ? 'lg:grid-cols-12' : 'lg:grid-cols-4'} gap-${isFullscreen ? '2' : '6'}`}>
+        <div className={`grid grid-cols-1 ${isFullscreen ? 'lg:grid-cols-12' : 'lg:grid-cols-6'} gap-${isFullscreen ? '2' : '4'}`}>
           {/* Component Palette */}
           <div className={`${isFullscreen ? 'lg:col-span-2' : 'lg:col-span-1'} space-y-4`}>
             <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6 max-h-[calc(100vh-200px)] flex flex-col">
@@ -2238,7 +2238,7 @@ export default function ChainBuilder() {
           </div>
 
           {/* Canvas */}
-          <div className={`${isFullscreen ? 'lg:col-span-10' : 'lg:col-span-3'} space-y-4`}>
+          <div className={`${isFullscreen ? 'lg:col-span-10' : 'lg:col-span-5'} space-y-4`}>
             <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-xl p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold">🎨 Canvas</h3>
