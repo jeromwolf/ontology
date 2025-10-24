@@ -2382,6 +2382,13 @@ export default function ChainBuilder() {
                 {/* Components */}
                 {components.map(comp => {
                   const template = COMPONENT_TEMPLATES[comp.type]
+
+                  // Skip rendering if template is not found (invalid component type)
+                  if (!template) {
+                    console.warn(`Template not found for component type: ${comp.type}`)
+                    return null
+                  }
+
                   const isSelected = selectedComponent === comp.id
                   const isConnectingFrom = connectingFrom === comp.id
 
