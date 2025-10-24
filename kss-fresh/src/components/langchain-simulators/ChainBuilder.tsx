@@ -420,28 +420,272 @@ export default function ChainBuilder() {
   }
 
   const exportCode = () => {
-    let code = `from langchain.chains import LLMChain\n`
-    code += `from langchain.prompts import PromptTemplate\n`
-    code += `from langchain.chat_models import ChatOpenAI\n\n`
+    // Import statements based on components
+    const imports = new Set<string>()
+    imports.add('from langchain.chat_models import ChatOpenAI')
+    imports.add('from langchain.prompts import PromptTemplate')
+    imports.add('from langchain.chains import LLMChain')
 
+    // Add component-specific imports
     components.forEach(comp => {
       switch (comp.type) {
-        case 'llm':
-          code += `llm = ChatOpenAI(model="${comp.config.model}", temperature=${comp.config.temperature})\n`
+        case 'vectordb':
+          if (comp.config.database === 'pinecone') imports.add('from langchain.vectorstores import Pinecone')
+          if (comp.config.database === 'weaviate') imports.add('from langchain.vectorstores import Weaviate')
+          if (comp.config.database === 'chroma') imports.add('from langchain.vectorstores import Chroma')
+          if (comp.config.database === 'qdrant') imports.add('from langchain.vectorstores import Qdrant')
+          if (comp.config.database === 'milvus') imports.add('from langchain.vectorstores import Milvus')
+          imports.add('from langchain.embeddings import OpenAIEmbeddings')
           break
-        case 'prompt':
-          code += `prompt = PromptTemplate.from_template("${comp.config.template}")\n`
+        case 'memory':
+          if (comp.config.type === 'buffer') imports.add('from langchain.memory import ConversationBufferMemory')
+          if (comp.config.type === 'summary') imports.add('from langchain.memory import ConversationSummaryMemory')
+          if (comp.config.type === 'vector_store') imports.add('from langchain.memory import VectorStoreRetrieverMemory')
+          if (comp.config.type === 'entity') imports.add('from langchain.memory import ConversationEntityMemory')
           break
-        case 'parser':
-          code += `# Output parser configured for ${comp.config.format}\n`
+        case 'agent':
+          imports.add('from langchain.agents import initialize_agent, AgentType')
+          imports.add('from langchain.agents import Tool')
+          break
+        case 'tool':
+          if (comp.config.name === 'calculator') imports.add('from langchain.tools import Tool')
+          if (comp.config.name === 'search') imports.add('from langchain.tools import DuckDuckGoSearchRun')
+          if (comp.config.name === 'wikipedia') imports.add('from langchain.tools import WikipediaQueryRun')
+          break
+        case 'embedding':
+          imports.add('from langchain.embeddings import OpenAIEmbeddings')
+          break
+        case 'search':
+          if (comp.config.engine === 'google') imports.add('from langchain.utilities import GoogleSearchAPIWrapper')
+          if (comp.config.engine === 'duckduckgo') imports.add('from langchain.tools import DuckDuckGoSearchRun')
+          break
+        case 'splitter':
+          imports.add('from langchain.text_splitter import RecursiveCharacterTextSplitter')
+          break
+        case 'retriever':
+          imports.add('from langchain.vectorstores import FAISS')
+          imports.add('from langchain.embeddings import OpenAIEmbeddings')
           break
       }
     })
 
-    code += `\n# Create chain\n`
-    code += `chain = LLMChain(llm=llm, prompt=prompt)\n`
-    code += `\n# Execute\n`
-    code += `result = chain.run(question="Your question here")\n`
+    let code = Array.from(imports).join('\n') + '\n\nimport os\n\n'
+    code += `# Set API keys\nos.environ["OPENAI_API_KEY"] = "your-api-key-here"\n\n`
+
+    // Generate component initialization code
+    components.forEach(comp => {
+      switch (comp.type) {
+        case 'llm':
+          code += `# LLM Component\n`
+          code += `llm = ChatOpenAI(\n`
+          code += `    model="${comp.config.model}",\n`
+          code += `    temperature=${comp.config.temperature}\n`
+          code += `)\n\n`
+          break
+
+        case 'prompt':
+          code += `# Prompt Template\n`
+          code += `prompt = PromptTemplate.from_template(\n`
+          code += `    "${comp.config.template}"\n`
+          code += `)\n\n`
+          break
+
+        case 'parser':
+          code += `# Output Parser (${comp.config.format})\n`
+          code += `# Parse output to ${comp.config.format} format\n\n`
+          break
+
+        case 'retriever':
+          code += `# Retriever Component\n`
+          code += `embeddings = OpenAIEmbeddings()\n`
+          code += `vectorstore = FAISS.from_texts(\n`
+          code += `    ["Sample document 1", "Sample document 2"],\n`
+          code += `    embeddings\n`
+          code += `)\n`
+          code += `retriever = vectorstore.as_retriever(search_kwargs={"k": ${comp.config.topK}})\n\n`
+          break
+
+        case 'transform':
+          code += `# Transform Component\n`
+          code += `# Custom transformation: ${comp.config.operation}\n\n`
+          break
+
+        case 'vectordb':
+          code += `# Vector Database (${comp.config.database})\n`
+          code += `embeddings = OpenAIEmbeddings()\n`
+          if (comp.config.database === 'pinecone') {
+            code += `import pinecone\n`
+            code += `pinecone.init(api_key="your-pinecone-api-key", environment="your-env")\n`
+            code += `vectorstore = Pinecone.from_texts(\n`
+            code += `    ["Sample doc 1", "Sample doc 2"],\n`
+            code += `    embeddings,\n`
+            code += `    index_name="${comp.config.index}"\n`
+            code += `)\n\n`
+          } else if (comp.config.database === 'chroma') {
+            code += `vectorstore = Chroma.from_texts(\n`
+            code += `    ["Sample doc 1", "Sample doc 2"],\n`
+            code += `    embeddings,\n`
+            code += `    collection_name="${comp.config.index}"\n`
+            code += `)\n\n`
+          } else {
+            code += `# Initialize ${comp.config.database} vectorstore\n`
+            code += `# See LangChain docs for specific setup\n\n`
+          }
+          break
+
+        case 'memory':
+          code += `# Memory (${comp.config.type})\n`
+          if (comp.config.type === 'buffer') {
+            code += `memory = ConversationBufferMemory(\n`
+            code += `    max_token_limit=${comp.config.maxTokens}\n`
+            code += `)\n\n`
+          } else if (comp.config.type === 'summary') {
+            code += `memory = ConversationSummaryMemory(\n`
+            code += `    llm=llm,\n`
+            code += `    max_token_limit=${comp.config.maxTokens}\n`
+            code += `)\n\n`
+          } else if (comp.config.type === 'vector_store') {
+            code += `memory = VectorStoreRetrieverMemory(\n`
+            code += `    retriever=retriever\n`
+            code += `)\n\n`
+          } else if (comp.config.type === 'entity') {
+            code += `memory = ConversationEntityMemory(\n`
+            code += `    llm=llm\n`
+            code += `)\n\n`
+          }
+          break
+
+        case 'agent':
+          code += `# Agent (${comp.config.type})\n`
+          code += `tools = []  # Add tools here\n`
+          if (comp.config.type === 'react') {
+            code += `agent = initialize_agent(\n`
+            code += `    tools,\n`
+            code += `    llm,\n`
+            code += `    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,\n`
+            code += `    max_iterations=${comp.config.maxIterations},\n`
+            code += `    verbose=True\n`
+            code += `)\n\n`
+          } else if (comp.config.type === 'openai_functions') {
+            code += `agent = initialize_agent(\n`
+            code += `    tools,\n`
+            code += `    llm,\n`
+            code += `    agent=AgentType.OPENAI_FUNCTIONS,\n`
+            code += `    max_iterations=${comp.config.maxIterations},\n`
+            code += `    verbose=True\n`
+            code += `)\n\n`
+          } else {
+            code += `# Initialize ${comp.config.type} agent\n\n`
+          }
+          break
+
+        case 'tool':
+          code += `# Tool (${comp.config.name})\n`
+          if (comp.config.name === 'calculator') {
+            code += `def calculator(query: str) -> str:\n`
+            code += `    return str(eval(query))\n\n`
+            code += `calculator_tool = Tool(\n`
+            code += `    name="Calculator",\n`
+            code += `    func=calculator,\n`
+            code += `    description="${comp.config.description}"\n`
+            code += `)\n\n`
+          } else if (comp.config.name === 'search') {
+            code += `search = DuckDuckGoSearchRun()\n`
+            code += `search_tool = Tool(\n`
+            code += `    name="Search",\n`
+            code += `    func=search.run,\n`
+            code += `    description="${comp.config.description}"\n`
+            code += `)\n\n`
+          } else if (comp.config.name === 'wikipedia') {
+            code += `wiki = WikipediaQueryRun()\n`
+            code += `wiki_tool = Tool(\n`
+            code += `    name="Wikipedia",\n`
+            code += `    func=wiki.run,\n`
+            code += `    description="${comp.config.description}"\n`
+            code += `)\n\n`
+          } else {
+            code += `# Custom tool: ${comp.config.name}\n`
+            code += `# Description: ${comp.config.description}\n\n`
+          }
+          break
+
+        case 'embedding':
+          code += `# Embedding Model (${comp.config.model})\n`
+          code += `embeddings = OpenAIEmbeddings(\n`
+          code += `    model="${comp.config.model}"\n`
+          code += `)\n\n`
+          break
+
+        case 'chat':
+          code += `# Chat Model (${comp.config.model})\n`
+          code += `chat_model = ChatOpenAI(\n`
+          code += `    model="${comp.config.model}",\n`
+          code += `    temperature=0.7\n`
+          code += `)\n\n`
+          break
+
+        case 'search':
+          code += `# Search Engine (${comp.config.engine})\n`
+          if (comp.config.engine === 'google') {
+            code += `search = GoogleSearchAPIWrapper()\n`
+            code += `results = search.run("query", num_results=${comp.config.maxResults})\n\n`
+          } else if (comp.config.engine === 'duckduckgo') {
+            code += `search = DuckDuckGoSearchRun()\n`
+            code += `results = search.run("query")[:${comp.config.maxResults}]\n\n`
+          }
+          break
+
+        case 'splitter':
+          code += `# Text Splitter\n`
+          code += `text_splitter = RecursiveCharacterTextSplitter(\n`
+          code += `    chunk_size=${comp.config.chunkSize},\n`
+          code += `    chunk_overlap=${comp.config.chunkOverlap}\n`
+          code += `)\n`
+          code += `chunks = text_splitter.split_text("Your long text here")\n\n`
+          break
+
+        case 'conditional':
+          code += `# Conditional Logic\n`
+          code += `# Condition: ${comp.config.condition}\n`
+          code += `if ${comp.config.condition.replace('if ', '')}:\n`
+          code += `    # Branch A\n`
+          code += `    pass\n`
+          code += `else:\n`
+          code += `    # Branch B\n`
+          code += `    pass\n\n`
+          break
+
+        case 'output':
+          code += `# Output Format (${comp.config.format})\n`
+          if (comp.config.format === 'json') {
+            code += `import json\n`
+            code += `output = json.dumps(result, indent=2)\n\n`
+          } else if (comp.config.format === 'markdown') {
+            code += `# Format output as Markdown\n`
+            code += `output = f"## Result\\n\\n{result}"\n\n`
+          } else if (comp.config.format === 'html') {
+            code += `# Format output as HTML\n`
+            code += `output = f"<div>{result}</div>"\n\n`
+          } else {
+            code += `output = str(result)\n\n`
+          }
+          break
+      }
+    })
+
+    // Generate execution code
+    code += `# Execute Chain\n`
+    if (components.some(c => c.type === 'agent')) {
+      code += `result = agent.run("Your question here")\n`
+    } else if (components.some(c => c.type === 'llm') && components.some(c => c.type === 'prompt')) {
+      code += `chain = LLMChain(llm=llm, prompt=prompt)\n`
+      code += `result = chain.run(question="Your question here")\n`
+    } else {
+      code += `# Configure your chain based on components above\n`
+      code += `# result = your_chain.run(...)\n`
+    }
+
+    code += `\nprint(result)\n`
 
     navigator.clipboard.writeText(code)
     alert('✅ Code copied to clipboard!')
