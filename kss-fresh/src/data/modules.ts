@@ -143,6 +143,16 @@ export const moduleCategories: ModuleCategory[] = [
         href: '/modules/ai-automation'
       },
       {
+        id: 'vibe-coding',
+        title: 'Vibe Coding with AI',
+        description: 'Cursor, Copilot, Claude Code로 AI 기반 코드 생성 마스터',
+        duration: '48시간',
+        status: '학습 가능',
+        icon: '✨',
+        gradient: 'from-purple-500 to-pink-600',
+        href: '/modules/vibe-coding'
+      },
+      {
         id: 'devops-cicd',
         title: 'DevOps & CI/CD',
         description: 'Docker, Kubernetes, GitOps로 구축하는 현대적 개발 운영',
