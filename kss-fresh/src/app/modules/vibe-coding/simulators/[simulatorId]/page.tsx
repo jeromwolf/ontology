@@ -1,6 +1,5 @@
 'use client'
 
-import { use } from 'react'
 import Link from 'next/link'
 import { ChevronLeft } from 'lucide-react'
 import dynamic from 'next/dynamic'
@@ -14,11 +13,11 @@ const TestGenerator = dynamic(() => import('@/components/vibe-coding-simulators/
 const DocGenerator = dynamic(() => import('@/components/vibe-coding-simulators/DocGenerator'), { ssr: false })
 
 interface SimulatorPageProps {
-  params: Promise<{ simulatorId: string }>
+  params: { simulatorId: string }
 }
 
 export default function SimulatorPage({ params }: SimulatorPageProps) {
-  const { simulatorId } = use(params)
+  const { simulatorId } = params
 
   const getSimulatorComponent = () => {
     switch (simulatorId) {

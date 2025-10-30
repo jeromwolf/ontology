@@ -236,6 +236,7 @@ export default function KSSLandingPage() {
             </div>
             <nav className="hidden md:flex items-center space-x-8">
               <Link href="/#modules" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '모듈' : 'Modules'}</Link>
+              <Link href="/simulators" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '시뮬레이터' : 'Simulators'}</Link>
               <Link href="/papers" className="text-gray-600 hover:text-gray-900 text-sm font-medium">{language === 'ko' ? '논문' : 'Papers'}</Link>
             </nav>
             <div className="flex items-center space-x-4">

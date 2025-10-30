@@ -1,6 +1,5 @@
 'use client'
 
-import { use } from 'react'
 import dynamic from 'next/dynamic'
 
 // 동적 임포트로 시뮬레이터 컴포넌트 로드
@@ -12,13 +11,13 @@ const FusionLab = dynamic(() => import('@/components/multimodal-ai-simulators/Fu
 const VQASystem = dynamic(() => import('@/components/multimodal-ai-simulators/VQASystem'), { ssr: false })
 
 interface PageProps {
-  params: Promise<{
+  params: {
     simulatorId: string
-  }>
+  }
 }
 
 export default function SimulatorPage({ params }: PageProps) {
-  const { simulatorId } = use(params)
+  const { simulatorId } = params
 
   const getSimulatorComponent = () => {
     switch (simulatorId) {

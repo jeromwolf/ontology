@@ -69,12 +69,12 @@ export default function Chapter1() {
               AI 코딩 도구는 <span className="text-purple-400">컨텍스트 전체를 이해</span>하고
               다음 코드 블록, 함수, 심지어 전체 파일까지 생성합니다.
             </p>
-            <div className="bg-black/30 rounded-lg p-4 font-mono text-sm">
-              <div className="text-gray-500">// 기존: 변수명 자동완성</div>
-              <div className="text-gray-400">const user<span className="text-green-400">Name</span> = ...</div>
-              <div className="text-gray-500 mt-4">// AI: 전체 함수 생성</div>
-              <div className="text-gray-400">// "사용자 인증 함수 작성" (주석 입력)</div>
-              <div className="text-purple-400 mt-2">
+            <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm border border-gray-700">
+              <div className="text-gray-400">// 기존: 변수명 자동완성</div>
+              <div className="text-gray-200">const user<span className="text-green-400">Name</span> = ...</div>
+              <div className="text-gray-400 mt-4">// AI: 전체 함수 생성</div>
+              <div className="text-gray-300">// "사용자 인증 함수 작성" (주석 입력)</div>
+              <div className="text-purple-300 mt-2">
 {`async function authenticateUser(email, password) {
   const user = await db.users.findOne({ email });
   if (!user) throw new Error('User not found');
@@ -93,11 +93,11 @@ export default function Chapter1() {
               AI가 즉시 실행 가능한 코드로 변환합니다. 이는 특히 복잡한 알고리즘이나
               생소한 라이브러리 사용 시 획기적입니다.
             </p>
-            <div className="bg-black/30 rounded-lg p-4">
-              <div className="mb-2 text-gray-400">
+            <div className="bg-gray-900 rounded-lg p-4 font-mono text-sm border border-gray-700">
+              <div className="mb-2 text-gray-300">
                 <span className="text-green-400">입력:</span> "CSV 파일을 읽어서 날짜별로 그룹화하고 합계를 계산해줘"
               </div>
-              <div className="text-purple-400 font-mono text-sm">
+              <div className="text-purple-300">
 {`import pandas as pd
 from datetime import datetime
 
@@ -273,14 +273,14 @@ def process_csv(file_path):
             사용합니다. GPT-4, Claude, Codex 등이 대표적입니다.
           </p>
 
-          <div className="bg-black/30 rounded-lg p-6 space-y-4">
+          <div className="bg-gray-900 rounded-lg p-6 space-y-4 border border-gray-700">
             <div className="flex items-start gap-3">
               <div className="bg-pink-500/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
                 <span className="text-pink-400 font-bold">1</span>
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">학습 데이터</h4>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-300 text-sm">
                   GitHub, Stack Overflow, 문서, 오픈소스 프로젝트 (수천억 줄의 코드)
                 </p>
               </div>
@@ -291,7 +291,7 @@ def process_csv(file_path):
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">패턴 학습</h4>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-300 text-sm">
                   함수 구조, 명명 규칙, 디자인 패턴, 에러 처리 방식 등을 학습
                 </p>
               </div>
@@ -302,7 +302,7 @@ def process_csv(file_path):
               </div>
               <div>
                 <h4 className="text-white font-semibold mb-1">컨텍스트 이해</h4>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-300 text-sm">
                   현재 파일, 프로젝트 구조, 이전 코드를 분석하여 최적의 제안
                 </p>
               </div>
@@ -511,10 +511,10 @@ def process_csv(file_path):
             </li>
           </ul>
 
-          <div className="mt-8 p-6 bg-black/30 rounded-lg border border-purple-500/20">
+          <div className="mt-8 p-6 bg-gray-900 rounded-lg border border-purple-500/30">
             <p className="text-lg text-purple-400 font-semibold mb-2">다음 챕터 미리보기</p>
-            <p className="text-gray-300">
-              Chapter 2에서는 <strong>Cursor 에디터</strong>를 완벽하게 마스터합니다.
+            <p className="text-gray-200">
+              Chapter 2에서는 <strong className="text-white">Cursor 에디터</strong>를 완벽하게 마스터합니다.
               설치부터 고급 기능(Cmd+K, Composer, Chat)까지 실전 예제와 함께 배웁니다.
             </p>
           </div>

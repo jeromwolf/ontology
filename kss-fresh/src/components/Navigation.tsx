@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, FileText } from 'lucide-react';
+import { BookOpen, FileText, Zap } from 'lucide-react';
 import KSSLogo from './icons/KSSLogo';
 import UserMenu from './auth/UserMenu';
 
@@ -11,6 +11,7 @@ export default function Navigation() {
 
   const navItems = [
     { href: '/#modules', label: '모듈', icon: BookOpen },
+    { href: '/simulators', label: '시뮬레이터', icon: Zap },
     { href: '/papers', label: '논문', icon: FileText },
   ];
 

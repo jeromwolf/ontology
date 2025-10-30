@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, Download, Star, TrendingUp, DollarSign, BarChart3, Activity, AlertCircle, ChevronDown } from 'lucide-react';
+import { Search, Filter, Download, Star, TrendingUp, TrendingDown, DollarSign, BarChart3, Activity, AlertCircle, ChevronDown } from 'lucide-react';
 
 interface ScreeningCriteria {
   // 기본 필터
