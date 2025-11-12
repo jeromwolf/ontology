@@ -315,6 +315,12 @@ export const smartFactoryModule: Module = {
       name: '스마트팩토리 생태계 맵',
       description: '전체 시스템 구성요소와 데이터 흐름을 인터랙티브 관계도로 시각화',
       component: 'SmartFactoryEcosystem'
+    },
+    {
+      id: 'semiconductor-ontology-graph',
+      name: '반도체 온톨로지 그래프',
+      description: '반도체 제조 Equipment, Product, Recipe 계층 구조를 인터랙티브하게 탐색',
+      component: 'SemiconductorOntologyGraph'
     }
   ],
 
