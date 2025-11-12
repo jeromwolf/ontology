@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
-import { 
+import {
   Lightbulb
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -228,6 +229,152 @@ export default function Chapter8() {
           </div>
         </div>
       </section>
+
+      {/* References Section */}
+      <References
+        sections={[
+          {
+            title: '📚 핵심 서적 & 강의',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Designing Data-Intensive Applications',
+                authors: 'Martin Kleppmann',
+                year: '2017',
+                description: '데이터 중심 애플리케이션 설계의 바이블. 확장성, 신뢰성, 유지보수성을 고려한 시스템 설계의 모든 것',
+                link: 'https://dataintensive.net/'
+              },
+              {
+                title: 'System Design Interview (Vol 1 & 2)',
+                authors: 'Alex Xu',
+                year: '2020, 2022',
+                description: 'FAANG 시스템 디자인 인터뷰 대비 필독서. 실전 케이스 스터디와 단계별 설계 프로세스',
+                link: 'https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF'
+              },
+              {
+                title: 'Web Scalability for Startup Engineers',
+                authors: 'Artur Ejsmont',
+                year: '2015',
+                description: '스타트업 엔지니어를 위한 웹 확장성 가이드. 실무 중심의 확장 전략과 패턴',
+                link: 'https://www.amazon.com/Scalability-Startup-Engineers-Artur-Ejsmont/dp/0071843655'
+              },
+              {
+                title: 'Building Microservices',
+                authors: 'Sam Newman',
+                year: '2021',
+                description: '마이크로서비스 아키텍처의 설계, 구축, 배포. 분산 시스템의 모범 사례',
+                link: 'https://www.oreilly.com/library/view/building-microservices-2nd/9781492034018/'
+              },
+              {
+                title: 'The System Design Primer',
+                authors: 'Donne Martin (GitHub)',
+                year: '2024',
+                description: '170K+ stars를 받은 오픈소스 시스템 디자인 학습 자료. 다이어그램과 예제가 풍부',
+                link: 'https://github.com/donnemartin/system-design-primer'
+              }
+            ]
+          },
+          {
+            title: '🏢 기술 블로그 & 아키텍처',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'High Scalability',
+                authors: 'Todd Hoff',
+                year: '지속 업데이트',
+                description: '대규모 시스템 아키텍처 사례 연구. Netflix, Uber, Twitter 등 실전 아키텍처 분석',
+                link: 'http://highscalability.com/'
+              },
+              {
+                title: 'Netflix Tech Blog',
+                authors: 'Netflix Engineering',
+                year: '지속 업데이트',
+                description: 'Netflix의 마이크로서비스 아키�ecture, 카오스 엔지니어링, 글로벌 CDN 전략',
+                link: 'https://netflixtechblog.com/'
+              },
+              {
+                title: 'Uber Engineering Blog',
+                authors: 'Uber Engineering',
+                year: '지속 업데이트',
+                description: 'Uber의 실시간 데이터 처리, 위치 기반 서비스, 분산 시스템 설계',
+                link: 'https://eng.uber.com/'
+              },
+              {
+                title: 'AWS Architecture Blog',
+                authors: 'AWS Solutions Architects',
+                year: '지속 업데이트',
+                description: 'AWS 기반 Well-Architected Framework, 참조 아키텍처, 베스트 프랙티스',
+                link: 'https://aws.amazon.com/blogs/architecture/'
+              },
+              {
+                title: 'Meta Engineering Blog',
+                authors: 'Meta Engineering',
+                year: '지속 업데이트',
+                description: 'Facebook, Instagram의 대규모 소셜 미디어 시스템 아키텍처와 최적화',
+                link: 'https://engineering.fb.com/'
+              },
+              {
+                title: 'Google Cloud Architecture Center',
+                authors: 'Google Cloud',
+                year: '지속 업데이트',
+                description: 'Google의 클라우드 아키텍처 패턴, 참조 아키텍처, 설계 원칙',
+                link: 'https://cloud.google.com/architecture'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 도구 & 플랫폼',
+            icon: 'tools' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'draw.io (diagrams.net)',
+                authors: 'JGraph',
+                year: '무료',
+                description: '시스템 아키텍처 다이어그램 작성 도구. AWS, GCP, Azure 아이콘 라이브러리 제공',
+                link: 'https://www.diagrams.net/'
+              },
+              {
+                title: 'Excalidraw',
+                authors: 'Excalidraw',
+                year: '무료',
+                description: '손그림 스타일의 아키텍처 다이어그램 도구. 협업 기능 내장',
+                link: 'https://excalidraw.com/'
+              },
+              {
+                title: 'Mermaid Live Editor',
+                authors: 'Mermaid JS',
+                year: '무료',
+                description: '코드 기반 다이어그램 생성. Markdown과 통합 가능, Git friendly',
+                link: 'https://mermaid.live/'
+              },
+              {
+                title: 'ByteByteGo',
+                authors: 'Alex Xu',
+                year: '유료 ($29/월)',
+                description: '시스템 디자인 인터뷰 준비 플랫폼. 비디오 강의, 다이어그램, 실전 문제',
+                link: 'https://bytebytego.com/'
+              },
+              {
+                title: 'Educative.io - Grokking System Design',
+                authors: 'Educative',
+                year: '유료',
+                description: '인터랙티브 시스템 디자인 강의. 실전 케이스 스터디와 연습 문제',
+                link: 'https://www.educative.io/courses/grokking-the-system-design-interview'
+              },
+              {
+                title: 'System Design Interview Roadmap',
+                authors: 'roadmap.sh',
+                year: '무료',
+                description: '시스템 디자인 학습 로드맵. 단계별 학습 경로와 리소스',
+                link: 'https://roadmap.sh/system-design'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

@@ -1,5 +1,7 @@
 'use client';
 
+import References from '@/components/common/References';
+
 export default function Chapter16() {
   return (
     <div className="space-y-8">
@@ -202,6 +204,172 @@ export default function Chapter16() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 W3C 표준 문서 & 명세',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'OWL 2 Web Ontology Language',
+                authors: 'W3C',
+                year: '2012',
+                description: 'OWL 2 공식 명세서 - 온톨로지 표현 표준',
+                link: 'https://www.w3.org/TR/owl2-overview/'
+              },
+              {
+                title: 'RDF 1.1 Concepts and Abstract Syntax',
+                authors: 'W3C',
+                year: '2014',
+                description: 'RDF 데이터 모델의 핵심 개념과 추상 구문',
+                link: 'https://www.w3.org/TR/rdf11-concepts/'
+              },
+              {
+                title: 'SPARQL 1.1 Query Language',
+                authors: 'W3C',
+                year: '2013',
+                description: 'RDF 데이터를 위한 표준 쿼리 언어',
+                link: 'https://www.w3.org/TR/sparql11-query/'
+              },
+              {
+                title: 'RDFS (RDF Schema)',
+                authors: 'W3C',
+                year: '2014',
+                description: 'RDF 어휘 정의를 위한 스키마 언어',
+                link: 'https://www.w3.org/TR/rdf-schema/'
+              },
+              {
+                title: 'SKOS (Simple Knowledge Organization System)',
+                authors: 'W3C',
+                year: '2009',
+                description: '분류 체계와 시소러스를 위한 RDF 어휘',
+                link: 'https://www.w3.org/TR/skos-reference/'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'The Semantic Web',
+                authors: 'Tim Berners-Lee, James Hendler, Ora Lassila',
+                year: '2001',
+                description: 'Semantic Web 개념을 최초로 제시한 역사적 논문 (Scientific American)',
+                link: 'https://www.scientificamerican.com/article/the-semantic-web/'
+              },
+              {
+                title: 'Ontology Development 101: A Guide to Creating Your First Ontology',
+                authors: 'Natalya F. Noy, Deborah L. McGuinness',
+                year: '2001',
+                description: 'Stanford University의 온톨로지 개발 입문 가이드',
+                link: 'https://protege.stanford.edu/publications/ontology_development/ontology101.pdf'
+              },
+              {
+                title: 'A Translation Approach to Portable Ontology Specifications',
+                authors: 'Thomas R. Gruber',
+                year: '1993',
+                description: '온톨로지의 정의와 공유 가능한 명세 방법론',
+                link: 'https://tomgruber.org/writing/ontolingua-kaj-1993.pdf'
+              },
+              {
+                title: 'DBpedia: A Nucleus for a Web of Open Data',
+                authors: 'Sören Auer et al.',
+                year: '2007',
+                description: 'Wikipedia에서 구조화된 정보를 추출한 대규모 지식 그래프',
+                link: 'https://www.dbpedia.org/'
+              },
+              {
+                title: 'Knowledge Graphs: New Directions for Knowledge Representation',
+                authors: 'Amit Singhal (Google)',
+                year: '2012',
+                description: 'Google의 Knowledge Graph 공식 소개 블로그',
+                link: 'https://blog.google/products/search/introducing-knowledge-graph-things-not/'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 도구 & 프레임워크',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Protégé',
+                authors: 'Stanford University',
+                year: '2024',
+                description: '가장 널리 사용되는 오픈소스 온톨로지 편집기',
+                link: 'https://protege.stanford.edu/'
+              },
+              {
+                title: 'Apache Jena',
+                authors: 'Apache Software Foundation',
+                year: '2024',
+                description: 'RDF, SPARQL, OWL을 위한 Java 프레임워크',
+                link: 'https://jena.apache.org/'
+              },
+              {
+                title: 'RDFLib (Python)',
+                authors: 'RDFLib Team',
+                year: '2024',
+                description: 'Python에서 RDF 데이터를 다루는 핵심 라이브러리',
+                link: 'https://rdflib.readthedocs.io/'
+              },
+              {
+                title: 'Stardog',
+                authors: 'Stardog Union',
+                year: '2024',
+                description: '엔터프라이즈급 지식 그래프 플랫폼',
+                link: 'https://www.stardog.com/'
+              },
+              {
+                title: 'GraphDB',
+                authors: 'Ontotext',
+                year: '2024',
+                description: 'RDF 및 SPARQL 지원 트리플 스토어',
+                link: 'https://www.ontotext.com/products/graphdb/'
+              },
+              {
+                title: 'OWL API',
+                authors: 'The University of Manchester',
+                year: '2024',
+                description: 'OWL 온톨로지를 프로그래밍 방식으로 조작하는 Java API',
+                link: 'https://owlcs.github.io/owlapi/'
+              },
+              {
+                title: 'BioPortal',
+                authors: 'Stanford BMIR',
+                year: '2024',
+                description: '생명과학 온톨로지 리포지토리 (600+ 온톨로지)',
+                link: 'https://bioportal.bioontology.org/'
+              },
+              {
+                title: 'Schema.org',
+                authors: 'Schema.org Community',
+                year: '2024',
+                description: '웹 페이지 구조화 데이터를 위한 공유 어휘',
+                link: 'https://schema.org/'
+              },
+              {
+                title: 'WebVOWL',
+                authors: 'University of Stuttgart',
+                year: '2024',
+                description: 'OWL 온톨로지의 인터랙티브 시각화 도구',
+                link: 'http://vowl.visualdataweb.org/webvowl.html'
+              },
+              {
+                title: 'Linked Open Vocabularies (LOV)',
+                authors: 'LOV Community',
+                year: '2024',
+                description: '재사용 가능한 RDF 어휘 검색 포털',
+                link: 'https://lov.linkeddata.es/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Server, Cloud, Cpu, Database, Network, Layers, Zap, TrendingUp, Shield, GitBranch } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter12() {
   return (
@@ -403,7 +404,7 @@ export default function Chapter12() {
         </section>
 
         {/* Next Chapter Preview */}
-        <section>
+        <section className="mb-12">
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-2 border-slate-300 dark:border-gray-600">
             <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
               다음 챕터 미리보기
@@ -415,6 +416,138 @@ export default function Chapter12() {
             </p>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 AI 인프라 플랫폼 & 도구',
+              icon: 'web' as const,
+              color: 'border-slate-500',
+              items: [
+                {
+                  title: 'Kubernetes Documentation',
+                  authors: 'Cloud Native Computing Foundation (CNCF)',
+                  year: '2025',
+                  description: '컨테이너 오케스트레이션 플랫폼 공식 문서 - AI 워크로드 배포 및 관리 가이드',
+                  link: 'https://kubernetes.io/docs/'
+                },
+                {
+                  title: 'Ray Documentation',
+                  authors: 'Anyscale',
+                  year: '2025',
+                  description: '분산 Python 프레임워크 - 대규모 ML 훈련 및 하이퍼파라미터 튜닝',
+                  link: 'https://docs.ray.io/'
+                },
+                {
+                  title: 'Kubeflow Documentation',
+                  authors: 'Kubeflow Community',
+                  year: '2025',
+                  description: 'Kubernetes 기반 ML 플랫폼 - End-to-End MLOps 파이프라인',
+                  link: 'https://www.kubeflow.org/docs/'
+                },
+                {
+                  title: 'NVIDIA Triton Inference Server',
+                  authors: 'NVIDIA',
+                  year: '2025',
+                  description: '프로덕션 AI 모델 서빙 플랫폼 - TensorRT, PyTorch, ONNX 지원',
+                  link: 'https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/'
+                },
+                {
+                  title: 'MLflow Documentation',
+                  authors: 'Databricks',
+                  year: '2025',
+                  description: 'ML 라이프사이클 관리 플랫폼 - 실험 추적, 모델 레지스트리, 배포',
+                  link: 'https://mlflow.org/docs/latest/index.html'
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 논문 & 기술 문서',
+              icon: 'research' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'Hidden Technical Debt in Machine Learning Systems',
+                  authors: 'Sculley, D., et al.',
+                  year: '2015',
+                  description: 'Google 논문 - ML 시스템의 숨겨진 기술 부채와 MLOps 필요성',
+                  link: 'https://proceedings.neurips.cc/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf'
+                },
+                {
+                  title: 'ZeRO: Memory Optimizations Toward Training Trillion Parameter Models',
+                  authors: 'Rajbhandari, S., et al.',
+                  year: '2020',
+                  description: 'Microsoft DeepSpeed - 대규모 모델 분산 훈련 최적화 기법',
+                  link: 'https://arxiv.org/abs/1910.02054'
+                },
+                {
+                  title: 'TorchServe: Serve, Optimize and Scale PyTorch Models in Production',
+                  authors: 'Meta AI',
+                  year: '2020',
+                  description: 'PyTorch 공식 모델 서빙 프레임워크 - 프로덕션 배포 가이드',
+                  link: 'https://pytorch.org/serve/'
+                },
+                {
+                  title: 'Scaling Kubernetes to 7,500 nodes',
+                  authors: 'OpenAI',
+                  year: '2018',
+                  description: 'OpenAI 기술 블로그 - 대규모 딥러닝 워크로드를 위한 Kubernetes 스케일링',
+                  link: 'https://openai.com/research/scaling-kubernetes-to-7500-nodes'
+                },
+                {
+                  title: 'Megatron-LM: Training Multi-Billion Parameter Language Models',
+                  authors: 'Shoeybi, M., et al. (NVIDIA)',
+                  year: '2020',
+                  description: '대규모 언어 모델 효율적 훈련 - Model Parallelism 구현',
+                  link: 'https://arxiv.org/abs/1909.08053'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 가이드 & 베스트 프랙티스',
+              icon: 'tools' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'Google ML Engineering Best Practices',
+                  authors: 'Google Cloud',
+                  year: '2025',
+                  description: 'Google의 프로덕션 ML 엔지니어링 베스트 프랙티스 - 실무 가이드',
+                  link: 'https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning'
+                },
+                {
+                  title: 'AWS SageMaker MLOps Workshop',
+                  authors: 'Amazon Web Services',
+                  year: '2025',
+                  description: 'AWS의 End-to-End MLOps 워크샵 - 파이프라인 자동화 실습',
+                  link: 'https://catalog.us-east-1.prod.workshops.aws/workshops/7acdc7d8-0ac0-44b1-8e86-6a2e21abcb8a/'
+                },
+                {
+                  title: 'NVIDIA Deep Learning Performance Guide',
+                  authors: 'NVIDIA Developer',
+                  year: '2025',
+                  description: 'GPU 최적화 완벽 가이드 - Mixed Precision, Multi-GPU 훈련',
+                  link: 'https://docs.nvidia.com/deeplearning/performance/index.html'
+                },
+                {
+                  title: 'Monitoring Machine Learning Models in Production',
+                  authors: 'Chip Huyen',
+                  year: '2022',
+                  description: '프로덕션 ML 모델 모니터링 가이드 - 드리프트 감지, 성능 추적',
+                  link: 'https://huyenchip.com/2022/02/07/data-distribution-shifts-and-monitoring.html'
+                },
+                {
+                  title: 'Full Stack Deep Learning - MLOps',
+                  authors: 'UC Berkeley',
+                  year: '2024',
+                  description: 'UC Berkeley 코스 - 프로덕션 ML 시스템 구축 실전 가이드',
+                  link: 'https://fullstackdeeplearning.com/course/2022/'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
     </div>
   )

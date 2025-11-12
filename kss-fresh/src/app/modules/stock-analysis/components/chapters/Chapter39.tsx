@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Globe, PieChart, TrendingUp, Shield, BarChart3, AlertTriangle, Target, Building } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter39() {
   return (
@@ -570,6 +571,130 @@ export default function Chapter39() {
           </p>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 글로벌 증권 플랫폼 & 도구',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Interactive Brokers',
+                authors: 'Interactive Brokers Group',
+                year: '2025',
+                description: '전 세계 150개 시장 접근 가능한 글로벌 온라인 증권사. 저렴한 수수료와 다양한 투자 상품 제공',
+                link: 'https://www.interactivebrokers.com/'
+              },
+              {
+                title: 'Charles Schwab International',
+                authors: 'Charles Schwab',
+                year: '2025',
+                description: '미국 증권 계좌 개설 가능. 외국인 투자자를 위한 글로벌 서비스 제공',
+                link: 'https://international.schwab.com/'
+              },
+              {
+                title: 'MSCI Index Explorer',
+                authors: 'MSCI Inc.',
+                year: '2025',
+                description: '글로벌 주가지수 데이터 및 국가별 시장 분석. 선진국/신흥국 분류 기준 제공',
+                link: 'https://www.msci.com/our-solutions/indexes'
+              },
+              {
+                title: 'ETF.com - Global ETF Database',
+                authors: 'ETF.com',
+                year: '2025',
+                description: '전 세계 ETF 비교 및 분석 도구. 국가별, 자산별 ETF 검색 및 성과 비교',
+                link: 'https://www.etf.com/'
+              },
+              {
+                title: 'Vanguard Global Investing',
+                authors: 'The Vanguard Group',
+                year: '2025',
+                description: '저비용 글로벌 인덱스 펀드 및 ETF. VT, VXUS 등 대표적인 국제 분산투자 상품',
+                link: 'https://investor.vanguard.com/investment-products/list/all'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 연구 & 리포트',
+            icon: 'research' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'Home Bias in Portfolio Choice',
+                authors: 'French, K. R., & Poterba, J. M.',
+                year: '1991',
+                description: '투자자들이 자국 자산을 과도하게 선호하는 "홈 바이어스" 현상을 처음 규명한 고전적 연구',
+                link: 'https://www.jstor.org/stable/2006858'
+              },
+              {
+                title: 'International Diversification: Theory and Evidence',
+                authors: 'Solnik, B. H.',
+                year: '1974',
+                description: '국제 분산투자의 이론적 근거를 제시한 선구적 논문. 상관관계 분석 및 최적 포트폴리오 구성',
+                link: 'https://doi.org/10.2307/2326623'
+              },
+              {
+                title: 'Global Investment Returns Yearbook',
+                authors: 'Credit Suisse Research Institute',
+                year: '2024',
+                description: '1900년부터 현재까지 주요 국가 주식시장 수익률 데이터베이스. 장기 성과 비교 분석',
+                link: 'https://www.credit-suisse.com/about-us/en/reports-research/global-investment-returns-yearbook.html'
+              },
+              {
+                title: 'The Benefits of International Diversification',
+                authors: 'Vanguard Research',
+                year: '2023',
+                description: '현대 시장 환경에서 국제 분산투자의 효과를 재평가. 상관관계 변화 및 최적 배분 제안',
+                link: 'https://corporate.vanguard.com/content/corporatesite/us/en/corp/research.html'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 리소스 & 가이드',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Currency Hedging Guide',
+                authors: 'BlackRock',
+                year: '2024',
+                description: '환율 리스크 관리 전략. 환헤지 ETF vs 비헤지 ETF 선택 가이드',
+                link: 'https://www.blackrock.com/institutions/en-us/insights/portfolio-design/currency-hedging'
+              },
+              {
+                title: '해외주식 투자 세금 가이드',
+                authors: '국세청',
+                year: '2024',
+                description: '해외 주식 양도소득세, 배당소득세 신고 방법. 증권사별 세무 서비스 비교',
+                link: 'https://www.nts.go.kr/'
+              },
+              {
+                title: 'Country Risk Assessment',
+                authors: 'S&P Global Ratings',
+                year: '2025',
+                description: '국가별 신용등급 및 리스크 평가. 정치·경제·사회적 안정성 분석',
+                link: 'https://www.spglobal.com/ratings/'
+              },
+              {
+                title: 'ETF Screener & Comparison Tool',
+                authors: 'Morningstar',
+                year: '2025',
+                description: '글로벌 ETF 성과 비교, 보수율 분석, 추적오차 평가 도구',
+                link: 'https://www.morningstar.com/etfs'
+              },
+              {
+                title: 'Global Market Research',
+                authors: 'JP Morgan Asset Management',
+                year: '2024',
+                description: '지역별 시장 전망, 자산배분 전략, 경제 사이클 분석 리포트',
+                link: 'https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -415,6 +416,131 @@ print(response.content)`}
           </ul>
         </div>
       </section>
+
+      {/* References Section */}
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 튜토리얼',
+            icon: 'web' as const,
+            color: 'border-amber-500',
+            items: [
+              {
+                title: 'LangChain Documentation',
+                authors: 'LangChain',
+                year: '2025',
+                description: 'LangChain 공식 문서 - 전체 API 레퍼런스와 사용 가이드',
+                link: 'https://python.langchain.com/docs/'
+              },
+              {
+                title: 'LangGraph Documentation',
+                authors: 'LangChain',
+                year: '2025',
+                description: 'LangGraph 공식 문서 - 복잡한 워크플로우 구축 가이드',
+                link: 'https://langchain-ai.github.io/langgraph/'
+              },
+              {
+                title: 'LangSmith Platform',
+                authors: 'LangChain',
+                year: '2025',
+                description: 'LLM 애플리케이션 디버깅, 테스팅, 모니터링 플랫폼',
+                link: 'https://smith.langchain.com/'
+              },
+              {
+                title: 'LangServe Deployment',
+                authors: 'LangChain',
+                year: '2025',
+                description: 'LangChain 애플리케이션을 REST API로 배포하는 프레임워크',
+                link: 'https://python.langchain.com/docs/langserve'
+              },
+              {
+                title: 'LangChain Cookbook',
+                authors: 'LangChain Community',
+                year: '2025',
+                description: '실전 예제와 베스트 프랙티스 모음',
+                link: 'https://github.com/langchain-ai/langchain-cookbook'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 연구',
+            icon: 'research' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'ReAct: Synergizing Reasoning and Acting in Language Models',
+                authors: 'Yao et al.',
+                year: '2023',
+                description: 'Reasoning + Acting을 결합한 Agent 아키텍처 - LangChain Agent의 기반',
+                link: 'https://arxiv.org/abs/2210.03629'
+              },
+              {
+                title: 'Retrieval-Augmented Generation for Knowledge-Intensive NLP',
+                authors: 'Lewis et al., Meta AI',
+                year: '2020',
+                description: 'RAG 패턴의 원조 논문 - 외부 지식 검색 + 생성 결합',
+                link: 'https://arxiv.org/abs/2005.11401'
+              },
+              {
+                title: 'Chain-of-Thought Prompting Elicits Reasoning',
+                authors: 'Wei et al., Google',
+                year: '2022',
+                description: 'CoT 프롬프팅 기법 - 단계별 추론으로 성능 향상',
+                link: 'https://arxiv.org/abs/2201.11903'
+              },
+              {
+                title: 'Self-Consistency Improves Chain of Thought Reasoning',
+                authors: 'Wang et al., Google',
+                year: '2023',
+                description: '다중 추론 경로 + 다수결 투표로 정확도 향상',
+                link: 'https://arxiv.org/abs/2203.11171'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 템플릿',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'LangChain Templates',
+                authors: 'LangChain',
+                year: '2025',
+                description: '다양한 사용 사례별 즉시 사용 가능한 템플릿 모음',
+                link: 'https://github.com/langchain-ai/langchain/tree/master/templates'
+              },
+              {
+                title: 'LangChain Hub',
+                authors: 'LangChain',
+                year: '2025',
+                description: '검증된 Prompt 템플릿과 Chain 구성 공유 플랫폼',
+                link: 'https://smith.langchain.com/hub'
+              },
+              {
+                title: 'LangChain Benchmarks',
+                authors: 'LangChain',
+                year: '2025',
+                description: 'RAG, Agent 성능 벤치마크 도구 및 데이터셋',
+                link: 'https://github.com/langchain-ai/langchain-benchmarks'
+              },
+              {
+                title: 'Awesome LangChain',
+                authors: 'Community',
+                year: '2025',
+                description: 'LangChain 관련 도구, 튜토리얼, 프로젝트 큐레이션',
+                link: 'https://github.com/kyrolabs/awesome-langchain'
+              },
+              {
+                title: 'LangChain GitHub Examples',
+                authors: 'LangChain',
+                year: '2025',
+                description: '공식 예제 코드 리포지토리 - RAG, Agent, Multi-modal 등',
+                link: 'https://github.com/langchain-ai/langchain/tree/master/cookbook'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }
