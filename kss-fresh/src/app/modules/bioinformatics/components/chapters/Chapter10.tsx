@@ -294,6 +294,103 @@ class ClinicalGenomicsAnalyzer:
           </table>
         </div>
       </section>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 바이오인포매틱스 플랫폼',
+            icon: 'web' as const,
+            color: 'border-green-500',
+            items: [
+              {
+                title: 'NCBI (National Center for Biotechnology Information)',
+                url: 'https://www.ncbi.nlm.nih.gov/',
+                description: 'GenBank, PubMed, BLAST 등 생명과학 데이터베이스 통합 플랫폼'
+              },
+              {
+                title: 'UniProt',
+                url: 'https://www.uniprot.org/',
+                description: '단백질 서열 및 기능 주석 데이터베이스 (2024년 11월 최신)'
+              },
+              {
+                title: 'EBI (European Bioinformatics Institute)',
+                url: 'https://www.ebi.ac.uk/',
+                description: '유럽 생물정보학 연구소 - ENA, Ensembl, ChEMBL 등'
+              },
+              {
+                title: 'PDB (Protein Data Bank)',
+                url: 'https://www.rcsb.org/',
+                description: '3D 단백질 구조 데이터베이스 (20만+ 구조)'
+              },
+              {
+                title: 'Ensembl',
+                url: 'https://www.ensembl.org/',
+                description: '진핵생물 유전체 주석 및 비교 유전체학 플랫폼'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재 & 리소스',
+            icon: 'research' as const,
+            color: 'border-lime-500',
+            items: [
+              {
+                title: 'Bioinformatics Algorithms (Compeau & Pevzner)',
+                url: 'https://www.bioinformaticsalgorithms.org/',
+                description: '알고리즘 중심 바이오인포매틱스 교재 (온라인 무료, 2015)'
+              },
+              {
+                title: 'Introduction to Bioinformatics (Arthur Lesk)',
+                url: 'https://www.oup.com/academic/product/introduction-to-bioinformatics-9780198794141',
+                description: '생물정보학 입문 교과서 (5th Edition, 2019)'
+              },
+              {
+                title: 'Rosalind - Learn Bioinformatics',
+                url: 'https://rosalind.info/',
+                description: '프로그래밍 기반 생물정보학 학습 플랫폼 (300+ 문제)'
+              },
+              {
+                title: 'Coursera - Genomic Data Science',
+                url: 'https://www.coursera.org/specializations/genomic-data-science',
+                description: '존스홉킨스 대학 유전체 데이터 과학 전문 과정'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구',
+            icon: 'tools' as const,
+            color: 'border-emerald-500',
+            items: [
+              {
+                title: 'BLAST (Basic Local Alignment Search Tool)',
+                url: 'https://blast.ncbi.nlm.nih.gov/',
+                description: '서열 유사성 검색 도구 (NCBI)'
+              },
+              {
+                title: 'BioPython',
+                url: 'https://biopython.org/',
+                description: 'Python 생물정보학 라이브러리 (서열 분석, 파일 파싱, Entrez API)'
+              },
+              {
+                title: 'Bioconductor',
+                url: 'https://www.bioconductor.org/',
+                description: 'R 기반 유전체 데이터 분석 패키지 (2,200+ 패키지)'
+              },
+              {
+                title: 'UCSC Genome Browser',
+                url: 'https://genome.ucsc.edu/',
+                description: '유전체 시각화 및 비교 도구 (hg38, mm39 등)'
+              },
+              {
+                title: 'IGV (Integrative Genomics Viewer)',
+                url: 'https://igv.org/',
+                description: 'Broad Institute 유전체 시각화 도구 (NGS 데이터 분석)'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

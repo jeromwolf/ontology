@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ArrowLeft, BookOpen, CheckCircle } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter8() {
   return (
@@ -145,6 +146,110 @@ export default function Chapter8() {
             </ul>
           </div>
         </section>
+
+        <References
+          sections={[
+            {
+              title: '📚 온라인 강의 & 교재',
+              icon: 'web' as const,
+              color: 'border-green-500',
+              items: [
+                {
+                  title: 'Khan Academy Calculus',
+                  url: 'https://www.khanacademy.org/math/calculus',
+                  description: '무료 미적분학 강의 - 벡터 미적분 포함 초급부터 고급까지 완벽 커버 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'MIT OCW 18.01 Single Variable Calculus',
+                  url: 'https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/',
+                  description: 'MIT 공개 강의 - David Jerison 교수의 전설적인 미적분 강의 (2024)',
+                  year: 2024
+                },
+                {
+                  title: "Paul's Online Math Notes",
+                  url: 'https://tutorial.math.lamar.edu/Classes/CalcIII/CalcIII.html',
+                  description: '벡터 미적분 전문 튜토리얼 - 명확한 설명과 풍부한 예제 (2024)',
+                  year: 2024
+                },
+                {
+                  title: '3Blue1Brown - Essence of Calculus',
+                  url: 'https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr',
+                  description: '시각적 미적분 강의 - 직관적 이해를 위한 최고의 애니메이션 (2024)',
+                  year: 2024
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 교재',
+              icon: 'research' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'Calculus (James Stewart)',
+                  url: 'https://www.cengage.com/c/calculus-9e-stewart',
+                  description: '전 세계 대학 표준 교재 - 명확한 설명과 풍부한 연습문제 (9판, 2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Calculus (Michael Spivak)',
+                  url: 'https://www.amazon.com/Calculus-4th-Michael-Spivak/dp/0914098918',
+                  description: '엄밀한 증명 중심 고급 교재 - 수학 전공자 필독서 (4판)',
+                  year: 2008
+                },
+                {
+                  title: 'Advanced Calculus (Patrick M. Fitzpatrick)',
+                  url: 'https://www.ams.org/books/amstext/005/',
+                  description: '다변수 미적분 고급 이론 - 대학원 수준 엄밀한 해석학 (AMS, 2009)',
+                  year: 2009
+                },
+                {
+                  title: 'Vector Calculus (Marsden & Tromba)',
+                  url: 'https://www.macmillanlearning.com/college/us/product/Vector-Calculus/p/1429215089',
+                  description: '벡터 미적분 전문 교재 - 물리학 응용 중심 (6판, 2012)',
+                  year: 2012
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'WolframAlpha',
+                  url: 'https://www.wolframalpha.com/',
+                  description: '미적분 계산기 - 극한, 미분, 적분 자동 계산 및 단계별 풀이 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Desmos Graphing Calculator',
+                  url: 'https://www.desmos.com/calculator',
+                  description: '함수 그래프 시각화 - 벡터장, 매개변수 곡선 실시간 렌더링 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'GeoGebra 3D Calculator',
+                  url: 'https://www.geogebra.org/3d',
+                  description: '3D 그래프 도구 - 다변수 함수, 곡면, 벡터 시각화 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Symbolab',
+                  url: 'https://www.symbolab.com/',
+                  description: '수식 계산기 - 미적분 문제 풀이 단계별 설명 제공 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Wolfram Mathematica',
+                  url: 'https://www.wolfram.com/mathematica/',
+                  description: '전문 수학 소프트웨어 - 복잡한 벡터 미적분 연산 및 시각화 (2024)',
+                  year: 2024
+                }
+              ]
+            }
+          ]}
+        />
 
         <div className="flex justify-between items-center pt-8 border-t border-slate-700">
           <Link href="/modules/calculus/multivariable" className="flex items-center gap-2 px-6 py-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-lg transition-colors border border-slate-700">

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Rocket, Target, Trophy, Sparkles } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -183,6 +184,116 @@ export default function Chapter8() {
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 플랫폼',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Neo4j Documentation',
+                url: 'https://neo4j.com/docs/',
+                description: '공식 문서 - Cypher, 드라이버, 운영 가이드 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Neo4j Graph Academy',
+                url: 'https://graphacademy.neo4j.com/',
+                description: '무료 온라인 교육 플랫폼 - 인증 과정 포함',
+                year: 2024
+              },
+              {
+                title: 'Cypher Manual',
+                url: 'https://neo4j.com/docs/cypher-manual/current/',
+                description: 'Cypher 쿼리 언어 완벽 가이드',
+                year: 2024
+              },
+              {
+                title: 'APOC Library',
+                url: 'https://neo4j.com/labs/apoc/',
+                description: 'Neo4j 유틸리티 프로시저 라이브러리 (450+ 함수)',
+                year: 2024
+              },
+              {
+                title: 'Neo4j Desktop',
+                url: 'https://neo4j.com/download/',
+                description: '로컬 개발 환경 - 무료 다운로드',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 서적',
+            icon: 'research' as const,
+            color: 'border-pink-500',
+            items: [
+              {
+                title: 'Graph Databases (2nd Edition)',
+                url: 'https://neo4j.com/graph-databases-book/',
+                description: 'Ian Robinson 저 - 그래프 데이터베이스 바이블',
+                year: 2015
+              },
+              {
+                title: 'Property Graph Model',
+                url: 'https://arxiv.org/abs/1004.1001',
+                description: 'Property Graph 개념 정립 논문',
+                year: 2012
+              },
+              {
+                title: 'Graph Algorithms in Neo4j',
+                url: 'https://neo4j.com/graph-algorithms-book/',
+                description: 'Mark Needham 저 - 그래프 알고리즘 실전',
+                year: 2019
+              },
+              {
+                title: 'Knowledge Graphs (Morgan & Claypool)',
+                url: 'https://kgbook.org/',
+                description: 'Aidan Hogan 저 - Knowledge Graph 이론 및 실전',
+                year: 2021
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 리소스',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Neo4j Browser',
+                url: 'https://neo4j.com/docs/browser-manual/current/',
+                description: '웹 기반 쿼리 인터페이스 및 시각화 도구',
+                year: 2024
+              },
+              {
+                title: 'Neo4j Bloom',
+                url: 'https://neo4j.com/product/bloom/',
+                description: '비즈니스 사용자를 위한 그래프 탐색 도구',
+                year: 2024
+              },
+              {
+                title: 'Neo4j GraphQL Library',
+                url: 'https://neo4j.com/docs/graphql-manual/current/',
+                description: 'GraphQL과 Neo4j 통합 라이브러리',
+                year: 2024
+              },
+              {
+                title: 'py2neo',
+                url: 'https://py2neo.org/',
+                description: 'Python 클라이언트 라이브러리 (OGM 지원)',
+                year: 2024
+              },
+              {
+                title: 'neo4j-driver (Official)',
+                url: 'https://github.com/neo4j/neo4j-javascript-driver',
+                description: '공식 JavaScript/TypeScript/Python 드라이버',
+                year: 2024
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

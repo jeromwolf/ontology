@@ -1,5 +1,7 @@
 'use client'
 
+import References from '@/components/common/References'
+
 export default function Chapter9() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -400,6 +402,103 @@ COG (Chip On Glass)
           </ul>
         </div>
       </section>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 반도체 산업 리소스',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'TSMC Technology',
+                url: 'https://www.tsmc.com/english/dedicatedFoundry/technology',
+                description: 'TSMC 파운드리 공정 기술 (3nm N3, 2nm N2 로드맵)'
+              },
+              {
+                title: 'Samsung Foundry',
+                url: 'https://www.samsungfoundry.com/',
+                description: '삼성 파운드리 공정 기술 (3nm GAA, 2nm SF2)'
+              },
+              {
+                title: 'Intel Process Technology',
+                url: 'https://www.intel.com/content/www/us/en/silicon-innovations/intel-process-technology.html',
+                description: 'Intel 프로세스 기술 (Intel 4, Intel 3, Intel 20A)'
+              },
+              {
+                title: 'ASML - Lithography Systems',
+                url: 'https://www.asml.com/en/technology/lithography-principles',
+                description: 'EUV 리소그래피 기술 선도 기업'
+              },
+              {
+                title: 'SEMI - Semiconductor Industry Association',
+                url: 'https://www.semi.org/',
+                description: '반도체 산업 협회 (시장 동향, 표준)'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재 & 리소스',
+            icon: 'research' as const,
+            color: 'border-cyan-500',
+            items: [
+              {
+                title: 'Semiconductor Device Fundamentals (Pierret)',
+                url: 'https://www.pearson.com/en-us/subject-catalog/p/semiconductor-device-fundamentals/P200000003255',
+                description: '반도체 소자 물리학 교과서 (1996)'
+              },
+              {
+                title: 'VLSI Design (Weste & Harris)',
+                url: 'https://www.pearson.com/en-us/subject-catalog/p/cmos-vlsi-design-a-circuits-and-systems-perspective/P200000003328',
+                description: 'CMOS VLSI 설계 바이블 (4th Edition, 2010)'
+              },
+              {
+                title: 'IEEE Electron Devices Society',
+                url: 'https://eds.ieee.org/',
+                description: 'IEEE 전자 소자 학회 (논문, 컨퍼런스)'
+              },
+              {
+                title: 'Semiconductor Today',
+                url: 'https://www.semiconductor-today.com/',
+                description: '반도체 산업 뉴스 및 기술 동향'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Cadence Virtuoso',
+                url: 'https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design/virtuoso-studio.html',
+                description: 'Analog/Mixed-Signal IC 설계 도구'
+              },
+              {
+                title: 'Synopsys Design Compiler',
+                url: 'https://www.synopsys.com/implementation-and-signoff/rtl-synthesis-test/design-compiler-graphical.html',
+                description: '디지털 IC 합성 도구'
+              },
+              {
+                title: 'Mentor Graphics (Siemens EDA)',
+                url: 'https://eda.sw.siemens.com/',
+                description: 'IC 설계 및 검증 툴 (Calibre DRC/LVS)'
+              },
+              {
+                title: 'SPICE (Simulation Program with Integrated Circuit Emphasis)',
+                url: 'https://ngspice.sourceforge.io/',
+                description: '회로 시뮬레이션 (ngspice 오픈소스)'
+              },
+              {
+                title: 'Verilog / VHDL',
+                url: 'https://www.ieee.org/communities/standards',
+                description: '하드웨어 기술 언어 (HDL) IEEE 표준'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

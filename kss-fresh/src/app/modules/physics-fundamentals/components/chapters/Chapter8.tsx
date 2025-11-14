@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ArrowLeft, BookOpen, CheckCircle } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter8() {
   return (
@@ -248,6 +249,104 @@ export default function Chapter8() {
             </div>
           </div>
         </section>
+
+        <References
+          sections={[
+            {
+              title: '📚 온라인 강의 & 리소스',
+              icon: 'web' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'MIT OCW 8.01 - Classical Mechanics',
+                  url: 'https://ocw.mit.edu/courses/8-01-classical-mechanics-fall-2016/',
+                  description: 'MIT 물리학 입문 강의 - Walter Lewin 교수의 전설적인 강의 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Khan Academy Physics',
+                  url: 'https://www.khanacademy.org/science/physics',
+                  description: '무료 물리학 강의 - 역학, 전자기, 열역학 완전 커버 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'The Feynman Lectures on Physics',
+                  url: 'https://www.feynmanlectures.caltech.edu/',
+                  description: '파인만 물리학 강의 - 노벨상 수상자의 명강의 온라인 공개 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Walter Lewin Lectures - MIT',
+                  url: 'https://www.youtube.com/playlist?list=PLyQSN7X0ro203puVhQsmCj9qhlFQ-As8e',
+                  description: '물리학 실험 중심 강의 - 재미있고 직관적인 설명 (YouTube, 2024)',
+                  year: 2024
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 교재',
+              icon: 'research' as const,
+              color: 'border-pink-500',
+              items: [
+                {
+                  title: 'University Physics (Young & Freedman)',
+                  url: 'https://www.pearson.com/en-us/subject-catalog/p/university-physics-with-modern-physics/P200000006228',
+                  description: '전 세계 대학 표준 물리학 교재 - 명확한 설명과 풍부한 예제 (15판, 2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Physics for Scientists and Engineers (Serway & Jewett)',
+                  url: 'https://www.cengage.com/c/physics-for-scientists-and-engineers-10e-serway',
+                  description: '공학도를 위한 물리학 - 응용 중심 설명 (10판, 2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Classical Mechanics (Goldstein)',
+                  url: 'https://www.pearson.com/en-us/subject-catalog/p/classical-mechanics/P200000006154',
+                  description: '고전역학 고급 교재 - 라그랑주, 해밀턴 역학 완벽 다룸 (3판)',
+                  year: 2002
+                },
+                {
+                  title: 'Fundamentals of Physics (Halliday, Resnick, Walker)',
+                  url: 'https://www.wiley.com/en-us/Fundamentals+of+Physics%2C+11th+Edition-p-9781119306856',
+                  description: '물리학 기초 명저 - 개념 중심 명쾌한 설명 (11판, 2018)',
+                  year: 2018
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'PhET Interactive Simulations',
+                  url: 'https://phet.colorado.edu/',
+                  description: 'University of Colorado 물리학 시뮬레이션 - 80+ 인터랙티브 시뮬레이터 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Tracker Video Analysis',
+                  url: 'https://physlets.org/tracker/',
+                  description: '비디오 분석 도구 - 실험 영상에서 운동 데이터 추출 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Algodoo',
+                  url: 'http://www.algodoo.com/',
+                  description: '2D 물리 시뮬레이션 - 드래그 앤 드롭으로 물리 실험 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'VPython',
+                  url: 'https://www.glowscript.org/docs/VPythonDocs/index.html',
+                  description: 'Python 3D 물리 시뮬레이션 - 코드로 물리 현상 구현 (2024)',
+                  year: 2024
+                }
+              ]
+            }
+          ]}
+        />
 
         <div className="flex justify-between items-center pt-8 border-t border-purple-500/20">
           <Link href="/modules/physics-fundamentals?chapter=electromagnetism" className="flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors">

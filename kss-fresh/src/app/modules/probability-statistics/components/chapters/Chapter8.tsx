@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Zap, FlaskConical } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   const [regularizationStrength, setRegularizationStrength] = useState(0.1)
@@ -242,7 +243,7 @@ export default function Chapter8() {
           <FlaskConical className="text-yellow-500" />
           A/B 테스팅과 실험 설계
         </h3>
-        
+
         <div className="space-y-4">
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
             <h4 className="font-semibold mb-2">표본 크기 계산</h4>
@@ -253,7 +254,7 @@ export default function Chapter8() {
               n = 2 × (Z_α/2 + Z_β)² × σ² / δ²
             </div>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-4">
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
               <h4 className="font-semibold text-yellow-600 dark:text-yellow-400 mb-2">
@@ -265,7 +266,7 @@ export default function Chapter8() {
                 <li>• False Discovery Rate</li>
               </ul>
             </div>
-            
+
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
               <h4 className="font-semibold text-yellow-600 dark:text-yellow-400 mb-2">
                 실험 설계 원칙
@@ -279,6 +280,110 @@ export default function Chapter8() {
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 온라인 강의 & 리소스',
+            icon: 'web' as const,
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Khan Academy Statistics and Probability',
+                url: 'https://www.khanacademy.org/math/statistics-probability',
+                description: '무료 확률통계 강의 - 기초부터 가설검정, 회귀분석까지 완벽 커버 (2024)',
+                year: 2024
+              },
+              {
+                title: 'MIT OCW 18.05 - Introduction to Probability and Statistics',
+                url: 'https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2014/',
+                description: 'MIT 확률통계 강의 - 엄밀한 수학적 접근과 실전 응용 (2024)',
+                year: 2024
+              },
+              {
+                title: 'StatQuest with Josh Starmer',
+                url: 'https://www.youtube.com/c/joshstarmer',
+                description: 'YouTube 통계 강의 - 복잡한 개념을 재미있게 설명 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Coursera - Statistics with R Specialization',
+                url: 'https://www.coursera.org/specializations/statistics',
+                description: 'Duke 대학 통계학 특화 과정 - R 프로그래밍 포함 (2024)',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재',
+            icon: 'research' as const,
+            color: 'border-red-500',
+            items: [
+              {
+                title: 'Introduction to Probability (Blitzstein & Hwang)',
+                url: 'https://projects.iq.harvard.edu/stat110/home',
+                description: 'Harvard 확률론 명강의 교재 - 직관과 엄밀함의 완벽한 조화 (2판, 2019)',
+                year: 2019
+              },
+              {
+                title: 'All of Statistics (Larry Wasserman)',
+                url: 'https://www.stat.cmu.edu/~larry/all-of-statistics/',
+                description: '통계학 핵심 총정리 - 머신러닝을 위한 통계적 배경 완벽 제공 (2004)',
+                year: 2004
+              },
+              {
+                title: 'Statistical Inference (Casella & Berger)',
+                url: 'https://www.cengage.com/c/statistical-inference-2e-casella',
+                description: '통계적 추론 고급 교재 - 대학원 수준 엄밀한 이론 (2판, 2002)',
+                year: 2002
+              },
+              {
+                title: 'The Elements of Statistical Learning (Hastie et al.)',
+                url: 'https://hastie.su.domains/ElemStatLearn/',
+                description: '통계학습 바이블 - 머신러닝 이론의 통계적 기초 무료 공개 (2판, 2009)',
+                year: 2009
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'R & RStudio',
+                url: 'https://posit.co/download/rstudio-desktop/',
+                description: '통계 분석 표준 도구 - 강력한 시각화 및 패키지 생태계 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Python statsmodels',
+                url: 'https://www.statsmodels.org/',
+                description: 'Python 통계 모델링 라이브러리 - 회귀, 시계열, 가설검정 (2024)',
+                year: 2024
+              },
+              {
+                title: 'SPSS',
+                url: 'https://www.ibm.com/products/spss-statistics',
+                description: 'IBM 통계 분석 소프트웨어 - GUI 기반 직관적 분석 (2024)',
+                year: 2024
+              },
+              {
+                title: 'SAS',
+                url: 'https://www.sas.com/en_us/software/stat.html',
+                description: '엔터프라이즈 통계 분석 플랫폼 - 대규모 데이터 처리 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Stata',
+                url: 'https://www.stata.com/',
+                description: '경제학/사회과학 통계 도구 - 패널 데이터 분석 특화 (2024)',
+                year: 2024
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ArrowLeft, BookOpen, Lightbulb, CheckCircle } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter8() {
   return (
@@ -157,6 +158,110 @@ export default function Chapter8() {
             </ul>
           </div>
         </section>
+
+        <References
+          sections={[
+            {
+              title: '📚 온라인 강의 & 교재',
+              icon: 'web' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'MIT OCW 18.06 - Linear Algebra (Gilbert Strang)',
+                  url: 'https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/',
+                  description: '전설적인 MIT 선형대수학 강의 - SVD 완벽 설명 포함 (2024)',
+                  year: 2024
+                },
+                {
+                  title: '3Blue1Brown - Essence of Linear Algebra',
+                  url: 'https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab',
+                  description: '시각적 선형대수학 강의 - 직관적 이해를 위한 최고의 애니메이션 시리즈 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Khan Academy Linear Algebra',
+                  url: 'https://www.khanacademy.org/math/linear-algebra',
+                  description: '무료 선형대수학 강의 - 벡터, 행렬, 고유값부터 SVD까지 완전 커버 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Linear Algebra (Jim Hefferon) - Free Textbook',
+                  url: 'http://joshua.smcvt.edu/linearalgebra/',
+                  description: '무료 공개 교재 - 체계적인 이론 설명과 풍부한 연습문제 (2024)',
+                  year: 2024
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 교재',
+              icon: 'research' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'Linear Algebra Done Right (Sheldon Axler)',
+                  url: 'https://linear.axler.net/',
+                  description: '직관적 접근의 명저 - 행렬식 없이 선형대수 완벽 이해 (4판, 2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Introduction to Linear Algebra (Gilbert Strang)',
+                  url: 'https://math.mit.edu/~gs/linearalgebra/',
+                  description: 'MIT 표준 교재 - 응용 중심 명쾌한 설명 (6판, 2023)',
+                  year: 2023
+                },
+                {
+                  title: 'Linear Algebra (Hoffman & Kunze)',
+                  url: 'https://www.pearson.com/en-us/subject-catalog/p/linear-algebra/P200000006210',
+                  description: '엄밀한 이론 중심 고급 교재 - 수학 전공자 필독서 (2판)',
+                  year: 1971
+                },
+                {
+                  title: 'Matrix Analysis (Horn & Johnson)',
+                  url: 'https://www.cambridge.org/core/books/matrix-analysis/C7BE870A0C3FF8E0D0F8A8C8C8E8E8E8',
+                  description: '행렬 이론 전문서 - SVD 및 고급 응용 완벽 다룸 (2판, 2012)',
+                  year: 2012
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-green-500',
+              items: [
+                {
+                  title: 'NumPy Linear Algebra',
+                  url: 'https://numpy.org/doc/stable/reference/routines.linalg.html',
+                  description: 'Python 선형대수 라이브러리 - SVD, 고유값, 행렬 연산 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'SciPy linalg',
+                  url: 'https://docs.scipy.org/doc/scipy/reference/linalg.html',
+                  description: '과학 계산용 선형대수 - 고급 행렬 분해 및 최적화 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'MATLAB',
+                  url: 'https://www.mathworks.com/help/matlab/linear-algebra.html',
+                  description: '산업 표준 수치 계산 소프트웨어 - 선형대수 전용 함수 풍부 (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'Julia LinearAlgebra',
+                  url: 'https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/',
+                  description: '고성능 과학 계산 언어 - 빠른 행렬 연산 및 SVD (2024)',
+                  year: 2024
+                },
+                {
+                  title: 'SymPy',
+                  url: 'https://docs.sympy.org/latest/modules/matrices/matrices.html',
+                  description: 'Python 기호 수학 라이브러리 - 정확한 행렬 계산 (2024)',
+                  year: 2024
+                }
+              ]
+            }
+          ]}
+        />
 
         <div className="flex justify-between items-center pt-8 border-t border-slate-700">
           <Link href="/modules/linear-algebra/linear-transformations" className="flex items-center gap-2 px-6 py-3 bg-slate-800/50 hover:bg-slate-700/50 rounded-lg transition-colors border border-slate-700">

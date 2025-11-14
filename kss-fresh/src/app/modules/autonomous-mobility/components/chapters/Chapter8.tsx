@@ -1,6 +1,7 @@
 'use client';
 
 import { Car, Plane, Train, Bike } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -358,6 +359,116 @@ class SmartCityDigitalTwin:
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 자율주행 플랫폼 & 시뮬레이터',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Apollo (Baidu)',
+                url: 'https://apollo.auto/',
+                description: '오픈소스 자율주행 플랫폼 - 완전한 소프트웨어 스택',
+                year: 2024
+              },
+              {
+                title: 'Autoware',
+                url: 'https://autoware.org/',
+                description: 'ROS 기반 오픈소스 자율주행 소프트웨어',
+                year: 2024
+              },
+              {
+                title: 'CARLA Simulator',
+                url: 'https://carla.org/',
+                description: 'Unreal Engine 기반 자율주행 시뮬레이터',
+                year: 2024
+              },
+              {
+                title: 'LGSVL Simulator',
+                url: 'https://www.svlsimulator.com/',
+                description: 'Unity 기반 자율주행 시뮬레이션 플랫폼',
+                year: 2024
+              },
+              {
+                title: 'Waymo Open Dataset',
+                url: 'https://waymo.com/open/',
+                description: 'Waymo 공개 데이터셋 - 센서 데이터 및 라벨링',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 논문 & 기술',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'End-to-End Learning for Self-Driving Cars',
+                url: 'https://arxiv.org/abs/1604.07316',
+                description: 'NVIDIA 2016 - 딥러닝 기반 자율주행 파이오니어 논문',
+                year: 2016
+              },
+              {
+                title: 'PointNet: Deep Learning on Point Sets',
+                url: 'https://arxiv.org/abs/1612.00593',
+                description: '3D 포인트 클라우드 처리 신경망 아키텍처',
+                year: 2017
+              },
+              {
+                title: 'ORB-SLAM: Tracking and Mapping',
+                url: 'https://webdiis.unizar.es/~raulmur/orbslam/',
+                description: 'Real-time SLAM 시스템 (자율주행 핵심 기술)',
+                year: 2015
+              },
+              {
+                title: 'Multi-Sensor Fusion for Autonomous Driving',
+                url: 'https://ieeexplore.ieee.org/document/8500607',
+                description: '센서 융합 기술 - LiDAR, 카메라, 레이더 통합',
+                year: 2018
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 프레임워크',
+            icon: 'tools' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'ROS (Robot Operating System)',
+                url: 'https://www.ros.org/',
+                description: '로봇 소프트웨어 프레임워크 - 자율주행 표준',
+                year: 2024
+              },
+              {
+                title: 'OpenCV',
+                url: 'https://opencv.org/',
+                description: '컴퓨터 비전 라이브러리 - 이미지 처리',
+                year: 2024
+              },
+              {
+                title: 'PCL (Point Cloud Library)',
+                url: 'https://pointclouds.org/',
+                description: '3D 포인트 클라우드 처리 라이브러리',
+                year: 2024
+              },
+              {
+                title: 'YOLO (Object Detection)',
+                url: 'https://pjreddie.com/darknet/yolo/',
+                description: '실시간 객체 탐지 - 자율주행 핵심 알고리즘',
+                year: 2024
+              },
+              {
+                title: 'Kalman Filter Library',
+                url: 'https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python',
+                description: '센서 융합 및 상태 추정 필터',
+                year: 2024
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

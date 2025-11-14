@@ -1,5 +1,7 @@
 'use client';
 
+import References from '@/components/common/References';
+
 export default function Chapter9() {
   return (
     <div className="space-y-8">
@@ -169,7 +171,7 @@ export default function Chapter9() {
         <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
           🎯 핵심 메시지
         </h3>
-        
+
         <div className="bg-gradient-to-r from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20 rounded-xl p-6">
           <p className="text-gray-700 dark:text-gray-300 text-center text-lg font-medium">
             "AI는 개발자를 대체하지 않습니다.<br/>
@@ -177,6 +179,133 @@ export default function Chapter9() {
             그렇지 않은 개발자를 대체할 것입니다."
           </p>
         </div>
+      </section>
+
+      {/* References */}
+      <section className="mt-12">
+        <References
+          sections={[
+            {
+              title: '📚 자동화 플랫폼',
+              icon: 'web' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'Make.com (Integromat)',
+                  authors: 'Make',
+                  year: '2024',
+                  description: '노코드 자동화 플랫폼 - 1,500+ 앱 통합, 시각적 워크플로우 빌더',
+                  link: 'https://www.make.com/'
+                },
+                {
+                  title: 'Zapier',
+                  authors: 'Zapier Inc.',
+                  year: '2024',
+                  description: '업무 자동화 플랫폼 - 7,000+ 앱 연동, AI 기반 워크플로우',
+                  link: 'https://zapier.com/'
+                },
+                {
+                  title: 'n8n',
+                  authors: 'n8n.io',
+                  year: '2024',
+                  description: '오픈소스 워크플로우 자동화 - 400+ 노드, 커스터마이징 가능',
+                  link: 'https://n8n.io/'
+                },
+                {
+                  title: 'Microsoft Power Automate',
+                  authors: 'Microsoft',
+                  year: '2024',
+                  description: 'RPA + 클라우드 자동화 - Office 365 통합, AI Builder',
+                  link: 'https://powerautomate.microsoft.com/'
+                },
+                {
+                  title: 'UiPath',
+                  authors: 'UiPath',
+                  year: '2024',
+                  description: '엔터프라이즈 RPA 플랫폼 - 문서 자동화, AI Fabric',
+                  link: 'https://www.uipath.com/'
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 리소스',
+              icon: 'research' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'The State of RPA 2024',
+                  authors: 'Forrester Research',
+                  year: '2024',
+                  description: 'RPA 시장 동향 보고서 - AI 통합 및 Intelligent Automation',
+                  link: 'https://www.forrester.com/'
+                },
+                {
+                  title: 'AI Automation Trends Report',
+                  authors: 'Gartner',
+                  year: '2024',
+                  description: '2024 AI 자동화 트렌드 - Agentic AI, Multi-agent Systems',
+                  link: 'https://www.gartner.com/en/insights/automation'
+                },
+                {
+                  title: 'Hyperautomation Guide',
+                  authors: 'Gartner',
+                  year: '2024',
+                  description: '초자동화 전략 가이드 - RPA + AI + Low-code 통합',
+                  link: 'https://www.gartner.com/en/information-technology/insights/hyperautomation'
+                },
+                {
+                  title: 'The Future of Work Automation',
+                  authors: 'McKinsey & Company',
+                  year: '2024',
+                  description: '업무 자동화 미래 전망 - 생산성 향상 및 일자리 변화',
+                  link: 'https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-future-of-work-after-covid-19'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-blue-500',
+              items: [
+                {
+                  title: 'LangChain Agents',
+                  authors: 'LangChain',
+                  year: '2024',
+                  description: 'AI 에이전트 프레임워크 - 자율적 작업 실행, Tool 통합',
+                  link: 'https://python.langchain.com/docs/modules/agents/'
+                },
+                {
+                  title: 'AutoGPT',
+                  authors: 'Significant Gravitas',
+                  year: '2024',
+                  description: '자율 AI 에이전트 - 목표 달성을 위한 자동 작업 분해',
+                  link: 'https://github.com/Significant-Gravitas/AutoGPT'
+                },
+                {
+                  title: 'BabyAGI',
+                  authors: 'Yohei Nakajima',
+                  year: '2023',
+                  description: 'Task-driven AI 에이전트 - 작업 생성, 우선순위, 실행',
+                  link: 'https://github.com/yoheinakajima/babyagi'
+                },
+                {
+                  title: 'Microsoft Semantic Kernel',
+                  authors: 'Microsoft',
+                  year: '2024',
+                  description: 'LLM 오케스트레이션 SDK - Planner, Plugins, Memory',
+                  link: 'https://github.com/microsoft/semantic-kernel'
+                },
+                {
+                  title: 'CrewAI',
+                  authors: 'CrewAI',
+                  year: '2024',
+                  description: 'Multi-agent 협업 프레임워크 - 역할 기반 작업 분담',
+                  link: 'https://github.com/joaomdmoura/crewAI'
+                }
+              ]
+            }
+          ]}
+        />
       </section>
     </div>
   )

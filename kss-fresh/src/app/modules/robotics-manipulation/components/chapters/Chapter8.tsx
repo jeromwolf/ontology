@@ -2,6 +2,7 @@
 
 import React from 'react'
 import ChapterNavigation from '../ChapterNavigation'
+import References from '@/components/common/References'
 
 export default function Chapter8() {
   return (
@@ -699,6 +700,116 @@ if |τ_ext| > τ_threshold:
             </p>
           </div>
         </section>
+
+        <References
+          sections={[
+            {
+              title: '📚 로보틱스 플랫폼 & 프레임워크',
+              icon: 'web' as const,
+              color: 'border-green-500',
+              items: [
+                {
+                  title: 'ROS 2 Documentation',
+                  url: 'https://docs.ros.org/en/rolling/',
+                  description: 'ROS 2 공식 문서 - 차세대 로봇 운영 체제',
+                  year: 2024
+                },
+                {
+                  title: 'MoveIt 2',
+                  url: 'https://moveit.ros.org/',
+                  description: '로봇 매니퓰레이션 플랫폼 - 경로 계획 및 제어',
+                  year: 2024
+                },
+                {
+                  title: 'Gazebo Simulator',
+                  url: 'https://gazebosim.org/',
+                  description: '3D 로봇 시뮬레이터 - ROS 통합 지원',
+                  year: 2024
+                },
+                {
+                  title: 'PyBullet',
+                  url: 'https://pybullet.org/',
+                  description: 'Python 기반 물리 시뮬레이션 엔진',
+                  year: 2024
+                },
+                {
+                  title: 'Universal Robots',
+                  url: 'https://www.universal-robots.com/',
+                  description: '협동 로봇 리더 - UR 시리즈 공식 사이트',
+                  year: 2024
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 논문 & 기술',
+              icon: 'research' as const,
+              color: 'border-teal-500',
+              items: [
+                {
+                  title: 'Grasp Planning: Survey and Evaluation',
+                  url: 'https://ieeexplore.ieee.org/document/8289018',
+                  description: '그래스프 계획 알고리즘 종합 연구',
+                  year: 2018
+                },
+                {
+                  title: 'RRT: Rapidly-exploring Random Trees',
+                  url: 'https://msl.cs.illinois.edu/~lavalle/papers/Lav98c.pdf',
+                  description: 'Steven LaValle - 경로 계획 알고리즘 (PRM과 함께 표준)',
+                  year: 1998
+                },
+                {
+                  title: 'Force Control of Robotic Manipulators',
+                  url: 'https://ieeexplore.ieee.org/document/8587',
+                  description: '로봇 힘 제어 이론 및 구현',
+                  year: 1987
+                },
+                {
+                  title: 'Tactile Sensing for Manipulation',
+                  url: 'https://arxiv.org/abs/1910.04808',
+                  description: '촉각 센서 기반 조작 - MIT CSAIL',
+                  year: 2019
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구 & 라이브러리',
+              icon: 'tools' as const,
+              color: 'border-green-500',
+              items: [
+                {
+                  title: 'OpenRAVE',
+                  url: 'http://openrave.org/',
+                  description: '로봇 자동화 계획 및 시뮬레이션 환경',
+                  year: 2024
+                },
+                {
+                  title: 'Drake (MIT)',
+                  url: 'https://drake.mit.edu/',
+                  description: 'MIT 로봇 제어 및 시뮬레이션 툴박스',
+                  year: 2024
+                },
+                {
+                  title: 'MuJoCo',
+                  url: 'https://mujoco.org/',
+                  description: 'DeepMind 물리 엔진 - 강화학습에 최적화',
+                  year: 2024
+                },
+                {
+                  title: 'RoboDK',
+                  url: 'https://robodk.com/',
+                  description: '산업용 로봇 프로그래밍 및 시뮬레이션',
+                  year: 2024
+                },
+                {
+                  title: 'V-REP (CoppeliaSim)',
+                  url: 'https://www.coppeliarobotics.com/',
+                  description: '범용 로봇 시뮬레이터 - 교육 및 연구용',
+                  year: 2024
+                }
+              ]
+            }
+          ]}
+        />
 
         {/* Chapter Navigation */}
         <ChapterNavigation

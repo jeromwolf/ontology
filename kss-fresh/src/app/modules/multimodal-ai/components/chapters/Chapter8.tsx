@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { MessageSquare, ImageIcon, Film, Eye, BookOpen, Sparkles, Target, TrendingUp } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter8() {
   return (
@@ -649,6 +650,131 @@ print(caption)  # "A dog sitting on a bench in a park"`}
             </p>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 공식 문서 & 플랫폼',
+              icon: 'web' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'OpenAI Vision API',
+                  authors: 'OpenAI',
+                  year: '2024',
+                  description: 'GPT-4V API 공식 문서 - VQA와 이미지 캡셔닝 실전 구현',
+                  link: 'https://platform.openai.com/docs/guides/vision'
+                },
+                {
+                  title: 'Google Gemini Multimodal',
+                  authors: 'Google DeepMind',
+                  year: '2024',
+                  description: 'Gemini 멀티모달 기능 가이드 - 텍스트, 이미지, 비디오 통합 처리',
+                  link: 'https://ai.google.dev/gemini-api/docs/vision'
+                },
+                {
+                  title: 'Anthropic Claude Vision',
+                  authors: 'Anthropic',
+                  year: '2024',
+                  description: 'Claude 3의 Vision 기능 - 차트, 다이어그램, 이미지 분석',
+                  link: 'https://docs.anthropic.com/claude/docs/vision'
+                },
+                {
+                  title: 'Meta AI Multimodal',
+                  authors: 'Meta',
+                  year: '2024',
+                  description: 'ImageBind, SAM, CLIP 통합 플랫폼',
+                  link: 'https://ai.meta.com/blog/imagebind-six-modalities-binding-ai/'
+                },
+                {
+                  title: 'Hugging Face Multimodal',
+                  authors: 'Hugging Face',
+                  year: '2024',
+                  description: 'BLIP, CLIP, ViT 등 멀티모달 모델 통합 라이브러리',
+                  link: 'https://huggingface.co/docs/transformers/tasks/image_text_to_text'
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 논문',
+              icon: 'research' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'CLIP: Connecting Text and Images',
+                  authors: 'Radford et al.',
+                  year: '2021',
+                  description: 'Contrastive Learning으로 텍스트-이미지 정렬 - 멀티모달 AI의 기초',
+                  link: 'https://arxiv.org/abs/2103.00020'
+                },
+                {
+                  title: 'Hierarchical Text-Conditional Image Generation with CLIP Latents (DALL-E 2)',
+                  authors: 'Ramesh et al.',
+                  year: '2022',
+                  description: 'Diffusion Model 기반 Text-to-Image 생성',
+                  link: 'https://arxiv.org/abs/2204.06125'
+                },
+                {
+                  title: 'Flamingo: a Visual Language Model for Few-Shot Learning',
+                  authors: 'Alayrac et al.',
+                  year: '2022',
+                  description: 'Few-shot 멀티모달 학습의 획기적 진전',
+                  link: 'https://arxiv.org/abs/2204.14198'
+                },
+                {
+                  title: 'GPT-4 Technical Report',
+                  authors: 'OpenAI',
+                  year: '2023',
+                  description: 'GPT-4V의 멀티모달 능력 - 차트, 수식, 복잡한 추론',
+                  link: 'https://arxiv.org/abs/2303.08774'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'Hugging Face Transformers (Multimodal)',
+                  authors: 'Hugging Face',
+                  year: '2024',
+                  description: 'BLIP, CLIP, ViT 통합 라이브러리 - VQA와 캡셔닝 빠른 구현',
+                  link: 'https://huggingface.co/docs/transformers/index'
+                },
+                {
+                  title: 'LangChain Multimodal',
+                  authors: 'LangChain',
+                  year: '2024',
+                  description: 'GPT-4V, Gemini Vision 통합 - 멀티모달 체인 구축',
+                  link: 'https://python.langchain.com/docs/integrations/chat/openai#multimodal-inputs'
+                },
+                {
+                  title: 'LlamaIndex Multimodal',
+                  authors: 'LlamaIndex',
+                  year: '2024',
+                  description: '멀티모달 RAG - 이미지/비디오 검색 및 질의응답',
+                  link: 'https://docs.llamaindex.ai/en/stable/examples/multi_modal/'
+                },
+                {
+                  title: 'OpenCLIP',
+                  authors: 'laion-ai',
+                  year: '2024',
+                  description: 'CLIP 오픈소스 구현 - 다양한 크기와 학습 데이터셋',
+                  link: 'https://github.com/mlfoundations/open_clip'
+                },
+                {
+                  title: 'Video-LLaVA',
+                  authors: 'PKU-YuanGroup',
+                  year: '2024',
+                  description: '비디오 이해 오픈소스 모델 - Video QA, Captioning',
+                  link: 'https://github.com/PKU-YuanGroup/Video-LLaVA'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import {
   Building2, TrendingUp, Users, Zap,
   CheckCircle, Code, Database, Award
 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter12() {
   const [selectedCompany, setSelectedCompany] = useState('netflix');
@@ -319,6 +320,116 @@ Pinot (실시간 분석 쿼리)
           </div>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 데이터 플랫폼 & 도구',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Apache Airflow Documentation',
+                url: 'https://airflow.apache.org/docs/',
+                description: '워크플로우 오케스트레이션 플랫폼 공식 문서',
+                year: 2024
+              },
+              {
+                title: 'dbt (Data Build Tool)',
+                url: 'https://docs.getdbt.com/',
+                description: 'SQL 기반 데이터 변환 도구 - Analytics Engineering',
+                year: 2024
+              },
+              {
+                title: 'Apache Spark Documentation',
+                url: 'https://spark.apache.org/docs/latest/',
+                description: '대규모 데이터 처리 엔진 공식 가이드',
+                year: 2024
+              },
+              {
+                title: 'Apache Kafka Documentation',
+                url: 'https://kafka.apache.org/documentation/',
+                description: '분산 스트리밍 플랫폼 공식 문서',
+                year: 2024
+              },
+              {
+                title: 'Snowflake Documentation',
+                url: 'https://docs.snowflake.com/',
+                description: '클라우드 데이터 웨어하우스 플랫폼',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 리소스 & 서적',
+            icon: 'research' as const,
+            color: 'border-teal-500',
+            items: [
+              {
+                title: 'Designing Data-Intensive Applications',
+                url: 'https://dataintensive.net/',
+                description: 'Martin Kleppmann 저 - 데이터 시스템 설계 바이블',
+                year: 2017
+              },
+              {
+                title: 'Data Engineering Cookbook',
+                url: 'https://github.com/andkret/Cookbook',
+                description: 'Andreas Kretz 저 - 실전 데이터 엔지니어링 가이드',
+                year: 2021
+              },
+              {
+                title: 'Modern Data Stack',
+                url: 'https://www.moderndatastack.xyz/',
+                description: '최신 데이터 도구 및 아키텍처 트렌드',
+                year: 2024
+              },
+              {
+                title: 'The Data Warehouse Toolkit',
+                url: 'https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/',
+                description: 'Ralph Kimball 저 - 차원 모델링 고전',
+                year: 2013
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 프레임워크',
+            icon: 'tools' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Prefect',
+                url: 'https://docs.prefect.io/',
+                description: '현대적 워크플로우 오케스트레이션 플랫폼',
+                year: 2024
+              },
+              {
+                title: 'Dagster',
+                url: 'https://docs.dagster.io/',
+                description: '데이터 오케스트레이션 플랫폼 - Asset 기반 접근',
+                year: 2024
+              },
+              {
+                title: 'Great Expectations',
+                url: 'https://docs.greatexpectations.io/',
+                description: '데이터 품질 검증 프레임워크',
+                year: 2024
+              },
+              {
+                title: 'Fivetran',
+                url: 'https://fivetran.com/docs',
+                description: '자동화된 데이터 복제 플랫폼',
+                year: 2024
+              },
+              {
+                title: 'Airbyte',
+                url: 'https://docs.airbyte.com/',
+                description: '오픈소스 EL(T) 플랫폼 - 350+ 커넥터',
+                year: 2024
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

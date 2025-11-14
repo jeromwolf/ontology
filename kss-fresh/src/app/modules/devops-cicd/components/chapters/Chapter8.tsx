@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Monitor, Activity, FileText, Shield, Lock, AlertTriangle, CheckCircle, Eye, BarChart3 } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -718,6 +719,116 @@ helm install falco falcosecurity/falco \\
           <strong>다음 단계 추천</strong>: Service Mesh(Istio), Platform Engineering, FinOps, SRE 실습 프로젝트
         </p>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 CI/CD 플랫폼 & 도구',
+            icon: 'web' as const,
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'GitHub Actions Documentation',
+                url: 'https://docs.github.com/en/actions',
+                description: '공식 문서 - Workflow 작성 및 자동화 (2024)',
+                year: 2024
+              },
+              {
+                title: 'GitLab CI/CD',
+                url: 'https://docs.gitlab.com/ee/ci/',
+                description: 'GitLab CI/CD 파이프라인 완벽 가이드',
+                year: 2024
+              },
+              {
+                title: 'Jenkins Documentation',
+                url: 'https://www.jenkins.io/doc/',
+                description: '오픈소스 CI/CD 서버 - 플러그인 생태계',
+                year: 2024
+              },
+              {
+                title: 'CircleCI Documentation',
+                url: 'https://circleci.com/docs/',
+                description: '클라우드 네이티브 CI/CD 플랫폼',
+                year: 2024
+              },
+              {
+                title: 'ArgoCD Documentation',
+                url: 'https://argo-cd.readthedocs.io/',
+                description: 'GitOps 기반 Kubernetes 배포 도구',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 리소스 & 서적',
+            icon: 'research' as const,
+            color: 'border-red-500',
+            items: [
+              {
+                title: 'The Phoenix Project',
+                url: 'https://itrevolution.com/the-phoenix-project/',
+                description: 'Gene Kim 저 - DevOps 소설 형식 입문서',
+                year: 2013
+              },
+              {
+                title: 'The DevOps Handbook',
+                url: 'https://itrevolution.com/the-devops-handbook/',
+                description: 'Gene Kim 저 - DevOps 실무 가이드',
+                year: 2016
+              },
+              {
+                title: 'Site Reliability Engineering (Google)',
+                url: 'https://sre.google/books/',
+                description: 'Google SRE 팀 저 - SRE 바이블 (무료 공개)',
+                year: 2016
+              },
+              {
+                title: 'State of DevOps Report',
+                url: 'https://cloud.google.com/devops/state-of-devops',
+                description: 'Google Cloud 연간 DevOps 벤치마크 리포트',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구 & 프레임워크',
+            icon: 'tools' as const,
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Docker Documentation',
+                url: 'https://docs.docker.com/',
+                description: '컨테이너화 플랫폼 공식 문서',
+                year: 2024
+              },
+              {
+                title: 'Kubernetes Documentation',
+                url: 'https://kubernetes.io/docs/',
+                description: '컨테이너 오케스트레이션 플랫폼',
+                year: 2024
+              },
+              {
+                title: 'Terraform Documentation',
+                url: 'https://www.terraform.io/docs',
+                description: 'Infrastructure as Code 도구',
+                year: 2024
+              },
+              {
+                title: 'Ansible Documentation',
+                url: 'https://docs.ansible.com/',
+                description: '구성 관리 및 자동화 도구',
+                year: 2024
+              },
+              {
+                title: 'Prometheus + Grafana',
+                url: 'https://prometheus.io/docs/',
+                description: '모니터링 및 시각화 스택',
+                year: 2024
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

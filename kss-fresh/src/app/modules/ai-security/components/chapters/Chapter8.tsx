@@ -1,6 +1,7 @@
 'use client';
 
 import SecurityAuditTool from '../SecurityAuditTool';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   return (
@@ -117,6 +118,133 @@ export default function Chapter8() {
 
       <div className="my-8">
         <SecurityAuditTool />
+      </div>
+
+      {/* References */}
+      <div className="not-prose mt-12">
+        <References
+          sections={[
+            {
+              title: '📚 보안 프레임워크',
+              icon: 'web' as const,
+              color: 'border-red-500',
+              items: [
+                {
+                  title: 'OWASP Top 10 for LLM Applications',
+                  authors: 'OWASP Foundation',
+                  year: '2024',
+                  description: 'LLM 애플리케이션 보안 위험 Top 10 - Prompt Injection, Data Poisoning 등',
+                  link: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/'
+                },
+                {
+                  title: 'NIST AI Risk Management Framework',
+                  authors: 'NIST',
+                  year: '2023',
+                  description: 'AI 시스템 위험 관리 프레임워크 - Trustworthy AI 구축 가이드',
+                  link: 'https://www.nist.gov/itl/ai-risk-management-framework'
+                },
+                {
+                  title: 'Microsoft AI Security Best Practices',
+                  authors: 'Microsoft',
+                  year: '2024',
+                  description: 'AI 시스템 보안 베스트 프랙티스 - Responsible AI, Red Teaming',
+                  link: 'https://learn.microsoft.com/en-us/security/ai-red-team/'
+                },
+                {
+                  title: 'Google Secure AI Framework (SAIF)',
+                  authors: 'Google Cloud',
+                  year: '2024',
+                  description: 'AI 시스템 보안 프레임워크 - 6가지 핵심 원칙',
+                  link: 'https://blog.google/technology/safety-security/introducing-googles-secure-ai-framework/'
+                },
+                {
+                  title: 'AI Incident Database',
+                  authors: 'Partnership on AI',
+                  year: '2024',
+                  description: 'AI 사고 사례 데이터베이스 - 실제 보안 사고 분석',
+                  link: 'https://incidentdatabase.ai/'
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 논문',
+              icon: 'research' as const,
+              color: 'border-red-500',
+              items: [
+                {
+                  title: 'Explaining and Harnessing Adversarial Examples',
+                  authors: 'Goodfellow et al.',
+                  year: '2015',
+                  description: '적대적 예제의 원리와 방어 - FGSM 공격 제안',
+                  link: 'https://arxiv.org/abs/1412.6572'
+                },
+                {
+                  title: 'Model Inversion Attacks',
+                  authors: 'Fredrikson et al.',
+                  year: '2015',
+                  description: '모델 역공학으로 학습 데이터 복원 - 프라이버시 위협',
+                  link: 'https://www.cs.cmu.edu/~mfredrik/papers/fjr2015ccs.pdf'
+                },
+                {
+                  title: 'Prompt Injection Attacks',
+                  authors: 'Perez & Ribeiro',
+                  year: '2022',
+                  description: 'LLM 프롬프트 인젝션 공격 - 시스템 프롬프트 우회',
+                  link: 'https://arxiv.org/abs/2211.09527'
+                },
+                {
+                  title: 'Membership Inference Attacks',
+                  authors: 'Shokri et al.',
+                  year: '2017',
+                  description: '학습 데이터 멤버십 추론 공격 - 모델로부터 개인정보 유출',
+                  link: 'https://arxiv.org/abs/1610.05820'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-red-500',
+              items: [
+                {
+                  title: 'CleverHans',
+                  authors: 'Google Brain',
+                  year: '2024',
+                  description: '적대적 예제 생성 라이브러리 - FGSM, PGD, C&W 공격',
+                  link: 'https://github.com/cleverhans-lab/cleverhans'
+                },
+                {
+                  title: 'Foolbox',
+                  authors: 'Rauber et al.',
+                  year: '2024',
+                  description: 'Python 적대적 공격 라이브러리 - PyTorch, TensorFlow 지원',
+                  link: 'https://github.com/bethgelab/foolbox'
+                },
+                {
+                  title: 'Adversarial Robustness Toolbox (ART)',
+                  authors: 'IBM Research',
+                  year: '2024',
+                  description: 'AI 보안 종합 툴킷 - 공격, 방어, 평가 통합',
+                  link: 'https://github.com/Trusted-AI/adversarial-robustness-toolbox'
+                },
+                {
+                  title: 'TextAttack',
+                  authors: 'QData Lab',
+                  year: '2024',
+                  description: 'NLP 모델 적대적 공격 프레임워크 - LLM 취약점 테스트',
+                  link: 'https://github.com/QData/TextAttack'
+                },
+                {
+                  title: 'PrivacyRaven',
+                  authors: 'Trail of Bits',
+                  year: '2024',
+                  description: 'ML 프라이버시 공격 툴킷 - Model Extraction, Membership Inference',
+                  link: 'https://github.com/trailofbits/PrivacyRaven'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
     </div>
   )

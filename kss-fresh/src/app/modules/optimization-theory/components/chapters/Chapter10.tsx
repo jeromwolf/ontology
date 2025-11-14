@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Rocket, Code, Database, Cloud, TrendingUp, CheckCircle2, AlertTriangle, Award } from 'lucide-react'
+import References from '@/components/common/References'
 
 export default function Chapter10() {
   return (
@@ -604,6 +605,98 @@ export default function Chapter10() {
             </div>
           </div>
         </section>
+
+        {/* References */}
+        <References
+          sections={[
+            {
+              title: '📚 온라인 강의 & 리소스',
+              icon: 'web' as const,
+              color: 'border-purple-500',
+              items: [
+                {
+                  title: 'MIT OCW - Optimization Methods',
+                  url: 'https://ocw.mit.edu/courses/sloan-school-of-management/15-093j-optimization-methods-fall-2009/',
+                  description: 'MIT 최적화 이론 강의 (무료, 동영상 포함)'
+                },
+                {
+                  title: 'Stanford - Convex Optimization',
+                  url: 'https://web.stanford.edu/class/ee364a/',
+                  description: 'Stephen Boyd 볼록 최적화 강의 (슬라이드, 과제 포함)'
+                },
+                {
+                  title: 'NEOS Server',
+                  url: 'https://neos-server.org/',
+                  description: '온라인 최적화 솔버 서버 (무료, 다양한 솔버 지원)'
+                },
+                {
+                  title: 'OR-Library',
+                  url: 'http://people.brunel.ac.uk/~mastjjb/jeb/info.html',
+                  description: '운영연구 문제 데이터셋 라이브러리'
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 교재',
+              icon: 'research' as const,
+              color: 'border-indigo-500',
+              items: [
+                {
+                  title: 'Convex Optimization (Boyd & Vandenberghe)',
+                  url: 'https://web.stanford.edu/~boyd/cvxbook/',
+                  description: '볼록 최적화 바이블 (PDF 무료, 2004)'
+                },
+                {
+                  title: 'Numerical Optimization (Nocedal & Wright)',
+                  url: 'https://www.springer.com/gp/book/9780387303031',
+                  description: '수치 최적화 알고리즘 교과서 (2nd Edition, 2006)'
+                },
+                {
+                  title: 'Linear Programming (Vanderbei)',
+                  url: 'https://www.springer.com/gp/book/9781461476290',
+                  description: '선형 계획법 입문서 (5th Edition, 2020)'
+                },
+                {
+                  title: 'Introduction to Operations Research (Hillier & Lieberman)',
+                  url: 'https://www.mheducation.com/highered/product/introduction-operations-research-hillier-lieberman/M9781259872990.html',
+                  description: '운영연구 전반을 다루는 교과서 (11th Edition, 2021)'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-emerald-500',
+              items: [
+                {
+                  title: 'CVX / CVXPY',
+                  url: 'https://www.cvxpy.org/',
+                  description: 'Python 볼록 최적화 모델링 라이브러리 (오픈소스)'
+                },
+                {
+                  title: 'Gurobi Optimizer',
+                  url: 'https://www.gurobi.com/',
+                  description: '상용 최적화 솔버 (학계 무료, 최고 성능)'
+                },
+                {
+                  title: 'CPLEX',
+                  url: 'https://www.ibm.com/products/ilog-cplex-optimization-studio',
+                  description: 'IBM 상용 솔버 (학계 무료, 대규모 MILP)'
+                },
+                {
+                  title: 'SciPy optimize',
+                  url: 'https://docs.scipy.org/doc/scipy/reference/optimize.html',
+                  description: 'Python 과학 계산 라이브러리 (비선형 최적화)'
+                },
+                {
+                  title: 'JuMP (Julia)',
+                  url: 'https://jump.dev/',
+                  description: 'Julia 수학적 최적화 모델링 언어 (고성능)'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
     </div>
   )

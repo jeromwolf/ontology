@@ -1,6 +1,7 @@
 'use client';
 
 import { Award, CheckCircle2, Lightbulb, Package, Rocket, Shield } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter10() {
   return (
@@ -477,6 +478,110 @@ jobs:
           </ul>
         </div>
       </section>
+
+      <References
+        sections={[
+          {
+            title: '📚 공식 문서 & 튜토리얼',
+            icon: 'web' as const,
+            color: 'border-blue-500',
+            items: [
+              {
+                title: 'Python.org Official Documentation',
+                url: 'https://docs.python.org/3/',
+                description: 'Python 공식 문서 - 표준 라이브러리, 튜토리얼, 레퍼런스 완벽 제공 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Real Python',
+                url: 'https://realpython.com/',
+                description: 'Python 실전 튜토리얼 - 초급부터 고급까지 체계적인 학습 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Python Tutorial (Official)',
+                url: 'https://docs.python.org/3/tutorial/',
+                description: 'Python 공식 튜토리얼 - 기초부터 단계별 학습 가이드 (2024)',
+                year: 2024
+              },
+              {
+                title: 'PEP 8 -- Style Guide for Python Code',
+                url: 'https://peps.python.org/pep-0008/',
+                description: 'Python 코딩 스타일 가이드 - 공식 컨벤션 및 베스트 프랙티스 (2024)',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재',
+            icon: 'research' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Python Crash Course (Eric Matthes)',
+                url: 'https://nostarch.com/python-crash-course-3rd-edition',
+                description: 'Python 입문 베스트셀러 - 프로젝트 기반 실습 중심 (3판, 2023)',
+                year: 2023
+              },
+              {
+                title: 'Fluent Python (Luciano Ramalho)',
+                url: 'https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/',
+                description: 'Python 고급 프로그래밍 바이블 - pythonic 코드 작성법 (2판, 2022)',
+                year: 2022
+              },
+              {
+                title: 'Effective Python (Brett Slatkin)',
+                url: 'https://effectivepython.com/',
+                description: 'Python 베스트 프랙티스 90가지 - 실무 팁 총정리 (2판, 2019)',
+                year: 2019
+              },
+              {
+                title: 'Automate the Boring Stuff with Python (Al Sweigart)',
+                url: 'https://automatetheboringstuff.com/',
+                description: 'Python 자동화 입문서 - 실생활 문제 해결 중심 무료 공개 (2판, 2020)',
+                year: 2020
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구',
+            icon: 'tools' as const,
+            color: 'border-amber-500',
+            items: [
+              {
+                title: 'PyCharm',
+                url: 'https://www.jetbrains.com/pycharm/',
+                description: 'JetBrains Python IDE - 강력한 디버깅 및 리팩토링 기능 (2024)',
+                year: 2024
+              },
+              {
+                title: 'VS Code with Python Extension',
+                url: 'https://code.visualstudio.com/docs/python/python-tutorial',
+                description: 'Visual Studio Code - 무료 경량 Python 개발 환경 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Jupyter Notebook/Lab',
+                url: 'https://jupyter.org/',
+                description: '인터랙티브 Python 노트북 - 데이터 분석 및 시각화 (2024)',
+                year: 2024
+              },
+              {
+                title: 'pip & conda',
+                url: 'https://pip.pypa.io/',
+                description: 'Python 패키지 관리자 - 라이브러리 설치 및 의존성 관리 (2024)',
+                year: 2024
+              },
+              {
+                title: 'pytest',
+                url: 'https://docs.pytest.org/',
+                description: 'Python 테스팅 프레임워크 - 간결하고 강력한 단위 테스트 (2024)',
+                year: 2024
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   );
 }

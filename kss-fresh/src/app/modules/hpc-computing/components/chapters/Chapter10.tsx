@@ -1,3 +1,7 @@
+'use client'
+
+import References from '@/components/common/References'
+
 export default function Chapter10() {
   return (
     <div className="space-y-8">
@@ -324,6 +328,103 @@ for batch in dataloader:
           </ul>
         </div>
       </section>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 HPC 플랫폼 & 리소스',
+            icon: 'web' as const,
+            color: 'border-red-500',
+            items: [
+              {
+                title: 'TOP500 Supercomputers',
+                url: 'https://www.top500.org/',
+                description: '세계 슈퍼컴퓨터 순위 및 성능 벤치마크 (2024년 11월 최신)'
+              },
+              {
+                title: 'XSEDE - Extreme Science and Engineering Discovery Environment',
+                url: 'https://www.xsede.org/',
+                description: '미국 NSF 슈퍼컴퓨팅 리소스 공유 플랫폼'
+              },
+              {
+                title: 'NSF Supercomputing Centers',
+                url: 'https://www.nsf.gov/news/special_reports/cyber/fromsca.jsp',
+                description: '미국 국립과학재단 슈퍼컴퓨팅 센터 네트워크'
+              },
+              {
+                title: 'AWS HPC Solutions',
+                url: 'https://aws.amazon.com/hpc/',
+                description: 'AWS 클라우드 기반 고성능 컴퓨팅 (Elastic Fabric Adapter, ParallelCluster)'
+              },
+              {
+                title: 'Azure HPC',
+                url: 'https://azure.microsoft.com/en-us/solutions/high-performance-computing/',
+                description: 'Microsoft Azure HPC + CycleCloud 오케스트레이션'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재 & 리소스',
+            icon: 'research' as const,
+            color: 'border-orange-500',
+            items: [
+              {
+                title: 'Introduction to High-Performance Scientific Computing (Victor Eijkhout)',
+                url: 'https://pages.tacc.utexas.edu/~eijkhout/istc/istc.html',
+                description: 'HPC 필수 교재 - 병렬 알고리즘부터 최적화까지 (무료 PDF)'
+              },
+              {
+                title: 'Parallel Programming in C with MPI and OpenMP (Michael J. Quinn)',
+                url: 'https://www.cs.usfca.edu/~peter/ppmpi/',
+                description: 'MPI/OpenMP 병렬 프로그래밍 바이블'
+              },
+              {
+                title: 'MPI Tutorial',
+                url: 'https://mpitutorial.com/',
+                description: 'MPI (Message Passing Interface) 실전 튜토리얼'
+              },
+              {
+                title: 'OpenMP Tutorial (LLNL)',
+                url: 'https://hpc.llnl.gov/openmp-tutorial',
+                description: '로렌스 리버모어 국립연구소 OpenMP 가이드'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'MPI (Message Passing Interface)',
+                url: 'https://www.mpi-forum.org/',
+                description: '분산 메모리 병렬 프로그래밍 표준 (Open MPI, MPICH)'
+              },
+              {
+                title: 'OpenMP',
+                url: 'https://www.openmp.org/',
+                description: '공유 메모리 병렬 프로그래밍 API (멀티스레딩)'
+              },
+              {
+                title: 'CUDA Toolkit',
+                url: 'https://developer.nvidia.com/cuda-toolkit',
+                description: 'NVIDIA GPU 병렬 컴퓨팅 플랫폼 (CUDA 12.3, 2024)'
+              },
+              {
+                title: 'Slurm Workload Manager',
+                url: 'https://slurm.schedmd.com/',
+                description: 'HPC 클러스터 작업 스케줄러 (오픈소스)'
+              },
+              {
+                title: 'PBS (Portable Batch System)',
+                url: 'https://www.openpbs.org/',
+                description: 'HPC 작업 관리 시스템 (OpenPBS)'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import References from '@/components/common/References';
 
 export default function Chapter9() {
   return (
@@ -134,9 +135,136 @@ public class ARRobotController : MonoBehaviour {
 
       <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg mt-6">
         <p className="text-sm">
-          <strong>💡 실습 제안:</strong> Omniverse Physics Lab 시뮬레이터에서 
+          <strong>💡 실습 제안:</strong> Omniverse Physics Lab 시뮬레이터에서
           물리 법칙과 AI 제어를 통합한 메타버스 환경을 직접 체험해보세요!
         </p>
+      </div>
+
+      {/* References */}
+      <div className="not-prose mt-12">
+        <References
+          sections={[
+            {
+              title: '📚 로보틱스 플랫폼',
+              icon: 'web' as const,
+              color: 'border-teal-500',
+              items: [
+                {
+                  title: 'NVIDIA Isaac Sim',
+                  authors: 'NVIDIA',
+                  year: '2024',
+                  description: 'Physical AI 시뮬레이션 플랫폼 - 로봇 훈련을 위한 Omniverse 기반 환경',
+                  link: 'https://developer.nvidia.com/isaac-sim'
+                },
+                {
+                  title: 'PyBullet',
+                  authors: 'Erwin Coumans',
+                  year: '2024',
+                  description: '물리 시뮬레이션 라이브러리 - 로봇 제어 및 RL 연구에 널리 사용',
+                  link: 'https://pybullet.org/'
+                },
+                {
+                  title: 'MuJoCo',
+                  authors: 'DeepMind',
+                  year: '2024',
+                  description: '고성능 물리 엔진 - 복잡한 로봇 시스템 시뮬레이션',
+                  link: 'https://mujoco.org/'
+                },
+                {
+                  title: 'Gazebo',
+                  authors: 'Open Robotics',
+                  year: '2024',
+                  description: 'ROS 통합 로봇 시뮬레이터 - 센서, 환경, 물리 시뮬레이션',
+                  link: 'https://gazebosim.org/'
+                },
+                {
+                  title: 'NVIDIA Omniverse',
+                  authors: 'NVIDIA',
+                  year: '2024',
+                  description: '디지털 트윈 플랫폼 - PhysX 5.0 기반 실시간 물리 시뮬레이션',
+                  link: 'https://www.nvidia.com/en-us/omniverse/'
+                }
+              ]
+            },
+            {
+              title: '📖 핵심 논문',
+              icon: 'research' as const,
+              color: 'border-teal-500',
+              items: [
+                {
+                  title: 'Embodied AI (AI2-THOR)',
+                  authors: 'Deitke et al.',
+                  year: '2020',
+                  description: '로봇이 물리 환경에서 학습하는 Embodied AI 프레임워크',
+                  link: 'https://arxiv.org/abs/1712.05474'
+                },
+                {
+                  title: 'RT-1: Robotics Transformer',
+                  authors: 'Brohan et al. (Google)',
+                  year: '2022',
+                  description: 'Transformer 기반 로봇 제어 - 13만 개 실제 데모 학습',
+                  link: 'https://arxiv.org/abs/2212.06817'
+                },
+                {
+                  title: 'Sim-to-Real Transfer',
+                  authors: 'Peng et al.',
+                  year: '2018',
+                  description: '시뮬레이션 학습을 실제 로봇으로 전이 - Domain Randomization',
+                  link: 'https://arxiv.org/abs/1710.06537'
+                },
+                {
+                  title: 'NVIDIA COSMOS Platform',
+                  authors: 'NVIDIA',
+                  year: '2024',
+                  description: 'Physical AI 세계 모델 - Foundation World Model for Robotics',
+                  link: 'https://www.nvidia.com/en-us/ai-data-science/cosmos/'
+                }
+              ]
+            },
+            {
+              title: '🛠️ 실전 도구',
+              icon: 'tools' as const,
+              color: 'border-teal-500',
+              items: [
+                {
+                  title: 'ROS 2 (Robot Operating System)',
+                  authors: 'Open Robotics',
+                  year: '2024',
+                  description: '로봇 미들웨어 표준 - 센서, 제어, 통신 통합 프레임워크',
+                  link: 'https://docs.ros.org/en/rolling/'
+                },
+                {
+                  title: 'OpenAI Gym',
+                  authors: 'OpenAI',
+                  year: '2024',
+                  description: '강화학습 환경 표준 - 로봇 제어 벤치마크',
+                  link: 'https://www.gymlibrary.dev/'
+                },
+                {
+                  title: 'Stable Baselines3',
+                  authors: 'DLR-RM',
+                  year: '2024',
+                  description: 'RL 알고리즘 라이브러리 - PPO, SAC, TD3 구현',
+                  link: 'https://stable-baselines3.readthedocs.io/'
+                },
+                {
+                  title: 'NVIDIA Isaac SDK',
+                  authors: 'NVIDIA',
+                  year: '2024',
+                  description: '로봇 개발 도구 - 센서 처리, 내비게이션, 조작 알고리즘',
+                  link: 'https://developer.nvidia.com/isaac-sdk'
+                },
+                {
+                  title: 'PyRobot',
+                  authors: 'Facebook AI Research',
+                  year: '2024',
+                  description: '통합 로봇 인터페이스 - 다양한 로봇 플랫폼 추상화',
+                  link: 'https://github.com/facebookresearch/pyrobot'
+                }
+              ]
+            }
+          ]}
+        />
       </div>
     </div>
   )

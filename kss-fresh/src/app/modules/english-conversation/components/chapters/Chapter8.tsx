@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Volume2, Pause, MessageCircle, Users, Globe, Copy, CheckCircle, Play } from 'lucide-react';
+import References from '@/components/common/References';
 
 export default function Chapter8() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
@@ -92,6 +93,110 @@ export default function Chapter8() {
           </div>
         </div>
       </div>
+
+      <References
+        sections={[
+          {
+            title: '📚 학습 플랫폼 & 리소스',
+            icon: 'web' as const,
+            color: 'border-pink-500',
+            items: [
+              {
+                title: 'BBC Learning English',
+                url: 'https://www.bbc.co.uk/learningenglish',
+                description: 'BBC 영어 학습 플랫폼 - 뉴스, 비즈니스, 문법 강의 무료 제공 (2024)',
+                year: 2024
+              },
+              {
+                title: 'VOA Learning English',
+                url: 'https://learningenglish.voanews.com/',
+                description: 'Voice of America - 천천히 말하는 뉴스 및 다양한 레벨 콘텐츠 (2024)',
+                year: 2024
+              },
+              {
+                title: 'ESL Pod - English as a Second Language',
+                url: 'https://www.eslpod.com/',
+                description: '일상 대화 팟캐스트 - 실생활 표현과 문화 설명 포함 (2024)',
+                year: 2024
+              },
+              {
+                title: "Rachel's English",
+                url: 'https://www.youtube.com/c/rachelsenglish',
+                description: 'YouTube 발음 강의 - 미국 영어 발음 세밀 교정 (2024)',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 교재',
+            icon: 'research' as const,
+            color: 'border-rose-500',
+            items: [
+              {
+                title: 'English Grammar in Use (Raymond Murphy)',
+                url: 'https://www.cambridge.org/elt/grammarinuse',
+                description: '세계적 베스트셀러 문법서 - 자습용 명쾌한 설명 (5판, 2019)',
+                year: 2019
+              },
+              {
+                title: 'Practical English Usage (Michael Swan)',
+                url: 'https://global.oup.com/academic/product/practical-english-usage-9780194202411',
+                description: '영어 사용법 백과사전 - 실무 영어 완벽 정리 (4판, 2016)',
+                year: 2016
+              },
+              {
+                title: 'Oxford Collocations Dictionary',
+                url: 'https://www.oxfordlearnersdictionaries.com/about/collocations',
+                description: '연어 사전 - 자연스러운 영어 표현 조합 완벽 수록 (2판, 2009)',
+                year: 2009
+              },
+              {
+                title: 'Cambridge Advanced Learner\'s Dictionary',
+                url: 'https://dictionary.cambridge.org/dictionary/english/',
+                description: '온라인 영영사전 - 발음, 예문, 문법 정보 완벽 제공 (2024)',
+                year: 2024
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구',
+            icon: 'tools' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Grammarly',
+                url: 'https://www.grammarly.com/',
+                description: 'AI 영문법 교정 도구 - 스펠링, 문법, 스타일 자동 검사 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Anki',
+                url: 'https://apps.ankiweb.net/',
+                description: '플래시카드 암기 앱 - 간격 반복 학습법 기반 무료 도구 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Forvo',
+                url: 'https://forvo.com/',
+                description: '발음 사전 - 네이티브 발음 녹음 450만+ 단어 (2024)',
+                year: 2024
+              },
+              {
+                title: 'YouGlish',
+                url: 'https://youglish.com/',
+                description: 'YouTube 영상 속 실제 발음 검색 - 문맥 속 발음 학습 (2024)',
+                year: 2024
+              },
+              {
+                title: 'Reverso Context',
+                url: 'https://context.reverso.net/',
+                description: '번역 및 예문 검색 - 실제 사용 예문 수백만 개 제공 (2024)',
+                year: 2024
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }

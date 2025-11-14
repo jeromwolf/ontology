@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import References from '@/components/common/References'
 
 export default function Chapter12() {
   const chapterInfo = {
@@ -73,6 +74,103 @@ export default function Chapter12() {
           </ul>
         </div>
       </section>
+
+      {/* References */}
+      <References
+        sections={[
+          {
+            title: '📚 창의적 코딩 플랫폼',
+            icon: 'web' as const,
+            color: 'border-purple-500',
+            items: [
+              {
+                title: 'Processing',
+                url: 'https://processing.org/',
+                description: '비주얼 아트와 코딩 교육을 위한 프로그래밍 언어 (Java 기반)'
+              },
+              {
+                title: 'p5.js',
+                url: 'https://p5js.org/',
+                description: 'Processing의 JavaScript 버전 (웹 브라우저에서 실행)'
+              },
+              {
+                title: 'openFrameworks',
+                url: 'https://openframeworks.cc/',
+                description: 'C++ 창의적 코딩 프레임워크 (고성능 인터랙티브 아트)'
+              },
+              {
+                title: 'Creative Coding - YouTube Channels',
+                url: 'https://www.youtube.com/c/TheCodingTrain',
+                description: 'The Coding Train (Daniel Shiffman) - 창의적 코딩 튜토리얼'
+              },
+              {
+                title: 'OpenProcessing',
+                url: 'https://openprocessing.org/',
+                description: '창의적 코딩 커뮤니티 및 작품 공유 플랫폼'
+              }
+            ]
+          },
+          {
+            title: '📖 핵심 리소스',
+            icon: 'research' as const,
+            color: 'border-pink-500',
+            items: [
+              {
+                title: 'The Nature of Code (Daniel Shiffman)',
+                url: 'https://natureofcode.com/',
+                description: '생성 예술 및 시뮬레이션 바이블 (무료 온라인, 2024년 v2)'
+              },
+              {
+                title: 'Generative Design',
+                url: 'http://www.generative-gestaltung.de/',
+                description: '생성 디자인 교과서 (Processing 기반, 인터랙티브 예제)'
+              },
+              {
+                title: 'Creative Coding Book',
+                url: 'https://timrodenbroeker.de/courses/creative-coding/',
+                description: 'Tim Rodenbröker 창의적 코딩 강좌'
+              },
+              {
+                title: 'Casey Reas - Artist',
+                url: 'https://reas.com/',
+                description: 'Processing 공동 창시자, 생성 예술가'
+              }
+            ]
+          },
+          {
+            title: '🛠️ 실전 도구',
+            icon: 'tools' as const,
+            color: 'border-indigo-500',
+            items: [
+              {
+                title: 'Three.js',
+                url: 'https://threejs.org/',
+                description: 'JavaScript 3D 라이브러리 (WebGL 기반, 2024 r169)'
+              },
+              {
+                title: 'WebGL Fundamentals',
+                url: 'https://webglfundamentals.org/',
+                description: 'WebGL 튜토리얼 (3D 그래픽 기초)'
+              },
+              {
+                title: 'Shader (GLSL)',
+                url: 'https://www.shadertoy.com/',
+                description: 'GLSL 셰이더 플레이그라운드 (실시간 렌더링)'
+              },
+              {
+                title: 'TouchDesigner',
+                url: 'https://derivative.ca/',
+                description: '비주얼 프로그래밍 플랫폼 (실시간 인터랙티브 미디어)'
+              },
+              {
+                title: 'Max/MSP',
+                url: 'https://cycling74.com/products/max',
+                description: '오디오-비주얼 프로그래밍 환경 (음악, VJ)'
+              }
+            ]
+          }
+        ]}
+      />
     </div>
   )
 }
